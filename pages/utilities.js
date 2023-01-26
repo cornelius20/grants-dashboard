@@ -23,7 +23,7 @@ const Utilities = () => {
 		}
 	});
 	return (
-		<div>
+		<div style={{background: '#000',height: '100vh'}}>
 			<Link href="/">
 				<a>
 					<div className={styles.close}>
@@ -36,24 +36,23 @@ const Utilities = () => {
 				</a>
 			</Link>
 			<div className={styles.utilitiesWrapper}>
-				<h1>Utilities</h1>
-				<p className={styles.descriptor}>A couple of tools that might be helpful.</p>
-
+				
+				<h2>I. Stacks Community Tools</h2>
 				<div className={styles.buttonWrapper}>
 					<div>
-						<p>A. Calculate and Verify Payment Amounts</p>
+						<p>I.a. Want to verify your payment amount?</p>
 						<Link href="/stacks-payment-converter">
 							<a>
-								<button>STX Payment Converter</button>
+								<button style={{background: '#171923'}}>STX Payment Converter</button>
 							</a>
 						</Link>
 					</div>
 					<div>
-						<p>B. Export Grant Data from Github</p>
+						<p>I.b. Want to export data from grants database?</p>
 						{!session && (
 							<Link href="/grant-data-exporter">
 								<a>
-									<button onClick={() => signIn('github')}>Connect Github</button>
+									<button style={{background: '#171923'}}>Grants Database Exporter</button>
 								</a>
 							</Link>
 						)}
@@ -65,6 +64,83 @@ const Utilities = () => {
 							</Link>
 						)}
 					</div>
+					<div>
+						<p>I.c. Was your Grant approved? Onboard here</p>
+						{!session && (
+							<Link href="/grant-data-exporter">
+								<a>
+									<button onClick={() => signIn('github')}>Grant Onboarding</button>
+								</a>
+							</Link>
+						)}
+						{session && (
+							<Link href="/grant-data-exporter">
+								<a>
+									<button>Grant Data Exporter</button>
+								</a>
+							</Link>
+						)}
+					</div>
+				</div>
+				<h2>II. Grant Review Commitee Tools</h2>
+
+				<div className={styles.buttonWrapper}>
+					<div>
+						<p>II.a. Have you been asked to review grant application?</p>
+						<Link href="/stacks-payment-converter">
+							<a>
+								<button>Application Review Form</button>
+							</a>
+						</Link>
+					</div>
+					<div>
+						<p>II.b. Have you been asked to review a milestone or final deliverable?</p>
+						{!session && (
+							<Link href="/grant-data-exporter">
+								<a>
+									<button onClick={() => signIn('github')}>Deliverable Review Form</button>
+								</a>
+							</Link>
+						)}
+						{session && (
+							<Link href="/grant-data-exporter">
+								<a>
+									<button>Grant Data Exporter</button>
+								</a>
+							</Link>
+						)}
+					</div>
+					
+				</div>
+				<h2>III. Grant Admin Tools</h2>
+
+				<div className={styles.buttonWrapper}>
+					<div>
+						<p>III.a. Need to adjust permission settings?</p>
+						<Link href="/stacks-payment-converter">
+							<a>
+								<button>Admin Dashboard</button>
+							</a>
+						</Link>
+					</div>
+					<div>
+						<p>III.b Need to document a payment made to grant recepient?</p>
+						{!session && (
+							<Link href="/grant-data-exporter">
+								<a>
+									<button onClick={() => signIn('github')}>Payment Dashboard</button>
+								</a>
+							</Link>
+						)}
+						{session && (
+							<Link href="/grant-data-exporter">
+								<a>
+									<button>Payments Dashboard</button>
+								</a>
+							</Link>
+						)}
+					</div>
+					
 				</div>
 			</div>
 			<StacksLogo className={styles.stacksSVG} />

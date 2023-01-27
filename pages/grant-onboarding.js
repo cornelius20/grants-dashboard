@@ -7,7 +7,7 @@ import { unstable_getServerSession } from 'next-auth/next';
 
 export default function GrantOnboarding() {
   return (
-    <div style={{background: '#000',height: '100vh'}}>
+    <div style={main}>
         <Link href="/">
 			<a>
 				<div className={styles.close}>
@@ -61,7 +61,7 @@ export default function GrantOnboarding() {
                             </div>
                         </div>
                         <div className={styles.formRow}>
-                            <div style={{flex: 2}}>
+                            <div style={flex2}>
                                 <label>STX Wallet Address</label>
                                 <input
                                     className={styles.formInput}
@@ -78,7 +78,7 @@ export default function GrantOnboarding() {
                                     type="type"
                                     placeholder="Type here..."
                                 />
-                                <span style={{display: 'flex',gap: 10}}><input type={'checkbox'}/>  I confirm no memo is required</span>
+                                <span style={checkbox}><input type={'checkbox'}/>  I confirm no memo is required</span>
                             </div>
                         </div>
                         <div className={styles.formRow}>
@@ -90,7 +90,7 @@ export default function GrantOnboarding() {
                                 </select>
                             </div>
                             <div className={styles.formControl}>
-                                <label>Anticipated Completion Date <span style={{color: 'gray'}}>(6 months max)</span></label>
+                                <label>Anticipated Completion Date <span style={grayColor}>(6 months max)</span></label>
                                 <select className={styles.formInput} name="selectCompletion">
                                     <option value="usd">USD</option>
                                     <option value="stx">STX</option>
@@ -110,16 +110,46 @@ export default function GrantOnboarding() {
                     <h5>Number of Payments Remaining:</h5>
                     <p>(6) payments remaining</p>
                     <h5>Amount per Payment:</h5>
-                    <p style={{marginBottom: 70}}>$20,833.33</p>
+                    <p style={marginBottom70}>$20,833.33</p>
                     <div className={styles.divider}></div>
-                    <p style={{color: '#E2E8F0',marginTop: 10}}>If any of the information provided above is incorrect please email us here.</p>
-                    <span style={{display: 'flex', gap: 10}}><input type={'checkbox'}/> <p style={{color: '#E2E8F0'}}>I confirm all of the information on this page is correct.</p></span>
+                    <p style={[whiteColor, marginTop10]}>If any of the information provided above is incorrect please email us here.</p>
+                    <span style={checkbox}><input type={'checkbox'}/> <p style={marginTop10}>I confirm all of the information on this page is correct.</p></span>
                     <button>Click to Submit</button>
                 </div>
             </div>
         </div>
     </div>
   )
+}
+
+const main ={
+	background: '#000',
+	height: '100vh'
+}
+
+const flex2 = {
+    flex: 2
+}
+
+const checkbox = {
+    display: 'flex',
+    gap: 10
+}
+
+const marginBottom70 = {
+    marginBottom: 70
+}
+
+const marginTop10 = {
+    marginTop: 10
+}
+
+const grayColor = {
+    color: 'gray'
+}
+
+const whiteColor = {
+    color: '#E2E8F0',
 }
 
 export async function getServerSideProps(context) {

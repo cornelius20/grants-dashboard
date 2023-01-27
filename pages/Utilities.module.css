@@ -113,3 +113,7 @@ width: 100%;
     bottom: 0;
     z-index: -1;
   }
+
+  .buttonBackgroundColor {
+    background: '#171923'
+  }

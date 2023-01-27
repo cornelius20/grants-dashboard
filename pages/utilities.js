@@ -22,7 +22,7 @@ const Utilities = () => {
 		}
 	});
 	return (
-		<div style={{background: '#000',height: '100vh'}}>
+		<div style={main}>
 			<Link href="/">
 				<a>
 					<div className={styles.close}>
@@ -42,7 +42,7 @@ const Utilities = () => {
 						<p>I.a. Want to verify your payment amount?</p>
 						<Link href="/stacks-payment-converter">
 							<a>
-								<button style={{background: '#171923'}}>STX Payment Converter</button>
+								<button className={styles.buttonBackgroundColor}>STX Payment Converter</button>
 							</a>
 						</Link>
 					</div>
@@ -51,7 +51,7 @@ const Utilities = () => {
 						{!session && (
 							<Link href="/grant-csv-exporter">
 								<a>
-									<button style={{background: '#171923'}}>Grants Database Exporter</button>
+									<button className={styles.buttonBackgroundColor}>Grants Database Exporter</button>
 								</a>
 							</Link>
 						)}
@@ -155,5 +155,10 @@ const Utilities = () => {
 		</div>
 	);
 };
+
+const main ={
+	background: '#000',
+	height: '100vh'
+}
 
 export default Utilities;

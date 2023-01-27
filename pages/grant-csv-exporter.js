@@ -7,7 +7,7 @@ import { unstable_getServerSession } from 'next-auth/next';
 
 export default function GrantCSVExporter() {
     return (
-        <div style={{ background: '#000', height: '100vh' }}>
+        <div style={main}>
             <Link href="/">
                 <a>
                     <div className={styles.close}>
@@ -23,10 +23,10 @@ export default function GrantCSVExporter() {
                 <h2>
                     Grants Database Exporter
                 </h2>
-                <p style={{marginBottom: 20}}>
+                <p style={marginTop20}>
                     A simple widget for exporting grant data from the grants database as a .CSV file.
                 </p>
-                <form style={{marginTop: 50}}>
+                <form style={marginTop50}>
                     <div className={styles.formRow}>
                         <div>
                             <label>A. Select Project Type(s)</label>
@@ -36,7 +36,7 @@ export default function GrantCSVExporter() {
                             </select>
                         </div>
                         <div className={styles.formControl}>
-                            <label>D. Select Start Date <span style={{ color: 'gray' }}>(6 months max)</span></label>
+                            <label>D. Select Start Date <span style={grayColor}>(6 months max)</span></label>
                             <select name="selectCompletion">
                                 <option value="usd">USD</option>
                                 <option value="stx">STX</option>
@@ -53,7 +53,7 @@ export default function GrantCSVExporter() {
                             </select>
                         </div>
                         <div className={styles.formControl}>
-                            <label>E. Select End Date <span style={{ color: 'gray' }}>(6 months max)</span></label>
+                            <label>E. Select End Date <span style={grayColor}>(6 months max)</span></label>
                             <select name="selectCompletion">
                                 <option value="usd">USD</option>
                                 <option value="stx">STX</option>
@@ -62,24 +62,24 @@ export default function GrantCSVExporter() {
                         </div>
                     </div>
                     <div className={styles.formRow}>
-                        <div style={{flex: 1}}>
+                        <div style={flex}>
                             <label>C. Select Project Phase</label>
                             <select name="selectCountry">
                                 <option value="usd">USD</option>
                                 <option value="stx">STX</option>
                             </select>
                         </div>
-                        <div style={{flex: 1}}>
-                            <button style={{width: 250}}>Click to Export</button>
+                        <div style={flex}>
+                            <button className={styles.width250}>Click to Export</button>
                         </div>
                     </div>
-                    <div style={{display: 'flex',justifyContent: 'space-between',gap: 15}}>
-                        <div style={{flex: 1,padding: 20,border: '1px solid gray',borderRadius: 10}}>
-                            <span style={{fontSize: 12,color: 'gray'}}>Date Range</span>
-                            <p style={{fontWeight: 'bold',color: 'gray'}}>Aug-24-22 to Sept-01-22</p>
+                    <div style={bottomView}>
+                        <div style={bottomBox}>
+                            <span style={[font12, grayColor]}>Date Range</span>
+                            <p style={[bold, grayColor]}>Aug-24-22 to Sept-01-22</p>
                         </div>
-                        <div style={{flex: 1,padding: 20,border: '1px solid gray',borderRadius: 10}}>
-                            <span style={{fontSize: 12,color: 'gray'}}>Projects Found</span>
+                        <div style={bottomBox}>
+                            <span style={[font12, grayColor]}>Projects Found</span>
                             <p>88</p>
                         </div>
                     </div>
@@ -88,6 +88,48 @@ export default function GrantCSVExporter() {
             </div>
         </div>
     )
+}
+
+const main = {
+	background: '#000',
+	height: '100vh'
+}
+
+const flex = {
+    flex: 1
+}
+
+const bottomView = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    gap: 15
+}
+
+const font12 = {
+    fontSize: 12
+}
+
+const marginTop20 = {
+    marginTop: 20
+}
+
+const marginTop50 = {
+    marginTop: 50
+}
+
+const grayColor = {
+    color: 'gray'
+}
+
+const bold = {
+    fontWeight: 'bold'
+}
+
+const bottomBox = {
+    flex: 1,
+    padding: 20,
+    border: '1px solid gray',
+    borderRadius: 10
 }
 
 export async function getServerSideProps(context) {

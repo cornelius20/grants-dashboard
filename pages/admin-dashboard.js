@@ -8,7 +8,7 @@ import { unstable_getServerSession } from 'next-auth/next';
 
 export default function AdminDashboard() {
   return (
-    <div style={{background: '#000',height: '100vh'}}>
+    <div style={main}>
         <Link href="/">
 			<a>
 				<div className={styles.close}>
@@ -32,7 +32,7 @@ export default function AdminDashboard() {
                     <form>
                         <div className={styles.formRow}>
                             <div className={styles.formControl}>
-                                <label>Search for user <span style={{color: 'gray'}}>(only displays previously added users)</span></label>
+                                <label>Search for user <span style={grayColor}>(only displays previously added users)</span></label>
                                 <input 
                                     className={styles.formInput}
                                     name="SearchUserInput"
@@ -43,73 +43,73 @@ export default function AdminDashboard() {
                         </div>
                         <p>All Users</p>
                         <ul className={styles.namesList}>
-                            <li style={{display: 'flex'}}>
-                                <div style={{flex: 1,display: 'flex',justifyContent: 'flex-start',alignItems: 'center'}}>
-                                    <span style={{fontWeight: 'bold',fontSize: 14,marginLeft: 10}}>NAME</span>
+                            <li style={displayFlex}>
+                                <div style={titleView}>
+                                    <span style={[listTitle, marginLeft10]}>NAME</span>
                                 </div>
-                                <div style={{flex: 1}}>
-                                    <span style={{fontWeight: 'bold',fontSize: 14}}>ROLE</span>
+                                <div style={flex1}>
+                                    <span style={listTitle}>ROLE</span>
                                 </div>
                             </li>
                             <li className={styles.listItem}>
-                                <div style={{flex: 1,display: 'flex',justifyContent: 'flex-start',alignItems: 'center'}}>
+                                <div style={titleView}>
                                     <span>
                                         <input type={'radio'}/>
                                     </span>
                                     <span>Will Corcan</span>
                                 </div>
-                                <div style={{flex: 1}}>
-                                    <span style={{backgroundColor: '#9F7AEA'}}>Admin</span>
+                                <div style={flex1}>
+                                    <span style={backgroundPurple}>Admin</span>
                                     <button>. . .</button>
                                 </div>
                             </li>
                             <li className={styles.listItem}>
-                            <div style={{flex: 1,display: 'flex',justifyContent: 'flex-start',alignItems: 'center'}}>
+                            <div style={titleView}>
                                     <span>
                                         <input type={'radio'}/>
                                     </span>
                                     <span>Shakti Pradhan</span>
                                 </div>
-                                <div style={{flex: 1}}>
-                                    <span style={{backgroundColor: '#48BB78'}}>Finance</span>
+                                <div style={flex1}>
+                                    <span style={backgroundGreen}>Finance</span>
                                     <button>. . .</button>
                                 </div>
                             </li>
                             <li className={styles.listItem}>
-                            <div style={{flex: 1,display: 'flex',justifyContent: 'flex-start',alignItems: 'center'}}>
+                            <div style={titleView}>
                                     <span>
                                         <input type={'radio'}/>
                                     </span>
                                     <span>Kenny Rogers</span>
                                 </div>
                                 
-                                <div style={{flex: 1}}>
-                                    <span style={{backgroundColor: 'orange'}}>Reviewer</span>
+                                <div style={flex1}>
+                                    <span style={backgroundOrange}>Reviewer</span>
                                     <button>. . .</button>
                                 </div>
                             </li>
                             <li className={styles.listItem}>
-                            <div style={{flex: 1,display: 'flex',justifyContent: 'flex-start',alignItems: 'center'}}>
+                            <div style={titleView}>
                                     <span>
                                         <input type={'radio'}/>
                                     </span>
                                     <span>Ogaga Onose</span>
                                 </div>
                                 
-                                <div style={{flex: 1}}>
-                                    <span style={{backgroundColor: 'cyan'}}>Grantee</span>
+                                <div style={flex1}>
+                                    <span style={backgroundCyan}>Grantee</span>
                                     <button>. . .</button>
                                 </div>
                             </li>
                             <li className={styles.listItem}>
-                            <div style={{flex: 1,display: 'flex',justifyContent: 'flex-start',alignItems: 'center'}}>
+                            <div style={titleView}>
                                     <span>
                                         <input type={'radio'}/>
                                     </span>
                                     <span>Zach Graff</span>
                                 </div>
-                                <div style={{flex: 1}}>
-                                    <span style={{backgroundColor: 'cyan'}}>Grantee</span>
+                                <div style={flex1}>
+                                    <span style={backgroundCyan}>Grantee</span>
                                     <button>. . .</button>
                                 </div>
                             </li>
@@ -117,7 +117,7 @@ export default function AdminDashboard() {
                     </form>
                 </div>
                 <div className={styles.onBoardingRight}>
-                    <p style={{color: '#fff',marginBottom: 20}}>Add a New User or Edit a User</p>
+                    <p style={addUser}>Add a New User or Edit a User</p>
                     <div className={styles.formRow}>
                             <div className={styles.formControl}>
                                 <label>First Name</label>
@@ -142,8 +142,8 @@ export default function AdminDashboard() {
                     </div>
                     <div className={styles.formRow}>
                             <div className={styles.formControl}>
-                            <label>Github Username <span style={{color: 'gray'}}>(login username used)</span></label> 
-                               <div style={{ flexDirection:"row", width:"100%", alignItems:'flex-end'}}>
+                            <label>Github Username <span style={grayColor}>(login username used)</span></label> 
+                               <div style={githubView}>
                                 <input   
                                     className={styles.formInput}
                                     name="GitHubUserName"
@@ -181,6 +181,66 @@ export default function AdminDashboard() {
         </div>
     </div>
   )
+}
+
+const main = {
+	background: '#000',
+	height: '100vh'
+}
+
+const flex1 = {
+    flex: 1
+}
+
+const displayFlex = {
+    display: "flex"
+}
+
+const titleView = {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+}
+
+const backgroundCyan = {
+    backgroundColor: 'cyan'
+}
+
+const backgroundPurple = {
+    backgroundColor: '#9F7AEA'
+}
+
+const backgroundOrange = {
+    backgroundColor: 'orange'
+}
+
+const backgroundGreen = {
+    backgroundColor: '#48BB78'
+}
+
+const listTitle = {
+    fontWeight: 'bold',
+    fontSize: 14
+}
+
+const grayColor = {
+    color: 'gray'
+}
+
+const marginLeft10 = {
+    marginLeft:10
+}
+
+const addUser = {
+    color: '#fff',
+    marginBottom: 20
+}
+
+const githubView = {
+    flexDirection:"row",
+    width:"100%",
+    alignItems:'flex-end'
 }
 
 export async function getServerSideProps(context) {

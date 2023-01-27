@@ -7,7 +7,7 @@ import { unstable_getServerSession } from 'next-auth/next';
 
 export default function PaymentsDashboard() {
   return (
-    <div style={{background: '#000',height: '100vh'}}>
+    <div style={main}>
         <Link href="/">
 			<a>
 				<div className={styles.close}>
@@ -28,7 +28,7 @@ export default function PaymentsDashboard() {
                     <p>
                         A simple widget for providing private information required for receiving grant payments.
                     </p>
-                    <p style={{color: '#fff',marginBottom: 20}}>Add a Paymnet</p>
+                    <p style={addPayment}>Add a Paymnet</p>
                     <form>
                         <div className={styles.formRow}>
                             <div>
@@ -80,7 +80,7 @@ export default function PaymentsDashboard() {
                     </form>
                 </div>
                 <div className={styles.onBoardingRight}>
-                    <p style={{color: '#fff',marginBottom: 20}}>Payment History</p>
+                    <p style={paymentHistory}>Payment History</p>
                     <h5>Grant Issue Number:</h5>
                     <p>#XXX</p>
                     <h5>Grant Name:</h5>
@@ -94,7 +94,7 @@ export default function PaymentsDashboard() {
                     <h5>Number of Payments Remaining:</h5>
                     <p>$20,833.33</p>
                     <h5>Amount per payment:</h5>
-                    <p style={{marginBottom: 70}}>$20,833.33</p>
+                    <p style={marginBottom70}>$20,833.33</p>
                     <div className={styles.divider}></div>
                     <button>Click to Submit</button>
                 </div>
@@ -102,6 +102,25 @@ export default function PaymentsDashboard() {
         </div>
     </div>
   )
+}
+
+const main = {
+	background: '#000',
+	height: '100vh'
+}
+
+const paymentHistory = {
+    color: '#fff',
+    marginBottom: 20
+}
+
+const addPayment = {
+    color: '#fff',
+    marginBottom: 20
+}
+
+const marginBottom70 = {
+    marginBottom: 70
 }
 
 export async function getServerSideProps(context) {

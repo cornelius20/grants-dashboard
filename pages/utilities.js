@@ -117,23 +117,32 @@ const Utilities = () => {
 				<div className={styles.buttonWrapper}>
 					<div>
 						<p>III.a. Need to adjust permission settings?</p>
-						<Link href="/stacks-payment-converter">
-							<a>
-								<button>Admin Dashboard</button>
-							</a>
-						</Link>
+						{!session && (
+							<Link href="/admin-dashboard">
+								<a>
+									<button onClick={() => signIn('github')}>Admin Dashboard</button>
+								</a>
+							</Link>
+						)}
+						{session && (
+							<Link href="/admin-dashboard">
+								<a>
+								    <button>Admin Dashboard</button>
+							    </a>
+							</Link>
+						)}
 					</div>
 					<div>
 						<p>III.b Need to document a payment made to grant recepient?</p>
 						{!session && (
-							<Link href="/grant-data-exporter">
+							<Link href="/payments-dashboard">
 								<a>
 									<button onClick={() => signIn('github')}>Payment Dashboard</button>
 								</a>
 							</Link>
 						)}
 						{session && (
-							<Link href="/grant-data-exporter">
+							<Link href="/payments-dashboard">
 								<a>
 									<button>Payments Dashboard</button>
 								</a>

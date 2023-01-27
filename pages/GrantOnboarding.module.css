@@ -226,4 +226,13 @@
         margin-right: 50px;
     }
 
+    .searchIcon {
+      background-color: #000;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid #fff;
+      padding-bottom: 7px;
+      padding-right: 7px;
+    }
+
    

@@ -5,7 +5,6 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 import StacksLogo from '../public/images/stacks-logo.svg';
 import { Octokit } from '@octokit/rest';
 import { useEffect } from 'react';
-import { ST } from 'next/dist/shared/lib/utils';
 
 const Utilities = () => {
 	const { data: session } = useSession();

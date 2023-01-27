@@ -50,14 +50,14 @@ const Utilities = () => {
 					<div>
 						<p>I.b. Want to export data from grants database?</p>
 						{!session && (
-							<Link href="/grant-data-exporter">
+							<Link href="/grant-csv-exporter">
 								<a>
 									<button style={{background: '#171923'}}>Grants Database Exporter</button>
 								</a>
 							</Link>
 						)}
 						{session && (
-							<Link href="/grant-data-exporter">
+							<Link href="/grant-csv-exporter">
 								<a>
 									<button>Grant Data Exporter</button>
 								</a>
@@ -67,16 +67,16 @@ const Utilities = () => {
 					<div>
 						<p>I.c. Was your Grant approved? Onboard here</p>
 						{!session && (
-							<Link href="/grant-data-exporter">
+							<Link href="/grant-onboarding">
 								<a>
 									<button onClick={() => signIn('github')}>Grant Onboarding</button>
 								</a>
 							</Link>
 						)}
 						{session && (
-							<Link href="/grant-data-exporter">
+							<Link href="/grant-onboarding">
 								<a>
-									<button>Grant Data Exporter</button>
+									<button>Grant Onboarding</button>
 								</a>
 							</Link>
 						)}

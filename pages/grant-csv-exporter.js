@@ -2,8 +2,10 @@ import React from 'react';
 import styles from './GrantOnboarding.module.css';
 import CloseIcon from '../public/images/close.svg';
 import Link from 'next/link';
+import { authOptions } from './api/auth/[...nextauth]';
+import { unstable_getServerSession } from 'next-auth/next';
 
-export default function GrantOnboarding() {
+export default function GrantCSVExporter() {
     return (
         <div style={{ background: '#000', height: '100vh' }}>
             <Link href="/">
@@ -86,4 +88,24 @@ export default function GrantOnboarding() {
             </div>
         </div>
     )
+}
+
+export async function getServerSideProps(context) {
+	const session = await unstable_getServerSession(context.req, context.res, authOptions);
+
+	if (!session) {
+		return {
+			redirect: {
+				destination: '/',
+				permanent: false
+			}
+		};
+	}
+
+	session.user.email = '';
+	return {
+		props: {
+			session
+		}
+	};
 }

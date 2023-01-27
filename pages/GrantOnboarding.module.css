@@ -12,9 +12,7 @@
     display: flex;
     align-items: center;
     gap: 5px;
-    
   }
-  
   
   .close span {
   display: block;
@@ -32,15 +30,14 @@
     flex: 1;
   }
 
-
-.onBoardingWrapper{
+  .onBoardingWrapper{
     max-width: 950px;
     background-color: #000;
     margin: auto;
-}
+  }
 
 
-.onBoardingWrapper h1{
+  .onBoardingWrapper h1{
     font-size: 32px;
     font-weight: 300;
     padding-bottom: 20px;
@@ -53,11 +50,10 @@
     /* margin-bottom: 10px; */
   }
 
-
   .onBoardingRow{
-      display: flex;
-      justify-content: space-between;
-      gap: 30px;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
   }
 
   .onBoardingLeft{
@@ -75,10 +71,10 @@
   }
 
   .formRow{
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
   }
 
   .formRow button{
@@ -92,59 +88,66 @@
     cursor: pointer;
     width: 200px;
     margin-top: 30px;
-}
+  }
 
   .formRow div{
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
   }
 
   .formRow label{
     margin-bottom: 10px;
     font-size: 12px;
     color: rgba(255, 255, 255, 0.92);
-    }
+  }
 
-    .formInput{
-        background-color: #000;
-        border: none;
-        outline: none;
-        border-bottom: 1px solid #fff;
-        width: 100%;
-        padding: 7px 0;
-        color: #fff;
-    }
+  .formInput{
+    background-color: #000;
+    border: none;
+    outline: none;
+    font-family: 'Inter';
+    border-bottom: 1px solid #fff;
+    width: 100%;
+    padding: 7px 0;
+    color: #fff;
+  }
 
-    .formRow select{
-        border: 1px solid #000;
-        border-radius: 5px;
-        padding: 5px;
-        width: 100%;
-    }
+  .formRow select{
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+  }
 
-    .formRow select{
-        border: 1px solid rgba(255, 255, 255, 0.36);;
-        background-color: rgba(0, 0, 0, 0.64);
-        border-radius: 5px;
-        padding: 10px;
-        width: 100%;
-        color: #fff;
-    }
+  .formRow select{
+    border: 1px solid rgba(255, 255, 255, 0.36);;
+    background-color: rgba(0, 0, 0, 0.64);
+    padding-right: 20px;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    color: #fff;
+  }
 
-    .formRow span{
+    .formRow span {
         font-size: 12px;
         margin-top: 10px;
     }
 
-    .onBoardingRight h5{
+    .onBoardingRight h5 {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 150%;
         color: #718096;
         font-weight: 700;
         margin-bottom: 5px;
     }
 
-    .onBoardingRight p{
+    .onBoardingRight p {
         font-size: 14px;
         margin-bottom: 10px;
         color: #4A5568;

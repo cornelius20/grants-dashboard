@@ -239,4 +239,16 @@
       width: 250
     }
 
+    .converterButton {
+      background: #322659;
+      border: 1px solid #ffffff;
+      color: white;
+      height: 50px;
+      width: 206px;
+      border-radius: 5px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
    

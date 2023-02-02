@@ -2,8 +2,6 @@ import React,{useState,useMemo} from 'react';
 import styles from './GrantOnboarding.module.css';
 import CloseIcon from '../public/images/close.svg';
 import Link from 'next/link';
-import countryList from 'react-select-country-list';
-import Select from 'react-select';
 import CalendarDropdown from '../components/CalendarDropdown';
 
 
@@ -12,7 +10,6 @@ import CalendarDropdown from '../components/CalendarDropdown';
 
 export default function GrantOnboarding() {
     const [value, setValue] = useState('')
-        const options = useMemo(() => countryList().getData(), [])
         const [endDate, setEndDate] = useState(new Date());
 	    const [startDate, setStartDate] = useState(new Date());
         const changeHandler = value => {

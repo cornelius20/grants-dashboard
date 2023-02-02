@@ -105,7 +105,7 @@ export default function PaymentsDashboard() {
 }
 
 const main = {
-	background: '#000',
+	backgroundColor: '#000',
 	height: '100vh'
 }
 

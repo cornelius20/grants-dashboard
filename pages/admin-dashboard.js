@@ -45,7 +45,7 @@ export default function AdminDashboard() {
                         <ul className={styles.namesList}>
                             <li style={displayFlex}>
                                 <div style={titleView}>
-                                    <span style={[listTitle, marginLeft10]}>NAME</span>
+                                    <span style={{...listTitle, ...marginLeft10}}>NAME</span>
                                 </div>
                                 <div style={flex1}>
                                     <span style={listTitle}>ROLE</span>
@@ -184,7 +184,7 @@ export default function AdminDashboard() {
 }
 
 const main = {
-	background: '#000',
+	backgroundColor: '#000',
 	height: '100vh'
 }
 

@@ -382,8 +382,8 @@ export default function GrantCSVExporter() {
                     <div className={styles.formRow}>
                         <div>
                             <label>A. Select Project Type(s)</label>
-                            <select name="selectGrantType" onChange={(e) => setGrantType(e.target.value)}>
-							<option value="" disabled selected>
+                            <select name="selectGrantType" defaultValue={""} onChange={(e) => setGrantType(e.target.value)}>
+							<option value="" disabled>
 								Drop down...
 							</option>
 							<option value="Open Source First Time">Open Source Dev 1st time Grantees</option>
@@ -409,8 +409,8 @@ export default function GrantCSVExporter() {
                     <div className={styles.formRow}>
                         <div>
                             <label>B. Select Project Track(s)</label>
-                            <select name="selectGrantTrack" onChange={(e) => setGrantTracks(e.target.value)}>
-							<option value="" disabled selected>
+                            <select name="selectGrantTrack" defaultValue={""} onChange={(e) => setGrantTracks(e.target.value)}>
+							<option value="" disabled>
 								Drop down...
 							</option>
 							<option value="Stacks Protocol">Stacks Protocol</option>
@@ -435,8 +435,8 @@ export default function GrantCSVExporter() {
                     <div className={styles.formRow}>
                         <div style={flex}>
                             <label>C. Select Project Phase</label>
-                            <select name="selectGrantPhase" onChange={(e) => setGrantPhase(e.target.value)}>
-							<option value="" disabled selected>
+                            <select name="selectGrantPhase" defaultValue={""} onChange={(e) => setGrantPhase(e.target.value)}>
+							<option value="" disabled>
 								Drop down...
 							</option>
 							<option value="Application Phase">Application Phase</option>
@@ -468,29 +468,29 @@ export default function GrantCSVExporter() {
                     </div>
                     <div style={bottomView}>
                         <div style={bottomBox}>
-                            <span style={[font12, grayColor]}>Date Range</span>
-                            <p style={[bold, grayColor]}>{startDate
-									.toLocaleString('default', {
+                            <span style={{...bold, ...grayColor}}>Date Range</span>
+							<p style={{...bold, ...grayColor}}>
+								{startDate.toLocaleString('default', {
+									month: 'long',
+									day: '2-digit',
+									year: '2-digit'
+								})
+									.replace(' ', '-')
+									.replace(',', '-')
+									.replace(' ', '')}
+								{' '}to{' '}
+								{endDate.toLocaleString('default', {
 										month: 'long',
 										day: '2-digit',
 										year: '2-digit'
 									})
 									.replace(' ', '-')
 									.replace(',', '-')
-									.replace(' ', '')}{' '}
-								to{' '}
-								{endDate
-									.toLocaleString('default', {
-										month: 'long',
-										day: '2-digit',
-										year: '2-digit'
-									})
-									.replace(' ', '-')
-									.replace(',', '-')
-									.replace(' ', '')}</p>
+									.replace(' ', '')}
+							</p>
                         </div>
                         <div style={bottomBox}>
-                            <span style={[font12, grayColor]}>Projects Found</span>
+                            <span style={{...font12, ...grayColor}}>Projects Found</span>
                             <p>{grantsFound}</p>
                         </div>
                     </div>
@@ -501,7 +501,7 @@ export default function GrantCSVExporter() {
 };
 
 const main = {
-	background: '#000',
+	backgroundColor: '#000',
 	height: '100vh'
 }
 

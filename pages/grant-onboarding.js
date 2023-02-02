@@ -112,7 +112,7 @@ export default function GrantOnboarding() {
                     <h5>Amount per Payment:</h5>
                     <p style={marginBottom70}>$20,833.33</p>
                     <div className={styles.divider}></div>
-                    <p style={[whiteColor, marginTop10]}>If any of the information provided above is incorrect please email us here.</p>
+                    <p style={{...whiteColor, ...marginTop10}}>If any of the information provided above is incorrect please email us here.</p>
                     <span style={checkbox}><input type={'checkbox'}/> <p style={marginTop10}>I confirm all of the information on this page is correct.</p></span>
                     <button>Click to Submit</button>
                 </div>
@@ -123,7 +123,7 @@ export default function GrantOnboarding() {
 }
 
 const main ={
-	background: '#000',
+	backgroundColor: '#000',
 	height: '100vh'
 }
 

@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export default function PaymentsDashboard() {
   return (
-    <div style={main}>
+    <div className={styles.main}>
         <Link href="/">
 			<a>
 				<div className={styles.close}>
@@ -96,7 +96,7 @@ export default function PaymentsDashboard() {
                     <h5>Amount per payment:</h5>
                     <p style={marginBottom70}>$20,833.33</p>
                     <div className={styles.divider}></div>
-                    <button>Click to Submit</button>
+                    <button className={styles.gradientButton}>Click to Submit</button>
                 </div>
             </div>
         </div>
@@ -104,10 +104,6 @@ export default function PaymentsDashboard() {
   )
 }
 
-const main = {
-	backgroundColor: '#000',
-	height: '100vh'
-}
 
 const paymentHistory = {
     color: '#fff',

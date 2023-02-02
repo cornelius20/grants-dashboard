@@ -175,7 +175,7 @@ export default function AdminDashboard() {
                             </div>
                     </div>
                     <div className={styles.divider}></div>
-                    <button>Click to Submit</button>
+                    <button className={styles.gradientButton}>Click to Submit</button>
                 </div>
             </div>
         </div>

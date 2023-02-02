@@ -23,6 +23,7 @@ width: 25px;
 .stxPaymentWrapper {
   max-width: 950px;
   margin: auto;
+  padding: 0 20px;
 }
 
 .stxPaymentWrapper h2 {
@@ -206,3 +207,9 @@ justify-content: space-between;
   display: none;
 }
 
+@media screen and (max-width: 991px){
+  .paymentCalculatorWrapper {
+      
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}

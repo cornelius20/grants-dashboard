@@ -131,7 +131,7 @@ const Utilities = () => {
 							</Link>
 						)}
 					</div>
-					<div>
+					<div style={pb2}>
 						<p>III.b Need to document a payment made to grant recepient?</p>
 						{!session && (
 							<Link href="/payments-dashboard">
@@ -159,6 +159,10 @@ const Utilities = () => {
 const main ={
 	background: '#000',
 	height: '100vh'
+}
+
+const pb2 = {
+	paddingBottom: 20
 }
 
 export default Utilities;

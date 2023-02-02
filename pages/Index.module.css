@@ -8,9 +8,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 350px;
-display: flex;
-flex-direction: column;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 90%;
   background-color: #000000;
   height: 440px;
@@ -39,8 +39,9 @@ cursor: pointer;
 .indexWrapper {
   position: relative;
   display: flex;
+  gap: 35px;
   justify-content: space-between;
-  padding-top: 230px;
+  padding-top: 210px;
   max-width: 1000px;
   margin: auto;
   padding-left: 10px;
@@ -317,6 +318,14 @@ gap: 8px;
     height: 150px;
 }
 
+@media screen and (max-width: 991px){
+  .indexWrapper {
+    flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
 @media(max-width: 1210px) {
   .connectGithub {
     right: 1%;
@@ -477,7 +486,8 @@ display: none;
   }
 
   .indexWrapper h1 {
-    font-size: 60px;
+    font-size: 55px;
+    line-height: 70px;
   }
 
   .mainBodyText {

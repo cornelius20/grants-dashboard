@@ -64,7 +64,7 @@ body {
     rgb(9, 8, 18) 74%,
     rgb(0, 0, 0) 100%
   );
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
 }
 /*
   Typographic tweaks!

@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export default function GrantOnboarding() {
   return (
-    <div style={main}>
+    <div className={styles.main}>
         <Link href="/">
 			<a>
 				<div className={styles.close}>
@@ -114,7 +114,7 @@ export default function GrantOnboarding() {
                     <div className={styles.divider}></div>
                     <p style={{...whiteColor, ...marginTop10}}>If any of the information provided above is incorrect please email us here.</p>
                     <span style={checkbox}><input type={'checkbox'}/> <p style={marginTop10}>I confirm all of the information on this page is correct.</p></span>
-                    <button>Click to Submit</button>
+                    <button className={styles.gradientButton}>Click to Submit</button>
                 </div>
             </div>
         </div>
@@ -122,10 +122,10 @@ export default function GrantOnboarding() {
   )
 }
 
-const main ={
-	backgroundColor: '#000',
-	height: '100vh'
-}
+// const main ={
+// 	backgroundColor: '#000',
+// 	height: '100vh'
+// }
 
 const flex2 = {
     flex: 2
@@ -133,7 +133,9 @@ const flex2 = {
 
 const checkbox = {
     display: 'flex',
-    gap: 10
+    gap: 10,
+    alignItems: 'center',
+    marginBottom: 20
 }
 
 const marginBottom70 = {

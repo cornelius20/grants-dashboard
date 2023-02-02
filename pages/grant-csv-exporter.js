@@ -1,4 +1,4 @@
-import styles from './GrantOnboarding.module.css';
+import styles from './GrantData.module.css';
 import Link from 'next/link';
 import CloseIcon from '../public/images/close.svg';
 import StacksLogo from '../public/images/stacks-logo.svg';
@@ -8,10 +8,11 @@ import { CSVLink, CSVDownload } from 'react-csv';
 import { Octokit } from '@octokit/rest';
 import { useSession, signIn } from 'next-auth/react';
 import LoadingSpinner from '../public/images/loading-spinner.svg';
-// import { authOptions } from './api/auth/[...nextauth]';
-// import { unstable_getServerSession } from 'next-auth/next';
+import { authOptions } from './api/auth/[...nextauth]';
+import { unstable_getServerSession } from 'next-auth/next';
+import Head from 'next/head';
 
-export default function GrantCSVExporter() {
+const GrantDataExporter = () => {
 	const [CSVData, setCSVData] = useState([
 		[
 			'Date Submitted',
@@ -150,8 +151,6 @@ export default function GrantCSVExporter() {
 
 		let res = req.data;
 
-        console.log("Res is here", res)
-
 		res.map((issue) => {
 			let teamMembers = issue.assignees.map((assignee) => assignee.login);
 
@@ -253,8 +252,6 @@ export default function GrantCSVExporter() {
 					.match(regex)
 					.map((line) => line.replace('\n', '').replace('\n', '').trim());
 
-                    console.log("lines ", lines)
-
 				issue.grantName = lines[5];
 				issue.grantBudget = lines[6];
 				issue.grantDuration = lines[7];
@@ -315,75 +312,34 @@ export default function GrantCSVExporter() {
 		}
 	}
 
-    // useEffect(() => {
-    //     getUserList()
-    //     getProjectList()
-    //     getLabelList()
-    //     getIssuesList()
-    // });
-
-    const getProjectList = async () => {
-        if (session) {
-            const github = new Octokit({
-                auth: session.accessToken
-            });
-            const { data } = await github.rest.repos.listForOrg({
-                org: "stacksgov"
-            })
-            console.log("projects are here:", { data })
-        }
-    }
-
-    const getUserList= async () => {
-        if (session) {
-            const github = new Octokit({
-                auth: session.accessToken
-            });
-            const { data } = await github.request('GET /users');
-            console.log("users are here:", data)
-        }
-    }
-
-    const getLabelList = async () => {
-        if (session) {
-            const github = new Octokit({
-                auth: session.accessToken
-            });
-            // const { data } = await github.rest.issues.getLabel({
-            //     owner: 'stacksgov',
-            //     repo: 'Stacks-Grant-Launchpad'
-            // });
-            // console.log("labels are here:", { data })
-        }
-    }
-
+	// getGrant();
 
 	return (
-		<div style={main}>
+		<div className={styles.main}>
+			<Head>
+				<title>Grant Data Exporter</title>
+			</Head>
 			<Link href="/">
-                <a>
-                    <div className={styles.close}>
-                        <p>
-                            <CloseIcon />
-                            Close
-                        </p>
-                        <span></span>
-                    </div>
-                </a>
-            </Link>
-            <div className={styles.onBoardingWrapper}>
-                <h2>
-                    Grants Database Exporter
-                </h2>
-                <p style={marginTop20}>
-                    A simple widget for exporting grant data from the grants database as a .CSV file.
-                </p>
-				<div style={marginTop50}>
-                    <div className={styles.formRow}>
-                        <div>
-                            <label>A. Select Project Type(s)</label>
-                            <select name="selectGrantType" defaultValue={""} onChange={(e) => setGrantType(e.target.value)}>
-							<option value="" disabled>
+				<a>
+					<div className={styles.close}>
+						<p>
+							<CloseIcon />
+							Close
+						</p>
+						<span></span>
+					</div>
+				</a>
+			</Link>
+			<div className={styles.grantDataWrapper}>
+				<h1>Grant Data Exporter</h1>
+				<p className={styles.descriptor}>
+					A simple widget for exporting grant data from Github as a .CSV file.
+				</p>
+				<div className={styles.grantExportWrapper}>
+					<div className={styles.dropdownWrapper}>
+						<label htmlFor="selectGrantType">A. Select Grant Type(s)</label>
+						<select name="selectGrantType" onChange={(e) => setGrantType(e.target.value)}>
+							<option value="" disabled selected>
 								Drop down...
 							</option>
 							<option value="Open Source First Time">Open Source Dev 1st time Grantees</option>
@@ -396,21 +352,11 @@ export default function GrantCSVExporter() {
 							<option value="Resident Program">Resident Program</option>
 							<option value="Direct Investment">Direct Investment</option>
 						</select>
-                        </div>
-                        <div className={styles.formControl}>
-                            <label>D. Select Start Date <span style={grayColor}>(6 months max)</span></label>
-                            <select name="selectCompletion">
-                                <option value="usd">USD</option>
-                                <option value="stx">STX</option>
-                            </select>
-
-                        </div>
-                    </div>
-                    <div className={styles.formRow}>
-                        <div>
-                            <label>B. Select Project Track(s)</label>
-                            <select name="selectGrantTrack" defaultValue={""} onChange={(e) => setGrantTracks(e.target.value)}>
-							<option value="" disabled>
+					</div>
+                    <div className={styles.dropdownWrapper}>
+						<label htmlFor="selectGrantTrack">B. Select Grant Track(s)</label>
+						<select name="selectGrantTrack" onChange={(e) => setGrantTracks(e.target.value)}>
+							<option value="" disabled selected>
 								Drop down...
 							</option>
 							<option value="Stacks Protocol">Stacks Protocol</option>
@@ -422,21 +368,11 @@ export default function GrantCSVExporter() {
 							<option value="Cross-Chain & Off-Chain">Cross-Chain & Off-Chain</option>
 							<option value="Bitcoin Utility via Stacks">Bitcoin Utility via Stacks</option>
 						</select>
-                        </div>
-                        <div className={styles.formControl}>
-                            <label>E. Select End Date <span style={grayColor}>(6 months max)</span></label>
-                            <select name="selectCompletion">
-                                <option value="usd">USD</option>
-                                <option value="stx">STX</option>
-                            </select>
-
-                        </div>
-                    </div>
-                    <div className={styles.formRow}>
-                        <div style={flex}>
-                            <label>C. Select Project Phase</label>
-                            <select name="selectGrantPhase" defaultValue={""} onChange={(e) => setGrantPhase(e.target.value)}>
-							<option value="" disabled>
+					</div>
+                    <div className={styles.dropdownWrapper}>
+						<label htmlFor="selectGrantPhase">C. Select Grant Phase</label>
+						<select name="selectGrantPhase" onChange={(e) => setGrantPhase(e.target.value)}>
+							<option value="" disabled selected>
 								Drop down...
 							</option>
 							<option value="Application Phase">Application Phase</option>
@@ -453,33 +389,45 @@ export default function GrantCSVExporter() {
 							<option value="Milestone 10">Milestone 10</option>
 							<option value="Final Deliverable">Final Deliverable</option>
 						</select>
-                        </div>
-                        <div style={flex}>
-                        {!exportButton ? (
-                            <button className={styles.converterButton} onClick={getIssues}>
-                                {!loadingSpinner ? 'Click to Export' : <LoadingSpinner />}
-                            </button>
-                        ) : (
-                            <CSVLink data={CSVData} filename={'grants-dashboard-export.csv'}>
-                                <button className={styles.converterButton}>Download CSV</button>
-                            </CSVLink>
-                        )}
-                        </div>
-                    </div>
-                    <div style={bottomView}>
-                        <div style={bottomBox}>
-                            <span style={{...bold, ...grayColor}}>Date Range</span>
-							<p style={{...bold, ...grayColor}}>
-								{startDate.toLocaleString('default', {
-									month: 'long',
-									day: '2-digit',
-									year: '2-digit'
-								})
+					</div>
+					<div className={styles.calendarDropdownWrapper}>
+						<label htmlFor="amountReceived">D. Select Start Date <span className={styles.maxLimit}>(6 months max)</span></label>
+						<CalendarDropdown onChange={setStartDate} value={startDate} />
+					</div>
+
+					
+					<div className={styles.calendarDropdownWrapper}>
+						<label htmlFor="selectDate">E. Select End Date <span className={styles.maxLimit}>(6 months max)</span></label>
+						<CalendarDropdown onChange={setEndDate} value={endDate} />
+					</div>
+					
+					<div className={styles.buttonWrappers}>
+						{!exportButton ? (
+							<button className={styles.converterButton} onClick={getIssues}>
+								{!loadingSpinner ? 'Click to Export' : <LoadingSpinner />}
+							</button>
+						) : (
+							<CSVLink data={CSVData} filename={'grants-dashboard-export.csv'}>
+								<button className={styles.converterButton}>Download CSV</button>
+							</CSVLink>
+						)}
+					</div>
+					<div className={styles.dropdownWrapper}>
+						<div>
+							<p>Date Range</p>
+							<p className={styles.dates}>
+								{startDate
+									.toLocaleString('default', {
+										month: 'long',
+										day: '2-digit',
+										year: '2-digit'
+									})
 									.replace(' ', '-')
 									.replace(',', '-')
-									.replace(' ', '')}
-								{' '}to{' '}
-								{endDate.toLocaleString('default', {
+									.replace(' ', '')}{' '}
+								to{' '}
+								{endDate
+									.toLocaleString('default', {
 										month: 'long',
 										day: '2-digit',
 										year: '2-digit'
@@ -488,76 +436,40 @@ export default function GrantCSVExporter() {
 									.replace(',', '-')
 									.replace(' ', '')}
 							</p>
-                        </div>
-                        <div style={bottomBox}>
-                            <span style={{...font12, ...grayColor}}>Projects Found</span>
-                            <p>{grantsFound}</p>
-                        </div>
-                    </div>
+						</div>
+					</div>
+					<div className={styles.dropdownWrapper}>
+						<div className={styles.grantsFound}>
+							<p>Grants Found</p>
+							<p>{grantsFound}</p>
+						</div>
+					</div>
 				</div>
 			</div>
+
+			<StacksLogo className={styles.stacksSVG} />
 		</div>
 	);
 };
 
-const main = {
-	backgroundColor: '#000',
-	height: '100vh'
+export default GrantDataExporter;
+
+export async function getServerSideProps(context) {
+	const session = await unstable_getServerSession(context.req, context.res, authOptions);
+
+	if (!session) {
+		return {
+			redirect: {
+				destination: '/',
+				permanent: false
+			}
+		};
+	}
+
+	session.user.email = '';
+	return {
+		props: {
+			session
+		}
+	};
 }
-
-const flex = {
-    flex: 1
-}
-
-const bottomView = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    gap: 15
-}
-
-const font12 = {
-    fontSize: 12
-}
-
-const marginTop20 = {
-    marginTop: 20
-}
-
-const marginTop50 = {
-    marginTop: 50
-}
-
-const grayColor = {
-    color: 'gray'
-}
-
-const bold = {
-    fontWeight: 'bold'
-}
-
-const bottomBox = {
-    flex: 1,
-    padding: 20,
-    border: '1px solid gray',
-    borderRadius: 10
-}
-
-// export async function getServerSideProps(context) {
-// 	const session = await unstable_getServerSession(context.req, context.res, authOptions);
-
-// 	if (!session) {
-// 		return {
-// 			redirect: {
-// 				destination: '/',
-// 				permanent: false
-// 			}
-// 		};
-// 	}
-
-// 	session.user.email = '';
-// 	return {
-// 		props: {
-// 			session
-// 		}
-// 	};
-// }

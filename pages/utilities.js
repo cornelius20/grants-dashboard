@@ -81,7 +81,7 @@ const Utilities = () => {
 						)}
 					</div>
 				</div>
-				<h2>II. Grant Review Commitee Tools</h2>
+				{/* <h2>II. Grant Review Commitee Tools</h2>
 
 				<div className={styles.buttonWrapper}>
 					<div>
@@ -110,7 +110,7 @@ const Utilities = () => {
 						)}
 					</div>
 					
-				</div>
+				</div> */}
 				<h2>III. Grant Admin Tools</h2>
 
 				<div className={styles.buttonWrapper}>

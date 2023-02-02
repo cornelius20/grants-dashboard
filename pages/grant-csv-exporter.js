@@ -389,13 +389,13 @@ const GrantDataExporter = () => {
 						</select>
 					</div>
 					<div className={styles.calendarDropdownWrapper}>
-						<label htmlFor="amountReceived">D. Select Start Date <span className={styles.maxLimit}>(6 months max)</span></label>
+						<label className={styles.mb10} htmlFor="amountReceived">D. Select Start Date <span className={styles.maxLimit}>(6 months max)</span></label>
 						<CalendarDropdown onChange={setStartDate} value={startDate} />
 					</div>
 
 					
 					<div className={styles.calendarDropdownWrapper}>
-						<label htmlFor="selectDate">E. Select End Date <span className={styles.maxLimit}>(6 months max)</span></label>
+						<label className={styles.mb10} htmlFor="selectDate">E. Select End Date <span className={styles.maxLimit}>(6 months max)</span></label>
 						<CalendarDropdown onChange={setEndDate} value={endDate} />
 					</div>
 					

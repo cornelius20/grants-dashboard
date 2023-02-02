@@ -4,6 +4,7 @@ import DropdownIcon from '../public/images/dropdown.svg';
 import { useState, useEffect, useRef } from 'react';
 
 const CalendarDropdown = (props) => {
+	const [currentDate, setCurrentDate] = useState(new Date())
 	const [show, setShow] = useState(false);
 	const ref = useRef();
 	const reference = useRef(false);
@@ -54,6 +55,7 @@ const CalendarDropdown = (props) => {
 					className={show ? styles.show : styles.hide}
 					onChange={props.onChange}
 					value={props.value}
+					maxDate={new Date(currentDate.setMonth(currentDate.getMonth()+3))}
 				/>
 			</div>
 		</div>

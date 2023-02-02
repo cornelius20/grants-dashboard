@@ -3,8 +3,6 @@ import styles from './GrantOnboarding.module.css';
 import CloseIcon from '../public/images/close.svg';
 import Link from 'next/link';
 import CalendarDropdown from '../components/CalendarDropdown';
-
-
 // import { authOptions } from './api/auth/[...nextauth]';
 // import { unstable_getServerSession } from 'next-auth/next';
 
@@ -16,7 +14,6 @@ export default function GrantOnboarding() {
           setValue(value)
         }
         
-    
   return (
     <div className={styles.main}>
         <Link href="/">
@@ -36,7 +33,7 @@ export default function GrantOnboarding() {
             </h2>
             <div className={styles.onBoardingRow}>
                 <div className={styles.onBoardingLeft}>
-                    <p style={mb4}>
+                    <p style={mb4} className={styles.text}>
                         A simple widget for providing private information required for receiving grant payments.
                     </p>
                     {/* <form> */}
@@ -72,7 +69,7 @@ export default function GrantOnboarding() {
                             </div>
                         </div>
                         <div className={styles.formRow} style={mb4}>
-                            <div style={flex2}>
+                            <div className={styles.formControl}>
                                 <label>STX Wallet Address</label>
                                 <input
                                     className={styles.formInput}
@@ -381,7 +378,7 @@ export default function GrantOnboarding() {
                     <h5>Amount per Payment:</h5>
                     <p style={marginBottom70}>$20,833.33</p>
                     <div className={styles.divider}></div>
-                    <p style={{...whiteColor, ...marginTop10}}>If any of the information provided above is incorrect please email us <Link href="/"><a>here</a></Link></p>
+                    <p style={{...whiteColor, ...marginTop10}}>If any of the information provided above is incorrect please email us <Link href="/"><a style={mailLink} href="mailto:corneliuscantonii@gmail.com">here.</a></Link></p>
                     <span style={checkbox}><input className={styles.mt3} type={'checkbox'}/> <p>I confirm all of the information on this page is correct.</p></span>
                     <button className={styles.gradientButton}>Click to Submit</button>
                 </div>
@@ -415,7 +412,10 @@ const mb4 = {
     marginBottom: 40
 }
 
-
+const mailLink = {
+    color: "#fff",
+    textDecorationLine: 'underline'
+}
 
 const marginTop10 = {
     marginTop: 10,

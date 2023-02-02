@@ -26,7 +26,7 @@ export default function AdminDashboard() {
             </h2>
             <div className={styles.onBoardingRow}>
                 <div className={styles.onBoardingLeft}>
-                    <p>
+                    <p className={styles.text}>
                         A simple widget for providing private information required for receiving grant payments.
                     </p>
                     <form>

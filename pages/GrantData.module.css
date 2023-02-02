@@ -220,6 +220,11 @@ justify-content: space-between;
   display: none;
 }
 
+.mb10{
+  display: block;
+  margin-bottom: 10px !important;
+}
+
 /* ...........MEDIA QUERIES............. */
 @media screen and (max-width: 991px){
   .grantDataWrapper h1{

@@ -3,8 +3,8 @@ import styles from './GrantOnboarding.module.css';
 import CloseIcon from '../public/images/close.svg';
 import GithubIcon from "../public/images/github.svg";
 import Link from 'next/link';
-import { authOptions } from './api/auth/[...nextauth]';
-import { unstable_getServerSession } from 'next-auth/next';
+// import { authOptions } from './api/auth/[...nextauth]';
+// import { unstable_getServerSession } from 'next-auth/next';
 
 export default function AdminDashboard() {
   return (
@@ -243,22 +243,22 @@ const githubView = {
     alignItems:'flex-end'
 }
 
-export async function getServerSideProps(context) {
-	const session = await unstable_getServerSession(context.req, context.res, authOptions);
+// export async function getServerSideProps(context) {
+// 	const session = await unstable_getServerSession(context.req, context.res, authOptions);
 
-	if (!session) {
-		return {
-			redirect: {
-				destination: '/',
-				permanent: false
-			}
-		};
-	}
+// 	if (!session) {
+// 		return {
+// 			redirect: {
+// 				destination: '/',
+// 				permanent: false
+// 			}
+// 		};
+// 	}
 
-	session.user.email = '';
-	return {
-		props: {
-			session
-		}
-	};
-}
+// 	session.user.email = '';
+// 	return {
+// 		props: {
+// 			session
+// 		}
+// 	};
+// }

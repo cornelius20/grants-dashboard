@@ -8,8 +8,8 @@ import { CSVLink, CSVDownload } from 'react-csv';
 import { Octokit } from '@octokit/rest';
 import { useSession, signIn } from 'next-auth/react';
 import LoadingSpinner from '../public/images/loading-spinner.svg';
-import { authOptions } from './api/auth/[...nextauth]';
-import { unstable_getServerSession } from 'next-auth/next';
+// import { authOptions } from './api/auth/[...nextauth]';
+// import { unstable_getServerSession } from 'next-auth/next';
 
 export default function GrantCSVExporter() {
 	const [CSVData, setCSVData] = useState([
@@ -378,7 +378,7 @@ export default function GrantCSVExporter() {
                 <p style={marginTop20}>
                     A simple widget for exporting grant data from the grants database as a .CSV file.
                 </p>
-				<div className={marginTop50}>
+				<div style={marginTop50}>
                     <div className={styles.formRow}>
                         <div>
                             <label>A. Select Project Type(s)</label>
@@ -542,22 +542,22 @@ const bottomBox = {
     borderRadius: 10
 }
 
-export async function getServerSideProps(context) {
-	const session = await unstable_getServerSession(context.req, context.res, authOptions);
+// export async function getServerSideProps(context) {
+// 	const session = await unstable_getServerSession(context.req, context.res, authOptions);
 
-	if (!session) {
-		return {
-			redirect: {
-				destination: '/',
-				permanent: false
-			}
-		};
-	}
+// 	if (!session) {
+// 		return {
+// 			redirect: {
+// 				destination: '/',
+// 				permanent: false
+// 			}
+// 		};
+// 	}
 
-	session.user.email = '';
-	return {
-		props: {
-			session
-		}
-	};
-}
+// 	session.user.email = '';
+// 	return {
+// 		props: {
+// 			session
+// 		}
+// 	};
+// }

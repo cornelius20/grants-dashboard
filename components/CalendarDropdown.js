@@ -2,10 +2,12 @@ import Calendar from 'react-calendar';
 import styles from './CalendarDropDown.module.css';
 import DropdownIcon from '../public/images/dropdown.svg';
 import { useState, useEffect, useRef } from 'react';
+
 const CalendarDropdown = (props) => {
 	const [show, setShow] = useState(false);
 	const ref = useRef();
 	const reference = useRef(false);
+
 	useEffect(() => {
 		setShow(false);
 	}, [props.value]);
@@ -24,7 +26,7 @@ const CalendarDropdown = (props) => {
 	});
 
 	return (
-		<div>
+		<div className={styles.calendarWrapper}>
 			<button
 				className={styles.calendarDropdownButton}
 				onClick={() => {

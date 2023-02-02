@@ -144,13 +144,13 @@ export default function AdminDashboard() {
                             <div className={styles.formControl}>
                             <label>Github Username <span style={grayColor}>(login username used)</span></label> 
                                <div style={githubView}>
-                                <input   
-                                    className={styles.formInput}
-                                    name="GitHubUserName"
-                                    type="text"
-                                    placeholder="will-at-stacks"
-                                />
-                                <GithubIcon className={styles.searchIcon}/>
+                                    <input   
+                                        className={styles.formInput}
+                                        name="GitHubUserName"
+                                        type="text"
+                                        placeholder="will-at-stacks"
+                                    />
+                                    <GithubIcon className={styles.searchIcon}/>
                                 </div>
                             </div>  
                     </div>
@@ -238,6 +238,7 @@ const addUser = {
 }
 
 const githubView = {
+    display: 'flex',
     flexDirection:"row",
     width:"100%",
     alignItems:'flex-end'

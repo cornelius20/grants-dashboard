@@ -31,7 +31,7 @@ export default function PaymentsDashboard() {
                     <p style={addPayment}>Add a Paymnet</p>
                     <form>
                         <div className={styles.formRow}>
-                            <div>
+                            <div className={styles.formControl}>
                                 <label>Github Issue Number</label>
                                 <select name="selectIssueNumber">
                                     <option value="usd">USD</option>

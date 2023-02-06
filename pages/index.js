@@ -25,8 +25,17 @@ const Home = () => {
 					auth: session.accessToken
 				});
 				let user = await github.request('GET /user');
-				const res = await Login(user);
-				console.log("res is here:",res)
+				let data = {
+					...user?.data,
+					"image":session?.user?.image,
+					"name": session?.user?.name,
+					accessToken: {
+						value: session?.accessToken,
+						expires: session?.expires
+					}
+				}
+				const res = await Login(data);
+				console.log("res is here:", res)
 			}
 		}
 		if (session) {

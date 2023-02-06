@@ -10,6 +10,7 @@ import { Octokit } from '@octokit/rest';
 import StacksLogo from '../public/images/indexStxLogo.svg';
 import StacksLogoSuccess from '../public/images/stacksModalLogoSuccess.svg';
 import ConnectGithubSVG from '../public/images/indexGithubConnect.svg';
+import { Login } from '../utils/ApiCalls';
 
 const Home = () => {
 	const { data: session } = useSession();
@@ -23,7 +24,9 @@ const Home = () => {
 				const github = new Octokit({
 					auth: session.accessToken
 				});
-				await github.request('GET /user');
+				let user = await github.request('GET /user');
+				const res = await Login(user);
+				console.log("res is here:",res)
 			}
 		}
 		if (session) {

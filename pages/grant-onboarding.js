@@ -373,10 +373,7 @@ export default function GrantOnboarding() {
                     <p>Thirty Character Long Project Name</p>
                     <h5>Grant Budget:</h5>
                     <p>$122,000</p>
-                    <h5>Number of Payments Remaining:</h5>
-                    <p>(6) payments remaining</p>
-                    <h5>Amount per Payment:</h5>
-                    <p style={marginBottom70}>$20,833.33</p>
+                    <p style={marginBottom120}></p>
                     <div className={styles.divider}></div>
                     <p style={{...whiteColor, ...marginTop10}}>If any of the information provided above is incorrect please email us <a style={mailLink} href="mailto:corneliuscantonii@gmail.com">here.</a></p>
                     <span style={checkbox}><input className={styles.mt3} type={'checkbox'}/> <p>I confirm all of the information on this page is correct.</p></span>
@@ -404,8 +401,8 @@ const checkbox = {
     marginBottom: 20
 }
 
-const marginBottom70 = {
-    marginBottom: 70
+const marginBottom120 = {
+    marginBottom: 120
 }
 
 const mb4 = {

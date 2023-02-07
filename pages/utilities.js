@@ -36,10 +36,10 @@ const Utilities = () => {
 			</Link>
 			<div className={styles.utilitiesWrapper}>
 				
-				<h2>I. Stacks Community Tools</h2>
+				<h2>Stacks Community Tools</h2>
 				<div className={styles.buttonWrapper}>
 					<div>
-						<p>I.a. Want to verify your payment amount?</p>
+						<p>Want to verify your payment amount?</p>
 						<Link href="/stacks-payment-converter">
 							<a>
 								<button className={styles.buttonBackgroundColor}>STX Payment Converter</button>
@@ -47,7 +47,7 @@ const Utilities = () => {
 						</Link>
 					</div>
 					<div>
-						<p>I.b. Want to export data from grants database?</p>
+						<p>Want to export data from grants database?</p>
 						{!session && (
 							<Link href="/grant-csv-exporter">
 								<a>
@@ -64,7 +64,7 @@ const Utilities = () => {
 						)}
 					</div>
 					<div>
-						<p>I.c. Was your Grant approved? Onboard here</p>
+						<p>Was your Grant approved? Onboard here</p>
 						{!session && (
 							<Link href="/grant-onboarding">
 								<a>
@@ -111,11 +111,11 @@ const Utilities = () => {
 					</div>
 					
 				</div> */}
-				<h2>III. Grant Admin Tools</h2>
+				<h2>Grant Admin Tools</h2>
 
 				<div className={styles.buttonWrapper}>
 					<div>
-						<p>III.a. Need to adjust permission settings?</p>
+						<p>Need to adjust permission settings?</p>
 						{!session && (
 							<Link href="/admin-dashboard">
 								<a>
@@ -132,7 +132,7 @@ const Utilities = () => {
 						)}
 					</div>
 					<div style={pb2}>
-						<p>III.b Need to document a payment made to grant recepient?</p>
+						<p>Need to document a payment made to grant recepient?</p>
 						{!session && (
 							<Link href="/payments-dashboard">
 								<a>

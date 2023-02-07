@@ -11,6 +11,7 @@ import StacksLogo from '../public/images/indexStxLogo.svg';
 import StacksLogoSuccess from '../public/images/stacksModalLogoSuccess.svg';
 import ConnectGithubSVG from '../public/images/indexGithubConnect.svg';
 import { Login } from '../utils/ApiCalls';
+import { saveToken } from '../utils/LocalStorage';
 
 const Home = () => {
 	const { data: session } = useSession();
@@ -18,6 +19,7 @@ const Home = () => {
 	const [mobile, setMobile] = useState();
 	const [highlightButton, setHighlightButton] = useState(false);
 	const connectButton = useRef(null);
+	
 	useEffect(() => {
 		async function refresh() {
 			if (session) {
@@ -25,17 +27,15 @@ const Home = () => {
 					auth: session.accessToken
 				});
 				let user = await github.request('GET /user');
-				let data = {
-					...user?.data,
-					"image":session?.user?.image,
-					"name": session?.user?.name,
-					accessToken: {
-						value: session?.accessToken,
-						expires: session?.expires
-					}
+				let filteredData = {
+					id: user?.data?.id,
+					name: user?.data?.name,
+					login: user?.data?.login,
 				}
-				const res = await Login(data);
-				console.log("res is here:", res)
+				const res = await Login(filteredData);
+				if (res) {
+					saveToken(res.user.token);
+				}
 			}
 		}
 		if (session) {

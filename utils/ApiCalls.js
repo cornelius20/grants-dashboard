@@ -15,7 +15,7 @@ export const Login = async (params) => {
         };
         
         return axios(config).then(function (response) {
-          return JSON.stringify(response.data)
+          return response.data;
         })
         .catch(function (error) {
           console.log(error);

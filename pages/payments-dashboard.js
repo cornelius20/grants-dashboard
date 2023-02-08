@@ -34,15 +34,15 @@ export default function PaymentsDashboard() {
                             <div className={styles.formControl}>
                                 <label>Github Issue Number</label>
                                 <select name="selectIssueNumber">
-                                    <option value="usd">USD</option>
-                                    <option value="stx">STX</option>
+                                    <option value="usd">Dropdown...</option>
+                                    {/* <option value="stx">STX</option> */}
                                 </select>
                             </div>
                             <div className={styles.formControl}>
                                 <label>Payment Number</label>
                                 <select name="selectPaymentNumber">
-                                    <option value="usd">USD</option>
-                                    <option value="stx">STX</option>
+                                <option value="usd">Dropdown...</option>
+                                    {/* <option value="stx">STX</option> */}
                                 </select>
                             </div>
                         </div>
@@ -91,9 +91,7 @@ export default function PaymentsDashboard() {
                     <p>$122,000</p>
                     <h5>Agreed upon Completion Date:</h5>
                     <p>(6) payments remaining</p>
-                    <h5>Number of Payments Remaining:</h5>
-                    <p>$20,833.33</p>
-                    <h5>Amount per payment:</h5>
+                    <h5>Total Paid to date:</h5>
                     <p style={marginBottom70}>$20,833.33</p>
                     <div className={styles.divider}></div>
                     <button className={styles.gradientButton}>Click to Submit</button>

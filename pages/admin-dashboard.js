@@ -1,12 +1,133 @@
-import React from 'react';
+import React, { useEffect, useRef,useState } from 'react';
 import styles from './GrantOnboarding.module.css';
 import CloseIcon from '../public/images/close.svg';
 import GithubIcon from "../public/images/github.svg";
 import Link from 'next/link';
+import { adminCreateUser, adminGetAllUsers, adminSearchUser, adminUpdateUser } from '../utils/ApiCalls';
 // import { authOptions } from './api/auth/[...nextauth]';
 // import { unstable_getServerSession } from 'next-auth/next';
 
+const data = [
+    {
+        id: 1,
+        name: 'Will Corran',
+        type: 'Admin'
+    },
+    {
+        id: 2,
+        name: 'Shakti Pradhan',
+        type: 'Finance'
+    },
+    {
+        id: 3,
+        name: 'Kenny Rogers',
+        type: 'Reviewer'
+    },
+    {
+        id: 4,
+        name: 'Onaga Onose',
+        type: 'Grantee'
+    },
+    {
+        id: 5,
+        name: 'Zach Graff',
+        type: 'Grantee'
+    },
+
+]
+
 export default function AdminDashboard() {
+
+    const selectRef = useRef();
+    const [userData,setUserData] = useState({
+        firstName: "",
+        lastName: "",
+        login: "",
+        email: "",
+        type: "User"
+    });
+    const [loading,setLoading] = useState(false);
+    const [userList,setUserList] = useState([]);
+    const [searchVal,setSearchVal] = useState('');
+    const [currentUser,setCurrentUser] = useState(null);
+    const createUser = async(data) => {
+        
+        setLoading(true);
+        const res = await adminCreateUser(data);
+        if(res.success){
+            setLoading(false);
+            getAllUsers();
+        }
+    }
+
+
+    const updateUser = async(data) => {
+        const res = await adminUpdateUser(data);
+        console.log('Update response is : - ',res);
+        if(res){
+            getAllUsers();
+        }
+    }
+
+    const getAllUsers = async() => {
+        setLoading(true);
+        const res = await adminGetAllUsers();
+        if(res){
+            setLoading(false);
+            setUserList(res.users);
+        }
+    }
+
+    const searchUser = async(val) => {
+        const res = await adminSearchUser(val);
+        setUserList(res.users);
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        createUser(userData)
+    }
+
+    const handleEdit = (e) => {
+        e.preventDefault();
+        updateUser(currentUser);
+    }
+
+    const handleUser = (e,item) => {
+        e.preventDefault();
+        setCurrentUser(item);
+    }
+
+
+    const ListItem = (item) => {
+        const {name,type,id} = item;
+        if(!type) type = 'User';
+        let background;
+        if(type == 'Admin') background = '#9F7AEA';
+        if(type == 'Finance') background = '#48BB78';
+        if(type == 'Reviewer' || 'User') background = 'orange';
+        if(type == 'Grantee') background = 'cyan';
+
+        return(
+            <li key={id} className={styles.listItem}>
+                <div style={titleView}>
+                    <span>
+                        <input type={'radio'}/>
+                    </span>
+                    <span>{name}</span>
+                </div>
+                <div style={{...flex1}}>
+                    <span style={{background: type == 'Admin' ? '#9f7aea' : 'orange'}}>{type}</span>
+                    <button onClick={(e)=>{handleUser(e,item)}}>. . .</button>
+                </div>
+            </li>
+        )
+    }
+
+    useEffect(()=>{
+        getAllUsers(); 
+    },[])
+
   return (
     <div style={main}>
         <Link href="/">
@@ -38,6 +159,7 @@ export default function AdminDashboard() {
                                     name="SearchUserInput"
                                     type="text"
                                     placeholder="Type here..."
+                                    onChange={(e)=>searchUser(e.target.value)}
                                 />
                             </div>
                         </div>
@@ -51,131 +173,163 @@ export default function AdminDashboard() {
                                     <span style={listTitle}>ROLE</span>
                                 </div>
                             </li>
-                            <li className={styles.listItem}>
-                                <div style={titleView}>
-                                    <span>
-                                        <input type={'radio'}/>
-                                    </span>
-                                    <span>Will Corcan</span>
-                                </div>
-                                <div style={flex1}>
-                                    <span style={backgroundPurple}>Admin</span>
-                                    <button>. . .</button>
-                                </div>
-                            </li>
-                            <li className={styles.listItem}>
-                            <div style={titleView}>
-                                    <span>
-                                        <input type={'radio'}/>
-                                    </span>
-                                    <span>Shakti Pradhan</span>
-                                </div>
-                                <div style={flex1}>
-                                    <span style={backgroundGreen}>Finance</span>
-                                    <button>. . .</button>
-                                </div>
-                            </li>
-                            <li className={styles.listItem}>
-                            <div style={titleView}>
-                                    <span>
-                                        <input type={'radio'}/>
-                                    </span>
-                                    <span>Kenny Rogers</span>
-                                </div>
-                                
-                                <div style={flex1}>
-                                    <span style={backgroundOrange}>Reviewer</span>
-                                    <button>. . .</button>
-                                </div>
-                            </li>
-                            <li className={styles.listItem}>
-                            <div style={titleView}>
-                                    <span>
-                                        <input type={'radio'}/>
-                                    </span>
-                                    <span>Ogaga Onose</span>
-                                </div>
-                                
-                                <div style={flex1}>
-                                    <span style={backgroundCyan}>Grantee</span>
-                                    <button>. . .</button>
-                                </div>
-                            </li>
-                            <li className={styles.listItem}>
-                            <div style={titleView}>
-                                    <span>
-                                        <input type={'radio'}/>
-                                    </span>
-                                    <span>Zach Graff</span>
-                                </div>
-                                <div style={flex1}>
-                                    <span style={backgroundCyan}>Grantee</span>
-                                    <button>. . .</button>
-                                </div>
-                            </li>
+                            {
+                                loading ? <div style={{textAlign: 'center',marginTop: 100}}>Loading...</div> : userList.map(item=> ListItem(item))
+                            }
+                            
                         </ul>
                     </form>
                 </div>
                 <div className={styles.onBoardingRight}>
-                    <p style={addUser}>Add a New User or Edit a User</p>
-                    <div className={styles.formRow}>
-                            <div className={styles.formControl}>
-                                <label>First Name</label>
-                                <input 
-                                    className={styles.formInput}
-                                    name="FirstName"
-                                    type="text"
-                                    placeholder="Type here..."
-                                />
-                            </div>
-                    </div>
-                    <div className={styles.formRow}>
-                            <div className={styles.formControl}>
-                                <label>Last Name</label>
-                                <input 
-                                    className={styles.formInput}
-                                    name="LastName"
-                                    type="text"
-                                    placeholder="Type here..."
-                                />
-                            </div>
-                    </div>
-                    <div className={styles.formRow}>
-                            <div className={styles.formControl}>
-                            <label>Github Username <span style={grayColor}>(login username used)</span></label> 
-                               <div style={githubView}>
-                                    <input   
-                                        className={styles.formInput}
-                                        name="GitHubUserName"
-                                        type="text"
-                                        placeholder="will-at-stacks"
-                                    />
-                                    <GithubIcon className={styles.searchIcon}/>
+                    {
+                        !currentUser ? <>
+                            <p style={addUser}>Add a New User or Edit a User</p>
+                            <form>
+                                <div className={styles.formRow}>
+                                        <div className={styles.formControl}>
+                                            <label>First Name</label>
+                                            <input 
+                                                className={styles.formInput}
+                                                name="FirstName"
+                                                type="text"
+                                                required
+                                                placeholder="Type here..."
+                                                onChange={(e)=>{setUserData({...userData,firstName: e.target.value})}}
+                                            />
+                                        </div>
                                 </div>
-                            </div>  
-                    </div>
-                    <div className={styles.formRow}>
-                            <div className={styles.formControl}>
-                                <label>Email Address</label>
-                                <input 
-                                    className={styles.formInput}
-                                    name="EmailAddress"
-                                    type="text"
-                                    placeholder="Type here..."
-                                />
-                            </div> 
-                    </div>
-                    <div className={styles.formRow}>
-                            <div className={styles.formControl}>
-                                <label>Select Role</label>
-                                <select name="selectPaymentNumber">
-                                    <option value="usd">USD</option>
-                                    <option value="stx">STX</option>
-                                </select>
-                            </div>
-                    </div>
-                    <div className={styles.divider}></div>
-                    <button className={styles.gradientButton}>Click to Submit</button>
+                                <div className={styles.formRow}>
+                                        <div className={styles.formControl}>
+                                            <label>Last Name</label>
+                                            <input 
+                                                className={styles.formInput}
+                                                name="LastName"
+                                                required
+                                                type="text"
+                                                placeholder="Type here..."
+                                                onChange={(e)=>{setUserData({...userData,lastName: e.target.value})}}
+                                            />
+                                        </div>
+                                </div>
+                                <div className={styles.formRow}>
+                                        <div className={styles.formControl}>
+                                        <label>Github Username <span style={grayColor}>(login username used)</span></label> 
+                                        <div style={githubView}>
+                                                <input   
+                                                    className={styles.formInput}
+                                                    name="GitHubUserName"
+                                                    type="text"
+                                                    required
+                                                    placeholder="will-at-stacks"
+                                                    onChange={(e)=>{setUserData({...userData,login: e.target.value})}}
+                                                />
+                                                <GithubIcon className={styles.searchIcon}/>
+                                            </div>
+                                        </div>  
+                                </div>
+                                <div className={styles.formRow}>
+                                        <div className={styles.formControl}>
+                                            <label>Email Address</label>
+                                            <input 
+                                                className={styles.formInput}
+                                                name="EmailAddress"
+                                                required
+                                                type="text"
+                                                placeholder="Type here..."
+                                                onChange={(e)=>{setUserData({...userData,email: e.target.value})}}
+                                            />
+                                        </div> 
+                                </div>
+                                <div className={styles.formRow}>
+                                        <div className={styles.formControl}>
+                                            <label>Select Role</label>
+                                            <select name="selectUserType" onChange={(e)=>{setUserData({...userData,type: e.target.value})}}>
+                                                <option value="Admin">Admin</option>
+                                                <option value="User">User</option>
+                                            </select>
+                                        </div>
+                                </div>
+                                <div className={styles.divider}></div>
+                                <button type='submit' disabled={loading} onClick={(e)=>{handleSubmit(e)}} className={styles.gradientButton}>Click to Submit</button>
+                            </form>
+                        </> : <>
+                            <p style={addUser}>Edit User ({currentUser.name})</p>
+                            <form>
+                                <div className={styles.formRow}>
+                                        <div className={styles.formControl}>
+                                            <label>First Name</label>
+                                            <input 
+                                                className={styles.formInput}
+                                                name="FirstName"
+                                                type="text"
+                                                required
+                                                value={currentUser.name.split(' ')[0]}
+                                                placeholder="Type here..."
+                                                onChange={(e)=>{setCurrentUser({...currentUser,firstName: e.target.value})}}
+                                            />
+                                        </div>
+                                </div>
+                                <div className={styles.formRow}>
+                                        <div className={styles.formControl}>
+                                            <label>Last Name</label>
+                                            <input 
+                                                className={styles.formInput}
+                                                name="LastName"
+                                                required
+                                                type="text"
+                                                value={currentUser.name.split(' ')[1]}
+                                                placeholder="Type here..."
+                                                onChange={(e)=>{setCurrentUser({...currentUser,lastName: e.target.value})}}
+                                            />
+                                        </div>
+                                </div>
+                                <div className={styles.formRow}>
+                                        <div className={styles.formControl}>
+                                        <label>Github Username <span style={grayColor}>(login username used)</span></label> 
+                                        <div style={githubView}>
+                                                <input   
+                                                    className={styles.formInput}
+                                                    name="GitHubUserName"
+                                                    type="text"
+                                                    required
+                                                    value={currentUser.login}
+                                                    placeholder="will-at-stacks"
+                                                    onChange={(e)=>{setCurrentUser({...currentUser,login: e.target.value})}}
+                                                />
+                                                <GithubIcon className={styles.searchIcon}/>
+                                            </div>
+                                        </div>  
+                                </div>
+                                <div className={styles.formRow}>
+                                        <div className={styles.formControl}>
+                                            <label>Email Address</label>
+                                            <input 
+                                                className={styles.formInput}
+                                                name="EmailAddress"
+                                                required
+                                                type="text"
+                                                value={currentUser.email}
+                                                placeholder="Type here..."
+                                                onChange={(e)=>{setCurrentUser({...currentUser,email: e.target.value})}}
+                                            />
+                                        </div> 
+                                </div>
+                                <div className={styles.formRow}>
+                                        <div className={styles.formControl}>
+                                            <label>Select Role</label>
+                                            <select name="selectUserType" onChange={(e)=>{setCurrentUser({...currentUser,type: e.target.value})}}>
+                                                <option value="Admin">Admin</option>
+                                                <option value="User">User</option>
+                                            </select>
+                                        </div>
+                                </div>
+                                <div className={styles.divider}></div>
+                                <button type='submit' disabled={loading} onClick={(e)=>{handleEdit(e)}} className={styles.gradientButton}>Click to Submit</button>
+                            </form>
+                        </>
+                    }
+                    
+                    
                 </div>
             </div>
         </div>

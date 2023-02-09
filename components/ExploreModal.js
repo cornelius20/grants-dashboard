@@ -15,7 +15,7 @@ export default function ExploreModal({visible,handleClose}) {
                     <CloseIcon/>
                 </span>
             </div>
-            <img className={styles.ModalImgSm} src={"https://picsum.photos/200/300"}/>
+            <img className={styles.ModalImgSm} src="./images/image.png"/>
             <h3 className={styles.ModalHeading}>Explore the world of Stacks</h3>
             <p>Hiro Wallet is your gateway to Stacks apps like Arkadiko. Add it to Chrome to continue.</p>
             <button className={styles.ModalBtn}>Sign In with Secret Key</button>

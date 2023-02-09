@@ -3,6 +3,7 @@ import styles from './GrantOnboarding.module.css';
 import CloseIcon from '../public/images/close.svg';
 import Link from 'next/link';
 import CalendarDropdown from '../components/CalendarDropdown';
+import ExploreModal from '../components/ExploreModal';
 // import { authOptions } from './api/auth/[...nextauth]';
 // import { unstable_getServerSession } from 'next-auth/next';
 
@@ -10,6 +11,7 @@ export default function GrantOnboarding() {
     const [value, setValue] = useState('')
         const [endDate, setEndDate] = useState(new Date());
 	    const [startDate, setStartDate] = useState(new Date());
+        const [visible,setVisible] = useState(false);
         const changeHandler = value => {
           setValue(value)
         }
@@ -27,6 +29,8 @@ export default function GrantOnboarding() {
 				</div>
 			</a>
 		</Link>
+        <ExploreModal visible={visible} handleClose={()=>setVisible(false)}/>
+        {/* <PopupModal visible={visible} handleClose={()=>setVisible(false)}/> */}
         <div className={styles.onBoardingWrapper}>
             <h2>
                 Grant Onboarding
@@ -68,7 +72,7 @@ export default function GrantOnboarding() {
                                 />
                             </div>
                         </div>
-                        <div className={styles.formRow} style={mb4}>
+                        <div className={styles.formRow} style={{mb1}}>
                             <div className={styles.formControl}>
                                 <label>STX Wallet Address</label>
                                 <input
@@ -87,6 +91,8 @@ export default function GrantOnboarding() {
                                     placeholder="Type here..."
                                 />
                                 <span style={checkbox}><input type={'checkbox'}/>  I confirm no memo is required</span>
+                                <button onClick={()=>setVisible(true)} className={styles.gradientButton}>Connect Wallet</button>
+
                             </div>
                         </div>
                         <div className={styles.formRow}>
@@ -344,27 +350,8 @@ export default function GrantOnboarding() {
                                 <CalendarDropdown onChange={setStartDate} value={startDate} />
 
                             </div>
-                            {/* <div className={styles.calendarDropdownWrapper} style={{flex: 1}}>
-                                <label htmlFor="amountReceived">Anticipated Completion Date <span style={grayColor}>(6 months max)</span></label>
-                                <CalendarDropdown onChange={setStartDate} value={startDate} />
-                            </div> */}
-                            {/* <div className={styles.formControl}>
-                                <label>Anticipated Completion Date <span style={grayColor}>(6 months max)</span></label>
-                                <select className={styles.formInput} name="selectCompletion">
-                                    <option value="usd">USD</option>
-                                    <option value="stx">STX</option>
-                                </select>
-                                
-                            </div> */}
-                        </div>
-                        {/* <div className={styles.formRow}>
-                            <div>
-                                <label>Country of Residence</label>
-                                <Select styles={{background: '#000',width: '100%'}} options={options} value={value} onChange={changeHandler} />
-                            </div>
                             
-                        </div> */}
-                    {/* </form> */}
+                        </div>
                 </div>
                 <div className={styles.onBoardingRight}>
                     <h5>Issue Number:</h5>
@@ -407,6 +394,10 @@ const marginBottom120 = {
 
 const mb4 = {
     marginBottom: 40
+}
+
+const mb1 = {
+    marginBottom: 10
 }
 
 const mailLink = {

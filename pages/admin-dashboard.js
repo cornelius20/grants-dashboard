@@ -7,35 +7,6 @@ import { adminCreateUser, adminGetAllUsers, adminSearchUser, adminUpdateUser } f
 // import { authOptions } from './api/auth/[...nextauth]';
 // import { unstable_getServerSession } from 'next-auth/next';
 
-const data = [
-    {
-        id: 1,
-        name: 'Will Corran',
-        type: 'Admin'
-    },
-    {
-        id: 2,
-        name: 'Shakti Pradhan',
-        type: 'Finance'
-    },
-    {
-        id: 3,
-        name: 'Kenny Rogers',
-        type: 'Reviewer'
-    },
-    {
-        id: 4,
-        name: 'Onaga Onose',
-        type: 'Grantee'
-    },
-    {
-        id: 5,
-        name: 'Zach Graff',
-        type: 'Grantee'
-    },
-
-]
-
 export default function AdminDashboard() {
 
     const selectRef = useRef();
@@ -51,7 +22,6 @@ export default function AdminDashboard() {
     const [searchVal,setSearchVal] = useState('');
     const [currentUser,setCurrentUser] = useState(null);
     const createUser = async(data) => {
-        
         setLoading(true);
         const res = await adminCreateUser(data);
         if(res.success){

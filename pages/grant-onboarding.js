@@ -6,23 +6,47 @@ import CalendarDropdown from '../components/CalendarDropdown';
 import ExploreModal from '../components/ExploreModal';
 import { useAuth } from '@micro-stacks/react';
 import { useAccount } from '@micro-stacks/react';
-
-
-
-
+import { grantOnboarding } from '../utils/ApiCalls';
 
 export default function GrantOnboarding() {
-        const [value, setValue] = useState('')
-        const [endDate, setEndDate] = useState(new Date());
-	    const [startDate, setStartDate] = useState(new Date());
+        const [firstName, setFirstName] = useState("")
+        const [lastName, setLastName] = useState("")
+        const [stxMemo, setStxMemo] = useState("")
+        const [email, setEmail] = useState("")
+        const [country, setCountry] = useState("")
+        const [anticipatedCompletionDate, setAnticipatedCompletionDate] = useState(new Date())
         const [visible,setVisible] = useState(false);
-        const changeHandler = value => {
-          setValue(value)
-        }
-        const { openAuthRequest, isRequestPending, signOut, isSignedIn } = useAuth();
-        const label = isRequestPending ? 'Loading...' : isSignedIn ? 'Sign out' : 'Connect Wallet';
-        const { stxAddress,identityAddress,rawAddress } = useAccount();
         
+        const { openAuthRequest, isRequestPending, signOut, isSignedIn } = useAuth();
+        const label = isRequestPending ? 'Loading...' : isSignedIn ? 'Disconnect' : 'Connect Wallet';
+        const { stxAddress, identityAddress, rawAddress } = useAccount();
+    
+        const walletButtonClicked = async () => {
+            if (isSignedIn) {
+                await signOut();
+            }
+            else {
+                await openAuthRequest();
+            }
+        }
+
+        const handleSubmit = (e) => {
+            if (isSignedIn) {
+                let onBoardingData = {
+                    "firstName": firstName,
+                    "lastName": lastName,
+                    "email": email,
+                    "stxAddress": stxAddress,
+                    "stxMemo": stxMemo,
+                    "country": country,
+                    "anticipatedCompletionDate": anticipatedCompletionDate
+                }
+                e.preventDefault();
+                grantOnboarding(onBoardingData)
+            } else {
+                alert("kindly connect Hiro Wallet")
+            }
+        }
         
   return (
     <div className={styles.main}>
@@ -55,6 +79,7 @@ export default function GrantOnboarding() {
                                     name="FirstName"
                                     type="type"
                                     placeholder="Type here..."
+                                    onChange={(e)=>{setFirstName(e.target.value)}}
                                 />
                             </div>
                             <div className={styles.formControl}>
@@ -64,6 +89,7 @@ export default function GrantOnboarding() {
                                     name="LastName"
                                     type="type"
                                     placeholder="Type here..."
+                                    onChange={(e)=>{setLastName(e.target.value)}}
                                 />
                             </div>
                         </div>
@@ -75,16 +101,14 @@ export default function GrantOnboarding() {
                                     name="Email"
                                     type="email"
                                     placeholder="Type here..."
+                                    onChange={(e)=>{setEmail(e.target.value)}}
                                 />
                             </div>
                         </div>
                         <div className={styles.formRow} style={{mb1}}>
                             <div className={styles.formControl}>
                                 <label>STX Wallet Address</label>
-                                <button onClick={async () => {
-                                    if (isSignedIn) await signOut();
-                                    else await openAuthRequest();
-                                }} className={styles.walletButton}>
+                                <button onClick={walletButtonClicked} className={styles.walletButton}>
                                     {label}
                                 </button>
                                 
@@ -96,7 +120,7 @@ export default function GrantOnboarding() {
                                     name="WalletMemo"
                                     type="number"
                                     placeholder="Type here..."
-                                    value={rawAddress ? rawAddress[0] : ''}
+                                    onChange={(e)=>{setStxMemo(e.target.value)}}
                                 />
                                 <span style={checkbox}><input type={'checkbox'}/>  I confirm no memo is required</span>
                                 
@@ -105,7 +129,7 @@ export default function GrantOnboarding() {
                         <div className={styles.formRow}>
                             <div className={styles.formControl}>
                                 <label>Country of Residence</label>
-                                <select className={styles.formInput} name="selectCountry">
+                                <select className={styles.formInput} onChange={(e)=>{setCountry(e.target.value)}} name="selectCountry">
                                     <option value="Afghanistan">Afghanistan</option>
                                     <option value="Åland Islands">Åland Islands</option>
                                     <option value="Albania">Albania</option>
@@ -354,7 +378,7 @@ export default function GrantOnboarding() {
                             </div>
                             <div className={styles.formControl} style={{width: '100%'}}>
                                 <label>Anticipated Completion Date <span style={grayColor}>(6 months max)</span></label>
-                                <CalendarDropdown onChange={setStartDate} value={startDate} />
+                                <CalendarDropdown onChange={setAnticipatedCompletionDate} value={anticipatedCompletionDate} />
 
                             </div>
                             
@@ -371,7 +395,7 @@ export default function GrantOnboarding() {
                     <div className={styles.divider}></div>
                     <p style={{...whiteColor, ...marginTop10}}>If any of the information provided above is incorrect please email us <a style={mailLink} href="mailto:corneliuscantonii@gmail.com">here.</a></p>
                     <span style={checkbox}><input className={styles.mt3} type={'checkbox'}/> <p>I confirm all of the information on this page is correct.</p></span>
-                    <button className={styles.gradientButton}>Click to Submit</button>
+                    <button className={styles.gradientButton} onClick={(e)=>{handleSubmit(e)}}>Click to Submit</button>
                 </div>
             </div>
         </div>

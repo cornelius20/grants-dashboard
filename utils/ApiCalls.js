@@ -25,6 +25,31 @@ export const Login = async (params) => {
     }
 }
 
+export const grantOnboarding = async (params) => {
+  try {
+    var data = JSON.stringify(params);
+    console.log("data is here", data)
+    var config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: ' https://stacks-grant-backend.herokuapp.com/api/v1/grant',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: data
+    };
+
+    return axios(config).then(function (response) {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  } catch (err) {
+    return false;
+  }
+}
+
 export const adminCreateUser = (params) => {
     try {
          var data = JSON.stringify(params);
@@ -53,7 +78,6 @@ export const adminCreateUser = (params) => {
     }
 }
 
-
 export const adminUpdateUser = (params) => {
     try {
         var data = JSON.stringify(params);
@@ -81,7 +105,6 @@ export const adminUpdateUser = (params) => {
        return false;
    }
 }
-
 
 export const adminGetAllUsers = () => {
     try {

@@ -1,20 +1,28 @@
-import React,{useState,useMemo} from 'react';
+import React,{useState,useMemo,useEffect} from 'react';
 import styles from './GrantOnboarding.module.css';
 import CloseIcon from '../public/images/close.svg';
 import Link from 'next/link';
 import CalendarDropdown from '../components/CalendarDropdown';
 import ExploreModal from '../components/ExploreModal';
-// import { authOptions } from './api/auth/[...nextauth]';
-// import { unstable_getServerSession } from 'next-auth/next';
+import { useAuth } from '@micro-stacks/react';
+import { useAccount } from '@micro-stacks/react';
+
+
+
+
 
 export default function GrantOnboarding() {
-    const [value, setValue] = useState('')
+        const [value, setValue] = useState('')
         const [endDate, setEndDate] = useState(new Date());
 	    const [startDate, setStartDate] = useState(new Date());
         const [visible,setVisible] = useState(false);
         const changeHandler = value => {
           setValue(value)
         }
+        const { openAuthRequest, isRequestPending, signOut, isSignedIn } = useAuth();
+        const label = isRequestPending ? 'Loading...' : isSignedIn ? 'Sign out' : 'Sign In with Secret Key';
+        const { stxAddress,identityAddress,rawAddress } = useAccount();
+        
         
   return (
     <div className={styles.main}>
@@ -25,7 +33,6 @@ export default function GrantOnboarding() {
 						<CloseIcon />
 							Close
 					</p>
-				    <span></span>
 				</div>
 			</a>
 		</Link>
@@ -40,7 +47,6 @@ export default function GrantOnboarding() {
                     <p style={mb4} className={styles.text}>
                         A simple widget for providing private information required for receiving grant payments.
                     </p>
-                    {/* <form> */}
                         <div className={styles.formRow}>
                             <div className={styles.formControl}>
                                 <label>First Name</label>
@@ -80,6 +86,7 @@ export default function GrantOnboarding() {
                                     name="WalletAddress"
                                     type="type"
                                     placeholder="Type here..."
+                                    value={stxAddress ? stxAddress : ''}
                                 />
                             </div>
                             <div className={styles.formControl}>
@@ -87,12 +94,17 @@ export default function GrantOnboarding() {
                                 <input
                                     className={styles.formInput}
                                     name="WalletMemo"
-                                    type="type"
+                                    type="number"
                                     placeholder="Type here..."
+                                    value={rawAddress ? rawAddress[0] : ''}
                                 />
                                 <span style={checkbox}><input type={'checkbox'}/>  I confirm no memo is required</span>
-                                <button onClick={()=>setVisible(true)} className={styles.gradientButton}>Connect Wallet</button>
-
+                                <button onClick={async () => {
+                                    if (isSignedIn) await signOut();
+                                    else await openAuthRequest();
+                                }} className={styles.gradientButton}>
+                                    {label}
+                                </button>
                             </div>
                         </div>
                         <div className={styles.formRow}>
@@ -417,22 +429,4 @@ const whiteColor = {
     color: '#E2E8F0',
 }
 
-// export async function getServerSideProps(context) {
-// 	const session = await unstable_getServerSession(context.req, context.res, authOptions);
 
-// 	if (!session) {
-// 		return {
-// 			redirect: {
-// 				destination: '/',
-// 				permanent: false
-// 			}
-// 		};
-// 	}
-
-// 	session.user.email = '';
-// 	return {
-// 		props: {
-// 			session
-// 		}
-// 	};
-// }

@@ -20,7 +20,7 @@ export default function GrantOnboarding() {
           setValue(value)
         }
         const { openAuthRequest, isRequestPending, signOut, isSignedIn } = useAuth();
-        const label = isRequestPending ? 'Loading...' : isSignedIn ? 'Sign out' : 'Sign In with Secret Key';
+        const label = isRequestPending ? 'Loading...' : isSignedIn ? 'Sign out' : 'Connect Wallet';
         const { stxAddress,identityAddress,rawAddress } = useAccount();
         
         
@@ -81,13 +81,13 @@ export default function GrantOnboarding() {
                         <div className={styles.formRow} style={{mb1}}>
                             <div className={styles.formControl}>
                                 <label>STX Wallet Address</label>
-                                <input
-                                    className={styles.formInput}
-                                    name="WalletAddress"
-                                    type="type"
-                                    placeholder="Type here..."
-                                    value={stxAddress ? stxAddress : ''}
-                                />
+                                <button onClick={async () => {
+                                    if (isSignedIn) await signOut();
+                                    else await openAuthRequest();
+                                }} className={styles.walletButton}>
+                                    {label}
+                                </button>
+                                
                             </div>
                             <div className={styles.formControl}>
                                 <label>STX Wallet Memo</label>
@@ -99,12 +99,7 @@ export default function GrantOnboarding() {
                                     value={rawAddress ? rawAddress[0] : ''}
                                 />
                                 <span style={checkbox}><input type={'checkbox'}/>  I confirm no memo is required</span>
-                                <button onClick={async () => {
-                                    if (isSignedIn) await signOut();
-                                    else await openAuthRequest();
-                                }} className={styles.gradientButton}>
-                                    {label}
-                                </button>
+                                
                             </div>
                         </div>
                         <div className={styles.formRow}>

@@ -15,7 +15,7 @@
     padding: 30px;
     border-radius: 15px;
     background: linear-gradient(to bottom, #000000, #090909);
-    max-width: 450px;
+    max-width: 440px;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -23,15 +23,13 @@
     align-items: center;
     border: 1px solid #fff;
     z-index: 100 !important;
-
-
 }
 
 .ExploreContainer{
     padding: 30px;
     border-radius: 15px;
     background: linear-gradient(to bottom, #000000, #090909);
-    max-width: 450px;
+    max-width: 440px;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -82,7 +80,6 @@
 
 .ModalBtn{
     background: linear-gradient(45deg, #3182ce, #97266d);
-    /* height: 50px; */
     border: 1px solid #ffffff;
     border-radius: 5px;
     color: #ffffff;
@@ -90,14 +87,12 @@
     font-size: 12px;
     font-weight: 600;
     cursor: pointer;
-    /* margin-bottom: 10px; */
 }
 
 .divider{
     height: 1px;
     width: 100%;
     background-color: rgb(52, 51, 51);
-    /* margin-bottom: 5px; */
 }
 
 .ModalLink{

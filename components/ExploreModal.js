@@ -2,7 +2,6 @@ import React from "react"
 import styles from "./PopupModal.module.css";
 import ExploreIcon from "../public/images/explore.svg";
 import CloseIcon from "../public/images/close.svg";
-import myImg from '../public/images/modalImg.png';
 import { useAuth } from '@micro-stacks/react';
 
 export default function ExploreModal({visible,handleClose}) {

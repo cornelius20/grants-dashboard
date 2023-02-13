@@ -4,6 +4,9 @@ import CloseIcon from '../public/images/close.svg';
 import GithubIcon from "../public/images/github.svg";
 import Link from 'next/link';
 import { adminCreateUser, adminGetAllUsers, adminSearchUser, adminUpdateUser } from '../utils/ApiCalls';
+import ReactLoading from 'react-loading';
+import LoadingIndicator from '../components/LoadingIndicator';
+
 // import { authOptions } from './api/auth/[...nextauth]';
 // import { unstable_getServerSession } from 'next-auth/next';
 
@@ -18,21 +21,33 @@ export default function AdminDashboard() {
         type: "User"
     });
     const [loading,setLoading] = useState(false);
+    const [searchLoading,setSearchLoading] = useState(false);
     const [userList,setUserList] = useState([]);
     const [searchVal,setSearchVal] = useState('');
     const [currentUser,setCurrentUser] = useState(null);
+
     const createUser = async(data) => {
+        console.log('Creating user ....')
         setLoading(true);
         const res = await adminCreateUser(data);
+        setLoading(false);
         if(res.success){
+            resetFields();
             setLoading(false);
             getAllUsers();
         }
     }
+    
+
+    useEffect(()=>{
+        console.log('Loading changed : - ',loading);
+    },[])
 
 
     const updateUser = async(data) => {
+        setLoading(true);
         const res = await adminUpdateUser(data);
+        setLoading(false);
         console.log('Update response is : - ',res);
         if(res){
             getAllUsers();
@@ -42,6 +57,7 @@ export default function AdminDashboard() {
     const getAllUsers = async() => {
         setLoading(true);
         const res = await adminGetAllUsers();
+        setLoading(false);
         if(res){
             setLoading(false);
             setUserList(res.users);
@@ -49,13 +65,15 @@ export default function AdminDashboard() {
     }
 
     const searchUser = async(val) => {
+        setSearchLoading(true);
         const res = await adminSearchUser(val);
+        setSearchLoading(false);
         setUserList(res.users);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        createUser(userData)
+        createUser(userData);
     }
 
     const handleEdit = (e) => {
@@ -68,8 +86,18 @@ export default function AdminDashboard() {
         setCurrentUser(item);
     }
 
+    const resetFields = () => {
+        setUserData({
+            firstName: "",
+            lastName: "",
+            login: "",
+            email: "",
+            type: "User"
+        })
+    }
 
-    const ListItem = (item) => {
+
+    const ListItem = (item,index) => {
         const {name,type,id} = item;
         if(!type) type = 'User';
         let background;
@@ -79,7 +107,7 @@ export default function AdminDashboard() {
         if(type == 'Grantee') background = 'cyan';
 
         return(
-            <li key={id} className={styles.listItem}>
+            <li key={index} className={styles.listItem}>
                 <div style={titleView}>
                     <span>
                         <input type={'radio'}/>
@@ -144,9 +172,8 @@ export default function AdminDashboard() {
                                 </div>
                             </li>
                             {
-                                loading ? <div style={{textAlign: 'center',marginTop: 100}}>Loading...</div> : userList.map(item=> ListItem(item))
+                                searchLoading ? <div className={styles.centerBox}><LoadingIndicator size={'large'}/></div> : userList.map((item,index)=> ListItem(item,index))
                             }
-                            
                         </ul>
                     </form>
                 </div>
@@ -164,6 +191,7 @@ export default function AdminDashboard() {
                                                 type="text"
                                                 required
                                                 placeholder="Type here..."
+                                                value={userData.firstName}
                                                 onChange={(e)=>{setUserData({...userData,firstName: e.target.value})}}
                                             />
                                         </div>
@@ -177,6 +205,7 @@ export default function AdminDashboard() {
                                                 required
                                                 type="text"
                                                 placeholder="Type here..."
+                                                value={userData.lastName}
                                                 onChange={(e)=>{setUserData({...userData,lastName: e.target.value})}}
                                             />
                                         </div>
@@ -191,6 +220,7 @@ export default function AdminDashboard() {
                                                     type="text"
                                                     required
                                                     placeholder="will-at-stacks"
+                                                    value={userData.login}
                                                     onChange={(e)=>{setUserData({...userData,login: e.target.value})}}
                                                 />
                                                 <GithubIcon className={styles.searchIcon}/>
@@ -206,6 +236,7 @@ export default function AdminDashboard() {
                                                 required
                                                 type="text"
                                                 placeholder="Type here..."
+                                                value={userData.email}
                                                 onChange={(e)=>{setUserData({...userData,email: e.target.value})}}
                                             />
                                         </div> 
@@ -220,7 +251,11 @@ export default function AdminDashboard() {
                                         </div>
                                 </div>
                                 <div className={styles.divider}></div>
-                                <button type='submit' disabled={loading} onClick={(e)=>{handleSubmit(e)}} className={styles.gradientButton}>Click to Submit</button>
+                                <button type='submit' disabled={loading} onClick={(e)=>{handleSubmit(e)}} className={styles.gradientButton}>
+                                    {
+                                        loading ? <LoadingIndicator size={'small'}/> : 'Click to Submit'
+                                    }
+                                </button>
                             </form>
                         </> : <>
                             <p style={addUser}>Edit User ({currentUser.name})</p>
@@ -294,7 +329,11 @@ export default function AdminDashboard() {
                                         </div>
                                 </div>
                                 <div className={styles.divider}></div>
-                                <button type='submit' disabled={loading} onClick={(e)=>{handleEdit(e)}} className={styles.gradientButton}>Click to Submit</button>
+                                <button type='submit' disabled={loading} onClick={(e)=>{handleEdit(e)}} className={styles.gradientButton}>
+                                    {
+                                        loading ? <LoadingIndicator size={'small'}/> : 'Click to Submit'
+                                    }
+                                </button>
                             </form>
                         </>
                     }

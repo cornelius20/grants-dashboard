@@ -172,6 +172,9 @@
         cursor: pointer;
         width: 100%;
         margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .walletButton {
@@ -298,6 +301,38 @@
       padding-bottom: 10px;
     
     }
+
+    .centerBox{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 80px;
+    }
+
+    .selectWrapper{
+      position: relative;
+      width: 100%;
+    }
+
+    .countrySelect {
+      position: relative;
+      color: gray !important;
+      /* for Firefox */
+      -moz-appearance: none;
+      /* for Chrome */
+      -webkit-appearance: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .customSelectArrow{
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      color: #fff !important;
+      z-index: 1;
+    }
     
     /* ...........MEDIA QUERIES............. */
 
@@ -317,4 +352,5 @@
       }
     }
 
+    
     

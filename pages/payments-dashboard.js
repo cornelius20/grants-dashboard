@@ -129,7 +129,7 @@ export default function PaymentsDashboard() {
             repo: 'Stacks-Grant-Launchpad',
             state: 'all',
             labels: labels,
-            since: `${startDate}`
+            // since: `${startDate}`
         });
 
         let res = req.data;
@@ -400,7 +400,7 @@ export default function PaymentsDashboard() {
                     <h5>Grant Name:</h5>
                     <p>{grantName ? grantName : 'Null'}</p>
                     <h5>Grant Budget:</h5>
-                    <p>${grantBudget ? grantBudget : 'Null'}</p>
+                    <p>{grantBudget ? '$' + grantBudget : 'Null'}</p>
                     <h5>Agreed upon Completion Date:</h5>
                     <p>(6) payments remaining</p>
                     <h5>Total Paid to date:</h5>

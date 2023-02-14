@@ -146,7 +146,7 @@ export default function GrantOnboarding() {
                 repo: 'Stacks-Grant-Launchpad',
                 state: 'all',
                 labels: labels,
-                since: `${startDate}`
+                // since: `${startDate}`
             });
     
             let res = req.data;
@@ -717,7 +717,7 @@ export default function GrantOnboarding() {
                             <h5>Grant Name:</h5>
                             <p>{grantName ? grantName : 'Null'}</p>
                             <h5>Grant Budget:</h5>
-                            <p>${grantBudget ? grantBudget : 'Null'}</p>
+                            <p>{grantBudget ? '$' + grantBudget : 'Null'}</p>
                             <p style={marginBottom120}></p>
                             <div className={styles.divider}></div>
                             <p style={{...whiteColor, ...marginTop10}}>If any of the information provided above is incorrect please email us <a style={mailLink} href="mailto:corneliuscantonii@gmail.com">here.</a></p>

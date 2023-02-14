@@ -131,16 +131,17 @@ export default function GrantOnboarding() {
         },[anticipatedCompletionDate])
 
 
-        async function getIssues() {
+    async function getIssues() {
+        try {
             issues = [];
             const github = new Octokit();
             setLoading(true);
-    
+
             let labels = [];
             grantTracks != '' ? labels.push(grantTracks) : null;
             grantPhase != '' ? labels.push(grantPhase) : null;
             grantType != '' ? labels.push(grantType) : null;
-    
+
             let req = await github.rest.issues.listForRepo({
                 owner: 'stacksgov',
                 repo: 'Stacks-Grant-Launchpad',
@@ -148,14 +149,14 @@ export default function GrantOnboarding() {
                 labels: labels,
                 // since: `${startDate}`
             });
-    
+
             let res = req.data;
-            
-            console.log('Issues response is : - ',res);
+
+            console.log('Issues response is : - ', res);
 
             res.map((issue) => {
                 let teamMembers = issue.assignees.map((assignee) => assignee.login);
-    
+
                 issues.push({
                     dateSubmitted: issue.created_at,
                     number: issue.number,
@@ -167,24 +168,24 @@ export default function GrantOnboarding() {
                     body: issue.body
                 });
             });
-    
+
             const relevantIssues = issues.filter(
                 (issue) =>
                     Date.parse(issue.dateSubmitted) <= Date.parse(endDate) &&
                     issue.url.includes('issues') &&
                     Date.parse(issue.dateSubmitted) > Date.parse('2022-08-06T20:14:41Z')
             );
-    
+
             relevantIssues.map((issue) => {
                 issue.labels.map((label) => {
                     if (applicationTypeArr.includes(label.name)) {
                         issue.applicationType = label.name;
                     }
-    
+
                     if (grantTypeArr.includes(label.name)) {
                         issue.grantType = label.name;
                     }
-    
+
                     if (grantTrackArr.includes(label.name)) {
                         issue.grantTrack = label.name;
                     }
@@ -199,7 +200,7 @@ export default function GrantOnboarding() {
                     }
                 });
             });
-    
+
             await Promise.all(
                 relevantIssues.map(async (issue) => {
                     let req = await github.rest.issues.listComments({
@@ -213,7 +214,7 @@ export default function GrantOnboarding() {
                     issue.commentName = Array.from(commentSet).join(', ');
                 })
             );
-    
+
             await Promise.all(
                 relevantIssues.map(async (issue) => {
                     let req = await github.rest.reactions.listForIssue({
@@ -221,21 +222,21 @@ export default function GrantOnboarding() {
                         repo: 'Stacks-Grant-Launchpad',
                         issue_number: `${issue.number}`
                     });
-    
+
                     let res = req.data;
                     const reactionSet = new Set();
                     res.map((reactor) => reactionSet.add(reactor.user.login));
                     issue.reactionUsername = Array.from(reactionSet).join(', ');
                 })
             );
-    
+
             relevantIssues.map((issue) => {
                 if (issue.body) {
                     const regex = /(?<=&thinsp;)([\s\S]*?)(?=\*\*)/g;
-    
+
                     const regexReplaceSpacing =
                         /(?<=\*\*Grant Name:\*\*&hairsp;&hairsp;&hairsp;&hairsp;).*?(?=&hairsp;)/g;
-    
+
                     issue.body += '**';
                     issue.body = issue.body.replace('# GRANT BASICS', '** # GRANT BASICS');
                     issue.body = issue.body.replace(
@@ -247,13 +248,13 @@ export default function GrantOnboarding() {
                         '** # GRANT ROADMAP & DELIVERABLES'
                     );
                     issue.body = issue.body.replace('# WISHLIST IDEA', '** # WISHLIST IDEA');
-    
+
                     issue.body = issue.body.replace(regexReplaceSpacing, '&hairsp;&hairsp;');
-    
+
                     const lines = issue.body
                         .match(regex)
                         .map((line) => line.replace('\n', '').replace('\n', '').trim());
-    
+
                     issue.grantName = lines[5];
                     issue.grantBudget = lines[6];
                     issue.grantDuration = lines[7];
@@ -268,14 +269,14 @@ export default function GrantOnboarding() {
                     issue.ecosystemPrograms = lines[16] == '' ? 'No' : 'Yes';
                     issue.grantMission = lines[17];
                     issue.finalDeliverable = lines[21];
-    
+
                     let issueCreatedOn = new Date(issue.dateSubmitted);
                     issue.dateSubmitted = issueCreatedOn.toLocaleString('default', {
                         month: 'long',
                         day: '2-digit',
                         year: '2-digit'
                     });
-    
+
                     let newCSVData = CSVData;
                     newCSVData.push([
                         issue.dateSubmitted,
@@ -301,18 +302,21 @@ export default function GrantOnboarding() {
                     setCSVData(newCSVData);
                 }
             });
-    
+
             if (relevantIssues.length === 0) {
                 setGrantsFound('Nothing Matched this Criteria');
             } else {
                 setGrantsFound(relevantIssues.length);
             }
-    
+
             if (res) {
                 setLoading(false);
                 // setGithubIssues(res);
             }
+        } catch (e) {
+            setLoading(false);
         }
+    }
 
         const handleSubmit = async(e) => {
             console.log(firstName,lastName,email,stxAddress,stxMemo,country,anticipatedCompletionDate);
@@ -325,6 +329,9 @@ export default function GrantOnboarding() {
                     "stxAddress": stxAddress,
                     "stxMemo": stxMemo,
                     "country": country,
+                    "grantIssueNumber": grantIssueNumber,
+                    "grantName": grantName,
+                    "grantBudget": grantBudget,
                     "anticipatedCompletionDate": `${year}-${month}-${day}`
                 }
                 e.preventDefault();

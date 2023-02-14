@@ -7,8 +7,11 @@ import ExploreModal from '../components/ExploreModal';
 import { useAuth } from '@micro-stacks/react';
 import { useAccount } from '@micro-stacks/react';
 import { grantOnboarding } from '../utils/ApiCalls';
+import { Octokit } from '@octokit/rest';
+
 import DropdownIcon from '../public/images/dropdown.svg';
-import ReactLoading from 'react-loading';
+import LoadingSpinner from '../public/images/loading-spinner.svg';
+
 
 
 export default function GrantOnboarding() {
@@ -20,12 +23,43 @@ export default function GrantOnboarding() {
         const [country, setCountry] = useState("")
         const [anticipatedCompletionDate, setAnticipatedCompletionDate] = useState(new Date())
         const [visible,setVisible] = useState(false);
-        
+        const [grantTracks, setGrantTracks] = useState('');
+        const [grantPhase, setGrantPhase] = useState('');
+        const [grantType, setGrantType] = useState('');
+        const [endDate, setEndDate] = useState(new Date());
+        let pastSevenDays = new Date(endDate.getTime() - 7 * 24 * 60 * 60 * 1000);
+        const [startDate, setStartDate] = useState(pastSevenDays);
         const { openAuthRequest, isRequestPending, signOut, isSignedIn } = useAuth();
         const { stxAddress, identityAddress, rawAddress } = useAccount();
         const label = isRequestPending ? 'Loading...' : isSignedIn ? `${stxAddress.slice(0,9)}...(Disconnect)` : 'Connect Wallet';
-
-
+        const [grantIssues,setGrantIssues] = useState([]);
+        const [grantIssueNumber,setGrantIssueNumber] = useState(null);
+        const [grantName,setGrantName] = useState(null);
+        const [grantBudget,setGrantBudget] = useState(null);
+        const [grantsFound, setGrantsFound] = useState(0);
+        const [CSVData, setCSVData] = useState([
+            [
+                'Date Submitted',
+                'Issue Number',
+                'Application Type',
+                'Grant Lead',
+                'Previous Grants',
+                'Other Ecosytem Programs',
+                'Grant Name',
+                'Grant Budget',
+                'Grant Duration',
+                'Grant Type',
+                'Grant Track',
+                'Grant Goal',
+                'Grant Audience',
+                'Final Deliverable',
+                'Review Status',
+                'Grant Phase',
+                'Predicted Impact Score',
+                'Commented GH Usernames',
+                'Reacted GH Usernames'
+            ]
+        ]);
         const walletButtonClicked = async () => {
             if (isSignedIn) {
                 await signOut();
@@ -35,9 +69,250 @@ export default function GrantOnboarding() {
             }
         }
 
+        let issues = [];
+        const applicationTypeArr = ['Direct Application', 'Wishlist Submission', 'Wishlist Request'];
+        const grantTypeArr = [
+            'Open Source First Time',
+            'Open Source Repeat',
+            'Community Builder',
+            'Education',
+            'Events',
+            'Chapter',
+            'ALEX Lab Foundation Grant',
+            'Resident Program',
+            'Direct Investment'
+        ];
+        const grantTrackArr = [
+            'Stacks Protocol',
+            'Stacks Interface',
+            'Stacks dApps & Clarity',
+            'Stacks Education & Community',
+            'Stacks Developer Experience',
+            'Stacks User Experience',
+            'Cross-Chain & Off-Chain',
+            'Bitcin Utility via Stacks'
+        ];
+        const grantStatusArr = [
+            'Initial Review in Progress',
+            'Review in Progress',
+            'Revisions in Progress',
+            'Onboarding in Progress',
+            'Milestone in Progress',
+            'Final Deliverable in Progress',
+            'Grant Complete',
+            'Grant Now Stale',
+            'Grant Closed'
+        ];
+        const grantPhaseArr = [
+            'Application Phase',
+            'Onboarding Phase',
+            'Milestone 1',
+            'Milestone 2',
+            'Milestone 3',
+            'Milestone 4',
+            'Milestone 5',
+            'Milestone 6',
+            'Milestone 7',
+            'Milestone 8',
+            'Milestone 9',
+            'Milestone 10',
+            'Final Deliverable'
+        ];
+
         useEffect(()=>{
-            console.log('Anti : - ',anticipatedCompletionDate)
+            console.log('CSV data is : - ',CSVData);
+        },[CSVData])
+
+        const predictedImpactScoreArr = ['6', '5', '4', '3', '2', '1'];
+
+        useEffect(()=>{
+            console.log('Anti : - ',anticipatedCompletionDate);
+            getIssues();
         },[anticipatedCompletionDate])
+
+
+        async function getIssues() {
+            issues = [];
+            const github = new Octokit();
+            setLoading(true);
+    
+            let labels = [];
+            grantTracks != '' ? labels.push(grantTracks) : null;
+            grantPhase != '' ? labels.push(grantPhase) : null;
+            grantType != '' ? labels.push(grantType) : null;
+    
+            let req = await github.rest.issues.listForRepo({
+                owner: 'stacksgov',
+                repo: 'Stacks-Grant-Launchpad',
+                state: 'all',
+                labels: labels,
+                since: `${startDate}`
+            });
+    
+            let res = req.data;
+            
+            console.log('Issues response is : - ',res);
+
+            res.map((issue) => {
+                let teamMembers = issue.assignees.map((assignee) => assignee.login);
+    
+                issues.push({
+                    dateSubmitted: issue.created_at,
+                    number: issue.number,
+                    grantLead: issue.user.login,
+                    grantName: issue.title,
+                    teamMembers: teamMembers,
+                    url: issue.html_url,
+                    labels: issue.labels,
+                    body: issue.body
+                });
+            });
+    
+            const relevantIssues = issues.filter(
+                (issue) =>
+                    Date.parse(issue.dateSubmitted) <= Date.parse(endDate) &&
+                    issue.url.includes('issues') &&
+                    Date.parse(issue.dateSubmitted) > Date.parse('2022-08-06T20:14:41Z')
+            );
+    
+            relevantIssues.map((issue) => {
+                issue.labels.map((label) => {
+                    if (applicationTypeArr.includes(label.name)) {
+                        issue.applicationType = label.name;
+                    }
+    
+                    if (grantTypeArr.includes(label.name)) {
+                        issue.grantType = label.name;
+                    }
+    
+                    if (grantTrackArr.includes(label.name)) {
+                        issue.grantTrack = label.name;
+                    }
+                    if (grantStatusArr.includes(label.name)) {
+                        issue.grantStatus = label.name;
+                    }
+                    if (grantPhaseArr.includes(label.name)) {
+                        issue.grantPhase = label.name;
+                    }
+                    if (predictedImpactScoreArr.includes(label.name)) {
+                        issue.predictedImpactScore = label.name;
+                    }
+                });
+            });
+    
+            await Promise.all(
+                relevantIssues.map(async (issue) => {
+                    let req = await github.rest.issues.listComments({
+                        owner: 'stacksgov',
+                        repo: 'Stacks-Grant-Launchpad',
+                        issue_number: `${issue.number}`
+                    });
+                    let res = req.data;
+                    const commentSet = new Set();
+                    res.map((commenter) => commentSet.add(commenter.user.login));
+                    issue.commentName = Array.from(commentSet).join(', ');
+                })
+            );
+    
+            await Promise.all(
+                relevantIssues.map(async (issue) => {
+                    let req = await github.rest.reactions.listForIssue({
+                        owner: 'stacksgov',
+                        repo: 'Stacks-Grant-Launchpad',
+                        issue_number: `${issue.number}`
+                    });
+    
+                    let res = req.data;
+                    const reactionSet = new Set();
+                    res.map((reactor) => reactionSet.add(reactor.user.login));
+                    issue.reactionUsername = Array.from(reactionSet).join(', ');
+                })
+            );
+    
+            relevantIssues.map((issue) => {
+                if (issue.body) {
+                    const regex = /(?<=&thinsp;)([\s\S]*?)(?=\*\*)/g;
+    
+                    const regexReplaceSpacing =
+                        /(?<=\*\*Grant Name:\*\*&hairsp;&hairsp;&hairsp;&hairsp;).*?(?=&hairsp;)/g;
+    
+                    issue.body += '**';
+                    issue.body = issue.body.replace('# GRANT BASICS', '** # GRANT BASICS');
+                    issue.body = issue.body.replace(
+                        '# GRANT MISSION, IMPACT, RISKS & REFERENCE',
+                        '** # GRANT MISSION, IMPACT, RISKS & REFERENCE'
+                    );
+                    issue.body = issue.body.replace(
+                        '# GRANT ROADMAP & DELIVERABLES',
+                        '** # GRANT ROADMAP & DELIVERABLES'
+                    );
+                    issue.body = issue.body.replace('# WISHLIST IDEA', '** # WISHLIST IDEA');
+    
+                    issue.body = issue.body.replace(regexReplaceSpacing, '&hairsp;&hairsp;');
+    
+                    const lines = issue.body
+                        .match(regex)
+                        .map((line) => line.replace('\n', '').replace('\n', '').trim());
+    
+                    issue.grantName = lines[5];
+                    issue.grantBudget = lines[6];
+                    issue.grantDuration = lines[7];
+                    issue.fundingStream = lines[8];
+                    issue.grantType = lines[9];
+                    issue.grantTrack = lines[10];
+                    issue.grantGoal = lines[11];
+                    issue.grantAudience = lines[12];
+                    issue.specificAudience = lines[13];
+                    issue.grantTeamMembers = lines[14];
+                    issue.previousGrants = lines[15] == '' ? 'No' : 'Yes';
+                    issue.ecosystemPrograms = lines[16] == '' ? 'No' : 'Yes';
+                    issue.grantMission = lines[17];
+                    issue.finalDeliverable = lines[21];
+    
+                    let issueCreatedOn = new Date(issue.dateSubmitted);
+                    issue.dateSubmitted = issueCreatedOn.toLocaleString('default', {
+                        month: 'long',
+                        day: '2-digit',
+                        year: '2-digit'
+                    });
+    
+                    let newCSVData = CSVData;
+                    newCSVData.push([
+                        issue.dateSubmitted,
+                        issue.number,
+                        issue.applicationType,
+                        issue.grantLead,
+                        issue.previousGrants,
+                        issue.ecosystemPrograms,
+                        issue.grantName,
+                        issue.grantBudget,
+                        issue.grantDuration,
+                        issue.grantType,
+                        issue.grantTrack,
+                        issue.grantGoal,
+                        issue.grantAudience,
+                        issue.finalDeliverable,
+                        issue.grantStatus,
+                        issue.grantPhase,
+                        issue.predictedImpactScore,
+                        issue.commentName,
+                        issue.reactionUsername
+                    ]);
+                    setCSVData(newCSVData);
+                }
+            });
+    
+            if (relevantIssues.length === 0) {
+                setGrantsFound('Nothing Matched this Criteria');
+            } else {
+                setGrantsFound(relevantIssues.length);
+            }
+    
+            if (res) {
+                setLoading(false);
+                // setGithubIssues(res);
+            }
+        }
 
         const handleSubmit = async(e) => {
             console.log(firstName,lastName,email,stxAddress,stxMemo,country,anticipatedCompletionDate);
@@ -59,6 +334,16 @@ export default function GrantOnboarding() {
             } else {
                 alert("Kindly connect Hiro Wallet")
             }
+        }
+
+        const handleGrantChange = (e) => {
+            console.log('aaa',);
+            const [_id,_grantName,_grantBudget] = e.target.value.split('-');
+            // console.log('OOOO - : - ',_id,_grantName,_grantBudget)
+            setGrantIssueNumber(_id);
+            setGrantName(_grantName);
+            setGrantBudget(_grantBudget);
+
         }
         
   return (
@@ -117,6 +402,22 @@ export default function GrantOnboarding() {
                                     onChange={(e)=>{setEmail(e.target.value)}}
                                 />
                             </div>
+                        </div>
+                        <div className={styles.formRow}>
+                            <div className={styles.formControl}>
+                                <label>Github Issues</label>
+                                <div className={styles.selectWrapper}>
+                                    <DropdownIcon className={styles.customSelectArrow} />
+                                <select className={styles.countrySelect} style={{height: 50}} onChange={(e)=>handleGrantChange(e)} name="selectIssue">
+                                    {
+                                        CSVData.map(item=>{
+                                            return(<option value={`${item[1]}-${item[6]}-${item[7]}`}>{item[6]}</option>)
+                                        })
+                                    }
+                                </select>
+                                </div>
+                            </div>
+                            
                         </div>
                         <div className={styles.formRow} style={{mb1}}>
                             <div className={styles.formControl}>
@@ -408,21 +709,22 @@ export default function GrantOnboarding() {
                             </div>
                             
                         </div>
+                        
                         </div>
                         <div className={styles.onBoardingRight}>
                             <h5>Issue Number:</h5>
-                            <p>#XXX</p>
+                            <p>{grantIssueNumber ? grantIssueNumber : '#000'}</p>
                             <h5>Grant Name:</h5>
-                            <p>Thirty Character Long Project Name</p>
+                            <p>{grantName ? grantName : 'Null'}</p>
                             <h5>Grant Budget:</h5>
-                            <p>$122,000</p>
+                            <p>${grantBudget ? grantBudget : 'Null'}</p>
                             <p style={marginBottom120}></p>
                             <div className={styles.divider}></div>
                             <p style={{...whiteColor, ...marginTop10}}>If any of the information provided above is incorrect please email us <a style={mailLink} href="mailto:corneliuscantonii@gmail.com">here.</a></p>
                             <span style={checkbox}><input className={styles.mt3} type={'checkbox'}/> <p>I confirm all of the information on this page is correct.</p></span>
                             <button className={styles.gradientButton} disabled={loading} onClick={(e)=>{handleSubmit(e)}}>
                                 {
-                                    loading ? <ReactLoading type={'spin'} color={'#fff'} height={20} width={20} /> : 'Click to Submit'
+                                    loading ? <LoadingSpinner/> : 'Click to Submit'
                                 }
                             </button>
                         </div>

@@ -339,7 +339,7 @@ export default function PaymentsDashboard() {
                                 <select className={styles.countrySelect} style={{height: 50}} onChange={(e)=>handleGrantChange(e)} name="selectIssue">
                                     {
                                         CSVData.map(item=>{
-                                            return(<option value={`${item[1]}-${item[6]}-${item[7]}`}>{item[6]}</option>)
+                                            return(<option key={item[1]} value={`${item[1]}-${item[6]}-${item[7]}`}>{item[6]}</option>)
                                         })
                                     }
                                 </select>
@@ -352,7 +352,7 @@ export default function PaymentsDashboard() {
                                     <select className={styles.countrySelect} style={{height: 50}} onChange={(e)=>handleGrantChange(e)} name="selectIssue">
                                         {
                                             CSVData.map(item=>{
-                                                return(<option value={`${item[1]}-${item[6]}-${item[7]}`}>{item[1]}</option>)
+                                                return(<option key={item[1]} value={`${item[1]}-${item[6]}-${item[7]}`}>{item[1]}</option>)
                                             })
                                         }
                                     </select>

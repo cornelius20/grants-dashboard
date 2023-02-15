@@ -126,9 +126,8 @@ export default function GrantOnboarding() {
         const predictedImpactScoreArr = ['6', '5', '4', '3', '2', '1'];
 
         useEffect(()=>{
-            console.log('Anti : - ',anticipatedCompletionDate);
             getIssues();
-        },[anticipatedCompletionDate])
+        },[])
 
 
     async function getIssues() {

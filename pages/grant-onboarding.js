@@ -8,9 +8,11 @@ import { useAuth } from '@micro-stacks/react';
 import { useAccount } from '@micro-stacks/react';
 import { grantOnboarding } from '../utils/ApiCalls';
 import { Octokit } from '@octokit/rest';
+import AddWallet from '../components/AddWalletModal';
 
 import DropdownIcon from '../public/images/dropdown.svg';
 import LoadingSpinner from '../public/images/loading-spinner.svg';
+import BrowserWallet from '../components/BrowserWallet';
 
 
 
@@ -37,6 +39,8 @@ export default function GrantOnboarding() {
         const [grantName,setGrantName] = useState(null);
         const [grantBudget,setGrantBudget] = useState(null);
         const [grantsFound, setGrantsFound] = useState(0);
+        const [browserError,setBrowserError] = useState(false);
+        
         const [CSVData, setCSVData] = useState([
             [
                 'Date Submitted',
@@ -65,7 +69,39 @@ export default function GrantOnboarding() {
                 await signOut();
             }
             else {
-                await openAuthRequest();
+                let userAgent = navigator.userAgent;
+                let browserName;
+                    
+                if(userAgent.match(/chrome|chromium|crios/i)){
+                        browserName = "chrome";
+                }else if(userAgent.match(/firefox|fxios/i)){
+                        browserName = "firefox";
+                }else if(userAgent.match(/brave/i)){
+                        browserName = "brave";
+                }else if(userAgent.match(/safari/i)){
+                        browserName = "safari";
+                }else if(userAgent.match(/opr\//i)){
+                        browserName = "opera";
+                } else if(userAgent.match(/edg/i)){
+                        browserName = "edge";
+                }else{
+                    browserName="No browser detection";
+                }
+                      
+                if(browserName == 'chrome' || browserName == 'firefox' || browserName == 'brave'){
+                    // console.log('Chrome variabnle is : - ',chrome);
+                    try {
+                        await openAuthRequest();
+                    } catch (error) {
+                        console.log("error is here",error)
+                        // Extension Not available Modal
+                        setVisible(true);
+                    }
+                }else{
+                    console.log('Browser name is : - ',browserName);
+                    // Browser not supported modal
+                    setBrowserError(true);
+                }
             }
         }
 
@@ -128,6 +164,28 @@ export default function GrantOnboarding() {
         useEffect(()=>{
             getIssues();
         },[])
+
+        // useEffect(()=>{
+        //     let userAgent = navigator.userAgent;
+        //      let browserName;
+             
+        //      if(userAgent.match(/chrome|chromium|crios/i)){
+        //          browserName = "chrome";
+        //        }else if(userAgent.match(/firefox|fxios/i)){
+        //          browserName = "firefox";
+        //        }  else if(userAgent.match(/safari/i)){
+        //          browserName = "safari";
+        //        }else if(userAgent.match(/opr\//i)){
+        //          browserName = "opera";
+        //        } else if(userAgent.match(/edg/i)){
+        //          browserName = "edge";
+        //        }else{
+        //          browserName="No browser detection";
+        //        }
+        //        if(browserName !== 'chrome' || browserName !== 'firefox'){
+
+        //        }
+        // },[])
 
 
     async function getIssues() {
@@ -364,7 +422,9 @@ export default function GrantOnboarding() {
 				</div>
 			</a>
 		</Link>
-        <ExploreModal visible={visible} handleClose={()=>setVisible(false)}/>
+        <BrowserWallet visible={browserError} handleClose={()=>setBrowserError(false)}/>
+        <AddWallet visible={visible} handleClose={()=>setVisible(false)}/>
+        {/* <ExploreModal visible={true} handleClose={()=>setVisible(false)}/> */}
         {/* <PopupModal visible={visible} handleClose={()=>setVisible(false)}/> */}
         <div className={styles.onBoardingWrapper}>
             <h2>

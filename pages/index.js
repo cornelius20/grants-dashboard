@@ -27,14 +27,18 @@ const Home = () => {
 					auth: session.accessToken
 				});
 				let user = await github.request('GET /user');
+				console.log('Github resposne is :  - ',user);
 				let filteredData = {
 					id: user?.data?.id,
 					name: user?.data?.name,
 					login: user?.data?.login,
+					type: user?.data?.type
 				}
 				const res = await Login(filteredData);
+				console.log('Login resposne is : - ',res);
 				if (res) {
 					saveToken(res.user.token);
+					session.user.type = res.user.type
 				}
 			}
 		}
@@ -58,9 +62,10 @@ const Home = () => {
 			return (
 				<button onClick={() => setShow(true)}>Submit your Application or Wishlist Idea!</button>
 			);
-		} else if (!session) {
+		} else if (!session) {   
 			return (
-				<button backgroundColor="grey" onClick={() => setHighlightButton(true)}>
+				<button backgroundColor="grey" onClick={() => (!session ? signIn('github') : signOut())}
+				>
 					<a>Submit your Application or Wishlist Idea!</a>
 				</button>
 			);
@@ -155,11 +160,16 @@ const Home = () => {
 
 					<Blob className={styles.blobSVG} />
 				</div>
-				<Link href="/utilities">
+				{
+					session ? <Link href="/utilities">
 					<a>
 						<button className={styles.utilities}>Utilities</button>
-					</a>
-				</Link>
+					</a> 
+					</Link>
+					: 
+					<button onClick={() => (!session ? signIn('github') : signOut())}className={styles.utilities}>Utilities</button>
+				
+				}
 				<StacksLogo className={styles.stxLogo} />
 			</div>
 			{show === true ? (

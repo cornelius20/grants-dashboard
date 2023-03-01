@@ -19,16 +19,17 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 					key="description"
 				/>
 				<meta property="og:image" content="/images/og-image.png" />
+				<meta name="google-site-verification" content="eMDVMqU3p4Fbsjy3UqAlQ_P3yqRf6l8BEk4cphihZ5M" />
 			</Head>
 			<ClientProvider
 				appName="Stacks Foundation"
 				appIconUrl="https://thumb.tildacdn.com/tild3931-3038-4632-b063-313631343738/-/resize/220x/-/format/webp/Foundation_Logo_Blac.png"
 			>
-					<SessionProvider session={session}>
-						<Component {...pageProps} />
-					</SessionProvider>
+				<SessionProvider session={session}>
+					<Component {...pageProps} />
+				</SessionProvider>
 			</ClientProvider>
-			
+
 		</>
 	);
 }

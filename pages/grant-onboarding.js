@@ -13,6 +13,7 @@ import AddWallet from '../components/AddWalletModal';
 import DropdownIcon from '../public/images/dropdown.svg';
 import LoadingSpinner from '../public/images/loading-spinner.svg';
 import BrowserWallet from '../components/BrowserWallet';
+import CustomAlert from '../components/CustomAlert';
 
 
 
@@ -40,7 +41,8 @@ export default function GrantOnboarding() {
         const [grantBudget,setGrantBudget] = useState(null);
         const [grantsFound, setGrantsFound] = useState(0);
         const [browserError,setBrowserError] = useState(false);
-        
+        const [alertVisible,setAlertVisible] = useState(false);
+
         const [CSVData, setCSVData] = useState([
             [
                 'Date Submitted',
@@ -396,7 +398,8 @@ export default function GrantOnboarding() {
                 await grantOnboarding(onBoardingData);
                 setLoading(false);
             } else {
-                alert("Kindly connect Hiro Wallet")
+                setAlertVisible(true);
+                // alert("Please connect a wallet")
             }
         }
 
@@ -412,6 +415,9 @@ export default function GrantOnboarding() {
         
   return (
     <div className={styles.main}>
+        {
+			alertVisible ? <CustomAlert title="Please Connect a Wallet" onClose={()=>setAlertVisible(false)}/> : null
+		}
         <Link href="/">
 			<a>
 				<div className={styles.close}>
@@ -778,6 +784,24 @@ export default function GrantOnboarding() {
                         
                         </div>
                         <div className={styles.onBoardingRight}>
+                            {/* <div className={styles.formControl}>
+                                <label style={{marginBottom: 10}}>Payment Number</label>
+                                <div className={styles.selectWrapper}>
+                                    <DropdownIcon className={styles.customSelectArrow} />
+                                    <select className={styles.countrySelect} style={{height: 50,marginBottom: 10}} onChange={(e)=>handleGrantChange(e)} name="selectIssue">
+                                        <option value={1}>1</option>
+                                        <option value={2}>2</option>
+                                        <option value={3}>3</option>
+                                        <option value={4}>4</option>
+                                        <option value={5}>5</option>
+                                        <option value={6}>6</option>
+                                        <option value={7}>7</option>
+                                        <option value={8}>8</option>
+                                        <option value={9}>9</option>
+                                        <option value={10}>10</option>
+                                    </select>
+                                </div>
+                            </div> */}
                             <h5>Issue Number:</h5>
                             <p>{grantIssueNumber ? grantIssueNumber : '#000'}</p>
                             <h5>Grant Name:</h5>

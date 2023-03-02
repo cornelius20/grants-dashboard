@@ -20,12 +20,21 @@ export default function BrowserWallet({visible,handleClose}) {
                     <CloseIcon/>
                 </span>
             </div>
-            <img className={styles.ModalImgSm} src="./images/image.png"/>
+            <img className={styles.ModalImgSm} src="./images/hiro-image.png"/>
             <h3 className={styles.ModalHeading}>Your Browser isn&apos;t supported</h3>
             <p className={styles.ModalText}>To sign in to Arkadio using the Hiro Wallet browser extension, try <a href="https://www.google.com/chrome/?brand=JJTC&gclid=Cj0KCQiAxbefBhDfARIsAL4XLRo0AJ--AnM0fwiLos7T07ldJxDCVH_5zSSCpbS6E9QM_KfqKb-diJMaAhmMEALw_wcB&gclsrc=aw.ds">Chrome</a>, <a href="https://brave.com/">Brave</a>, or <a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a> on desktop.</p>
             <div className={styles.divider}></div>
 
-            <p className={styles.ModalText}>About Hiro Wallet <ArrowRight/></p>
+            <p className={styles.ModalText}>
+                <a className={styles.ModalLink} href="https://wallet.hiro.so/">
+                    <span>About Hiro Wallet</span>
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="blue" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.32812 3.0625L11.2656 7L7.32812 10.9375" stroke="blue" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M10.7189 7.00024H2.7345" stroke="blue" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                </a> 
+                
+            </p>
         </div>
     </div>
   )

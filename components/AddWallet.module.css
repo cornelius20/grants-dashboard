@@ -81,6 +81,7 @@
 .ModalText{
     text-align: center;
     color: #000;
+    
     /* margin-bottom: 5px; */
 }
 .ModalText a{
@@ -111,6 +112,6 @@
     font-size: 14px;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
     color: #fff;
 }

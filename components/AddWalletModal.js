@@ -29,7 +29,16 @@ export default function AddWallet({visible,handleClose}) {
             </a>
             <div className={styles.divider}></div>
 
-            <p className={styles.ModalText}>About Hiro Wallet <ArrowRight/></p>
+            <p className={styles.ModalText}>
+                <a className={styles.ModalLink} href="https://wallet.hiro.so/">
+                    <span>About Hiro Wallet</span>
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="blue" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.32812 3.0625L11.2656 7L7.32812 10.9375" stroke="blue" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M10.7189 7.00024H2.7345" stroke="blue" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                </a> 
+                
+            </p>
         </div>
     </div>
   )

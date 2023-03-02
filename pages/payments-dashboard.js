@@ -5,8 +5,13 @@ import Link from 'next/link';
 import { Octokit } from '@octokit/rest';
 import DropdownIcon from '../public/images/dropdown.svg';
 import LoadingSpinner from '../public/images/loading-spinner.svg';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router'
+
 
 export default function PaymentsDashboard() {
+        const { data: session } = useSession();
+        const router= useRouter()
         const [loading,setLoading] = useState(false);
         const [grantTracks, setGrantTracks] = useState('');
         const [grantPhase, setGrantPhase] = useState('');
@@ -42,6 +47,16 @@ export default function PaymentsDashboard() {
                 'Reacted GH Usernames'
             ]
         ]);
+
+
+        useEffect(()=>{
+        
+            if(session?.user?.type == 'Admin' || session?.user?.type == 'Finance'){
+                
+            }else{
+                router.push('/');
+            }
+        },[])
 
         const predictedImpactScoreArr = ['6', '5', '4', '3', '2', '1'];
 

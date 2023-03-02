@@ -6,12 +6,14 @@ import Link from 'next/link';
 import { adminCreateUser, adminGetAllUsers, adminSearchUser, adminUpdateUser } from '../utils/ApiCalls';
 import ReactLoading from 'react-loading';
 import LoadingIndicator from '../components/LoadingIndicator';
-
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router'
 // import { authOptions } from './api/auth/[...nextauth]';
 // import { unstable_getServerSession } from 'next-auth/next';
 
 export default function AdminDashboard() {
-
+    const { data: session } = useSession();
+    const router= useRouter()
     const selectRef = useRef();
     const [userData,setUserData] = useState({
         firstName: "",
@@ -37,11 +39,15 @@ export default function AdminDashboard() {
             getAllUsers();
         }
     }
-    
 
     useEffect(()=>{
-        console.log('Loading changed : - ',loading);
+        if(session?.user?.type !== 'Admin'){
+            router.push('/');
+        }
     },[])
+    
+
+    
 
 
     const updateUser = async(data) => {
@@ -326,7 +332,7 @@ export default function AdminDashboard() {
                                                 <option value="Admin">Admin</option>
                                                 <option value="User">User</option>
                                             </select>
-                                        </div>
+                                        </div> 
                                 </div>
                                 <div className={styles.divider}></div>
                                 <button type='submit' disabled={loading} onClick={(e)=>{handleEdit(e)}} className={styles.gradientButton}>
@@ -337,8 +343,6 @@ export default function AdminDashboard() {
                             </form>
                         </>
                     }
-                    
-                    
                 </div>
             </div>
         </div>

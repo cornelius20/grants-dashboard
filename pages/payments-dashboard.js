@@ -333,7 +333,7 @@ export default function PaymentsDashboard() {
                         loading ? <LoadingSpinner/> : <form>
                         <div className={styles.formRow}>
                             <div className={styles.formControl}>
-                                <label>Github Issues</label>
+                                <label>Github Issues Number</label>
                                 <div className={styles.selectWrapper}>
                                     <DropdownIcon className={styles.customSelectArrow} />
                                 <select className={styles.countrySelect} style={{height: 50}} onChange={(e)=>handleGrantChange(e)} name="selectIssue">
@@ -349,12 +349,22 @@ export default function PaymentsDashboard() {
                                 <label>Payment Number</label>
                                 <div className={styles.selectWrapper}>
                                     <DropdownIcon className={styles.customSelectArrow} />
-                                    <select className={styles.countrySelect} style={{height: 50}} onChange={(e)=>handleGrantChange(e)} name="selectIssue">
-                                        {
+                                    <select className={styles.countrySelect} style={{height: 50}}  name="selectIssue">
+                                        {/* {
                                             CSVData.map(item=>{
                                                 return(<option key={item[1]} value={`${item[1]}-${item[6]}-${item[7]}`}>{item[1]}</option>)
                                             })
-                                        }
+                                        } */}
+                                        <option value={1}>1</option>
+                                        <option value={2}>2</option>
+                                        <option value={3}>3</option>
+                                        <option value={4}>4</option>
+                                        <option value={5}>5</option>
+                                        <option value={6}>6</option>
+                                        <option value={7}>7</option>
+                                        <option value={8}>8</option>
+                                        <option value={9}>9</option>
+                                        <option value={10}>10</option>
                                     </select>
                                 </div>
                             </div>
@@ -396,15 +406,15 @@ export default function PaymentsDashboard() {
                 <div className={styles.onBoardingRight}>
                     <p style={paymentHistory}>Payment History</p>
                     <h5>Issue Number:</h5>
-                    <p>{grantIssueNumber ? grantIssueNumber : '#000'}</p>
+                    <p>{grantIssueNumber ? grantIssueNumber : ''}</p>
                     <h5>Grant Name:</h5>
-                    <p>{grantName ? grantName : 'Null'}</p>
+                    <p>{grantName ? grantName : ''}</p>
                     <h5>Grant Budget:</h5>
-                    <p>{grantBudget ? '$' + grantBudget : 'Null'}</p>
+                    <p>{grantBudget ? '$' + grantBudget : ''}</p>
                     <h5>Agreed upon Completion Date:</h5>
-                    <p>(6) payments remaining</p>
+                    {/* <p>(6) payments remaining</p> */}
                     <h5>Total Paid to date:</h5>
-                    <p style={marginBottom70}>$20,833.33</p>
+                    <p style={marginBottom70}></p>
                     <div className={styles.divider}></div>
                     <button className={styles.gradientButton}>
                         {

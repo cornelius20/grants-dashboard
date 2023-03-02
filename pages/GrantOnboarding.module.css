@@ -317,6 +317,9 @@
     .countrySelect {
       position: relative;
       color: gray !important;
+      background-color: #000;
+      border-radius: 5px;
+      padding: 10px;
       /* for Firefox */
       -moz-appearance: none;
       /* for Chrome */

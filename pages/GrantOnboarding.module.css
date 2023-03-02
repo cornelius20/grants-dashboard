@@ -161,6 +161,16 @@
         color: #4A5568;
     }
 
+    .onBoardingRight label {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 150%;
+        color: #718096;
+        font-weight: 700;
+        margin-bottom: 5px;
+  }
+
     .gradientButton {
         background: linear-gradient(45deg, #3182ce, #97266d);
         height: 50px;
@@ -186,7 +196,7 @@
       font-size: 12px;
       font-weight: 600;
       cursor: pointer;
-      width: 100%;
+      width: 165px;
       margin-bottom: 20px;
     }
 
@@ -196,6 +206,9 @@
         background: rgba(255, 255, 255, 0.16);;
     }
 
+    .white{
+      color: #fff !important;
+    }
 
     /* ........LIST DATA......... */
 
@@ -326,6 +339,30 @@
       -webkit-appearance: none;
       cursor: pointer;
       width: 100%;
+    }
+    
+    .issueSelect {
+      position: relative;
+      color: gray !important;
+      background-color: #000;
+      border-radius: 5px;
+      padding-bottom: 20px;
+      padding-top: 0px;
+      /* for Firefox */
+      -moz-appearance: none;
+      /* for Chrome */
+      -webkit-appearance: none;
+      cursor: pointer;
+      width: 80%;
+    }
+
+    .selectIssueArrow{
+      position: absolute;
+      top: 32%;
+      right: 22%;
+      transform: translateY(-32%);
+      color: #fff !important;
+      z-index: 1;
     }
 
     .customSelectArrow{

@@ -69,7 +69,13 @@ export default function GrantOnboarding() {
         ]);
         const walletButtonClicked = async () => {
             if (isSignedIn) {
-                await signOut();
+                try{
+                    await signOut();
+                }catch(err){
+                    console.log('Failed to Signout');
+                    window.location.reload()
+
+                }
             }
             else {
                 let userAgent = navigator.userAgent;
@@ -96,7 +102,7 @@ export default function GrantOnboarding() {
                     try {
                         await openAuthRequest();
                     } catch (error) {
-                        console.log("error is here",error)
+                        console.log("error is here",error);
                         // Extension Not available Modal
                         setVisible(true);
                     }
@@ -201,6 +207,7 @@ export default function GrantOnboarding() {
                 repo: "Stacks-Grant-Launchpad",
                 state: "all",
                 labels: [label],
+
               });
               let newReq = res.concat(req.data);
               res = newReq
@@ -253,6 +260,8 @@ export default function GrantOnboarding() {
                     }
                 });
             });
+
+
 
             await Promise.all(
                 relevantIssues.map(async (issue) => {
@@ -409,7 +418,7 @@ export default function GrantOnboarding() {
             console.log('aaa',);
             const [_id,_grantName,_grantBudget] = e.target.value.split('-');
             // console.log('OOOO - : - ',_id,_grantName,_grantBudget)
-            // setGrantIssueNumber(_id);
+            setGrantIssueNumber(_id);
             setGrantName(_grantName);
             setGrantBudget(_grantBudget);
 
@@ -504,7 +513,7 @@ export default function GrantOnboarding() {
                                         value={firstName}
                                         onChange={(e)=>{setFirstName(e.target.value)}}
                                     />
-                                    {firstNameError && <span className={styles.validationError}>Required !</span>}
+                                    {firstNameError && <span className={styles.validationError}>Required!</span>}
                                 </div>
                                 <div className={styles.formControl}>
                                     <label>Last Name</label>
@@ -516,7 +525,7 @@ export default function GrantOnboarding() {
                                         value={lastName}
                                         onChange={(e)=>{setLastName(e.target.value)}}
                                     />
-                                    {lastNameError && <span className={styles.validationError}>Required !</span>}
+                                    {lastNameError && <span className={styles.validationError}>Required!</span>}
 
                                 </div>
                             </div>
@@ -531,11 +540,11 @@ export default function GrantOnboarding() {
                                         value={email}
                                         onChange={(e)=>{setEmail(e.target.value)}}
                                     />
-                                    {emailError && <span className={styles.validationError}>Required !</span>}
+                                    {emailError && <span className={styles.validationError}>Required!</span>}
 
                                 </div>
                             </div>
-                            <div className={styles.formRow}>
+                            {/* <div className={styles.formRow}>
                                 <div className={styles.formControl}>
                                     <label>Github Issues</label>
                                     <div className={styles.selectWrapper}>
@@ -550,7 +559,7 @@ export default function GrantOnboarding() {
                                     </div>
                                 </div>
                                 
-                            </div>
+                            </div> */}
                             <div className={styles.formRow} style={{mb1}}>
                                 <div className={styles.formControl}>
                                     <label>STX Wallet Address</label>
@@ -569,7 +578,7 @@ export default function GrantOnboarding() {
                                         value={stxMemo}
                                         onChange={(e)=>{setStxMemo(e.target.value)}}
                                     />
-                                    {stxMemoError && <span className={styles.validationError}>Required !</span>}
+                                    {stxMemoError && <span className={styles.validationError}>Required!</span>}
                                     <span style={checkbox}><input type={'checkbox'}/>  I confirm no memo is required</span>
                                 </div>
                             </div>
@@ -848,17 +857,12 @@ export default function GrantOnboarding() {
                                 <label style={{marginBottom: 10}}>Select Issue Number:</label>
                                 <div className={styles.selectWrapper}>
                                     <DropdownIcon className={styles.selectIssueArrow} />
-                                    <select className={styles.issueSelect} style={{height: 15,marginBottom: 10}} onChange={(e)=>handleIssueNumber(e)} name="selectIssue">
-                                        <option value={1}>1</option>
-                                        <option value={2}>2</option>
-                                        <option value={3}>3</option>
-                                        <option value={4}>4</option>
-                                        <option value={5}>5</option>
-                                        <option value={6}>6</option>
-                                        <option value={7}>7</option>
-                                        <option value={8}>8</option>
-                                        <option value={9}>9</option>
-                                        <option value={10}>10</option>
+                                    <select className={styles.issueSelect} style={{height: 15,marginBottom: 10}} onChange={(e)=>handleGrantChange(e)} name="selectIssue">
+                                        {
+                                            CSVData.map(item=>{
+                                                return(<option key={item[1]} value={`${item[1]}-${item[6]}-${item[7]}`}>{item[6]}</option>)
+                                            })
+                                        }
                                     </select>
                                 </div>
                             </div>

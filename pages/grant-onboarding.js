@@ -26,12 +26,7 @@ export default function GrantOnboarding() {
         const [country, setCountry] = useState("")
         const [anticipatedCompletionDate, setAnticipatedCompletionDate] = useState(new Date())
         const [visible,setVisible] = useState(false);
-        const [grantTracks, setGrantTracks] = useState('');
-        const [grantPhase, setGrantPhase] = useState('');
-        const [grantType, setGrantType] = useState('');
         const [endDate, setEndDate] = useState(new Date());
-        let pastSevenDays = new Date(endDate.getTime() - 7 * 24 * 60 * 60 * 1000);
-        const [startDate, setStartDate] = useState(pastSevenDays);
         const { openAuthRequest, isRequestPending, signOut, isSignedIn } = useAuth();
         const { stxAddress, identityAddress, rawAddress } = useAccount();
         const label = isRequestPending ? 'Loading...' : isSignedIn ? `${stxAddress.slice(0,9)}...(Disconnect)` : 'Connect Wallet';
@@ -131,15 +126,13 @@ export default function GrantOnboarding() {
             'Bitcin Utility via Stacks'
         ];
         const grantStatusArr = [
-            'Initial Review in Progress',
-            'Review in Progress',
-            'Revisions in Progress',
-            'Onboarding in Progress',
-            'Milestone in Progress',
-            'Final Deliverable in Progress',
-            'Grant Complete',
-            'Grant Now Stale',
-            'Grant Closed'
+            'Grantee Onboarding',
+            'Completing Initial Deliverable',
+            'Completing Milestone(s)',
+            'Grant Completed',
+            'Grant is Stale',
+            'Grant is Closed',
+            "Application Denied"
         ];
         const grantPhaseArr = [
             'Application Phase',
@@ -195,22 +188,17 @@ export default function GrantOnboarding() {
             issues = [];
             const github = new Octokit();
             setLoading(true);
-
-            let labels = [];
-            grantTracks != '' ? labels.push(grantTracks) : null;
-            grantPhase != '' ? labels.push(grantPhase) : null;
-            grantType != '' ? labels.push(grantType) : null;
-
-            let req = await github.rest.issues.listForRepo({
-                owner: 'stacksgov',
-                repo: 'Stacks-Grant-Launchpad',
-                state: 'all',
-                labels: labels,
-                // since: `${startDate}`
-            });
-
-            let res = req.data;
-
+            let res = []
+            for await (const label of grantStatusArr) {
+              let req = await github.rest.issues.listForRepo({
+                owner: "stacksgov",
+                repo: "Stacks-Grant-Launchpad",
+                state: "all",
+                labels: [label],
+              });
+              let newReq = res.concat(req.data);
+              res = newReq
+            }
             console.log('Issues response is : - ', res);
 
             res.map((issue) => {

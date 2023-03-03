@@ -7,7 +7,7 @@ import DropdownIcon from '../public/images/dropdown.svg';
 import LoadingSpinner from '../public/images/loading-spinner.svg';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router'
-
+import { findGrant } from '../utils/ApiCalls';
 
 export default function PaymentsDashboard() {
         const { data: session } = useSession();
@@ -23,6 +23,8 @@ export default function PaymentsDashboard() {
         const [grantIssueNumber,setGrantIssueNumber] = useState(null);
         const [grantName,setGrantName] = useState(null);
         const [grantBudget,setGrantBudget] = useState(null);
+        const [grantCompletionDate,setGrantCompletionDate] = useState(null);
+        const [totalGrantPaidToDate,setTotalGrantPaidToDate] = useState(null);
         const [grantsFound, setGrantsFound] = useState(0);
         const [CSVData, setCSVData] = useState([
             [
@@ -312,13 +314,16 @@ export default function PaymentsDashboard() {
         }
     }
 
-    const handleGrantChange = (e) => {
-        console.log('aaa',);
+    const handleGrantChange = async (e) => {
         const [_id,_grantName,_grantBudget] = e.target.value.split('-');
         setGrantIssueNumber(_id);
         setGrantName(_grantName);
         setGrantBudget(_grantBudget);
-
+        let findDateAndBudget = await findGrant(_id);
+        if(findDateAndBudget?.grant) {
+            setGrantCompletionDate(findDateAndBudget?.grant?.anticipatedCompletionDate)
+            setTotalGrantPaidToDate(findDateAndBudget?.grant?.payments?.totalPayments)
+        }
     }
 
   return (
@@ -427,8 +432,9 @@ export default function PaymentsDashboard() {
                     <h5>Grant Budget:</h5>
                     <p>{grantBudget ? '$' + grantBudget : ''}</p>
                     <h5>Agreed upon Completion Date:</h5>
-                    {/* <p>(6) payments remaining</p> */}
+                    <p>{grantCompletionDate? grantCompletionDate: ""}</p>
                     <h5>Total Paid to date:</h5>
+                    <p>{totalGrantPaidToDate ? totalGrantPaidToDate: ""}</p>
                     <p style={marginBottom70}></p>
                     <div className={styles.divider}></div>
                     <button className={styles.gradientButton}>

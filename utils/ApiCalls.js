@@ -152,3 +152,25 @@ export const adminSearchUser = (val) => {
         return false;
     }
 }
+
+export const findGrant = (val) => {
+  try {
+      var config = {
+        method: 'get',
+        maxBodyLength: Infinity,
+        url: `https://stacks-grant-backend.herokuapp.com/api/v1/grant/findGrant?grantIssueNumber=${val}`,
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+      };
+      
+      return axios(config).then(function (response) {
+        return response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  } catch (err) {
+      return false;
+  }
+}

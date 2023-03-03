@@ -344,13 +344,16 @@ export default function PaymentsDashboard() {
                       "date": new Date(),
                       "txID": txID,
                       "stxAmount": stxAmount,
-                      "usdAmount": usdAmount
+                      "usdAmount": parseFloat(usdAmount)
                     }
             }
             e.preventDefault();
             setLoading(true);
             console.log('Onboarding data is : - ',paymentData)
             const res = await paymentUpdateUser(paymentData);
+            if (res.success) {
+                setTotalGrantPaidToDate(totalGrantPaidToDate + parseFloat(usdAmount))
+            }
             console.log('Onboarding res is : - ',res)
             setLoading(false);
     }

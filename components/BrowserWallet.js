@@ -22,7 +22,7 @@ export default function BrowserWallet({visible,handleClose}) {
             </div>
             <img className={styles.ModalImgSm} src="./images/hiro-image.png"/>
             <h3 className={styles.ModalHeading}>Your Browser isn&apos;t supported</h3>
-            <p className={styles.ModalText}>To sign in to Arkadio using the Hiro Wallet browser extension, try <a href="https://www.google.com/chrome/?brand=JJTC&gclid=Cj0KCQiAxbefBhDfARIsAL4XLRo0AJ--AnM0fwiLos7T07ldJxDCVH_5zSSCpbS6E9QM_KfqKb-diJMaAhmMEALw_wcB&gclsrc=aw.ds">Chrome</a>, <a href="https://brave.com/">Brave</a>, or <a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a> on desktop.</p>
+            <p className={styles.ModalText}>To sign in to Stacks Foundation using the Hiro Wallet browser extension, try <a href="https://www.google.com/chrome/?brand=JJTC&gclid=Cj0KCQiAxbefBhDfARIsAL4XLRo0AJ--AnM0fwiLos7T07ldJxDCVH_5zSSCpbS6E9QM_KfqKb-diJMaAhmMEALw_wcB&gclsrc=aw.ds">Chrome</a>, <a href="https://brave.com/">Brave</a>, or <a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a> on desktop.</p>
             <div className={styles.divider}></div>
 
             <p className={styles.ModalText}>

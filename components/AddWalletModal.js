@@ -22,7 +22,7 @@ export default function AddWallet({visible,handleClose}) {
             </div>
             <img className={styles.ModalImgSm} src="./images/image.png"/>
             <h3 className={styles.ModalHeading}>Add Hiro wallet to chrome</h3>
-            <p className={styles.ModalText}>Hiro Wallet is your gateway to Stacks apps like Arkadiko. Add it to Chrome to continue.</p>
+            <p className={styles.ModalText}>Hiro Wallet is your gateway to Stacks apps like Stacks Foundation. Add it to Chrome to continue.</p>
             
             <a href="https://chrome.google.com/webstore/detail/hiro-wallet/ldinpeekobnhjjdofggfgjlcehhmanlj">
                 <button className={styles.ModalBtn}>Download Hiro Wallet</button>

@@ -20,7 +20,7 @@ export default function ExploreModal({visible,handleClose}) {
             </div>
             <img className={styles.ModalImgSm} src="./images/image.png"/>
             <h3 className={styles.ModalHeading}>Explore the world of Stacks</h3>
-            <p>Hiro Wallet is your gateway to Stacks apps like Arkadiko. Add it to Chrome to continue.</p>
+            <p>Hiro Wallet is your gateway to Stacks apps like Stacks Foundation. Add it to Chrome to continue.</p>
             <button onClick={async () => {
                 if (isSignedIn) await signOut();
                 else await openAuthRequest();

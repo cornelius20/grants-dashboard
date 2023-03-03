@@ -210,6 +210,11 @@
       color: #fff !important;
     }
 
+    .validationError{
+      color: red;
+      font-size: 12px;
+    }
+
     /* ........LIST DATA......... */
 
     .namesList{

@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { useState, useEffect, useCallback } from 'react';
 import CalendarDropdown from '../components/CalendarDropdown';
 import Head from 'next/head';
+import { authOptions } from './api/auth/[...nextauth]';
+import { unstable_getServerSession } from 'next-auth/next';
 
 const StacksConverter = () => {
 	const [value, onChange] = useState(new Date());
@@ -180,3 +182,23 @@ const StacksConverter = () => {
 };
 
 export default StacksConverter;
+
+export async function getServerSideProps(context) {
+	const session = await unstable_getServerSession(context.req, context.res, authOptions);
+
+	if (!session) {
+		return {
+			redirect: {
+				destination: '/',
+				permanent: false
+			}
+		};
+	}
+
+	session.user.email = '';
+	return {
+		props: {
+			session
+		}
+	};
+}

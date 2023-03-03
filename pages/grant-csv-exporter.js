@@ -8,8 +8,8 @@ import { CSVLink, CSVDownload } from 'react-csv';
 import { Octokit } from '@octokit/rest';
 import { useSession, signIn } from 'next-auth/react';
 import LoadingSpinner from '../public/images/loading-spinner.svg';
-// import { authOptions } from './api/auth/[...nextauth]';
-// import { unstable_getServerSession } from 'next-auth/next';
+import { authOptions } from './api/auth/[...nextauth]';
+import { unstable_getServerSession } from 'next-auth/next';
 import Head from 'next/head';
 
 const GrantDataExporter = () => {
@@ -452,22 +452,22 @@ const GrantDataExporter = () => {
 
 export default GrantDataExporter;
 
-// export async function getServerSideProps(context) {
-// 	const session = await unstable_getServerSession(context.req, context.res, authOptions);
+export async function getServerSideProps(context) {
+	const session = await unstable_getServerSession(context.req, context.res, authOptions);
 
-// 	if (!session) {
-// 		return {
-// 			redirect: {
-// 				destination: '/',
-// 				permanent: false
-// 			}
-// 		};
-// 	}
+	if (!session) {
+		return {
+			redirect: {
+				destination: '/',
+				permanent: false
+			}
+		};
+	}
 
-// 	session.user.email = '';
-// 	return {
-// 		props: {
-// 			session
-// 		}
-// 	};
-// }
+	session.user.email = '';
+	return {
+		props: {
+			session
+		}
+	};
+}

@@ -6,7 +6,8 @@ import StacksLogo from '../public/images/stacks-logo.svg';
 import { Octokit } from '@octokit/rest';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router'
-
+import { authOptions } from './api/auth/[...nextauth]';
+import { unstable_getServerSession } from 'next-auth/next';
 
 const Utilities = () => {
 	const { data: session } = useSession();
@@ -190,3 +191,23 @@ const pb2 = {
 }
 
 export default Utilities;
+
+export async function getServerSideProps(context) {
+	const session = await unstable_getServerSession(context.req, context.res, authOptions);
+
+	if (!session) {
+		return {
+			redirect: {
+				destination: '/',
+				permanent: false
+			}
+		};
+	}
+
+	session.user.email = '';
+	return {
+		props: {
+			session
+		}
+	};
+}

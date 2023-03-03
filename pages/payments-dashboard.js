@@ -8,6 +8,8 @@ import LoadingSpinner from '../public/images/loading-spinner.svg';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router'
 import { findGrant, paymentUpdateUser } from '../utils/ApiCalls';
+import { authOptions } from './api/auth/[...nextauth]';
+import { unstable_getServerSession } from 'next-auth/next';
 
 export default function PaymentsDashboard() {
         const { data: session } = useSession();
@@ -57,11 +59,11 @@ export default function PaymentsDashboard() {
 
         useEffect(()=>{
         
-            if(session?.user?.name.startsWith('will') || session?.user?.name(startsWith('shakti'))){
+            // if(session?.user?.name.startsWith('will') || session?.user?.name(startsWith('shakti'))){
                 
-            }else{
-                router.push('/');
-            }
+            // }else{
+            //     router.push('/');
+            // }
         },[])
 
         const predictedImpactScoreArr = ['6', '5', '4', '3', '2', '1'];
@@ -373,9 +375,9 @@ export default function PaymentsDashboard() {
             <div className={styles.onBoardingRow}>
                 <div className={styles.onBoardingLeft}>
                     <p className={styles.text}>
-                        A simple widget for providing private information required for receiving grant payments.
+                    A simple widget for inputting payments information into the grants database.
                     </p>
-                    <p style={addPayment}>Add a Paymnet</p>
+                    <p style={addPayment}>Add a Payment</p>
                     {
                         loading ? <LoadingSpinner/> : <form>
                         <div className={styles.formRow}>
@@ -458,19 +460,22 @@ export default function PaymentsDashboard() {
                 </div>
                 <div className={styles.onBoardingRight}>
                     <p style={paymentHistory}>Payment History</p>
+                    {grantIssueNumber ? 
+                    <>
                     <h5>Issue Number:</h5>
                     <p>{grantIssueNumber ? grantIssueNumber : ''}</p>
                     <h5>Grant Name:</h5>
                     <p>{grantName ? grantName : ''}</p>
-                    <h5>Grant Budget:</h5>
-                    <p>{grantBudget ? '$' + grantBudget : ''}</p>
                     <h5>Agreed upon Completion Date:</h5>
                     <p>{grantCompletionDate ? new Date(grantCompletionDate)?.toDateString(): ""}</p>
+                    <h5>Grant Budget:</h5>
+                    <p>{grantBudget ? '$' + grantBudget : ''}</p>
                     <h5>Total Paid to date:</h5>
-                    <p>{totalGrantPaidToDate ? totalGrantPaidToDate: ""}</p>
+                    <p>{totalGrantPaidToDate ? '$' + totalGrantPaidToDate: ""}</p>
                     <p style={marginBottom70}></p>
+                    </>: null}
                     <div className={styles.divider}></div>
-                    <button className={styles.gradientButton} onClick={(e)=>{handleSubmit(e)}}>
+                    <button className={styles.gradientButton} style={{marginTop:grantIssueNumber? 50:320}} onClick={(e)=>{handleSubmit(e)}}>
                         {
                             loading ? <LoadingSpinner/> : 'Click to Submit'
                         }
@@ -496,22 +501,22 @@ const marginBottom70 = {
     marginBottom: 70
 }
 
-// export async function getServerSideProps(context) {
-// 	const session = await unstable_getServerSession(context.req, context.res, authOptions);
+export async function getServerSideProps(context) {
+	const session = await unstable_getServerSession(context.req, context.res, authOptions);
 
-// 	if (!session) {
-// 		return {
-// 			redirect: {
-// 				destination: '/',
-// 				permanent: false
-// 			}
-// 		};
-// 	}
+	if (!session) {
+		return {
+			redirect: {
+				destination: '/',
+				permanent: false
+			}
+		};
+	}
 
-// 	session.user.email = '';
-// 	return {
-// 		props: {
-// 			session
-// 		}
-// 	};
-// }
+	session.user.email = '';
+	return {
+		props: {
+			session
+		}
+	};
+}

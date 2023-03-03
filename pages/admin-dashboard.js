@@ -8,8 +8,8 @@ import ReactLoading from 'react-loading';
 import LoadingIndicator from '../components/LoadingIndicator';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router'
-// import { authOptions } from './api/auth/[...nextauth]';
-// import { unstable_getServerSession } from 'next-auth/next';
+import { authOptions } from './api/auth/[...nextauth]';
+import { unstable_getServerSession } from 'next-auth/next';
 
 export default function AdminDashboard() {
     const { data: session } = useSession();
@@ -151,7 +151,7 @@ export default function AdminDashboard() {
             <div className={styles.onBoardingRow}>
                 <div className={styles.onBoardingLeft}>
                     <p className={styles.text}>
-                        A simple widget for providing private information required for receiving grant payments.
+                        A simple widget for adding users and adjusting permission settings by role.
                     </p>
                     <form>
                         <div className={styles.formRow}>
@@ -410,22 +410,22 @@ const githubView = {
     alignItems:'flex-end'
 }
 
-// export async function getServerSideProps(context) {
-// 	const session = await unstable_getServerSession(context.req, context.res, authOptions);
+export async function getServerSideProps(context) {
+	const session = await unstable_getServerSession(context.req, context.res, authOptions);
 
-// 	if (!session) {
-// 		return {
-// 			redirect: {
-// 				destination: '/',
-// 				permanent: false
-// 			}
-// 		};
-// 	}
+	if (!session) {
+		return {
+			redirect: {
+				destination: '/',
+				permanent: false
+			}
+		};
+	}
 
-// 	session.user.email = '';
-// 	return {
-// 		props: {
-// 			session
-// 		}
-// 	};
-// }
+	session.user.email = '';
+	return {
+		props: {
+			session
+		}
+	};
+}

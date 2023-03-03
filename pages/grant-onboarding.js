@@ -14,7 +14,8 @@ import DropdownIcon from '../public/images/dropdown.svg';
 import LoadingSpinner from '../public/images/loading-spinner.svg';
 import BrowserWallet from '../components/BrowserWallet';
 import CustomAlert from '../components/CustomAlert';
-
+import { authOptions } from './api/auth/[...nextauth]';
+import { unstable_getServerSession } from 'next-auth/next';
 
 
 export default function GrantOnboarding() {
@@ -44,29 +45,7 @@ export default function GrantOnboarding() {
         const [browserError,setBrowserError] = useState(false);
         const [alertVisible,setAlertVisible] = useState(false);
 
-        const [CSVData, setCSVData] = useState([
-            [
-                'Date Submitted',
-                'Issue Number',
-                'Application Type',
-                'Grant Lead',
-                'Previous Grants',
-                'Other Ecosytem Programs',
-                'Grant Name',
-                'Grant Budget',
-                'Grant Duration',
-                'Grant Type',
-                'Grant Track',
-                'Grant Goal',
-                'Grant Audience',
-                'Final Deliverable',
-                'Review Status',
-                'Grant Phase',
-                'Predicted Impact Score',
-                'Commented GH Usernames',
-                'Reacted GH Usernames'
-            ]
-        ]);
+        const [CSVData, setCSVData] = useState([]);
         const walletButtonClicked = async () => {
             if (isSignedIn) {
                 try{
@@ -934,4 +913,22 @@ const whiteColor = {
     color: '#E2E8F0',
 }
 
+export async function getServerSideProps(context) {
+	const session = await unstable_getServerSession(context.req, context.res, authOptions);
 
+	if (!session) {
+		return {
+			redirect: {
+				destination: '/',
+				permanent: false
+			}
+		};
+	}
+
+	session.user.email = '';
+	return {
+		props: {
+			session
+		}
+	};
+}

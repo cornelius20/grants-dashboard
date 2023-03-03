@@ -7,7 +7,7 @@ import DropdownIcon from '../public/images/dropdown.svg';
 import LoadingSpinner from '../public/images/loading-spinner.svg';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router'
-import { findGrant } from '../utils/ApiCalls';
+import { findGrant, paymentUpdateUser } from '../utils/ApiCalls';
 
 export default function PaymentsDashboard() {
         const { data: session } = useSession();
@@ -26,6 +26,10 @@ export default function PaymentsDashboard() {
         const [grantCompletionDate,setGrantCompletionDate] = useState(null);
         const [totalGrantPaidToDate,setTotalGrantPaidToDate] = useState(null);
         const [grantsFound, setGrantsFound] = useState(0);
+        const [stxAmount, setStxAmount] = useState(null)
+        const [usdAmount, setUsdAmount] = useState(null)
+        const [paymentNumber, setPaymentNumber] = useState(1)
+        const [txID, setTxID] = useState(null)
         const [CSVData, setCSVData] = useState([
             [
                 'Date Submitted',
@@ -323,7 +327,30 @@ export default function PaymentsDashboard() {
         if(findDateAndBudget?.grant) {
             setGrantCompletionDate(findDateAndBudget?.grant?.anticipatedCompletionDate)
             setTotalGrantPaidToDate(findDateAndBudget?.grant?.payments?.totalPayments)
+        } else {
+            setGrantCompletionDate(null)
+            setTotalGrantPaidToDate(null)
         }
+    }
+
+    const handleSubmit = async(e) => {
+       
+            let paymentData = {
+                    "grantIssueNumber": grantIssueNumber,
+                    "paymentsMade": {
+                      "id": paymentNumber,
+                      "date": new Date(),
+                      "txID": txID,
+                      "stxAmount": stxAmount,
+                      "usdAmount": usdAmount
+                    }
+            }
+            e.preventDefault();
+            setLoading(true);
+            console.log('Onboarding data is : - ',paymentData)
+            const res = await paymentUpdateUser(paymentData);
+            console.log('Onboarding res is : - ',res)
+            setLoading(false);
     }
 
   return (
@@ -369,7 +396,7 @@ export default function PaymentsDashboard() {
                                 <label>Payment Number</label>
                                 <div className={styles.selectWrapper}>
                                     <DropdownIcon className={styles.customSelectArrow} />
-                                    <select className={styles.countrySelect} style={{height: 50}}  name="selectIssue">
+                                    <select className={styles.countrySelect} style={{height: 50}} onChange={(e)=>{setPaymentNumber(e.target.value)}} name="selectIssue">
                                         {/* {
                                             CSVData.map(item=>{
                                                 return(<option key={item[1]} value={`${item[1]}-${item[6]}-${item[7]}`}>{item[1]}</option>)
@@ -397,6 +424,8 @@ export default function PaymentsDashboard() {
                                     name="stxAmount"
                                     type="number"
                                     placeholder="Type here..."
+                                    value={stxAmount}
+                                    onChange={(e)=>{setStxAmount(e.target.value)}}
                                 />
                             </div>
                             <div className={styles.formControl}>
@@ -406,6 +435,8 @@ export default function PaymentsDashboard() {
                                     name="usdAmount"
                                     type="number"
                                     placeholder="Type here..."
+                                    value={usdAmount}
+                                    onChange={(e)=>{setUsdAmount(e.target.value)}}
                                 />
                             </div>
                         </div>
@@ -417,6 +448,8 @@ export default function PaymentsDashboard() {
                                     name="transactionID"
                                     type="text"
                                     placeholder="Type here..."
+                                    value={txID}
+                                    onChange={(e)=>{setTxID(e.target.value)}}
                                 />
                             </div>
                         </div>
@@ -432,12 +465,12 @@ export default function PaymentsDashboard() {
                     <h5>Grant Budget:</h5>
                     <p>{grantBudget ? '$' + grantBudget : ''}</p>
                     <h5>Agreed upon Completion Date:</h5>
-                    <p>{grantCompletionDate? grantCompletionDate: ""}</p>
+                    <p>{grantCompletionDate ? new Date(grantCompletionDate)?.toDateString(): ""}</p>
                     <h5>Total Paid to date:</h5>
                     <p>{totalGrantPaidToDate ? totalGrantPaidToDate: ""}</p>
                     <p style={marginBottom70}></p>
                     <div className={styles.divider}></div>
-                    <button className={styles.gradientButton}>
+                    <button className={styles.gradientButton} onClick={(e)=>{handleSubmit(e)}}>
                         {
                             loading ? <LoadingSpinner/> : 'Click to Submit'
                         }

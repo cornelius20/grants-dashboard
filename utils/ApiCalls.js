@@ -174,3 +174,31 @@ export const findGrant = (val) => {
       return false;
   }
 }
+
+export const paymentUpdateUser = (params) => {
+  try {
+      var data = JSON.stringify(params);
+
+       var config = {
+       method: 'patch',
+       maxBodyLength: Infinity,
+       url: 'https://stacks-grant-backend.herokuapp.com/api/v1/grant/payment/update',
+       headers: { 
+         'Content-Type': 'application/json'
+       },
+       data: data
+
+     };
+
+     return axios(config).then(function (response) {
+       return response.data;
+     })
+     .catch(function (error) {
+       console.log(error);
+       return false;
+     });
+
+ } catch (err) {
+     return false;
+ }
+}

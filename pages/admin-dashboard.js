@@ -120,7 +120,8 @@ export default function AdminDashboard() {
                 </div>
                 <div style={{...flex1}}>
                     <span style={{background: type == 'Admin' ? '#9f7aea' : 'orange'}}>{type}</span>
-                    <button onClick={(e)=>{handleUser(e,item)}}>. . .</button>
+                    <button disabled // onClick={(e)=>{handleUser(e,item)}}
+                    >. . .</button>
                 </div>
             </li>
         )
@@ -184,7 +185,7 @@ export default function AdminDashboard() {
                 <div className={styles.onBoardingRight}>
                     {
                         !currentUser ? <>
-                            <p style={addUser}>Add a New User or Edit a User</p>
+                            <p style={addUser}>Add a New User</p>
                             <form>
                                 <div className={styles.formRow}>
                                         <div className={styles.formControl}>

@@ -122,8 +122,7 @@ export default function GrantOnboarding() {
             'Completing Milestone(s)',
             'Grant Completed',
             'Grant is Stale',
-            'Grant is Closed',
-            "Application Denied"
+            'Grant is Closed'
         ];
         const grantPhaseArr = [
             'Application Phase',

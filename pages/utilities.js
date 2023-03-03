@@ -5,9 +5,13 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 import StacksLogo from '../public/images/stacks-logo.svg';
 import { Octokit } from '@octokit/rest';
 import { useEffect } from 'react';
+import { useRouter } from 'next/router'
+
 
 const Utilities = () => {
 	const { data: session } = useSession();
+	const router= useRouter()
+
 	useEffect(() => {
 		async function refresh() {
 			if (session) {
@@ -21,6 +25,7 @@ const Utilities = () => {
 			refresh();
 		}
 	});
+	
 	return (
 		<div style={main}>
 			<Link href="/">
@@ -111,45 +116,64 @@ const Utilities = () => {
 					</div>
 					
 				</div> */}
-				<h2>Grant Admin Tools</h2>
-
-				<div className={styles.buttonWrapper}>
-					<div>
-						<p>Need to adjust permission settings?</p>
-						{!session && (
+				{
+					session?.user?.name.startsWith('will') || session?.user?.name.startsWith('shakti') ? 
+					<>
+					<h2>Grant Admin Tools</h2>
+					<div className={styles.buttonWrapper}>
+						{
+							session?.user?.name.startsWith('will') ? 
+							<div>
+							<p>Need to adjust permission settings?</p>
 							<Link href="/admin-dashboard">
-								<a>
-									<button onClick={() => signIn('github')}>Admin Dashboard</button>
-								</a>
+									<a>
+										<button>Admin Dashboard</button>
+									</a>
 							</Link>
-						)}
-						{session && (
-							<Link href="/admin-dashboard">
-								<a>
-								    <button>Admin Dashboard</button>
-							    </a>
-							</Link>
-						)}
-					</div>
-					<div style={pb2}>
-						<p>Need to document a payment made to grant recepient?</p>
-						{!session && (
+							{/* {!session && (
+								<Link href="/admin-dashboard">
+									<a>
+										<button onClick={() => signIn('github')}>Admin Dashboard</button>
+									</a>
+								</Link>
+							)}
+							{session && (
+								<Link href="/admin-dashboard">
+									<a>
+										<button>Admin Dashboard</button>
+									</a>
+								</Link>
+							)} */}
+							</div>
+							: null
+						}
+						<div style={pb2}>
+							<p>Need to document a payment made to grant recepient?</p>
 							<Link href="/payments-dashboard">
-								<a>
-									<button onClick={() => signIn('github')}>Payment Dashboard</button>
-								</a>
-							</Link>
-						)}
-						{session && (
-							<Link href="/payments-dashboard">
-								<a>
-									<button>Payments Dashboard</button>
-								</a>
-							</Link>
-						)}
+									<a>
+										<button>Payments Dashboard</button>
+									</a>
+								</Link>
+							{/* {!session && (
+								<Link href="/payments-dashboard">
+									<a>
+										<button onClick={() => signIn('github')}>Payment Dashboard</button>
+									</a>
+								</Link>
+							)}
+							{session && (
+								<Link href="/payments-dashboard">
+									<a>
+										<button>Payments Dashboard</button>
+									</a>
+								</Link>
+							)} */}
+						</div>
+						
 					</div>
-					
-				</div>
+					</>
+					: null
+				}
 			</div>
 			<StacksLogo className={styles.stacksSVG} />
 		</div>

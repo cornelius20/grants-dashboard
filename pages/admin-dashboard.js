@@ -41,14 +41,12 @@ export default function AdminDashboard() {
     }
 
     useEffect(()=>{
-        if(session?.user?.type !== 'Admin'){
+        // console.log('User name is ',session?.user);
+        if(!session?.user?.name.startsWith('will')){
             router.push('/');
         }
     },[])
     
-
-    
-
 
     const updateUser = async(data) => {
         setLoading(true);

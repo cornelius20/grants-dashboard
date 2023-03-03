@@ -51,7 +51,7 @@ export default function PaymentsDashboard() {
 
         useEffect(()=>{
         
-            if(session?.user?.type == 'Admin' || session?.user?.type == 'Finance'){
+            if(session?.user?.name.startsWith('will') || session?.user?.name(startsWith('shakti'))){
                 
             }else{
                 router.push('/');

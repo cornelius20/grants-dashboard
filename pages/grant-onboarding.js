@@ -24,6 +24,12 @@ export default function GrantOnboarding() {
         const [stxMemo, setStxMemo] = useState("")
         const [email, setEmail] = useState("")
         const [country, setCountry] = useState("")
+        const [emailError,setEmailError] = useState("")
+        const [firstNameError,setFirstError] = useState("")
+        const [lastNameError,setLastNameError] = useState("")
+        const [stxMemoError,setStxMemoError] = useState("")
+        const [countryError,setCountryError] = useState("")
+
         const [anticipatedCompletionDate, setAnticipatedCompletionDate] = useState(new Date())
         const [visible,setVisible] = useState(false);
         const [endDate, setEndDate] = useState(new Date());
@@ -382,14 +388,22 @@ export default function GrantOnboarding() {
                     "anticipatedCompletionDate": `${year}-${month}-${day}`
                 }
                 e.preventDefault();
-                setLoading(true);
-                await grantOnboarding(onBoardingData);
-                setLoading(false);
+                const valid = validateInputFields();
+                if(valid){
+                    setLoading(true);
+                    console.log('Onboarding data is : - ',onBoardingData)
+                    const res = await grantOnboarding(onBoardingData);
+                    console.log('Onboarding res is : - ',res)
+                    setLoading(false);
+                }
+                
             } else {
                 setAlertVisible(true);
                 // alert("Please connect a wallet")
             }
         }
+
+
 
         const handleGrantChange = (e) => {
             console.log('aaa',);
@@ -400,13 +414,51 @@ export default function GrantOnboarding() {
             setGrantBudget(_grantBudget);
 
         }
+
+
         const handleIssueNumber = (e) => {
             console.log('aaa',);
             const [_id,_grantName,_grantBudget] = e.target.value.split('-');
             setGrantIssueNumber(_id);
             // setGrantName(_grantName);
             // setGrantBudget(_grantBudget);
+        }
 
+        const validateInputFields = () => {
+
+            setEmailError(false);
+            setFirstError(false);
+            setLastNameError(false);
+            setStxMemoError(false);
+
+            if(!email){
+                setEmailError(true);
+            }
+            if(!firstName){
+                setFirstError(true);
+            }
+            if(!lastName){
+                setLastNameError(true);
+            }
+            if(!stxMemoError){
+                setStxMemoError(true);
+            }
+            
+            if(email && firstName && lastName && stxMemo){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+
+        const resetInputFields = () => {
+            setFirstName("");
+            setLastName("");
+            setStxMemo("");
+            setEmail("");
+            setCountry("");
+            setAnticipatedCompletionDate(new Date());
         }
         
   return (
@@ -449,8 +501,10 @@ export default function GrantOnboarding() {
                                         name="FirstName"
                                         type="type"
                                         placeholder="Type here..."
+                                        value={firstName}
                                         onChange={(e)=>{setFirstName(e.target.value)}}
                                     />
+                                    {firstNameError && <span className={styles.validationError}>Required !</span>}
                                 </div>
                                 <div className={styles.formControl}>
                                     <label>Last Name</label>
@@ -459,8 +513,11 @@ export default function GrantOnboarding() {
                                         name="LastName"
                                         type="type"
                                         placeholder="Type here..."
+                                        value={lastName}
                                         onChange={(e)=>{setLastName(e.target.value)}}
                                     />
+                                    {lastNameError && <span className={styles.validationError}>Required !</span>}
+
                                 </div>
                             </div>
                             <div className={styles.formRow}>
@@ -471,8 +528,11 @@ export default function GrantOnboarding() {
                                         name="Email"
                                         type="email"
                                         placeholder="Type here..."
+                                        value={email}
                                         onChange={(e)=>{setEmail(e.target.value)}}
                                     />
+                                    {emailError && <span className={styles.validationError}>Required !</span>}
+
                                 </div>
                             </div>
                             <div className={styles.formRow}>
@@ -506,8 +566,10 @@ export default function GrantOnboarding() {
                                         name="WalletMemo"
                                         type="text"
                                         placeholder="Type here..."
+                                        value={stxMemo}
                                         onChange={(e)=>{setStxMemo(e.target.value)}}
                                     />
+                                    {stxMemoError && <span className={styles.validationError}>Required !</span>}
                                     <span style={checkbox}><input type={'checkbox'}/>  I confirm no memo is required</span>
                                 </div>
                             </div>

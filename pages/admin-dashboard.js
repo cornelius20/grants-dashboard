@@ -42,9 +42,9 @@ export default function AdminDashboard() {
             resetFields();
             setLoading(false);
             getAllUsers();
-            addToast('Successfully added!', { appearance: 'success' });
+            addToast('Successfully added!', { appearance: 'success',autoDismiss: true, autoDismissTimeout: 3000 });
         }else{
-            addToast('Failed to add User',{appearance: 'error'});
+            addToast('Failed to add!', { appearance: 'error',autoDismiss: true, autoDismissTimeout: 3000 });
         }
     }
 
@@ -65,9 +65,11 @@ export default function AdminDashboard() {
         setLoading(true);
         const res = await adminUpdateUser(data);
         setLoading(false);
-        console.log('Update response is : - ',res);
-        if(res){
+        if(res.success){
             getAllUsers();
+            addToast('Successfully added!', { appearance: 'success',autoDismiss: true, autoDismissTimeout: 3000 });
+        }else{
+            addToast('Something went wrong!', { appearance: 'error',autoDismiss: true, autoDismissTimeout: 3000 });
         }
     }
 
@@ -346,8 +348,11 @@ export default function AdminDashboard() {
                                         <div className={styles.formControl}>
                                             <label>Select Role</label>
                                             <select name="selectUserType" onChange={(e)=>{setCurrentUser({...currentUser,type: e.target.value})}}>
-                                                <option value="Admin">Admin</option>
                                                 <option value="User">User</option>
+                                                <option value="Admin">Admin</option>
+                                                <option value="Finance">Finance</option>
+                                                <option value="Reviewer">Reviewer</option>
+                                                <option value="Grantee">Grantee</option>
                                             </select>
                                         </div> 
                                 </div>

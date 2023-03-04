@@ -10,9 +10,12 @@ import { useRouter } from 'next/router'
 import { findGrant, paymentUpdateUser } from '../utils/ApiCalls';
 import { authOptions } from './api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
+import { useToasts } from 'react-toast-notifications';
+
 
 export default function PaymentsDashboard() {
         const { data: session } = useSession();
+        const { addToast } = useToasts();
         const router= useRouter()
         const [loading,setLoading] = useState(false);
         const [grantTracks, setGrantTracks] = useState('');
@@ -73,7 +76,6 @@ export default function PaymentsDashboard() {
 
 
         useEffect(()=>{
-        
             if(session?.user?.name.startsWith('will') || session?.user?.name?.startsWith('shakti')){
                 
             }else{
@@ -382,7 +384,11 @@ export default function PaymentsDashboard() {
                 } else if (totalAmountString.indexOf('.') === totalAmountString.length - 2) {
                     totalAmountString += '0';
                 }
-                setTotalGrantPaidToDate(totalAmountString)
+                setTotalGrantPaidToDate(totalAmountString);
+                addToast('Successfully added!', { appearance: 'success',autoDismiss: true, autoDismissTimeout: 3000 });
+
+            }else{
+                addToast('Failed to add!', { appearance: 'error',autoDismiss: true, autoDismissTimeout: 3000 });
             }
             console.log('Onboarding res is : - ',res)
             setLoading(false);

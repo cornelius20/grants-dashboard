@@ -132,7 +132,7 @@ export default function AdminDashboard() {
                 </div>
                 <div style={{...flex1}}>
                     <span style={{background: background}}>{type}</span>
-                    <button disabled // onClick={(e)=>{handleUser(e,item)}}
+                    <button onClick={(e)=>{handleUser(e,item)}}
                     >. . .</button>
                 </div>
             </li>

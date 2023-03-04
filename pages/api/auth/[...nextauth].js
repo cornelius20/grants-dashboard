@@ -21,7 +21,6 @@ export const authOptions = {
 			const githubUserId = session.user.image.match(regex);
 
 			let res = await fetch('https://api.github.com/user/' + githubUserId);
-
 			user = await res.json();
 
 			session.user.name = user.login ? user.login : '';

@@ -222,6 +222,7 @@
         color: #fff;
         height: 300px;
         overflow-y: auto;
+        margin: 10px 0;
     }
 
     .listHeader{
@@ -236,7 +237,7 @@
         justify-content: flex-start;
         /* margin-bottom: 10px; */
         align-items: center;
-        border-top: 1px solid gray;
+        border-top: 1px solid #1b1f26;
         padding: 7px 10px;
         font-size: 14px;
         position: relative;

@@ -156,7 +156,7 @@ input[type="radio"] {
   font: inherit;
   width: 20px;
   height: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.8);
+  border: 2px solid #4A5568;
   background-color: rgba(0, 0, 0, 0.64);
   border-radius: 50%;
   transform: translateY(0px);

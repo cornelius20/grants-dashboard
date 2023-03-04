@@ -2,6 +2,8 @@ import { SessionProvider } from 'next-auth/react';
 import '../styles/globals.css';
 import Head from 'next/head';
 import { ClientProvider } from '@micro-stacks/react';
+import { ToastProvider, useToasts } from 'react-toast-notifications';
+
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 	return (
@@ -26,7 +28,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 				appIconUrl="https://thumb.tildacdn.com/tild3931-3038-4632-b063-313631343738/-/resize/220x/-/format/webp/Foundation_Logo_Blac.png"
 			>
 				<SessionProvider session={session}>
-					<Component {...pageProps} />
+					<ToastProvider>
+						<Component {...pageProps} />
+					</ToastProvider>
 				</SessionProvider>
 			</ClientProvider>
 

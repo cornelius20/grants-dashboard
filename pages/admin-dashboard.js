@@ -10,11 +10,18 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router'
 import { authOptions } from './api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
+import Person from '../public/images/person.svg';
+import Arrow from '../public/images/arrow.svg';
+import { useToasts } from 'react-toast-notifications';
+import { authOptions } from './api/auth/[...nextauth]';
+import { unstable_getServerSession } from 'next-auth/next';
 
 export default function AdminDashboard() {
     const { data: session } = useSession();
+    const { addToast } = useToasts();
     const router= useRouter()
     const selectRef = useRef();
+    const [sortedAscending,setSortedAscending] = useState(true)
     const [userData,setUserData] = useState({
         firstName: "",
         lastName: "",
@@ -37,8 +44,14 @@ export default function AdminDashboard() {
             resetFields();
             setLoading(false);
             getAllUsers();
+            addToast('Successfully added!', { appearance: 'success' });
         }
     }
+
+    useEffect(()=>{
+        console.log('User data is : - ',userData);
+    },[userData])
+
 
     useEffect(()=>{
         // console.log('User name is ',session?.user);
@@ -100,14 +113,13 @@ export default function AdminDashboard() {
         })
     }
 
-
     const ListItem = (item,index) => {
         const {name,type,id} = item;
         if(!type) type = 'User';
         let background;
         if(type == 'Admin') background = '#9F7AEA';
         if(type == 'Finance') background = '#48BB78';
-        if(type == 'Reviewer' || 'User') background = 'orange';
+        if(type == 'User' || type == 'Reviewer') background = 'orange';
         if(type == 'Grantee') background = 'cyan';
 
         return(
@@ -119,7 +131,7 @@ export default function AdminDashboard() {
                     <span>{name}</span>
                 </div>
                 <div style={{...flex1}}>
-                    <span style={{background: type == 'Admin' ? '#9f7aea' : 'orange'}}>{type}</span>
+                    <span style={{background: background}}>{type}</span>
                     <button disabled // onClick={(e)=>{handleUser(e,item)}}
                     >. . .</button>
                 </div>
@@ -170,10 +182,12 @@ export default function AdminDashboard() {
                         <ul className={styles.namesList}>
                             <li style={displayFlex}>
                                 <div style={titleView}>
-                                    <span style={{...listTitle, ...marginLeft10}}>NAME</span>
+                                    <span style={{...listTitle, ...marginLeft10}}>
+                                        <Person/> <span>NAME</span>
+                                        </span>
                                 </div>
                                 <div style={flex1}>
-                                    <span style={listTitle}>ROLE</span>
+                                    <span onClick={()=>{setSortedAscending(!sortedAscending);userList.reverse();}} style={listTitle}>ROLE <Arrow style={{transform: sortedAscending ? 'rotate(0)' : 'rotate(180deg)'}}/></span>
                                 </div>
                             </li>
                             {
@@ -250,8 +264,12 @@ export default function AdminDashboard() {
                                         <div className={styles.formControl}>
                                             <label>Select Role</label>
                                             <select name="selectUserType" onChange={(e)=>{setUserData({...userData,type: e.target.value})}}>
-                                                <option value="Admin">Admin</option>
                                                 <option value="User">User</option>
+                                                <option value="Admin">Admin</option>
+                                                <option value="Finance">Finance</option>
+                                                <option value="Reviewer">Reviewer</option>
+                                                <option value="Grantee">Grantee</option>
+
                                             </select>
                                         </div>
                                 </div>
@@ -387,7 +405,12 @@ const backgroundGreen = {
 
 const listTitle = {
     fontWeight: 'bold',
-    fontSize: 14
+    fontSize: 12,
+    display: 'flex',
+    alignItems: 'center',
+    gap: 10,
+    marginBottom: 10,
+    cursor: 'pointer'
 }
 
 const grayColor = {

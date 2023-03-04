@@ -123,15 +123,12 @@ export default function PaymentsDashboard() {
             'Bitcin Utility via Stacks'
         ];
         const grantStatusArr = [
-            'Initial Review in Progress',
-            'Review in Progress',
-            'Revisions in Progress',
-            'Onboarding in Progress',
-            'Milestone in Progress',
-            'Final Deliverable in Progress',
-            'Grant Complete',
-            'Grant Now Stale',
-            'Grant Closed'
+            'Grantee Onboarding',
+            'Completing Initial Deliverable',
+            'Completing Milestone(s)',
+            'Grant Completed',
+            'Grant is Stale',
+            'Grant is Closed'
         ];
         const grantPhaseArr = [
             'Application Phase',
@@ -158,21 +155,18 @@ export default function PaymentsDashboard() {
         const github = new Octokit();
         setLoading(true);
 
-        let labels = [];
+        let res = []
+        for await (const label of grantStatusArr) {
+            let req = await github.rest.issues.listForRepo({
+                owner: "stacksgov",
+                repo: "Stacks-Grant-Launchpad",
+                state: "all",
+                labels: [label],
 
-        grantTracks != '' ? labels.push(grantTracks) : null;
-        grantPhase != '' ? labels.push(grantPhase) : null;
-        grantType != '' ? labels.push(grantType) : null;
-
-        let req = await github.rest.issues.listForRepo({
-            owner: 'stacksgov',
-            repo: 'Stacks-Grant-Launchpad',
-            state: 'all',
-            labels: labels,
-            // since: `${startDate}`
-        });
-
-        let res = req.data;
+            });
+            let newReq = res.concat(req.data);
+            res = newReq
+        }
         
         console.log('Issues response is : - ',res);
 

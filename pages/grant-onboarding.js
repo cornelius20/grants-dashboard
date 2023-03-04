@@ -25,12 +25,11 @@ export default function GrantOnboarding() {
         const [stxMemo, setStxMemo] = useState("")
         const [email, setEmail] = useState("")
         const [country, setCountry] = useState("")
-        const [emailError,setEmailError] = useState("")
-        const [firstNameError,setFirstError] = useState("")
-        const [lastNameError,setLastNameError] = useState("")
-        const [stxMemoError,setStxMemoError] = useState("")
-        const [countryError,setCountryError] = useState("")
-
+        const [emailError,setEmailError] = useState(false)
+        const [firstNameError,setFirstError] = useState(false)
+        const [lastNameError,setLastNameError] = useState(false)
+        const [stxMemoError,setStxMemoError] = useState(false)
+        const [grantIssueNumberError,setGrantIssueNumberError] = useState(false)
         const [anticipatedCompletionDate, setAnticipatedCompletionDate] = useState(new Date())
         const [visible,setVisible] = useState(false);
         const [endDate, setEndDate] = useState(new Date());
@@ -417,6 +416,7 @@ export default function GrantOnboarding() {
             setFirstError(false);
             setLastNameError(false);
             setStxMemoError(false);
+            setGrantIssueNumberError(false);
 
             if(!email){
                 setEmailError(true);
@@ -427,11 +427,14 @@ export default function GrantOnboarding() {
             if(!lastName){
                 setLastNameError(true);
             }
-            if(!stxMemoError){
+            if(!stxMemo){
                 setStxMemoError(true);
             }
+            if(!grantIssueNumber){
+                setGrantIssueNumberError(true)
+            }
             
-            if(email && firstName && lastName && stxMemo){
+            if(email && firstName && lastName && stxMemo && grantIssueNumber){
                 return true;
             }else{
                 return false;
@@ -838,11 +841,12 @@ export default function GrantOnboarding() {
                                     <select className={styles.issueSelect} style={{height: 15,marginBottom: 10}} onChange={(e)=>handleGrantChange(e)} name="selectIssue">
                                         {
                                             CSVData.map(item=>{
-                                                return(<option key={item[1]} value={`${item[1]}-${item[6]}-${item[7]}`}>{item[6]}</option>)
+                                                return(<option key={item[1]} value={`${item[1]}-${item[6]}-${item[7]}`}>{item[1]}</option>)
                                             })
                                         }
                                     </select>
                                 </div>
+                                {grantIssueNumberError && <span className={styles.validationError}>Required!</span>}
                             </div>
                             <h5>Issue Number:</h5>
                             <p>{grantIssueNumber ? grantIssueNumber : ''}</p>

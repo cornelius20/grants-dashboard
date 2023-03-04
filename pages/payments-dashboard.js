@@ -74,7 +74,7 @@ export default function PaymentsDashboard() {
 
         useEffect(()=>{
         
-            if(session?.user?.name.startsWith('will') || session?.user?.name(startsWith('shakti'))){
+            if(session?.user?.name.startsWith('will') || session?.user?.name?.startsWith('shakti')){
                 
             }else{
                 router.push('/');
@@ -344,9 +344,11 @@ export default function PaymentsDashboard() {
         if(findDateAndBudget?.grant) {
             setGrantCompletionDate(findDateAndBudget?.grant?.anticipatedCompletionDate)
             setTotalGrantPaidToDate(findDateAndBudget?.grant?.payments?.totalPayments)
+            setPaymentsLength(findDateAndBudget?.grant?.payments.paymentsMade?.length)
         } else {
             setGrantCompletionDate(null)
             setTotalGrantPaidToDate(null)
+            setPaymentsLength(0)
         }
     }
 

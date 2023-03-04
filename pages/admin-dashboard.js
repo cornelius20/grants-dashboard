@@ -13,8 +13,6 @@ import { unstable_getServerSession } from 'next-auth/next';
 import Person from '../public/images/person.svg';
 import Arrow from '../public/images/arrow.svg';
 import { useToasts } from 'react-toast-notifications';
-import { authOptions } from './api/auth/[...nextauth]';
-import { unstable_getServerSession } from 'next-auth/next';
 
 export default function AdminDashboard() {
     const { data: session } = useSession();
@@ -45,6 +43,8 @@ export default function AdminDashboard() {
             setLoading(false);
             getAllUsers();
             addToast('Successfully added!', { appearance: 'success' });
+        }else{
+            addToast('Failed to add User',{appearance: 'error'});
         }
     }
 

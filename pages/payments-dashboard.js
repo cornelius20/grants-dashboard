@@ -343,7 +343,13 @@ export default function PaymentsDashboard() {
         let findDateAndBudget = await findGrant(_id);
         if(findDateAndBudget?.grant) {
             setGrantCompletionDate(findDateAndBudget?.grant?.anticipatedCompletionDate)
-            setTotalGrantPaidToDate(findDateAndBudget?.grant?.payments?.totalPayments)
+            let totalAmountString = findDateAndBudget?.grant?.payments?.totalPayments?.toString()
+            if (totalAmountString?.indexOf('.') === -1) {
+                totalAmountString += '.000';
+            } else if (totalAmountString?.indexOf('.') === totalAmountString?.length - 2) {
+                totalAmountString += '0';
+            }
+            setTotalGrantPaidToDate(totalAmountString)
             setPaymentsLength(findDateAndBudget?.grant?.payments.paymentsMade?.length)
         } else {
             setGrantCompletionDate(null)
@@ -369,7 +375,14 @@ export default function PaymentsDashboard() {
             console.log('Onboarding data is : - ',paymentData)
             const res = await paymentUpdateUser(paymentData);
             if (res.success) {
-                setTotalGrantPaidToDate(totalGrantPaidToDate + parseFloat(usdAmount))
+                let formattedNum = totalGrantPaidToDate != undefined ? parseFloat(totalGrantPaidToDate) + parseFloat(usdAmount) : parseFloat(usdAmount)
+                let totalAmountString = formattedNum?.toString()
+                if (totalAmountString.indexOf('.') === -1) {
+                    totalAmountString += '.000';
+                } else if (totalAmountString.indexOf('.') === totalAmountString.length - 2) {
+                    totalAmountString += '0';
+                }
+                setTotalGrantPaidToDate(totalAmountString)
             }
             console.log('Onboarding res is : - ',res)
             setLoading(false);

@@ -379,6 +379,7 @@ export default function PaymentsDashboard() {
                     totalAmountString += '0';
                 }
                 setTotalGrantPaidToDate(totalAmountString);
+                setPaymentsLength(paymentsLength+1)
                 addToast('Successfully added!', { appearance: 'success',autoDismiss: true, autoDismissTimeout: 3000 });
 
             }else{

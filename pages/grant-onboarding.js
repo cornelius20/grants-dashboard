@@ -16,10 +16,12 @@ import BrowserWallet from '../components/BrowserWallet';
 import CustomAlert from '../components/CustomAlert';
 import { authOptions } from './api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
+import { useToasts } from 'react-toast-notifications';
 
 
 export default function GrantOnboarding() {
         const [loading,setLoading] = useState(false); 
+        const { addToast } = useToasts();
         const [firstName, setFirstName] = useState("")
         const [lastName, setLastName] = useState("")
         const [stxMemo, setStxMemo] = useState("")
@@ -206,7 +208,6 @@ export default function GrantOnboarding() {
                 repo: "Stacks-Grant-Launchpad",
                 state: "all",
                 labels: [label],
-
               });
               let newReq = res.concat(req.data);
               res = newReq
@@ -399,9 +400,17 @@ export default function GrantOnboarding() {
                 const valid = validateInputFields();
                 if(valid){
                     setLoading(true);
-                    console.log('Onboarding data is : - ',onBoardingData)
-                    const res = await grantOnboarding(onBoardingData);
-                    console.log('Onboarding res is : - ',res)
+                    try{
+                        const res = await grantOnboarding(onBoardingData);
+                        if(res.success){
+                            addToast('Successfully added!', { appearance: 'success',autoDismiss: true, autoDismissTimeout: 3000 });
+                            resetInputFields();
+                        }else{
+                            addToast('Failed to add!', { appearance: 'error',autoDismiss: true, autoDismissTimeout: 3000 });
+                        }
+                    }catch(err){
+                        addToast('Something went wrong!', { appearance: 'error',autoDismiss: true, autoDismissTimeout: 3000 });
+                    }
                     setLoading(false);
                 }
                 

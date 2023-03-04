@@ -44,7 +44,29 @@ export default function GrantOnboarding() {
         const [browserError,setBrowserError] = useState(false);
         const [alertVisible,setAlertVisible] = useState(false);
 
-        const [CSVData, setCSVData] = useState([]);
+        const [CSVData, setCSVData] = useState([
+            [
+                'Date Submitted',
+                'Github Issue Number',
+                'Application Type',
+                'Grant Lead',
+                'Previous Grants',
+                'Other Ecosytem Programs',
+                'Grant Name',
+                'Grant Budget',
+                'Grant Duration',
+                'Grant Type',
+                'Grant Track',
+                'Grant Goal',
+                'Grant Audience',
+                'Final Deliverable',
+                'Review Status',
+                'Grant Phase',
+                'Predicted Impact Score',
+                'Commented GH Usernames',
+                'Reacted GH Usernames'
+            ]
+        ]);
         const walletButtonClicked = async () => {
             if (isSignedIn) {
                 try{
@@ -840,7 +862,7 @@ export default function GrantOnboarding() {
                                     <DropdownIcon className={styles.selectIssueArrow} />
                                     <select className={styles.issueSelect} style={{height: 15,marginBottom: 10}} onChange={(e)=>handleGrantChange(e)} name="selectIssue">
                                         {
-                                            CSVData.map(item=>{
+                                            CSVData?.length > 1 && CSVData.map(item=>{
                                                 return(<option key={item[1]} value={`${item[1]}-${item[6]}-${item[7]}`}>{item[1]}</option>)
                                             })
                                         }

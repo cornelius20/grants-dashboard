@@ -30,12 +30,13 @@ export default function PaymentsDashboard() {
         const [grantsFound, setGrantsFound] = useState(0);
         const [stxAmount, setStxAmount] = useState(null)
         const [usdAmount, setUsdAmount] = useState(null)
+        const [paymentsLength, setPaymentsLength] = useState(0)
         const [paymentNumber, setPaymentNumber] = useState(1)
         const [txID, setTxID] = useState(null)
-        const [CSVData, setCSVData] = useState([
+        const [CSVData, setCSVData] = useState([            
             [
                 'Date Submitted',
-                'Issue Number',
+                'Github Issue Number',
                 'Application Type',
                 'Grant Lead',
                 'Previous Grants',
@@ -54,6 +55,20 @@ export default function PaymentsDashboard() {
                 'Commented GH Usernames',
                 'Reacted GH Usernames'
             ]
+        ]);
+        const [paymentData, setpaymentData] = useState([
+            
+                1,
+                2,
+                3,
+                4, 
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+            
         ]);
 
 
@@ -390,8 +405,8 @@ export default function PaymentsDashboard() {
                                     <DropdownIcon className={styles.customSelectArrow} />
                                 <select className={styles.countrySelect} style={{height: 50}} onChange={(e)=>handleGrantChange(e)} name="selectIssue">
                                     {
-                                        CSVData.map(item=>{
-                                            return(<option key={item[1]} value={`${item[1]}-${item[6]}-${item[7]}`}>{item[6]}</option>)
+                                        CSVData?.length > 1 && CSVData.map(item=>{
+                                            return(<option key={item[1]} value={`${item[1]}-${item[6]}-${item[7]}`}>{item[1]}</option>)
                                         })
                                     }
                                 </select>
@@ -402,21 +417,13 @@ export default function PaymentsDashboard() {
                                 <div className={styles.selectWrapper}>
                                     <DropdownIcon className={styles.customSelectArrow} />
                                     <select className={styles.countrySelect} style={{height: 50}} onChange={(e)=>{setPaymentNumber(e.target.value)}} name="selectIssue">
-                                        {/* {
-                                            CSVData.map(item=>{
-                                                return(<option key={item[1]} value={`${item[1]}-${item[6]}-${item[7]}`}>{item[1]}</option>)
+                                        {
+                                            paymentData.map(item=>{
+                                                if (item > paymentsLength) {
+                                                    return(<option key={item} value={`${item}}`}>{item}</option>)
+                                                }
                                             })
-                                        } */}
-                                        <option value={1}>1</option>
-                                        <option value={2}>2</option>
-                                        <option value={3}>3</option>
-                                        <option value={4}>4</option>
-                                        <option value={5}>5</option>
-                                        <option value={6}>6</option>
-                                        <option value={7}>7</option>
-                                        <option value={8}>8</option>
-                                        <option value={9}>9</option>
-                                        <option value={10}>10</option>
+                                        }
                                     </select>
                                 </div>
                             </div>

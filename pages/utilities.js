@@ -118,12 +118,12 @@ const Utilities = () => {
 					
 				</div> */}
 				{
-					session?.user?.name.startsWith('will') || session?.user?.name.startsWith('shakti') ? 
+					session?.user?.name.startsWith('will') || session?.user?.name.startsWith('ivo') || session?.user?.name.startsWith('shakti') ? 
 					<>
 					<h2>Grant Admin Tools</h2>
 					<div className={styles.buttonWrapper}>
 						{
-							session?.user?.name.startsWith('will') ? 
+							session?.user?.name.startsWith('will') || session?.user?.name.startsWith('ivo') ? 
 							<div>
 							<p>Need to adjust permission settings?</p>
 							<Link href="/admin-dashboard">

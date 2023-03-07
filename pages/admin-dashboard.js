@@ -55,7 +55,7 @@ export default function AdminDashboard() {
 
     useEffect(()=>{
         // console.log('User name is ',session?.user);
-        if (!session?.user?.name.startsWith('will') || session?.user?.name.startsWith('ivo')) {
+        if (!session?.user?.name.startsWith('will') || !session?.user?.name.startsWith('ivo')) {
             router.push('/');
         }
     },[])

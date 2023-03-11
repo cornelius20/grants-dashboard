@@ -2,7 +2,6 @@
 .main{
   background-color: #000;
 	min-height: 100vh;
-  background-image: url('../public/images/Logo.png');
   background-repeat: no-repeat;
   background-position: right bottom;
 }

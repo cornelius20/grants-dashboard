@@ -102,14 +102,14 @@ const Home = () => {
 						<h1>Grants Launchpad</h1>
 
 						<p>
-							Committed to helping developers, designers, community leaders, artists, entrepreneurs,
-							and more build a more...
+							Committed to helping developers,engineers, designers ...
 						</p>
 						<div className={styles.mainBodyText}>
-							<p>User-owned & open-source internet powered by the </p>
-							<div className={styles.highlightedWords}>Stacks</div> blockchain,{' '}
-							<div className={styles.highlightedWords}>Clarity</div> smart contracts, and secured by{' '}
-							<div className={styles.highlightedWords}>Bitcoin.</div>
+							<p>Build the future of Web3 on </p>
+							<div className={styles.highlightedWords}>Bitcoin</div> and{' '}
+							<div className={styles.highlightedWords}>Stacks</div> 
+							{/* smart contracts, and secured by{' '} */}
+							{/* <div className={styles.highlightedWords}>Bitcoin.</div> */}
 						</div>
 					</div>
 					<div className={styles.rightWrapper}>

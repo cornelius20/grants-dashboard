@@ -77,10 +77,19 @@ cursor: pointer;
   font-size: 30px;
   font-weight: 500;
   line-height: 40px;
-  max-width: 443px;
+  max-width: 315px;
   color: #E2E8F0
   ;
 }
+
+.mainBodyText2 {
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 40px;
+  max-width: 315px;
+  color: #E2E8F0;
+}
+
 
 .mainBodyText p:first-of-type {
   display: inline;

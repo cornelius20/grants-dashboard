@@ -17,9 +17,14 @@ import CustomAlert from '../components/CustomAlert';
 import { authOptions } from './api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
 import { useToasts } from 'react-toast-notifications';
+import Person from '../public/images/person.svg';
+import Arrow from '../public/images/arrow.svg';
+import PayTag from '../public/images/payTag.svg';
+import WaterDrop from '../public/images/waterDrop.svg';
+import CheckMark from '../public/images/checkmark.svg';
+import ApplicationProgress from '../components/ApplicationProgress';
 
-
-export default function GrantOnboarding() {
+export default function GrantType() {
         const [loading,setLoading] = useState(false); 
         const { addToast } = useToasts();
         const [firstName, setFirstName] = useState("")
@@ -63,13 +68,13 @@ export default function GrantOnboarding() {
                         </p>
                     </div>
                     <div className={styles.close} style={{position: 'absolute',top: 40,right: 0}}>
-                        <button className={styles.gradientButton} style={{width: 210}}>Ok</button>
+                        <button className={styles.gradientButton} style={{width: 210}}><CheckMark style={{marginRight: 10}}/> Ok</button>
                     </div>
                 </a>
             </Link>
         </div>
-        <BrowserWallet visible={browserError} handleClose={()=>setBrowserError(false)}/>
-        <AddWallet visible={visible} handleClose={()=>setVisible(false)}/>
+
+        <ApplicationProgress progress={'50%'}/>
         
         <div className={styles.onBoardingWrapper}>
             <div className={styles.onBoardingRow}>
@@ -77,105 +82,206 @@ export default function GrantOnboarding() {
                             <h2 style={{fontSize: 20,color: '#fff'}}>
                                 Grant Track
                             </h2>
-                            <p style={mb4} className={styles.text}>
-                                Before proceeding, check all the boxes that apply to your project idea:
+                            <p className={styles.text} style={{fontWeight: 'bold'}}>
+                                Select the grant type below:
                             </p>
-                            <div className={styles.row}>
-                                <div className={styles.col}>
-                                    <div className={styles.grantTypeFlex}>
-                                        <input type={'radio'}/>
-                                        <h2 className={styles.heading}>Stacks Protocol</h2>
+                            
+                            <ul className={styles.grantTypeList}>
+                                <li className={styles.grantTypeListItem}>
+                                    <div className={styles.left}>
+                                        <div>
+                                            <span className={styles.grantInputBox}>
+                                                <input style={{visibility: 'hidden'}} type={'radio'}/>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <span style={{display:'flex',alignItems: 'center',gap: 10,textTransform: 'uppercase',fontSize: 12}}><Person/> NAME</span>
+                                        </div>
                                     </div>
-                                    <ul className={styles.grantList}>
-                                        <li>Blockchain Improvements, sBTC, Subnets, PoX, SIP research, etc</li>
-                                    </ul>
-                                </div>
-                                <div className={styles.col}>
-                                    <div className={styles.grantTypeFlex}>
-                                        <input type={'radio'}/>
-                                        <h2 className={styles.heading}>Stacks Interface</h2>
+                                    <div className={styles.right}>
+                                        <div>
+                                            <span style={{display:'flex',alignItems: 'center',gap: 10,textTransform: 'uppercase',fontSize: 12}}><PayTag/> Budget $ 1</span>
+                                        </div>
+                                        <div>
+                                            <span style={{display:'flex',alignItems: 'center',gap: 10,textTransform: 'uppercase',fontSize: 12}}><WaterDrop/> Funding Stream <Arrow/></span>
+                                        </div>
+                                        <div>
+                                            <span className={styles.dots}>. . .</span>
+                                        </div>
                                     </div>
-                                    <ul className={styles.grantList}>
-                                        <li>APIs, Indexers, Decentralized Identification, Wallets, Explorers, etc.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className={styles.row}>
-                                <div className={styles.col}>
-                                    <div className={styles.grantTypeFlex}>
-                                        <input type={'radio'}/>
-                                        <h2 className={styles.heading}>Cross-Chain & Off Chain</h2>
+                                </li>
+                                <li className={styles.grantTypeListItem}>
+                                    <div className={styles.left}>
+                                        <div>
+                                            <span className={styles.grantInputBox}>
+                                                <input type={'radio'}/>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <span className={styles.grantName}>Open Source Development</span>
+                                        </div>
                                     </div>
-                                    <ul className={styles.grantList}>
-                                        <li>Decentralized Storage Integrations, Oracles & Bridges, EVM Integrations, etc.</li>
-                                    </ul>
-                                </div>
-                                <div className={styles.col}>
-                                    <div className={styles.grantTypeFlex}>
-                                        <input type={'radio'}/>
-                                        <h2 className={styles.heading}>Bitcoin Utility via Stacks</h2>
+                                    <div className={styles.right}>
+                                        <div>
+                                            <span className={styles.grantRange}>$0-$48k</span>
+                                        </div>
+                                        <div>
+                                            <span className={styles.grantStream}>Developer Grants</span>
+                                        </div>
+                                        <div>
+                                            <span className={styles.dots}>. . .</span>
+                                        </div>
                                     </div>
-                                    <ul className={styles.grantList}>
-                                        <li>DLC-Clarity Explorations, BTC-STX Wallets BTC-Native DeFi (using Stacks), etc.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className={styles.row}>
-                                <div className={styles.col}>
-                                    <div className={styles.grantTypeFlex}>
-                                        <input type={'radio'}/>
-                                        <h2 className={styles.heading}>Stacks Developer Experience</h2>
-                                    </div>
-                                    <ul className={styles.grantList}>
-                                        <li>Tooling, Software Development Kits, Libraries, Faucets, Sandboxes, etc.</li>
-                                    </ul>
-                                </div>
-                                <div className={styles.col}>
-                                    
-                                </div>
-                                
-                            </div>
+                                </li>
+                            </ul>
 
-                            <p style={mb4} className={styles.text}>
-                                Please note we are currently not accepting applications for the following Grant Tracks.
+                            <p className={styles.text}>
+                                Please note we are currently not accepting applications for the following Grant Types.
                             </p>
 
-                            <div className={styles.row}>
-                                <div className={styles.col}>
-                                    <div className={styles.grantTypeFlex}>
-                                        <input type={'radio'}/>
-                                        <h2 className={styles.heading}>Stacks dApps & Clarity</h2>
+                            <ul className={styles.grantTypeList}>
+                                <li className={styles.grantTypeListItem}>
+                                    <div className={styles.left}>
+                                        <div>
+                                            <span className={styles.grantInputBox}>
+                                                <input style={{visibility: 'hidden'}} type={'radio'}/>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <span style={{display:'flex',alignItems: 'center',gap: 10,textTransform: 'uppercase',fontSize: 12}}><Person/> NAME</span>
+                                        </div>
                                     </div>
-                                    <ul className={styles.grantList}>
-                                        <li>Clarity Improvements, SIP Development, Smart Contract Templates, dApps, etc.</li>
-                                    </ul>
-                                </div>
-                                <div className={styles.col}>
-                                    <div className={styles.grantTypeFlex}>
-                                        <input type={'radio'}/>
-                                        <h2 className={styles.heading}>Stacks Education and Community</h2>
+                                    <div className={styles.right}>
+                                        <div>
+                                            <span style={{display:'flex',alignItems: 'center',gap: 10,textTransform: 'uppercase',fontSize: 12}}><PayTag/> Budget $ 1</span>
+                                        </div>
+                                        <div>
+                                            <span style={{display:'flex',alignItems: 'center',gap: 10,textTransform: 'uppercase',fontSize: 12}}><WaterDrop/> Funding Stream <Arrow/></span>
+                                        </div>
+                                        <div>
+                                            <span className={styles.dots}>. . .</span>
+                                        </div>
                                     </div>
-                                    <ul className={styles.grantList}>
-                                        <li>Documentation, Tutorials, Workshops, Governance, Education, Content Creation, etc.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                           
-                            <div className={styles.row}>
-                                <div className={styles.col}>
-                                    <div className={styles.grantTypeFlex}>
-                                        <input type={'radio'}/>
-                                        <h2 className={styles.heading}>Stacks User Experience</h2>
+                                </li>
+                                <li className={styles.grantTypeListItem}>
+                                    <div className={styles.left}>
+                                        <div>
+                                            <span className={styles.grantInputBox}>
+                                                <input type={'radio'}/>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <span className={styles.grantName}>Stacks Community Builder Grant</span>
+                                        </div>
                                     </div>
-                                    <ul className={styles.grantList}>
-                                        <li>UX/UI Research, Speculative Design Studies, Prototypes, Component Libraries, etc</li>
-                                    </ul>
-                                </div>
-                                <div className={styles.col}>
-                                    
-                                </div>
+                                    <div className={styles.right}>
+                                        <div>
+                                            <span className={styles.grantRange}>$0-$48k</span>
+                                        </div>
+                                        <div>
+                                            <span className={styles.grantStream} style={{background: 'orange'}}>Community Grants</span>
+                                        </div>
+                                        <div>
+                                            <span className={styles.dots}>. . .</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li className={styles.grantTypeListItem}>
+                                    <div className={styles.left}>
+                                        <div>
+                                            <span className={styles.grantInputBox}>
+                                                <input type={'radio'}/>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <span className={styles.grantName}>Stacks Education Grant</span>
+                                        </div>
+                                    </div>
+                                    <div className={styles.right}>
+                                        <div>
+                                            <span className={styles.grantRange}>$0-$48k</span>
+                                        </div>
+                                        <div>
+                                            <span className={styles.grantStream} style={{background: 'orange'}}>Community Grants</span>
+                                        </div>
+                                        <div>
+                                            <span className={styles.dots}>. . .</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li className={styles.grantTypeListItem}>
+                                    <div className={styles.left}>
+                                        <div>
+                                            <span className={styles.grantInputBox}>
+                                                <input type={'radio'}/>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <span className={styles.grantName}>Stacks Event Grant</span>
+                                        </div>
+                                    </div>
+                                    <div className={styles.right}>
+                                        <div>
+                                            <span className={styles.grantRange}>$0-$48k</span>
+                                        </div>
+                                        <div>
+                                            <span className={styles.grantStream} style={{background: 'orange'}}>Community Grants</span>
+                                        </div>
+                                        <div>
+                                            <span className={styles.dots}>. . .</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li className={styles.grantTypeListItem}>
+                                    <div className={styles.left}>
+                                        <div>
+                                            <span className={styles.grantInputBox}>
+                                                <input type={'radio'}/>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <span className={styles.grantName}>Stacks Chapter Grant (by Region)</span>
+                                        </div>
+                                    </div>
+                                    <div className={styles.right}>
+                                        <div>
+                                            <span className={styles.grantRange}>Varies</span>
+                                        </div>
+                                        <div>
+                                            <span className={styles.grantStream} style={{background: 'orange'}}>Community Grants</span>
+                                        </div>
+                                        <div>
+                                            <span className={styles.dots}>. . .</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li className={styles.grantTypeListItem}>
+                                    <div className={styles.left}>
+                                        <div>
+                                            <span className={styles.grantInputBox}>
+                                                <input type={'radio'}/>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <span className={styles.grantName}>Stacks Foundation Resident Program</span>
+                                        </div>
+                                    </div>
+                                    <div className={styles.right}>
+                                        <div>
+                                            <span className={styles.grantRange}>Varies</span>
+                                        </div>
+                                        <div>
+                                            <span className={styles.grantStream} style={{background: 'lightgreen'}}>Advanced Support</span>
+                                        </div>
+                                        <div>
+                                            <span className={styles.dots}>. . .</span>
+                                        </div>
+                                    </div>
+                                </li>
                                 
-                            </div>
+                            </ul>
+                            
+                            
 
                             
                 </div>
@@ -190,6 +296,52 @@ export default function GrantOnboarding() {
 // 	backgroundColor: '#000',
 // 	height: '100vh'
 // }
+const main = {
+	backgroundColor: '#000',
+	height: '100vh'
+}
+
+const flex1 = {
+    flex: 1
+}
+
+const displayFlex = {
+    display: "flex"
+}
+
+const titleView = {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+}
+
+const listTitle = {
+    fontWeight: 'bold',
+    fontSize: 12,
+    display: 'flex',
+    alignItems: 'center',
+    gap: 10,
+    marginBottom: 10,
+    cursor: 'pointer'
+}
+
+
+const marginLeft10 = {
+    marginLeft:10
+}
+
+const addUser = {
+    color: '#fff',
+    marginBottom: 20
+}
+
+const githubView = {
+    display: 'flex',
+    flexDirection:"row",
+    width:"100%",
+    alignItems:'flex-end'
+}
 
 const flex2 = {
     flex: 2

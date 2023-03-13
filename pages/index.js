@@ -7,6 +7,7 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 import ExternalLinkIcon from '../public/images/externalLink.svg';
 import { useEffect, useState, useRef } from 'react';
 import { Octokit } from '@octokit/rest';
+import { useRouter } from 'next/router'
 import StacksLogo from '../public/images/indexStxLogo.svg';
 import StacksLogoSuccess from '../public/images/stacksModalLogoSuccess.svg';
 import ConnectGithubSVG from '../public/images/indexGithubConnect.svg';
@@ -15,12 +16,17 @@ import { saveToken } from '../utils/LocalStorage';
 
 const Home = () => {
 	const { data: session } = useSession();
+	const router= useRouter()
 	const [show, setShow] = useState(false);
 	const [mobile, setMobile] = useState();
 	const [highlightButton, setHighlightButton] = useState(false);
 	const connectButton = useRef(null);
 	
 	useEffect(() => {
+		const res = localStorage.getItem('quizCompleted');
+		if(!res){
+			router.push('/quiz');
+		}
 		async function refresh() {
 			if (session) {
 				const github = new Octokit({

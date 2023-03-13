@@ -1,0 +1,23 @@
+
+.progressContainer{
+    position: fixed;
+    top: 30px;
+    left: 30px;
+}
+
+.progressBar{
+    width: 280px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.progressBar div{
+    height: 100%;
+    background: linear-gradient(90.3deg, #3281CD 0%, #96286F 99.28%);
+}
+
+.progressLabel{
+    font-size: 14px;
+    margin-top: 5px;
+    color: rgba(255, 255, 255, 0.16);
+}

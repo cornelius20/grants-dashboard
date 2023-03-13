@@ -58,7 +58,6 @@
       font-size: 32px;
       font-weight: 300;
       padding-bottom: 20px;
-      /* margin-bottom: 10px; */
     }
   
     .onBoardingRow{
@@ -115,19 +114,6 @@
       gap: 15px;
       margin-bottom: 20px;
     }
-  
-    /* .formRow button{
-      background: linear-gradient(45deg, #3182ce, #97266d);
-      height: 45px;
-      border: 1px solid #ffffff;
-      border-radius: 5px;
-      color: #ffffff;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      width: 200px;
-      margin-top: 30px;
-    } */
   
     .formControl{
       display: flex;
@@ -217,11 +203,89 @@
           justify-content: center;
           align-items: center;
       }
+
+      /* ...........GRANT TYPE........... */
+      .grantTypeList{
+        list-style-type: none;
+        margin: 40px 0;
+      }
+
+      .grantTypeListItem{
+        border-bottom: 1px solid rgb(46, 45, 45);
+        padding: 7px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
   
+      .left{
+        flex: 1;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .left span{
+        flex: 1;
+      }
+
+      .right{
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
       
+      .right span,.right div{
+        flex: 2;
+      }
+
+      .right > div:nth-child(2){
+        flex: 3;
+      }
+
+      .right > div:nth-child(3){
+        flex: 0.5;
+      }
+
+      .grantInputBox{
+        margin-right: 0;
+      }
+
+      .grantName{
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 16px;
+        color: #CBD5E0;
+      }
+
+      .grantRange{
+        background-color: #718096;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        color: #000000;
+        padding: 3px;
+        border-radius: 3px;
+      }
+
+      .grantStream{
+        background-color: #9F7AEA;
+        font-weight: bold;
+        font-size: 12px;
+        line-height: 16px;
+        color: #000000;
+        padding: 3px;
+        border-radius: 3px;
+      }
+
+      .dots{
+        text-align: right;
+      }
   
   
-      /* .........GRANT TYPE.......... */
+      /* .........GRANT Track.......... */
       .row{
         display: flex;
         justify-content: space-between;
@@ -256,6 +320,39 @@
         color: #fff !important;
         padding: 0 !important;
       }
+
+
+
+      /* ...........PAYMENT TABLE............. */
+      .paymentList{
+        list-style-type: none;
+        margin: 40px 0;
+      }
+
+      .paymentListItem{
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+      }
+
+      .paymentListItem span{
+        flex: 1;
+      }
+
+      .paymentListItem span:nth-child(2){
+        flex: 1;
+        text-align: center;
+      }
+
+      .paymentListItem span:nth-child(3){
+        flex: 1;
+        text-align: right;
+      }
+  
+      
+
       
       /* ...........MEDIA QUERIES............. */
   

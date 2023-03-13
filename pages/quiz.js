@@ -17,39 +17,66 @@ import CustomAlert from '../components/CustomAlert';
 import { authOptions } from './api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
 import { useToasts } from 'react-toast-notifications';
+import CheckMark from '../public/images/checkmark.svg';
+import SuccessModal from '../components/SuccessModal';
+import ThanksModal from '../components/ThanksModal';
+import { useSession, signIn, signOut } from 'next-auth/react';
+
 
 
 export default function GrantOnboarding() {
-        const [loading,setLoading] = useState(false); 
-        const { addToast } = useToasts();
-        const [firstName, setFirstName] = useState("")
-        const [lastName, setLastName] = useState("")
-        const [stxMemo, setStxMemo] = useState("")
-        const [email, setEmail] = useState("")
-        const [country, setCountry] = useState("")
-        const [emailError,setEmailError] = useState(false)
-        const [firstNameError,setFirstError] = useState(false)
-        const [lastNameError,setLastNameError] = useState(false)
-        const [stxMemoError,setStxMemoError] = useState(false)
-        const [grantIssueNumberError,setGrantIssueNumberError] = useState(false)
-        const [anticipatedCompletionDate, setAnticipatedCompletionDate] = useState(new Date())
-        const [visible,setVisible] = useState(false);
-        const [endDate, setEndDate] = useState(new Date());
-        const { openAuthRequest, isRequestPending, signOut, isSignedIn } = useAuth();
-        const { stxAddress, identityAddress, rawAddress } = useAccount();
-        const label = isRequestPending ? 'Loading...' : isSignedIn ? `${stxAddress.slice(0,9)}...(Disconnect)` : 'Connect Wallet';
-        const [grantIssues,setGrantIssues] = useState([]);
-        const [grantIssueNumber,setGrantIssueNumber] = useState(null);
-        const [grantName,setGrantName] = useState(null);
-        const [grantBudget,setGrantBudget] = useState(null);
-        const [grantsFound, setGrantsFound] = useState(0);
-        const [browserError,setBrowserError] = useState(false);
-        const [alertVisible,setAlertVisible] = useState(false);
+        const { data: session } = useSession();
+        const [successModalVisible,setSuccessModalVisible] = useState(false);
+        const [thanksModalVisible,setThanksModalVisible] = useState(false);
+        const [alertVisible,setAlertVisible] = useState(false); 
+        const [checkBox,setCheckBox] = useState({
+            checkBox1: false,
+            checkBox2: false,
+            checkBox3: false,
+            checkBox4: false,
+            checkBox5: false,
+            checkBox6: false,
+            checkBox7: false,
+        })
 
+        useEffect(()=>{
+            console.log('Session is ; - ',session);
+        },[])
+
+
+        const handleCheckBoxChange = (event) => {
+            const {name,checked} = event.target;
+            setCheckBox({...checkBox,[name]: checked})
+        }
        
+        const handleSubmit = () => {
+            function allChecked(obj) {
+                for (let prop in obj) {
+                  if (!obj[prop]) {
+                    return false;
+                  }
+                }
+                return true;
+            }
+            if(allChecked(checkBox)){
+                setSuccessModalVisible(true);
+                localStorage.setItem('quizCompleted',true);
+            }else{
+                setThanksModalVisible(true);
+                localStorage.setItem('quizCompleted',true);
+            }
+        }
+
+        const closeModal = () => {
+            setThanksModalVisible(false);
+            setSuccessModalVisible(false);
+        }
         
   return (
     <div className={styles.main}>
+        <SuccessModal isVisible={successModalVisible}/>
+        <ThanksModal isVisible={thanksModalVisible} closeModal={closeModal}/>
+
         {
 			alertVisible ? <CustomAlert title="Please Connect a Wallet" onClose={()=>setAlertVisible(false)}/> : null
 		}
@@ -62,18 +89,16 @@ export default function GrantOnboarding() {
                             Close
                         </p>
                     </div>
-                    <div className={styles.close} style={{position: 'absolute',top: 40,right: 0}}>
-                        <button className={styles.gradientButton} style={{width: 210}}>Ok</button>
-                    </div>
+                    
                 </a>
             </Link>
+            <div className={styles.close} style={{position: 'absolute',top: 40,right: 0}}>
+                <button onClick={()=>{handleSubmit()}} className={styles.gradientButton} style={{width: 210}}><CheckMark style={{marginRight: 10}}/> Ok</button>
+            </div>
         </div>
-        <BrowserWallet visible={browserError} handleClose={()=>setBrowserError(false)}/>
-        <AddWallet visible={visible} handleClose={()=>setVisible(false)}/>
-        {/* <ExploreModal visible={true} handleClose={()=>setVisible(false)}/> */}
-        {/* <PopupModal visible={visible} handleClose={()=>setVisible(false)}/> */}
+
+        
         <div className={styles.onBoardingWrapper}>
-            
             <div className={styles.onBoardingRow}>
                 <div className={styles.onBoardingLeft}>
                             <h2 style={{fontSize: 20}}>
@@ -86,35 +111,34 @@ export default function GrantOnboarding() {
                                 MY PROJECT IS A PUBLIC GOOD:
                             </h2>
                             <div className={styles.flex}>
-                                <input className={styles.quizCheckBox} type={'checkbox'}/>
+                                <input className={styles.quizCheckBox} type={'checkbox'} name="checkBox1" checked={checkBox.checkBox1} onChange={handleCheckBoxChange}/>
                                 <p>My project is highly technical and all requested funding is for development time (hours).</p>
                             </div>
                             <div className={styles.flex}>
-                                <input className={styles.quizCheckBox} type={'checkbox'}/>
+                                <input className={styles.quizCheckBox} type={'checkbox'} name="checkBox2" checked={checkBox.checkBox2} onChange={handleCheckBoxChange}/>
                                 <p>100% of the funding I am seeking is for the development of free and open-source code.</p>
                             </div>
                             <div className={styles.flex}>
-                                <input className={styles.quizCheckBox} type={'checkbox'}/>
+                                <input className={styles.quizCheckBox} type={'checkbox'} name="checkBox3" checked={checkBox.checkBox3} onChange={handleCheckBoxChange}/>
                                 <p>My project will not require any follow up funding for maintenance or upkeep.</p>
                             </div>
                             <div className={styles.flex}>
-                                <input className={styles.quizCheckBox} type={'checkbox'}/>
+                                <input className={styles.quizCheckBox} type={'checkbox'} name="checkBox4" checked={checkBox.checkBox4} onChange={handleCheckBoxChange}/>
                                 <p>I have read the <a href='' className={styles.purpleLink}>terms and conditions</a> and any work I perform as a result of grant funding will comply with them.</p>
                             </div>
-
                             <h2 style={mt20}>
                                 MY PROJECT ALIGNS WITH CURRENT STACKS PRIORITIES:
                             </h2>
                             <div className={styles.flex}>
-                                <input className={styles.quizCheckBox} type={'checkbox'}/>
+                                <input className={styles.quizCheckBox} type={'checkbox'} name="checkBox5" checked={checkBox.checkBox5} onChange={handleCheckBoxChange}/>
                                 <p>I have read the <a className={styles.purpleLink}>2023 Grant Program Priorities</a> blog post and feel my project is complimentary to the current direction of the Grants program.</p>
                             </div>
                             <div className={styles.flex}>
-                                <input className={styles.quizCheckBox} type={'checkbox'}/>
+                                <input className={styles.quizCheckBox} type={'checkbox'} name="checkBox6" checked={checkBox.checkBox6} onChange={handleCheckBoxChange}/>
                                 <p>I have read the <a className={styles.purpleLink}>sBTC whitepaper</a> and the <a className={styles.purpleLink}>Nakamoto release whitepaper</a> and my project directly relates to those technologies.</p>
                             </div>
                             <div className={styles.flex}>
-                                <input className={styles.quizCheckBox} type={'checkbox'}/>
+                                <input className={styles.quizCheckBox} type={'checkbox'} name="checkBox7" checked={checkBox.checkBox7} onChange={handleCheckBoxChange}/>
                                 <p>I have read the <a className={styles.purpleLink}>current grant priorities</a> and my project directly relates to those priorities.</p>
                             </div>
                 </div>

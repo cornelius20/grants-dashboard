@@ -144,7 +144,7 @@ export default function GrantTrack() {
                                 <div className={styles.col}>
                                     <div className={styles.grantTypeFlex}>
                                         <input type={'radio'}/>
-                                        <h2 className={styles.heading}>Stacks dApps & Clarity</h2>
+                                        <h2 className={styles.heading2}>Stacks dApps & Clarity</h2>
                                     </div>
                                     <ul className={styles.grantList}>
                                         <li>Clarity Improvements, SIP Development, Smart Contract Templates, dApps, etc.</li>
@@ -153,7 +153,7 @@ export default function GrantTrack() {
                                 <div className={styles.col}>
                                     <div className={styles.grantTypeFlex}>
                                         <input type={'radio'}/>
-                                        <h2 className={styles.heading}>Stacks Education and Community</h2>
+                                        <h2 className={styles.heading2}>Stacks Education and Community</h2>
                                     </div>
                                     <ul className={styles.grantList}>
                                         <li>Documentation, Tutorials, Workshops, Governance, Education, Content Creation, etc.</li>
@@ -165,7 +165,7 @@ export default function GrantTrack() {
                                 <div className={styles.col}>
                                     <div className={styles.grantTypeFlex}>
                                         <input type={'radio'}/>
-                                        <h2 className={styles.heading}>Stacks User Experience</h2>
+                                        <h2 className={styles.heading2}>Stacks User Experience</h2>
                                     </div>
                                     <ul className={styles.grantList}>
                                         <li>UX/UI Research, Speculative Design Studies, Prototypes, Component Libraries, etc</li>

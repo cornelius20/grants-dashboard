@@ -45,3 +45,9 @@
     color: #718096;
     cursor: pointer;
 }
+
+.bannerLink{
+    color: #D53F8C !important;
+    text-decoration: underline;
+    font-weight: bold;
+}

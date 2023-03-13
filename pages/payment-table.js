@@ -64,7 +64,7 @@ export default function PaymentTable() {
                             </p>
                             
                             <ul className={styles.paymentList}>
-                                <li className={styles.paymentListItem} style={{fontWeight: 700,fontSize: 16}}>
+                                <li className={styles.paymentListHeader} style={{fontWeight: 700,fontSize: 16}}>
                                     <span>Project Budget</span>
                                     <span>Number of Payments</span>
                                     <span>% of Budget per Payment</span>
@@ -75,20 +75,16 @@ export default function PaymentTable() {
                                     <span>50%</span>
                                 </li>
                                 <li className={styles.paymentListItem}>
-                                    <span>$0 to $9,999</span>
-                                    <span>2 (1 milestone)</span>
-                                    <span>50%</span>
+                                    <span>$10k to $23,999</span>
+                                    <span>3 (2 milestone)</span>
+                                    <span>33%</span>
                                 </li>
                                 <li className={styles.paymentListItem}>
-                                    <span>$0 to $9,999</span>
-                                    <span>2 (1 milestone)</span>
-                                    <span>50%</span>
+                                    <span>$24k to $48,000</span>
+                                    <span>4 (3 milestone)</span>
+                                    <span>25%</span>
                                 </li>
-                                <li className={styles.paymentListItem}>
-                                    <span>$0 to $9,999</span>
-                                    <span>2 (1 milestone)</span>
-                                    <span>50%</span>
-                                </li>
+                                
                             </ul>
                             
                 </div>

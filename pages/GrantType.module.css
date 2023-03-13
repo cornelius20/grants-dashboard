@@ -2,6 +2,7 @@
 .main{
     background-color: #000;
     min-height: 100vh;
+    background-image: url('../public/images/Logo.png');
     background-repeat: no-repeat;
     background-position: right bottom;
   }
@@ -208,6 +209,8 @@
       .grantTypeList{
         list-style-type: none;
         margin: 40px 0;
+        background: #000;
+        opacity: .8;
       }
 
       .grantTypeListItem{
@@ -253,11 +256,22 @@
         margin-right: 0;
       }
 
+      .grantInputBox2 input{
+        border: 2px solid rgb(50, 50, 50);
+      }
+
       .grantName{
         font-weight: bold;
         font-size: 14px;
         line-height: 16px;
         color: #CBD5E0;
+      }
+
+      .grantName2{
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 16px;
+        color: #4A5568;
       }
 
       .grantRange{
@@ -282,6 +296,12 @@
 
       .dots{
         text-align: right;
+        color: #bbbdc1;
+      }
+
+      .dots2{
+        text-align: right;
+        color: #4a515d;
       }
   
   
@@ -321,12 +341,29 @@
         padding: 0 !important;
       }
 
+      .heading2{
+        font-size: 18px !important;
+        color: gray !important;
+        padding: 0 !important;
+      }
+
+
 
 
       /* ...........PAYMENT TABLE............. */
       .paymentList{
         list-style-type: none;
         margin: 40px 0;
+        background: #000;
+        opacity: .5;
+      }
+
+      .paymentListHeader{
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
       }
 
       .paymentListItem{
@@ -335,18 +372,19 @@
         justify-content: space-between;
         align-items: center;
         font-size: 14px;
+        color: rgba(255, 255, 255, 0.64);
       }
 
-      .paymentListItem span{
+      .paymentListItem span,.paymentListHeader span{
         flex: 1;
       }
 
-      .paymentListItem span:nth-child(2){
+      .paymentListItem span:nth-child(2),.paymentListHeader span:nth-child(2){
         flex: 1;
         text-align: center;
       }
 
-      .paymentListItem span:nth-child(3){
+      .paymentListItem span:nth-child(3),.paymentListHeader span:nth-child(3){
         flex: 1;
         text-align: right;
       }

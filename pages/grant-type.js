@@ -23,6 +23,7 @@ import PayTag from '../public/images/payTag.svg';
 import WaterDrop from '../public/images/waterDrop.svg';
 import CheckMark from '../public/images/checkmark.svg';
 import ApplicationProgress from '../components/ApplicationProgress';
+import { useRouter } from 'next/router';
 
 export default function GrantType() {
         const [loading,setLoading] = useState(false); 
@@ -50,7 +51,13 @@ export default function GrantType() {
         const [grantsFound, setGrantsFound] = useState(0);
         const [browserError,setBrowserError] = useState(false);
         const [alertVisible,setAlertVisible] = useState(false);
+        const router= useRouter()
 
+
+
+        const validateGrantType = () => {
+            router.push('/grant-track')
+        }
        
         
   return (
@@ -67,11 +74,12 @@ export default function GrantType() {
                             Close
                         </p>
                     </div>
-                    <div className={styles.close} style={{position: 'absolute',top: 40,right: 0}}>
-                        <button className={styles.gradientButton} style={{width: 210}}><CheckMark style={{marginRight: 10}}/> Ok</button>
-                    </div>
+                    
                 </a>
             </Link>
+            <div className={styles.close} style={{position: 'absolute',top: 40,right: 0}}>
+                <button onClick={validateGrantType} className={styles.gradientButton} style={{width: 210}}><CheckMark style={{marginRight: 10}}/> Ok</button>
+            </div>
         </div>
 
         <ApplicationProgress progress={'50%'}/>
@@ -149,17 +157,17 @@ export default function GrantType() {
                                         </div>
                                         <div>
                                             <span style={listHeader2}>
-                                            <svg
-                                                width="12"
-                                                height="15"
-                                                viewBox="0 0 12 15"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                >
-                                                    <path
-                                                        d="M11.3332 14.6667H0.666504V13.3333C0.666504 12.4493 1.01769 11.6014 1.64281 10.9763C2.26794 10.3512 3.11578 10 3.99984 10H7.99984C8.88389 10 9.73174 10.3512 10.3569 10.9763C10.982 11.6014 11.3332 12.4493 11.3332 13.3333V14.6667ZM5.99984 8.66667C5.47455 8.66667 4.95441 8.56321 4.4691 8.36219C3.9838 8.16117 3.54284 7.86653 3.17141 7.4951C2.79998 7.12366 2.50534 6.68271 2.30432 6.19741C2.1033 5.7121 1.99984 5.19196 1.99984 4.66667C1.99984 4.14138 2.1033 3.62124 2.30432 3.13594C2.50534 2.65064 2.79998 2.20968 3.17141 1.83824C3.54284 1.46681 3.9838 1.17217 4.4691 0.971154C4.95441 0.770135 5.47455 0.666672 5.99984 0.666672C7.0607 0.666672 8.07812 1.0881 8.82826 1.83824C9.57841 2.58839 9.99984 3.60581 9.99984 4.66667C9.99984 5.72754 9.57841 6.74495 8.82826 7.4951C8.07812 8.24524 7.0607 8.66667 5.99984 8.66667Z"
-                                                        fill="rgba(255, 255, 255, 0.48)"
-                                                    />
+                                                <svg
+                                                    width="12"
+                                                    height="15"
+                                                    viewBox="0 0 12 15"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <path
+                                                            d="M11.3332 14.6667H0.666504V13.3333C0.666504 12.4493 1.01769 11.6014 1.64281 10.9763C2.26794 10.3512 3.11578 10 3.99984 10H7.99984C8.88389 10 9.73174 10.3512 10.3569 10.9763C10.982 11.6014 11.3332 12.4493 11.3332 13.3333V14.6667ZM5.99984 8.66667C5.47455 8.66667 4.95441 8.56321 4.4691 8.36219C3.9838 8.16117 3.54284 7.86653 3.17141 7.4951C2.79998 7.12366 2.50534 6.68271 2.30432 6.19741C2.1033 5.7121 1.99984 5.19196 1.99984 4.66667C1.99984 4.14138 2.1033 3.62124 2.30432 3.13594C2.50534 2.65064 2.79998 2.20968 3.17141 1.83824C3.54284 1.46681 3.9838 1.17217 4.4691 0.971154C4.95441 0.770135 5.47455 0.666672 5.99984 0.666672C7.0607 0.666672 8.07812 1.0881 8.82826 1.83824C9.57841 2.58839 9.99984 3.60581 9.99984 4.66667C9.99984 5.72754 9.57841 6.74495 8.82826 7.4951C8.07812 8.24524 7.0607 8.66667 5.99984 8.66667Z"
+                                                            fill="rgba(255, 255, 255, 0.48)"
+                                                        />
                                                 </svg> NAME
                                             </span>
                                         </div>

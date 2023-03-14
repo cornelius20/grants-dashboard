@@ -17,35 +17,19 @@ import CustomAlert from '../components/CustomAlert';
 import { authOptions } from './api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
 import { useToasts } from 'react-toast-notifications';
+import ApplicationProgress from '../components/ApplicationProgress';
+import CheckMark from '../public/images/checkmark.svg';
+import { useRouter } from 'next/router';
 
 
 export default function GrantTrack() {
-        const [loading,setLoading] = useState(false); 
-        const { addToast } = useToasts();
-        const [firstName, setFirstName] = useState("")
-        const [lastName, setLastName] = useState("")
-        const [stxMemo, setStxMemo] = useState("")
-        const [email, setEmail] = useState("")
-        const [country, setCountry] = useState("")
-        const [emailError,setEmailError] = useState(false)
-        const [firstNameError,setFirstError] = useState(false)
-        const [lastNameError,setLastNameError] = useState(false)
-        const [stxMemoError,setStxMemoError] = useState(false)
-        const [grantIssueNumberError,setGrantIssueNumberError] = useState(false)
-        const [anticipatedCompletionDate, setAnticipatedCompletionDate] = useState(new Date())
-        const [visible,setVisible] = useState(false);
-        const [endDate, setEndDate] = useState(new Date());
-        const { openAuthRequest, isRequestPending, signOut, isSignedIn } = useAuth();
-        const { stxAddress, identityAddress, rawAddress } = useAccount();
-        const label = isRequestPending ? 'Loading...' : isSignedIn ? `${stxAddress.slice(0,9)}...(Disconnect)` : 'Connect Wallet';
-        const [grantIssues,setGrantIssues] = useState([]);
-        const [grantIssueNumber,setGrantIssueNumber] = useState(null);
-        const [grantName,setGrantName] = useState(null);
-        const [grantBudget,setGrantBudget] = useState(null);
-        const [grantsFound, setGrantsFound] = useState(0);
-        const [browserError,setBrowserError] = useState(false);
+        
         const [alertVisible,setAlertVisible] = useState(false);
+        const router = useRouter();
 
+        const validateGrantTrack = () => {
+            router.push('/')
+        }
        
         
   return (
@@ -62,14 +46,15 @@ export default function GrantTrack() {
                             Close
                         </p>
                     </div>
-                    <div className={styles.close} style={{position: 'absolute',top: 40,right: 0}}>
-                        <button className={styles.gradientButton} style={{width: 210}}>Ok</button>
-                    </div>
+                    
                 </a>
             </Link>
+            <div className={styles.close} style={{position: 'absolute',top: 40,right: 0}}>
+                <button onClick={validateGrantTrack} className={styles.gradientButton} style={{width: 210}}><CheckMark style={{marginRight: 10}}/> Ok</button>
+            </div>
         </div>
-        <BrowserWallet visible={browserError} handleClose={()=>setBrowserError(false)}/>
-        <AddWallet visible={visible} handleClose={()=>setVisible(false)}/>
+        
+        <ApplicationProgress progress={'75%'}/>
         
         <div className={styles.onBoardingWrapper}>
             <div className={styles.onBoardingRow}>

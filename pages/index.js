@@ -23,10 +23,10 @@ const Home = () => {
 	const connectButton = useRef(null);
 	
 	useEffect(() => {
-		const res = localStorage.getItem('quizCompleted');
-		if(!res){
-			router.push('/quiz');
-		}
+		// const res = localStorage.getItem('quizCompleted');
+		// if(!res){
+		// 	router.push('/quiz');
+		// }
 		async function refresh() {
 			if (session) {
 				const github = new Octokit({
@@ -77,7 +77,7 @@ const Home = () => {
 			);
 		} else if (session) {
 			return (
-				<Link href="/application">
+				<Link href="/quiz">
 					<button>
 						<a>Submit your Application or Wishlist Idea!</a>
 					</button>

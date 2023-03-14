@@ -72,33 +72,29 @@ export default function GrantOnboarding() {
             setThanksModalVisible(false);
             setSuccessModalVisible(false);
         }
+
+        
         
   return (
     <div className={styles.main}>
         <SuccessModal isVisible={successModalVisible}/>
         <ThanksModal isVisible={thanksModalVisible} closeModal={closeModal}/>
-        <ApplicationProgress progress={'10%'}/> 
-
+        <ApplicationProgress progress={'10%'}/>
         {
 			alertVisible ? <CustomAlert title="Please Connect a Wallet" onClose={()=>setAlertVisible(false)}/> : null
 		}
-        <div style={{position: 'relative'}}>
-            <Link href="/">
-                <a>
-                    <div className={styles.close}>
-                        <p>
-                            <CloseIcon />
-                            Close
-                        </p>
-                    </div>
-                    
-                </a>
-            </Link>
-            <div className={styles.close} style={{position: 'absolute',top: 40,right: 0}}>
-                <button onClick={()=>{handleSubmit()}} className={styles.gradientButton} style={{width: 210}}><CheckMark style={{marginRight: 10}}/> Ok</button>
+        
+        <div style={wrapper}>
+            <p>
+                <Link href={'/'}>
+                    Close
+                </Link>
+            </p>
+            <div style={relative}>
+                <button onClick={()=>{handleSubmit()}} className={styles.gradientButton} style={{width: 210,position: 'absolute',top: 0,right: 0}}><CheckMark style={{marginRight: 10}}/> Ok</button>
             </div>
         </div>
-
+        
         
         <div className={styles.onBoardingWrapper}>
             <div className={styles.onBoardingRow}>
@@ -206,6 +202,20 @@ const grayColor = {
 
 const whiteColor = {
     color: '#E2E8F0',
+}
+
+const wrapper = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-end',
+    paddingRight: 26,
+    paddingTop: 38,
+    position: 'relative'
+}
+
+const relative = {
+    position: 'relative',
+    marginTop: 20
 }
 
 export async function getServerSideProps(context) {

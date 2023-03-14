@@ -71,8 +71,8 @@ export default function GrantType() {
                                     </div>
                                 </li> */}
                                 {
-                                    projectTypes.map(item=>(
-                                        <li className={styles.grantTypeListItem}>
+                                    projectTypes.map((item,index)=>(
+                                        <li key={index} className={styles.grantTypeListItem}>
                                             <div className={styles.left}>
                                                 <div>
                                                     <span className={styles.grantInputBox}>
@@ -192,7 +192,7 @@ export default function GrantType() {
                                     </div>
                                     <div className={styles.right}>
                                         <div>
-                                            <span className={styles.grantRange}>$0-$48k</span>
+                                            <span className={styles.grantRange}>$0-$10k</span>
                                         </div>
                                         <div>
                                             <span className={styles.grantStream} style={{background: 'orange'}}>Community Grants</span>
@@ -215,7 +215,7 @@ export default function GrantType() {
                                     </div>
                                     <div className={styles.right}>
                                         <div>
-                                            <span className={styles.grantRange}>$0-$48k</span>
+                                            <span className={styles.grantRange}>$0-$10k</span>
                                         </div>
                                         <div>
                                             <span className={styles.grantStream} style={{background: 'orange'}}>Community Grants</span>
@@ -238,7 +238,7 @@ export default function GrantType() {
                                     </div>
                                     <div className={styles.right}>
                                         <div>
-                                            <span className={styles.grantRange}>$0-$48k</span>
+                                            <span className={styles.grantRange}>$0-$10k</span>
                                         </div>
                                         <div>
                                             <span className={styles.grantStream} style={{background: 'orange'}}>Community Grants</span>

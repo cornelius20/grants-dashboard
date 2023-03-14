@@ -1,4 +1,4 @@
-import React, { useEffect, useRef,useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './GrantOnboarding.module.css';
 import CloseIcon from '../public/images/close.svg';
 import GithubIcon from "../public/images/github.svg";
@@ -17,73 +17,73 @@ import { useToasts } from 'react-toast-notifications';
 export default function AdminDashboard() {
     const { data: session } = useSession();
     const { addToast } = useToasts();
-    const router= useRouter()
+    const router = useRouter()
     const selectRef = useRef();
-    const [sortedAscending,setSortedAscending] = useState(true)
-    const [userData,setUserData] = useState({
+    const [sortedAscending, setSortedAscending] = useState(true)
+    const [userData, setUserData] = useState({
         firstName: "",
         lastName: "",
         login: "",
         email: "",
         type: "User"
     });
-    const [loading,setLoading] = useState(false);
-    const [searchLoading,setSearchLoading] = useState(false);
-    const [userList,setUserList] = useState([]);
-    const [searchVal,setSearchVal] = useState('');
-    const [currentUser,setCurrentUser] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [searchLoading, setSearchLoading] = useState(false);
+    const [userList, setUserList] = useState([]);
+    const [searchVal, setSearchVal] = useState('');
+    const [currentUser, setCurrentUser] = useState(null);
 
-    const createUser = async(data) => {
+    const createUser = async (data) => {
         console.log('Creating user ....')
         setLoading(true);
         const res = await adminCreateUser(data);
         setLoading(false);
-        if(res.success){
+        if (res.success) {
             resetFields();
             setLoading(false);
             getAllUsers();
-            addToast('Successfully added!', { appearance: 'success',autoDismiss: true, autoDismissTimeout: 3000 });
-        }else{
-            addToast('Failed to add!', { appearance: 'error',autoDismiss: true, autoDismissTimeout: 3000 });
+            addToast('Successfully added!', { appearance: 'success', autoDismiss: true, autoDismissTimeout: 3000 });
+        } else {
+            addToast('Failed to add!', { appearance: 'error', autoDismiss: true, autoDismissTimeout: 3000 });
         }
     }
 
-    useEffect(()=>{
-        console.log('User data is : - ',userData);
-    },[userData])
+    useEffect(() => {
+        console.log('User data is : - ', userData);
+    }, [userData])
 
 
-    useEffect(()=>{
+    useEffect(() => {
         // console.log('User name is ',session?.user);
         if (!session?.user?.name.startsWith('will') || !session?.user?.name.startsWith('ivo')) {
             router.push('/');
         }
-    },[])
-    
+    }, [])
 
-    const updateUser = async(data) => {
+
+    const updateUser = async (data) => {
         setLoading(true);
         const res = await adminUpdateUser(data);
         setLoading(false);
-        if(res.success){
+        if (res.success) {
             getAllUsers();
-            addToast('Successfully added!', { appearance: 'success',autoDismiss: true, autoDismissTimeout: 3000 });
-        }else{
-            addToast('Something went wrong!', { appearance: 'error',autoDismiss: true, autoDismissTimeout: 3000 });
+            addToast('Successfully added!', { appearance: 'success', autoDismiss: true, autoDismissTimeout: 3000 });
+        } else {
+            addToast('Something went wrong!', { appearance: 'error', autoDismiss: true, autoDismissTimeout: 3000 });
         }
     }
 
-    const getAllUsers = async() => {
+    const getAllUsers = async () => {
         setLoading(true);
         const res = await adminGetAllUsers();
         setLoading(false);
-        if(res){
+        if (res) {
             setLoading(false);
             setUserList(res.users);
         }
     }
 
-    const searchUser = async(val) => {
+    const searchUser = async (val) => {
         setSearchLoading(true);
         const res = await adminSearchUser(val);
         setSearchLoading(false);
@@ -100,7 +100,7 @@ export default function AdminDashboard() {
         updateUser(currentUser);
     }
 
-    const handleUser = (e,item) => {
+    const handleUser = (e, item) => {
         e.preventDefault();
         setCurrentUser(item);
     }
@@ -115,157 +115,157 @@ export default function AdminDashboard() {
         })
     }
 
-    const ListItem = (item,index) => {
-        const {name,type,id} = item;
-        if(!type) type = 'User';
+    const ListItem = (item, index) => {
+        const { name, type, id } = item;
+        if (!type) type = 'User';
         let background;
-        if(type == 'Admin') background = '#9F7AEA';
-        if(type == 'Finance') background = '#48BB78';
-        if(type == 'User' || type == 'Reviewer') background = 'orange';
-        if(type == 'Grantee') background = 'cyan';
+        if (type == 'Admin') background = '#9F7AEA';
+        if (type == 'Finance') background = '#48BB78';
+        if (type == 'User' || type == 'Reviewer') background = 'orange';
+        if (type == 'Grantee') background = 'cyan';
 
-        return(
+        return (
             <li key={index} className={styles.listItem}>
                 <div style={titleView}>
                     <span>
-                        <input type={'radio'}/>
+                        <input type={'radio'} />
                     </span>
                     <span>{name}</span>
                 </div>
-                <div style={{...flex1}}>
-                    <span style={{background: background}}>{type}</span>
-                    <button onClick={(e)=>{handleUser(e,item)}}
+                <div style={{ ...flex1 }}>
+                    <span style={{ background: background }}>{type}</span>
+                    <button onClick={(e) => { handleUser(e, item) }}
                     >. . .</button>
                 </div>
             </li>
         )
     }
 
-    useEffect(()=>{
-        getAllUsers(); 
-    },[])
+    useEffect(() => {
+        getAllUsers();
+    }, [])
 
-  return (
-    <div style={main}>
-        <Link href="/">
-			<a>
-				<div className={styles.close}>
-					<p>
-						<CloseIcon />
-							Close
-					</p>
-				    <span></span>
-				</div>
-			</a>
-		</Link>
-        <div className={styles.onBoardingWrapper}>
-            <h2>
-                Admin Dashboard
-            </h2>
-            <div className={styles.onBoardingRow}>
-                <div className={styles.onBoardingLeft}>
-                    <p className={styles.text}>
-                        A simple widget for adding users and adjusting permission settings by role.
-                    </p>
-                    <form>
-                        <div className={styles.formRow}>
-                            <div className={styles.formControl}>
-                                <label>Search for user <span style={grayColor}>(only displays previously added users)</span></label>
-                                <input 
-                                    className={styles.formInput}
-                                    name="SearchUserInput"
-                                    type="text"
-                                    placeholder="Type here..."
-                                    onChange={(e)=>searchUser(e.target.value)}
-                                />
+    return (
+        <div style={main}>
+            <Link href="/">
+                <a>
+                    <div className={styles.close}>
+                        <p>
+                            <CloseIcon />
+                            Close
+                        </p>
+                        <span></span>
+                    </div>
+                </a>
+            </Link>
+            <div className={styles.onBoardingWrapper}>
+                <h2>
+                    Admin Dashboard
+                </h2>
+                <div className={styles.onBoardingRow}>
+                    <div className={styles.onBoardingLeft}>
+                        <p className={styles.text}>
+                            A simple widget for adding users and adjusting permission settings by role.
+                        </p>
+                        <form>
+                            <div className={styles.formRow}>
+                                <div className={styles.formControl}>
+                                    <label>Search for user <span style={grayColor}>(only displays previously added users)</span></label>
+                                    <input
+                                        className={styles.formInput}
+                                        name="SearchUserInput"
+                                        type="text"
+                                        placeholder="Type here..."
+                                        onChange={(e) => searchUser(e.target.value)}
+                                    />
+                                </div>
                             </div>
-                        </div>
-                        <p>All Users</p>
-                        <ul className={styles.namesList}>
-                            <li style={displayFlex}>
-                                <div style={titleView}>
-                                    <span style={{...listTitle, ...marginLeft10}}>
-                                        <Person/> <span>NAME</span>
+                            <p>All Users</p>
+                            <ul className={styles.namesList}>
+                                <li style={displayFlex}>
+                                    <div style={titleView}>
+                                        <span style={{ ...listTitle, ...marginLeft10 }}>
+                                            <Person /> <span>NAME</span>
                                         </span>
-                                </div>
-                                <div style={flex1}>
-                                    <span onClick={()=>{setSortedAscending(!sortedAscending);userList.reverse();}} style={listTitle}>ROLE <Arrow style={{transform: sortedAscending ? 'rotate(0)' : 'rotate(180deg)'}}/></span>
-                                </div>
-                            </li>
-                            {
-                                searchLoading ? <div className={styles.centerBox}><LoadingIndicator size={'large'}/></div> : userList.map((item,index)=> ListItem(item,index))
-                            }
-                        </ul>
-                    </form>
-                </div>
-                <div className={styles.onBoardingRight}>
-                    {
-                        !currentUser ? <>
-                            <p style={addUser}>Add a New User</p>
-                            <form>
-                                <div className={styles.formRow}>
+                                    </div>
+                                    <div style={flex1}>
+                                        <span onClick={() => { setSortedAscending(!sortedAscending); userList.reverse(); }} style={listTitle}>ROLE <Arrow style={{ transform: sortedAscending ? 'rotate(0)' : 'rotate(180deg)' }} /></span>
+                                    </div>
+                                </li>
+                                {
+                                    searchLoading ? <div className={styles.centerBox}><LoadingIndicator size={'large'} /></div> : userList.map((item, index) => ListItem(item, index))
+                                }
+                            </ul>
+                        </form>
+                    </div>
+                    <div className={styles.onBoardingRight}>
+                        {
+                            !currentUser ? <>
+                                <p style={addUser}>Add a New User</p>
+                                <form>
+                                    <div className={styles.formRow}>
                                         <div className={styles.formControl}>
                                             <label>First Name</label>
-                                            <input 
+                                            <input
                                                 className={styles.formInput}
                                                 name="FirstName"
                                                 type="text"
                                                 required
                                                 placeholder="Type here..."
                                                 value={userData.firstName}
-                                                onChange={(e)=>{setUserData({...userData,firstName: e.target.value})}}
+                                                onChange={(e) => { setUserData({ ...userData, firstName: e.target.value }) }}
                                             />
                                         </div>
-                                </div>
-                                <div className={styles.formRow}>
+                                    </div>
+                                    <div className={styles.formRow}>
                                         <div className={styles.formControl}>
                                             <label>Last Name</label>
-                                            <input 
+                                            <input
                                                 className={styles.formInput}
                                                 name="LastName"
                                                 required
                                                 type="text"
                                                 placeholder="Type here..."
                                                 value={userData.lastName}
-                                                onChange={(e)=>{setUserData({...userData,lastName: e.target.value})}}
+                                                onChange={(e) => { setUserData({ ...userData, lastName: e.target.value }) }}
                                             />
                                         </div>
-                                </div>
-                                <div className={styles.formRow}>
+                                    </div>
+                                    <div className={styles.formRow}>
                                         <div className={styles.formControl}>
-                                        <label>Github Username <span style={grayColor}>(login username used)</span></label> 
-                                        <div style={githubView}>
-                                                <input   
+                                            <label>Github Username <span style={grayColor}>(login username used)</span></label>
+                                            <div style={githubView}>
+                                                <input
                                                     className={styles.formInput}
                                                     name="GitHubUserName"
                                                     type="text"
                                                     required
                                                     placeholder="will-at-stacks"
                                                     value={userData.login}
-                                                    onChange={(e)=>{setUserData({...userData,login: e.target.value})}}
+                                                    onChange={(e) => { setUserData({ ...userData, login: e.target.value }) }}
                                                 />
-                                                <GithubIcon className={styles.searchIcon}/>
+                                                <GithubIcon className={styles.searchIcon} />
                                             </div>
-                                        </div>  
-                                </div>
-                                <div className={styles.formRow}>
+                                        </div>
+                                    </div>
+                                    <div className={styles.formRow}>
                                         <div className={styles.formControl}>
                                             <label>Email Address</label>
-                                            <input 
+                                            <input
                                                 className={styles.formInput}
                                                 name="EmailAddress"
                                                 required
                                                 type="text"
                                                 placeholder="Type here..."
                                                 value={userData.email}
-                                                onChange={(e)=>{setUserData({...userData,email: e.target.value})}}
+                                                onChange={(e) => { setUserData({ ...userData, email: e.target.value }) }}
                                             />
-                                        </div> 
-                                </div>
-                                <div className={styles.formRow}>
+                                        </div>
+                                    </div>
+                                    <div className={styles.formRow}>
                                         <div className={styles.formControl}>
                                             <label>Select Role</label>
-                                            <select name="selectUserType" onChange={(e)=>{setUserData({...userData,type: e.target.value})}}>
+                                            <select name="selectUserType" onChange={(e) => { setUserData({ ...userData, type: e.target.value }) }}>
                                                 <option value="User">User</option>
                                                 <option value="Admin">Admin</option>
                                                 <option value="Finance">Finance</option>
@@ -274,107 +274,107 @@ export default function AdminDashboard() {
 
                                             </select>
                                         </div>
-                                </div>
-                                <div className={styles.divider}></div>
-                                <button type='submit' disabled={loading} onClick={(e)=>{handleSubmit(e)}} className={styles.gradientButton}>
-                                    {
-                                        loading ? <LoadingIndicator size={'small'}/> : 'Click to Submit'
-                                    }
-                                </button>
-                            </form>
-                        </> : <>
-                            <p style={addUser}>Edit User ({currentUser.name})</p>
-                            <form>
-                                <div className={styles.formRow}>
+                                    </div>
+                                    <div className={styles.divider}></div>
+                                    <button type='submit' disabled={loading} onClick={(e) => { handleSubmit(e) }} className={styles.gradientButton}>
+                                        {
+                                            loading ? <LoadingIndicator size={'small'} /> : 'Click to Submit'
+                                        }
+                                    </button>
+                                </form>
+                            </> : <>
+                                <p style={addUser}>Edit User ({currentUser.name})</p>
+                                <form>
+                                    <div className={styles.formRow}>
                                         <div className={styles.formControl}>
                                             <label>First Name</label>
-                                            <input 
+                                            <input
                                                 className={styles.formInput}
                                                 name="FirstName"
                                                 type="text"
                                                 required
                                                 value={currentUser.name.split(' ')[0]}
                                                 placeholder="Type here..."
-                                                onChange={(e)=>{setCurrentUser({...currentUser,firstName: e.target.value})}}
+                                                onChange={(e) => { setCurrentUser({ ...currentUser, firstName: e.target.value }) }}
                                             />
                                         </div>
-                                </div>
-                                <div className={styles.formRow}>
+                                    </div>
+                                    <div className={styles.formRow}>
                                         <div className={styles.formControl}>
                                             <label>Last Name</label>
-                                            <input 
+                                            <input
                                                 className={styles.formInput}
                                                 name="LastName"
                                                 required
                                                 type="text"
                                                 value={currentUser.name.split(' ')[1]}
                                                 placeholder="Type here..."
-                                                onChange={(e)=>{setCurrentUser({...currentUser,lastName: e.target.value})}}
+                                                onChange={(e) => { setCurrentUser({ ...currentUser, lastName: e.target.value }) }}
                                             />
                                         </div>
-                                </div>
-                                <div className={styles.formRow}>
+                                    </div>
+                                    <div className={styles.formRow}>
                                         <div className={styles.formControl}>
-                                        <label>Github Username <span style={grayColor}>(login username used)</span></label> 
-                                        <div style={githubView}>
-                                                <input   
+                                            <label>Github Username <span style={grayColor}>(login username used)</span></label>
+                                            <div style={githubView}>
+                                                <input
                                                     className={styles.formInput}
                                                     name="GitHubUserName"
                                                     type="text"
                                                     required
                                                     value={currentUser.login}
                                                     placeholder="will-at-stacks"
-                                                    onChange={(e)=>{setCurrentUser({...currentUser,login: e.target.value})}}
+                                                    onChange={(e) => { setCurrentUser({ ...currentUser, login: e.target.value }) }}
                                                 />
-                                                <GithubIcon className={styles.searchIcon}/>
+                                                <GithubIcon className={styles.searchIcon} />
                                             </div>
-                                        </div>  
-                                </div>
-                                <div className={styles.formRow}>
+                                        </div>
+                                    </div>
+                                    <div className={styles.formRow}>
                                         <div className={styles.formControl}>
                                             <label>Email Address</label>
-                                            <input 
+                                            <input
                                                 className={styles.formInput}
                                                 name="EmailAddress"
                                                 required
                                                 type="text"
                                                 value={currentUser.email}
                                                 placeholder="Type here..."
-                                                onChange={(e)=>{setCurrentUser({...currentUser,email: e.target.value})}}
+                                                onChange={(e) => { setCurrentUser({ ...currentUser, email: e.target.value }) }}
                                             />
-                                        </div> 
-                                </div>
-                                <div className={styles.formRow}>
+                                        </div>
+                                    </div>
+                                    <div className={styles.formRow}>
                                         <div className={styles.formControl}>
                                             <label>Select Role</label>
-                                            <select name="selectUserType" onChange={(e)=>{setCurrentUser({...currentUser,type: e.target.value})}}>
+                                            <select name="selectUserType" onChange={(e) => { setCurrentUser({ ...currentUser, type: e.target.value }) }}>
                                                 <option value="User">User</option>
                                                 <option value="Admin">Admin</option>
                                                 <option value="Finance">Finance</option>
                                                 <option value="Reviewer">Reviewer</option>
                                                 <option value="Grantee">Grantee</option>
                                             </select>
-                                        </div> 
-                                </div>
-                                <div className={styles.divider}></div>
-                                <button type='submit' disabled={loading} onClick={(e)=>{handleEdit(e)}} className={styles.gradientButton}>
-                                    {
-                                        loading ? <LoadingIndicator size={'small'}/> : 'Click to Submit'
-                                    }
-                                </button>
-                            </form>
-                        </>
-                    }
+                                        </div>
+                                    </div>
+                                    <div className={styles.divider}></div>
+                                    <button type='submit' disabled={loading} onClick={(e) => { handleEdit(e) }} className={styles.gradientButton}>
+                                        {
+                                            loading ? <LoadingIndicator size={'small'} /> : 'Click to Submit'
+                                        }
+                                    </button>
+                                </form>
+                            </>
+                        }
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }
 
 const main = {
-	backgroundColor: '#000',
-	height: '100vh'
+    backgroundColor: '#000',
+    height: '100vh'
 }
 
 const flex1 = {
@@ -423,7 +423,7 @@ const grayColor = {
 }
 
 const marginLeft10 = {
-    marginLeft:10
+    marginLeft: 10
 }
 
 const addUser = {
@@ -433,27 +433,27 @@ const addUser = {
 
 const githubView = {
     display: 'flex',
-    flexDirection:"row",
-    width:"100%",
-    alignItems:'flex-end'
+    flexDirection: "row",
+    width: "100%",
+    alignItems: 'flex-end'
 }
 
 export async function getServerSideProps(context) {
-	const session = await unstable_getServerSession(context.req, context.res, authOptions);
+    const session = await unstable_getServerSession(context.req, context.res, authOptions);
 
-	if (!session) {
-		return {
-			redirect: {
-				destination: '/',
-				permanent: false
-			}
-		};
-	}
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false
+            }
+        };
+    }
 
-	session.user.email = '';
-	return {
-		props: {
-			session
-		}
-	};
+    session.user.email = '';
+    return {
+        props: {
+            session
+        }
+    };
 }

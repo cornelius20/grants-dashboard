@@ -1,415 +1,405 @@
+.main {
+  background-color: #000;
+  min-height: 100vh;
+  background-image: url("../public/images/Logo.png");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
 
-.main{
-    background-color: #000;
-    min-height: 100vh;
-    background-image: url('../public/images/Logo.png');
-    background-repeat: no-repeat;
-    background-position: right bottom;
+.close {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-right: 26px;
+  padding-top: 38px;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.close p {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.close span {
+  display: block;
+  border: 1px solid white;
+  width: 25px;
+}
+
+.grantDataRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.grantDataCol {
+  flex: 1;
+}
+
+.onBoardingWrapper {
+  max-width: 900px;
+  /* background-color: #000; */
+  margin: auto;
+  padding: 0 30px;
+  border-radius: 20px;
+}
+
+.onBoardingWrapper h1 {
+  font-size: 32px;
+  font-weight: 300;
+  padding-bottom: 20px;
+}
+
+.onBoardingWrapper h2 {
+  font-size: 32px;
+  font-weight: 300;
+  padding-bottom: 20px;
+}
+
+.onBoardingRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.onBoardingLeft {
+  flex: 2;
+}
+
+.flex {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.quizCheckBox {
+  margin-top: 5px !important;
+  height: 12px !important;
+  width: 12px !important;
+}
+
+.purpleLink {
+  font-weight: bold;
+  color: #553c9a !important;
+  text-decoration: underline;
+}
+
+.onBoardingLeft h2 {
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 16px;
+}
+
+.onBoardingLeft p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.text {
+  margin-bottom: 20px;
+  color: #a0aec0;
+  font-size: 14px;
+}
+
+.onBoardingRight {
+  flex: 1;
+}
+
+.formRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.formControl {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.formRow label {
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.formInput {
+  background-color: #000;
+  border: none;
+  outline: none;
+  /* font-family: 'Inter'; */
+  border-bottom: 1px solid #fff;
+  width: 100%;
+  padding: 7px 0;
+  color: #fff;
+}
+
+.formRow select {
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 5px;
+  width: 100%;
+}
+
+.formRow select {
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  background-color: rgba(0, 0, 0, 0.64);
+  padding-right: 20px;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  color: #fff;
+}
+
+.formRow span {
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.onBoardingRight h5 {
+  /* font-family: 'Inter'; */
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 150%;
+  color: #718096;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.onBoardingRight p {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #4a5568;
+}
+
+.onBoardingRight label {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 150%;
+  color: #718096;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.gradientButton {
+  background: linear-gradient(45deg, #3182ce, #97266d);
+  height: 50px;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ...........GRANT TYPE........... */
+.grantTypeList {
+  list-style-type: none;
+  margin: 40px 0;
+  background: #000;
+  opacity: 0.8;
+}
+
+.grantTypeListItem {
+  border-bottom: 1px solid rgb(46, 45, 45);
+  padding: 7px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 40px;
+}
+
+.left span {
+  flex: 1;
+}
+
+.right {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.right span,
+.right div {
+  flex: 2;
+}
+
+.right > div:nth-child(2) {
+  flex: 3;
+}
+
+.right > div:nth-child(3) {
+  flex: 0.5;
+}
+
+.grantInputBox {
+  margin-right: 0;
+}
+
+.grantInputBox2 input {
+  border: 2px solid rgb(50, 50, 50);
+}
+
+.grantName {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: #cbd5e0;
+}
+
+.grantName2 {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: #4a5568;
+}
+
+.grantRange {
+  background-color: #718096;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+  padding: 3px;
+  border-radius: 3px;
+}
+
+.grantStream {
+  background-color: #9f7aea;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+  padding: 3px;
+  border-radius: 3px;
+}
+
+.dots {
+  text-align: right;
+  color: #bbbdc1;
+}
+
+.dots2 {
+  text-align: right;
+  color: #4a515d;
+}
+
+/* .........GRANT Track.......... */
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  gap: 50px;
+  margin-bottom: 20px;
+}
+
+.col {
+  flex: 1;
+}
+
+.grantList {
+  margin-left: 50px;
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.36);
+  font-size: 12px;
+}
+
+.grantTypeFlex {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.grantTypeFlex h2 {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.heading {
+  font-size: 18px !important;
+  color: #fff !important;
+  padding: 0 !important;
+}
+
+.heading2 {
+  font-size: 18px !important;
+  color: gray !important;
+  padding: 0 !important;
+}
+
+/* ...........PAYMENT TABLE............. */
+.paymentList {
+  list-style-type: none;
+  margin: 40px 0;
+  background: #000;
+  opacity: 0.5;
+}
+
+.paymentListHeader {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.paymentListItem {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.paymentListItem span,
+.paymentListHeader span {
+  flex: 1;
+}
+
+.paymentListItem span:nth-child(2),
+.paymentListHeader span:nth-child(2) {
+  flex: 1;
+  text-align: center;
+}
+
+.paymentListItem span:nth-child(3),
+.paymentListHeader span:nth-child(3) {
+  flex: 1;
+  text-align: right;
+}
+
+/* ...........MEDIA QUERIES............. */
+
+@media screen and (max-width: 900px) {
+  .onBoardingRow {
+    flex-direction: column;
   }
-  
-  
-    .close {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      padding-right: 26px;
-      padding-top: 38px;
-      gap: 20px;
-      margin-bottom: 20px;
-    }
-    
-    .close p{
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    
-    .close span {
-    display: block;
-    border: 1px solid white;
-    width: 25px;
-    }
-  
-    .grantDataRow{
-        display: flex;
-        justify-content: space-between;
-        gap: 15px;
-    }
-  
-    .grantDataCol{
-      flex: 1;
-    }
-  
-    .onBoardingWrapper{
-      max-width: 900px;
-      /* background-color: #000; */
-      margin: auto;
-      padding: 0 30px;
-      border-radius: 20px;
-    }
-  
-  
-    .onBoardingWrapper h1{
-      font-size: 32px;
-      font-weight: 300;
-      padding-bottom: 20px;
-    }
-    
-    .onBoardingWrapper h2{
-      font-size: 32px;
-      font-weight: 300;
-      padding-bottom: 20px;
-    }
-  
-    .onBoardingRow{
-      display: flex;
-      justify-content: space-between;
-      gap: 30px;
-    }
-  
-    .onBoardingLeft{
-      flex: 2;
-    }
-  
-    .flex{
-      display: flex;
-      gap: 15px;
-      align-items: flex-start;
-      margin-bottom: 10px;
-    }
-  
-    .quizCheckBox{
-      margin-top: 5px !important;
-      height: 12px !important;
-      width: 12px !important;
-    }
-  
-    .purpleLink{
-      font-weight: bold;
-      color: #553C9A !important; 
-      text-decoration: underline;
-    }
-  
-    .onBoardingLeft h2{
-      color: rgba(255, 255, 255, 0.48);;
-      font-size: 16px;
-    }
-  
-    .onBoardingLeft p{
-      color: rgba(255, 255, 255, 0.8);;
-    }
-  
-    .text{
-      margin-bottom: 20px;
-      color: #A0AEC0;
-      font-size: 14px;
-    }
-  
-    .onBoardingRight{
-      flex: 1;
-    }
-  
-    .formRow{
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      margin-bottom: 20px;
-    }
-  
-    .formControl{
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      flex: 1;
-    }
-  
-    .formRow label{
-      margin-bottom: 10px;
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.92);
-    }
-  
-    .formInput{
-      background-color: #000;
-      border: none;
-      outline: none;
-      /* font-family: 'Inter'; */
-      border-bottom: 1px solid #fff;
-      width: 100%;
-      padding: 7px 0;
-      color: #fff;
-    }
-  
-    .formRow select{
-      border: 1px solid #000;
-      border-radius: 5px;
-      padding: 5px;
-      width: 100%;
-    }
-  
-    .formRow select{
-      border: 1px solid rgba(255, 255, 255, 0.36);;
-      background-color: rgba(0, 0, 0, 0.64);
-      padding-right: 20px;
-      border-radius: 5px;
-      padding: 10px;
-      width: 100%;
-      color: #fff;
-    }
-  
-      .formRow span {
-          font-size: 12px;
-          margin-top: 10px;
-      }
-  
-      .onBoardingRight h5 {
-          /* font-family: 'Inter'; */
-          font-style: normal;
-          font-weight: 700;
-          font-size: 14px;
-          line-height: 150%;
-          color: #718096;
-          font-weight: 700;
-          margin-bottom: 5px;
-      }
-  
-      .onBoardingRight p {
-          font-size: 14px;
-          margin-bottom: 10px;
-          color: #4A5568;
-      }
-  
-      .onBoardingRight label {
-        font-style: normal;
-        font-weight: 700;
-        font-size: 14px;
-        line-height: 150%;
-          color: #718096;
-          font-weight: 700;
-          margin-bottom: 5px;
-    }
-  
-      .gradientButton {
-          background: linear-gradient(45deg, #3182ce, #97266d);
-          height: 50px;
-          border: 1px solid #ffffff;
-          border-radius: 5px;
-          color: #ffffff;
-          font-size: 12px;
-          font-weight: 600;
-          cursor: pointer;
-          width: 100%;
-          margin-bottom: 20px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-      }
 
-      /* ...........GRANT TYPE........... */
-      .grantTypeList{
-        list-style-type: none;
-        margin: 40px 0;
-        background: #000;
-        opacity: .8;
-      }
+  .formRow {
+    flex-direction: column;
+  }
+}
 
-      .grantTypeListItem{
-        border-bottom: 1px solid rgb(46, 45, 45);
-        padding: 7px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-  
-      .left{
-        flex: 1;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 40px;
-      }
-
-      .left span{
-        flex: 1;
-      }
-
-      .right{
-        flex: 1;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      
-      .right span,.right div{
-        flex: 2;
-      }
-
-      .right > div:nth-child(2){
-        flex: 3;
-      }
-
-      .right > div:nth-child(3){
-        flex: 0.5;
-      }
-
-      .grantInputBox{
-        margin-right: 0;
-      }
-
-      .grantInputBox2 input{
-        border: 2px solid rgb(50, 50, 50);
-      }
-
-      .grantName{
-        font-weight: bold;
-        font-size: 14px;
-        line-height: 16px;
-        color: #CBD5E0;
-      }
-
-      .grantName2{
-        font-weight: bold;
-        font-size: 14px;
-        line-height: 16px;
-        color: #4A5568;
-      }
-
-      .grantRange{
-        background-color: #718096;
-        font-weight: 400;
-        font-size: 12px;
-        line-height: 16px;
-        color: #000000;
-        padding: 3px;
-        border-radius: 3px;
-      }
-
-      .grantStream{
-        background-color: #9F7AEA;
-        font-weight: bold;
-        font-size: 12px;
-        line-height: 16px;
-        color: #000000;
-        padding: 3px;
-        border-radius: 3px;
-      }
-
-      .dots{
-        text-align: right;
-        color: #bbbdc1;
-      }
-
-      .dots2{
-        text-align: right;
-        color: #4a515d;
-      }
-  
-  
-      /* .........GRANT Track.......... */
-      .row{
-        display: flex;
-        justify-content: space-between;
-        align-self: center;
-        gap: 50px;
-        margin-bottom: 20px;
-      }
-  
-      .col{
-        flex: 1;
-      }
-  
-      .grantList{
-        margin-left: 50px;
-        margin-top: 10px;
-        color: rgba(255, 255, 255, 0.36);
-        font-size: 12px;
-      }
-  
-      .grantTypeFlex{
-        display: flex;
-        align-items: center;
-        gap: 15px;
-      }
-  
-      .grantTypeFlex h2{
-        color: rgba(255, 255, 255, 0.8);;
-      }
-
-      .heading{
-        font-size: 18px !important;
-        color: #fff !important;
-        padding: 0 !important;
-      }
-
-      .heading2{
-        font-size: 18px !important;
-        color: gray !important;
-        padding: 0 !important;
-      }
-
-
-
-
-      /* ...........PAYMENT TABLE............. */
-      .paymentList{
-        list-style-type: none;
-        margin: 40px 0;
-        background: #000;
-        opacity: .5;
-      }
-
-      .paymentListHeader{
-        padding: 15px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 14px;
-      }
-
-      .paymentListItem{
-        padding: 15px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.64);
-      }
-
-      .paymentListItem span,.paymentListHeader span{
-        flex: 1;
-      }
-
-      .paymentListItem span:nth-child(2),.paymentListHeader span:nth-child(2){
-        flex: 1;
-        text-align: center;
-      }
-
-      .paymentListItem span:nth-child(3),.paymentListHeader span:nth-child(3){
-        flex: 1;
-        text-align: right;
-      }
-  
-      
-
-      
-      /* ...........MEDIA QUERIES............. */
-  
-      @media screen and (max-width: 900px){
-        .onBoardingRow{
-          flex-direction: column;
-        }
-        
-        .formRow{
-          flex-direction: column;
-        }
-      }
-  
-      @media screen and (max-width: 650px){
-        .listItem input{
-          margin-right: 15px;
-        }
-      }
-  
-      
-      
-  
+@media screen and (max-width: 650px) {
+  .listItem input {
+    margin-right: 15px;
+  }
+}

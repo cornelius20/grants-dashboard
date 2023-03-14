@@ -351,7 +351,7 @@ const GrantDataExporter = () => {
 							<option value="Direct Investment">Direct Investment</option>
 						</select>
 					</div>
-                    <div className={styles.dropdownWrapper}>
+					<div className={styles.dropdownWrapper}>
 						<label htmlFor="selectGrantTrack">B. Select Grant Track(s)</label>
 						<select name="selectGrantTrack" onChange={(e) => setGrantTracks(e.target.value)}>
 							<option value="" disabled selected>
@@ -367,7 +367,7 @@ const GrantDataExporter = () => {
 							<option value="Bitcoin Utility via Stacks">Bitcoin Utility via Stacks</option>
 						</select>
 					</div>
-                    <div className={styles.dropdownWrapper}>
+					<div className={styles.dropdownWrapper}>
 						<label htmlFor="selectGrantPhase">C. Select Grant Phase</label>
 						<select name="selectGrantPhase" onChange={(e) => setGrantPhase(e.target.value)}>
 							<option value="" disabled selected>
@@ -393,12 +393,12 @@ const GrantDataExporter = () => {
 						<CalendarDropdown onChange={setStartDate} value={startDate} />
 					</div>
 
-					
+
 					<div className={styles.calendarDropdownWrapper}>
 						<label className={styles.mb10} htmlFor="selectDate">E. Select End Date <span className={styles.maxLimit}>(6 months max)</span></label>
 						<CalendarDropdown onChange={setEndDate} value={endDate} />
 					</div>
-					
+
 					<div className={styles.buttonWrappers}>
 						{!exportButton ? (
 							<button className={styles.converterButton} onClick={getIssues}>

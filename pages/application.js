@@ -265,7 +265,7 @@ const Application = () => {
 
   function handleSubmit(nextStepNumber) {
     let fields = Array.from(document.querySelectorAll("input, textarea"));
-    console.log('Fields are : - ',fields)
+    console.log('Fields are : - ', fields)
     let allChecked = false;
 
     fields.map((field) => {
@@ -468,7 +468,7 @@ const Application = () => {
       case 4:
         return <ApplicationChecklist />;
       case 5:
-        return <GrantType/>;
+        return <GrantType />;
       case 6:
         return <GrantTrack />;
       case 7:

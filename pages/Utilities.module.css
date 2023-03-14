@@ -7,16 +7,16 @@
   gap: 20px;
 }
 
-.close p{
+.close p {
   display: flex;
   align-items: center;
   gap: 5px;
 }
 
 .close span {
-display: block;
-border: 1px solid white;
-width: 25px;
+  display: block;
+  border: 1px solid white;
+  width: 25px;
 }
 
 .utilitiesWrapper {
@@ -24,23 +24,22 @@ width: 25px;
   background-color: #000;
   margin: auto;
   padding: 0 30px;
-
 }
 
-.utilitiesWrapper h1{
+.utilitiesWrapper h1 {
   font-size: 32px;
   font-weight: 700;
   padding-bottom: 20px;
 }
 
-.utilitiesWrapper h2{
+.utilitiesWrapper h2 {
   font-size: 32px;
   font-weight: 700;
   padding-bottom: 20px;
 }
 
 .descriptor {
-  color: #A0AEC0;
+  color: #a0aec0;
   font-size: 14px;
   padding-bottom: 90px;
 }
@@ -67,65 +66,64 @@ width: 25px;
 }
 
 .buttonWrapper div:first-of-type button {
-/* background-color: #1A365D; */
-/* background-color: #1A202C; */
-background-color: #000;
-height: 50px;
-border: 0.5px solid #A0AEC0;
-border-radius: 5px;
-color: #ffffff;
-font-size: 12px;
-font-weight: 600;
-cursor: pointer;
-width: 100%;
-}
-
-.buttonWrapper div:nth-of-type(2) button:first-of-type {
-  /* background-color: #322659; */
+  /* background-color: #1A365D; */
+  /* background-color: #1A202C; */
   background-color: #000;
   height: 50px;
-  border: 0.5px solid #A0AEC0;
+  border: 0.5px solid #a0aec0;
   border-radius: 5px;
   color: #ffffff;
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   width: 100%;
-  }
+}
 
-  .buttonWrapper div:nth-of-type(3) button:first-of-type {
-    /* background-color: #322659; */
-    background: linear-gradient(45deg, #3182ce, #97266d);
-    height: 50px;
-    border: 0.5px solid #ffffff;
-    border-radius: 5px;
-    color: #ffffff;
+.buttonWrapper div:nth-of-type(2) button:first-of-type {
+  /* background-color: #322659; */
+  background-color: #000;
+  height: 50px;
+  border: 0.5px solid #a0aec0;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+}
+
+.buttonWrapper div:nth-of-type(3) button:first-of-type {
+  /* background-color: #322659; */
+  background: linear-gradient(45deg, #3182ce, #97266d);
+  height: 50px;
+  border: 0.5px solid #ffffff;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+}
+
+.stacksSVG {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.buttonBackgroundColor {
+  background: #171923 !important;
+}
+
+@media screen and (max-width: 1160px) {
+  .buttonWrapper div p {
     font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    width: 100%;
-    }
-
-  
-  .stacksSVG {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
   }
+}
 
-  .buttonBackgroundColor {
-    background: #171923 !important;
+@media screen and (max-width: 900px) {
+  .buttonWrapper {
+    flex-direction: column;
   }
-
-  @media screen and (max-width: 1160px){
-    .buttonWrapper div p {
-      font-size: 12px;
-    }
-  }
-
-  @media screen and (max-width: 900px){
-    .buttonWrapper {
-      flex-direction: column;
-    }
-  }
+}

@@ -1,12 +1,12 @@
 export const saveToken = (token) => {
-    localStorage.setItem('token',token);
+    localStorage.setItem('token', token);
 }
 
 export const getToken = () => {
     const token = localStorage.getItem('token');
-    if(token){
+    if (token) {
         return token;
-    }else{
+    } else {
         return false;
     }
 }

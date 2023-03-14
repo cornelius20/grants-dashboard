@@ -38,14 +38,14 @@ const CalendarDropdown = (props) => {
 				<p>
 					{reference.current === true
 						? props.value
-								.toLocaleString('default', {
-									month: 'long',
-									day: '2-digit',
-									year: '2-digit'
-								})
-								.replace(' ', '-')
-								.replace(',', '-')
-								.replace(' ', '')
+							.toLocaleString('default', {
+								month: 'long',
+								day: '2-digit',
+								year: '2-digit'
+							})
+							.replace(' ', '-')
+							.replace(',', '-')
+							.replace(' ', '')
 						: 'Drop down...'}
 				</p>
 				<DropdownIcon />
@@ -57,7 +57,7 @@ const CalendarDropdown = (props) => {
 					value={props.value}
 					// maxDate={new Date(currentDate.setMonth(currentDate.getMonth()+3))}
 					minDate={new Date()}
-					maxDate={new Date(new Date().getFullYear(),new Date().getMonth() + 6,new Date().getDate())}
+					maxDate={new Date(new Date().getFullYear(), new Date().getMonth() + 6, new Date().getDate())}
 
 				/>
 			</div>

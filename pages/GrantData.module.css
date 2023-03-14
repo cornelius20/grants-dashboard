@@ -1,4 +1,4 @@
-.main{
+.main {
   background: #000;
 }
 .close {
@@ -10,17 +10,16 @@
   gap: 20px;
 }
 
-.close p{
+.close p {
   display: flex;
   align-items: center;
   gap: 5px;
 }
 
-
 .close span {
-display: block;
-border: 1px solid white;
-width: 25px;
+  display: block;
+  border: 1px solid white;
+  width: 25px;
 }
 
 .grantDataWrapper {
@@ -34,27 +33,27 @@ width: 25px;
   padding-bottom: 10px;
 }
 
-.grantDataWrapper h1{
+.grantDataWrapper h1 {
   font-size: 32px;
   font-weight: 300;
   padding-bottom: 20px;
 }
 
 .descriptor {
-  color: #A0AEC0;
+  color: #a0aec0;
   font-size: 14px;
   padding-bottom: 48px;
 }
 
 .grantExportWrapper {
-padding: 42px;
-width: 100%;
-height: 100%;
-border-radius: 10px;
-background-color: rgba(0, 0, 0, 0.92);
-display: grid;
-grid-template-columns: repeat(2, minmax(0, 1fr));
-gap: 16px;
+  padding: 42px;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.92);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
 }
 
 .dropdownWrapper {
@@ -66,11 +65,9 @@ gap: 16px;
   font-size: 16px;
   color: #ffffff;
   padding-bottom: 10px;
-
 }
 
-
-.maxLimit{
+.maxLimit {
   font-size: 14px;
   color: gray;
   padding-bottom: 10px;
@@ -92,8 +89,6 @@ gap: 16px;
   border: 1px solid rgba(255, 255, 255, 0.36);
 }
 
-
-
 .dropdownWrapper input {
   width: 428px;
   height: 50px;
@@ -105,9 +100,8 @@ gap: 16px;
   border: 1px solid rgba(255, 255, 255, 0.36);
 }
 
-
-.dropdownWrapper input[type='number']::-webkit-inner-spin-button,
-.dropdownWrapper input[type='number']::-webkit-outer-spin-button {
+.dropdownWrapper input[type="number"]::-webkit-inner-spin-button,
+.dropdownWrapper input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -126,21 +120,21 @@ gap: 16px;
 
 .converterButton {
   background: linear-gradient(45deg, #3182ce, #97266d);
-        height: 50px;
-        border: 1px solid #ffffff;
-        border-radius: 5px;
-        color: #ffffff;
-        font-size: 12px;
-        font-weight: 600;
-        cursor: pointer;
-        width: 100%;
-        padding: 0 20px;
+  height: 50px;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  padding: 0 20px;
 }
 
 .dropdownWrapper div {
   width: 100%;
   height: 100%;
-  border:  1px solid rgba(255, 255, 255, 0.36);
+  border: 1px solid rgba(255, 255, 255, 0.36);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -148,7 +142,8 @@ gap: 16px;
   padding: 24px;
 }
 
-.dropdownWrapper div p:first-of-type, .dropdownWrapper div p:nth-of-type(3) {
+.dropdownWrapper div p:first-of-type,
+.dropdownWrapper div p:nth-of-type(3) {
   color: rgba(255, 255, 255, 0.36);
   font-size: 14px;
   font-weight: 500;
@@ -166,13 +161,11 @@ gap: 16px;
   color: #ffffff;
 }
 
-
 .buttonWrappers {
   display: flex;
   gap: 16px;
   align-items: flex-end;
 }
-
 
 .grantsFound {
   background-color: rgba(255, 255, 255, 0.08);
@@ -182,9 +175,7 @@ gap: 16px;
 .grantsFound p:nth-child(2) {
   font-weight: 600;
   font-size: 24px;
-
 }
-
 
 .stacksSVG {
   position: absolute;
@@ -196,11 +187,11 @@ gap: 16px;
 .calendarDropdownButton {
   width: 100%;
   height: 50px;
-  border:  1px solid rgba(255, 255, 255, 0.36);
+  border: 1px solid rgba(255, 255, 255, 0.36);
   border-radius: 5px;
   display: flex;
-align-items: center;
-justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
   padding: 8px;
   background-color: transparent;
   color: rgba(255, 255, 255, 0.36);
@@ -220,14 +211,14 @@ justify-content: space-between;
   display: none;
 }
 
-.mb10{
+.mb10 {
   display: block;
   margin-bottom: 10px !important;
 }
 
 /* ...........MEDIA QUERIES............. */
-@media screen and (max-width: 991px){
-  .grantDataWrapper h1{
+@media screen and (max-width: 991px) {
+  .grantDataWrapper h1 {
     padding: 0 20px 20px 20px;
   }
   .descriptor {

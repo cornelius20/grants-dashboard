@@ -1,4 +1,4 @@
-import React,{useState,useMemo,useEffect} from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import styles from './GrantType.module.css';
 import CloseIcon from '../public/images/close.svg';
 import Link from 'next/link';
@@ -25,74 +25,72 @@ import ApplicationProgress from '../components/ApplicationProgress';
 
 
 export default function PaymentTable() {
-        
-        const [visible,setVisible] = useState(false);
-        const [browserError,setBrowserError] = useState(false);
-        const [alertVisible,setAlertVisible] = useState(false);
 
-       
-        
-  return (
-    <div className={styles.main}>
-        {
-			alertVisible ? <CustomAlert title="Please Connect a Wallet" onClose={()=>setAlertVisible(false)}/> : null
-		}
-        <div style={{position: 'relative'}}>
-            <Link href="/">
-                <a>
-                    <div className={styles.close}>
-                        <p>
-                            <CloseIcon />
-                            Close
-                        </p>
-                    </div>
-                    
-                </a>
-            </Link>
-        </div>
+    const [visible, setVisible] = useState(false);
+    const [browserError, setBrowserError] = useState(false);
+    const [alertVisible, setAlertVisible] = useState(false);
 
-        <ApplicationProgress progress={'50%'}/>
-        
-        <div className={styles.onBoardingWrapper}>
-            <div className={styles.onBoardingRow}>
-                <div className={styles.onBoardingLeft}>
-                            <h2 style={{fontSize: 20,color: '#fff'}}>
-                                Payment Quantity and Sizing
-                            </h2>
-                            <p className={styles.text} style={{fontWeight: 'bold',color: 'rgba(255, 255, 255, 0.48);'}}>
-                                The chart below states the number of payments and the percentage of the total project budget issued for each payment. These numbers are a function of the total project budget.
+    return (
+        <div className={styles.main}>
+            {
+                alertVisible ? <CustomAlert title="Please Connect a Wallet" onClose={() => setAlertVisible(false)} /> : null
+            }
+            <div style={{ position: 'relative' }}>
+                <Link href="/">
+                    <a>
+                        <div className={styles.close}>
+                            <p>
+                                <CloseIcon />
+                                Close
                             </p>
-                            
-                            <ul className={styles.paymentList}>
-                                <li className={styles.paymentListHeader} style={{fontWeight: 700,fontSize: 16}}>
-                                    <span>Project Budget</span>
-                                    <span>Number of Payments</span>
-                                    <span>% of Budget per Payment</span>
-                                </li>
-                                <li className={styles.paymentListItem}>
-                                    <span>$0 to $9,999</span>
-                                    <span>2 (1 milestone)</span>
-                                    <span>50%</span>
-                                </li>
-                                <li className={styles.paymentListItem}>
-                                    <span>$10k to $23,999</span>
-                                    <span>3 (2 milestone)</span>
-                                    <span>33%</span>
-                                </li>
-                                <li className={styles.paymentListItem}>
-                                    <span>$24k to $48,000</span>
-                                    <span>4 (3 milestone)</span>
-                                    <span>25%</span>
-                                </li>
-                                
-                            </ul>
-                            
+                        </div>
+
+                    </a>
+                </Link>
+            </div>
+
+            <ApplicationProgress progress={'50%'} />
+
+            <div className={styles.onBoardingWrapper}>
+                <div className={styles.onBoardingRow}>
+                    <div className={styles.onBoardingLeft}>
+                        <h2 style={{ fontSize: 20, color: '#fff' }}>
+                            Payment Quantity and Sizing
+                        </h2>
+                        <p className={styles.text} style={{ fontWeight: 'bold', color: 'rgba(255, 255, 255, 0.48);' }}>
+                            The chart below states the number of payments and the percentage of the total project budget issued for each payment. These numbers are a function of the total project budget.
+                        </p>
+
+                        <ul className={styles.paymentList}>
+                            <li className={styles.paymentListHeader} style={{ fontWeight: 700, fontSize: 16 }}>
+                                <span>Project Budget</span>
+                                <span>Number of Payments</span>
+                                <span>% of Budget per Payment</span>
+                            </li>
+                            <li className={styles.paymentListItem}>
+                                <span>$0 to $9,999</span>
+                                <span>2 (1 milestone)</span>
+                                <span>50%</span>
+                            </li>
+                            <li className={styles.paymentListItem}>
+                                <span>$10k to $23,999</span>
+                                <span>3 (2 milestone)</span>
+                                <span>33%</span>
+                            </li>
+                            <li className={styles.paymentListItem}>
+                                <span>$24k to $48,000</span>
+                                <span>4 (3 milestone)</span>
+                                <span>25%</span>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
                 </div>
-                
             </div>
         </div>
-    </div>
-  )
+    )
 }
 
 // const main ={
@@ -100,8 +98,8 @@ export default function PaymentTable() {
 // 	height: '100vh'
 // }
 const main = {
-	backgroundColor: '#000',
-	height: '100vh'
+    backgroundColor: '#000',
+    height: '100vh'
 }
 
 const flex1 = {
@@ -131,7 +129,7 @@ const listTitle = {
 
 
 const marginLeft10 = {
-    marginLeft:10
+    marginLeft: 10
 }
 
 const addUser = {
@@ -141,9 +139,9 @@ const addUser = {
 
 const githubView = {
     display: 'flex',
-    flexDirection:"row",
-    width:"100%",
-    alignItems:'flex-end'
+    flexDirection: "row",
+    width: "100%",
+    alignItems: 'flex-end'
 }
 
 const flex2 = {
@@ -197,21 +195,21 @@ const whiteColor = {
 }
 
 export async function getServerSideProps(context) {
-	const session = await unstable_getServerSession(context.req, context.res, authOptions);
+    const session = await unstable_getServerSession(context.req, context.res, authOptions);
 
-	if (!session) {
-		return {
-			redirect: {
-				destination: '/',
-				permanent: false
-			}
-		};
-	}
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false
+            }
+        };
+    }
 
-	session.user.email = '';
-	return {
-		props: {
-			session
-		}
-	};
+    session.user.email = '';
+    return {
+        props: {
+            session
+        }
+    };
 }

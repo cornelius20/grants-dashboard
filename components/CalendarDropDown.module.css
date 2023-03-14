@@ -1,4 +1,4 @@
-.calendarWrapper{
+.calendarWrapper {
   width: 100%;
 }
 
@@ -6,7 +6,7 @@
   /* margin-top: 10px; */
   width: 100%;
   height: 50px;
-  border:  1px solid rgba(255, 255, 255, 0.36);
+  border: 1px solid rgba(255, 255, 255, 0.36);
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -25,6 +25,6 @@
   display: none;
 }
 
-.m0{
+.m0 {
   margin: 0 !important;
 }

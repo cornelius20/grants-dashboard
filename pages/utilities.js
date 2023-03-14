@@ -11,7 +11,7 @@ import { unstable_getServerSession } from 'next-auth/next';
 
 const Utilities = () => {
 	const { data: session } = useSession();
-	const router= useRouter()
+	const router = useRouter()
 
 	useEffect(() => {
 		async function refresh() {
@@ -26,7 +26,7 @@ const Utilities = () => {
 			refresh();
 		}
 	});
-	
+
 	return (
 		<div style={main}>
 			<Link href="/">
@@ -41,7 +41,7 @@ const Utilities = () => {
 				</a>
 			</Link>
 			<div className={styles.utilitiesWrapper}>
-				
+
 				<h2>Stacks Community Tools</h2>
 				<div className={styles.buttonWrapper}>
 					<div>
@@ -118,20 +118,20 @@ const Utilities = () => {
 					
 				</div> */}
 				{
-					session?.user?.name.startsWith('will') || session?.user?.name.startsWith('ivo') || session?.user?.name.startsWith('shakti') ? 
-					<>
-					<h2>Grant Admin Tools</h2>
-					<div className={styles.buttonWrapper}>
-						{
-							session?.user?.name.startsWith('will') || session?.user?.name.startsWith('ivo') ? 
-							<div>
-							<p>Need to adjust permission settings?</p>
-							<Link href="/admin-dashboard">
-									<a>
-										<button>Admin Dashboard</button>
-									</a>
-							</Link>
-							{/* {!session && (
+					session?.user?.name.startsWith('will') || session?.user?.name.startsWith('ivo') || session?.user?.name.startsWith('shakti') ?
+						<>
+							<h2>Grant Admin Tools</h2>
+							<div className={styles.buttonWrapper}>
+								{
+									session?.user?.name.startsWith('will') || session?.user?.name.startsWith('ivo') ?
+										<div>
+											<p>Need to adjust permission settings?</p>
+											<Link href="/admin-dashboard">
+												<a>
+													<button>Admin Dashboard</button>
+												</a>
+											</Link>
+											{/* {!session && (
 								<Link href="/admin-dashboard">
 									<a>
 										<button onClick={() => signIn('github')}>Admin Dashboard</button>
@@ -145,17 +145,17 @@ const Utilities = () => {
 									</a>
 								</Link>
 							)} */}
-							</div>
-							: null
-						}
-						<div style={pb2}>
-							<p>Need to document a payment made to grant recepient?</p>
-							<Link href="/payments-dashboard">
-									<a>
-										<button>Payments Dashboard</button>
-									</a>
-								</Link>
-							{/* {!session && (
+										</div>
+										: null
+								}
+								<div style={pb2}>
+									<p>Need to document a payment made to grant recepient?</p>
+									<Link href="/payments-dashboard">
+										<a>
+											<button>Payments Dashboard</button>
+										</a>
+									</Link>
+									{/* {!session && (
 								<Link href="/payments-dashboard">
 									<a>
 										<button onClick={() => signIn('github')}>Payment Dashboard</button>
@@ -169,11 +169,11 @@ const Utilities = () => {
 									</a>
 								</Link>
 							)} */}
-						</div>
-						
-					</div>
-					</>
-					: null
+								</div>
+
+							</div>
+						</>
+						: null
 				}
 			</div>
 			<StacksLogo className={styles.stacksSVG} />
@@ -181,7 +181,7 @@ const Utilities = () => {
 	);
 };
 
-const main ={
+const main = {
 	background: '#000',
 	height: '100vh'
 }

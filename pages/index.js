@@ -16,12 +16,12 @@ import { saveToken } from '../utils/LocalStorage';
 
 const Home = () => {
 	const { data: session } = useSession();
-	const router= useRouter()
+	const router = useRouter()
 	const [show, setShow] = useState(false);
 	const [mobile, setMobile] = useState();
 	const [highlightButton, setHighlightButton] = useState(false);
 	const connectButton = useRef(null);
-	
+
 	useEffect(() => {
 		// const res = localStorage.getItem('quizCompleted');
 		// if(!res){
@@ -33,7 +33,7 @@ const Home = () => {
 					auth: session.accessToken
 				});
 				let user = await github.request('GET /user');
-				console.log('Github resposne is :  - ',user);
+				console.log('Github resposne is :  - ', user);
 				let filteredData = {
 					id: user?.data?.id,
 					name: user?.data?.name,
@@ -41,7 +41,7 @@ const Home = () => {
 					type: user?.data?.type
 				}
 				const res = await Login(filteredData);
-				console.log('Login resposne is : - ',res);
+				console.log('Login resposne is : - ', res);
 				if (res) {
 					saveToken(res.user.token);
 					session.user.type = res.user.type
@@ -68,7 +68,7 @@ const Home = () => {
 			return (
 				<button onClick={() => setShow(true)}>Submit your Application or Wishlist Idea!</button>
 			);
-		} else if (!session) {   
+		} else if (!session) {
 			return (
 				<button backgroundColor="grey" onClick={() => (!session ? signIn('github') : signOut())}
 				>
@@ -113,7 +113,7 @@ const Home = () => {
 						<div className={styles.mainBodyText}>
 							<p>Build the future of Web3 on </p>
 							<div className={styles.highlightedWords}>Bitcoin</div> and{' '}
-							<div className={styles.highlightedWords}>Stacks</div> 
+							<div className={styles.highlightedWords}>Stacks</div>
 							{/* smart contracts, and secured by{' '} */}
 							{/* <div className={styles.highlightedWords}>Bitcoin.</div> */}
 						</div>
@@ -168,13 +168,13 @@ const Home = () => {
 				</div>
 				{
 					session ? <Link href="/utilities">
-					<a>
-						<button className={styles.utilities}>Utilities</button>
-					</a> 
+						<a>
+							<button className={styles.utilities}>Utilities</button>
+						</a>
 					</Link>
-					: 
-					<button onClick={() => (!session ? signIn('github') : signOut())}className={styles.utilities}>Utilities</button>
-				
+						:
+						<button onClick={() => (!session ? signIn('github') : signOut())} className={styles.utilities}>Utilities</button>
+
 				}
 				<StacksLogo className={styles.stxLogo} />
 			</div>

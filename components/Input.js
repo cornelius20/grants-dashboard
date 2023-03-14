@@ -85,18 +85,17 @@ const Input = (props) => {
               {(value ? maxchar - value.length : maxchar) < 0
                 ? 0
                 : value
-                ? maxchar - value.length
-                : maxchar}{" "}
+                  ? maxchar - value.length
+                  : maxchar}{" "}
               characters
             </p>
             <div className={styles.progressBar}>
               <div
                 style={{
-                  width: `${
-                    (value ? value.length / maxchar : 0) * 100 > 100
+                  width: `${(value ? value.length / maxchar : 0) * 100 > 100
                       ? 100
                       : (value ? value.length / maxchar : 0) * 100
-                  }%`,
+                    }%`,
                 }}
                 className={styles.filler}
               />

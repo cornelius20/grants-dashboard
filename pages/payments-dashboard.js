@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './GrantOnboarding.module.css';
 import CloseIcon from '../public/images/close.svg';
 import Link from 'next/link';
@@ -14,141 +14,141 @@ import { useToasts } from 'react-toast-notifications';
 
 
 export default function PaymentsDashboard() {
-        const { data: session } = useSession();
-        const { addToast } = useToasts();
-        const router= useRouter()
-        const [loading,setLoading] = useState(false);
-        const [grantTracks, setGrantTracks] = useState('');
-        const [grantPhase, setGrantPhase] = useState('');
-        const [grantType, setGrantType] = useState('');
-        const [endDate, setEndDate] = useState(new Date());
-        let pastSevenDays = new Date(endDate.getTime() - 7 * 24 * 60 * 60 * 1000);
-        const [startDate, setStartDate] = useState(pastSevenDays);
-        const [grantIssues,setGrantIssues] = useState([]);
-        const [grantIssueNumber,setGrantIssueNumber] = useState(null);
-        const [grantName,setGrantName] = useState(null);
-        const [grantBudget,setGrantBudget] = useState(null);
-        const [grantCompletionDate,setGrantCompletionDate] = useState(null);
-        const [totalGrantPaidToDate,setTotalGrantPaidToDate] = useState(null);
-        const [grantsFound, setGrantsFound] = useState(0);
-        const [stxAmount, setStxAmount] = useState(null)
-        const [usdAmount, setUsdAmount] = useState(null)
-        const [paymentsLength, setPaymentsLength] = useState(0)
-        const [paymentNumber, setPaymentNumber] = useState(1)
-        const [txID, setTxID] = useState(null)
-        const [CSVData, setCSVData] = useState([            
-            [
-                'Date Submitted',
-                'Github Issue Number',
-                'Application Type',
-                'Grant Lead',
-                'Previous Grants',
-                'Other Ecosytem Programs',
-                'Grant Name',
-                'Grant Budget',
-                'Grant Duration',
-                'Grant Type',
-                'Grant Track',
-                'Grant Goal',
-                'Grant Audience',
-                'Final Deliverable',
-                'Review Status',
-                'Grant Phase',
-                'Predicted Impact Score',
-                'Commented GH Usernames',
-                'Reacted GH Usernames'
-            ]
-        ]);
-        const [paymentData, setpaymentData] = useState([
-            
-                1,
-                2,
-                3,
-                4, 
-                5,
-                6,
-                7,
-                8,
-                9,
-                10
-            
-        ]);
+    const { data: session } = useSession();
+    const { addToast } = useToasts();
+    const router = useRouter()
+    const [loading, setLoading] = useState(false);
+    const [grantTracks, setGrantTracks] = useState('');
+    const [grantPhase, setGrantPhase] = useState('');
+    const [grantType, setGrantType] = useState('');
+    const [endDate, setEndDate] = useState(new Date());
+    let pastSevenDays = new Date(endDate.getTime() - 7 * 24 * 60 * 60 * 1000);
+    const [startDate, setStartDate] = useState(pastSevenDays);
+    const [grantIssues, setGrantIssues] = useState([]);
+    const [grantIssueNumber, setGrantIssueNumber] = useState(null);
+    const [grantName, setGrantName] = useState(null);
+    const [grantBudget, setGrantBudget] = useState(null);
+    const [grantCompletionDate, setGrantCompletionDate] = useState(null);
+    const [totalGrantPaidToDate, setTotalGrantPaidToDate] = useState(null);
+    const [grantsFound, setGrantsFound] = useState(0);
+    const [stxAmount, setStxAmount] = useState(null)
+    const [usdAmount, setUsdAmount] = useState(null)
+    const [paymentsLength, setPaymentsLength] = useState(0)
+    const [paymentNumber, setPaymentNumber] = useState(1)
+    const [txID, setTxID] = useState(null)
+    const [CSVData, setCSVData] = useState([
+        [
+            'Date Submitted',
+            'Github Issue Number',
+            'Application Type',
+            'Grant Lead',
+            'Previous Grants',
+            'Other Ecosytem Programs',
+            'Grant Name',
+            'Grant Budget',
+            'Grant Duration',
+            'Grant Type',
+            'Grant Track',
+            'Grant Goal',
+            'Grant Audience',
+            'Final Deliverable',
+            'Review Status',
+            'Grant Phase',
+            'Predicted Impact Score',
+            'Commented GH Usernames',
+            'Reacted GH Usernames'
+        ]
+    ]);
+    const [paymentData, setpaymentData] = useState([
+
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+
+    ]);
 
 
-        useEffect(()=>{
-            if(session?.user?.name.startsWith('will') || session?.user?.name.startsWith('ivo') || session?.user?.name?.startsWith('shakti')){
-                
-            }else{
-                router.push('/');
-            }
-        },[])
+    useEffect(() => {
+        if (session?.user?.name.startsWith('will') || session?.user?.name.startsWith('ivo') || session?.user?.name?.startsWith('shakti')) {
 
-        const predictedImpactScoreArr = ['6', '5', '4', '3', '2', '1'];
-
-
-        const walletButtonClicked = async () => {
-            if (isSignedIn) {
-                await signOut();
-            }
-            else {
-                await openAuthRequest();
-            }
+        } else {
+            router.push('/');
         }
+    }, [])
 
-        useEffect(()=>{
-            console.log('CSV data is : - ',CSVData);
-        },[CSVData])
+    const predictedImpactScoreArr = ['6', '5', '4', '3', '2', '1'];
 
-        let issues = [];
-        const applicationTypeArr = ['Direct Application', 'Wishlist Submission', 'Wishlist Request'];
-        const grantTypeArr = [
-            'Open Source First Time',
-            'Open Source Repeat',
-            'Community Builder',
-            'Education',
-            'Events',
-            'Chapter',
-            'ALEX Lab Foundation Grant',
-            'Resident Program',
-            'Direct Investment'
-        ];
-        const grantTrackArr = [
-            'Stacks Protocol',
-            'Stacks Interface',
-            'Stacks dApps & Clarity',
-            'Stacks Education & Community',
-            'Stacks Developer Experience',
-            'Stacks User Experience',
-            'Cross-Chain & Off-Chain',
-            'Bitcin Utility via Stacks'
-        ];
-        const grantStatusArr = [
-            'Grantee Onboarding',
-            'Completing Initial Deliverable',
-            'Completing Milestone(s)',
-            'Grant Completed',
-            'Grant is Stale',
-            'Grant is Closed'
-        ];
-        const grantPhaseArr = [
-            'Application Phase',
-            'Onboarding Phase',
-            'Milestone 1',
-            'Milestone 2',
-            'Milestone 3',
-            'Milestone 4',
-            'Milestone 5',
-            'Milestone 6',
-            'Milestone 7',
-            'Milestone 8',
-            'Milestone 9',
-            'Milestone 10',
-            'Final Deliverable'
-        ];
 
-    useEffect(()=>{
+    const walletButtonClicked = async () => {
+        if (isSignedIn) {
+            await signOut();
+        }
+        else {
+            await openAuthRequest();
+        }
+    }
+
+    useEffect(() => {
+        console.log('CSV data is : - ', CSVData);
+    }, [CSVData])
+
+    let issues = [];
+    const applicationTypeArr = ['Direct Application', 'Wishlist Submission', 'Wishlist Request'];
+    const grantTypeArr = [
+        'Open Source First Time',
+        'Open Source Repeat',
+        'Community Builder',
+        'Education',
+        'Events',
+        'Chapter',
+        'ALEX Lab Foundation Grant',
+        'Resident Program',
+        'Direct Investment'
+    ];
+    const grantTrackArr = [
+        'Stacks Protocol',
+        'Stacks Interface',
+        'Stacks dApps & Clarity',
+        'Stacks Education & Community',
+        'Stacks Developer Experience',
+        'Stacks User Experience',
+        'Cross-Chain & Off-Chain',
+        'Bitcin Utility via Stacks'
+    ];
+    const grantStatusArr = [
+        'Grantee Onboarding',
+        'Completing Initial Deliverable',
+        'Completing Milestone(s)',
+        'Grant Completed',
+        'Grant is Stale',
+        'Grant is Closed'
+    ];
+    const grantPhaseArr = [
+        'Application Phase',
+        'Onboarding Phase',
+        'Milestone 1',
+        'Milestone 2',
+        'Milestone 3',
+        'Milestone 4',
+        'Milestone 5',
+        'Milestone 6',
+        'Milestone 7',
+        'Milestone 8',
+        'Milestone 9',
+        'Milestone 10',
+        'Final Deliverable'
+    ];
+
+    useEffect(() => {
         getIssues();
-    },[])    
+    }, [])
 
     async function getIssues() {
         issues = [];
@@ -167,8 +167,8 @@ export default function PaymentsDashboard() {
             let newReq = res.concat(req.data);
             res = newReq
         }
-        
-        console.log('Issues response is : - ',res);
+
+        console.log('Issues response is : - ', res);
 
         res.map((issue) => {
             let teamMembers = issue.assignees.map((assignee) => assignee.login);
@@ -332,12 +332,12 @@ export default function PaymentsDashboard() {
     }
 
     const handleGrantChange = async (e) => {
-        const [_id,_grantName,_grantBudget] = e.target.value.split('-');
+        const [_id, _grantName, _grantBudget] = e.target.value.split('-');
         setGrantIssueNumber(_id);
         setGrantName(_grantName);
         setGrantBudget(_grantBudget);
         let findDateAndBudget = await findGrant(_id);
-        if(findDateAndBudget?.grant) {
+        if (findDateAndBudget?.grant) {
             setGrantCompletionDate(findDateAndBudget?.grant?.anticipatedCompletionDate)
             let totalAmountString = findDateAndBudget?.grant?.payments?.totalPayments?.toString()
             if (totalAmountString?.indexOf('.') === -1) {
@@ -354,163 +354,163 @@ export default function PaymentsDashboard() {
         }
     }
 
-    const handleSubmit = async(e) => {
-       
-            let paymentData = {
-                    "grantIssueNumber": grantIssueNumber,
-                    "paymentsMade": {
-                      "id": paymentNumber,
-                      "date": new Date(),
-                      "txID": txID,
-                      "stxAmount": stxAmount,
-                      "usdAmount": parseFloat(usdAmount)
-                    }
-            }
-            e.preventDefault();
-            setLoading(true);
-            console.log('Onboarding data is : - ',paymentData)
-            const res = await paymentUpdateUser(paymentData);
-            if (res.success) {
-                let formattedNum = totalGrantPaidToDate != undefined ? parseFloat(totalGrantPaidToDate) + parseFloat(usdAmount) : parseFloat(usdAmount)
-                let totalAmountString = formattedNum?.toString()
-                if (totalAmountString.indexOf('.') === -1) {
-                    totalAmountString += '.000';
-                } else if (totalAmountString.indexOf('.') === totalAmountString.length - 2) {
-                    totalAmountString += '0';
-                }
-                setTotalGrantPaidToDate(totalAmountString);
-                setPaymentsLength(paymentsLength+1)
-                addToast('Successfully added!', { appearance: 'success',autoDismiss: true, autoDismissTimeout: 3000 });
+    const handleSubmit = async (e) => {
 
-            }else{
-                addToast('Failed to add!', { appearance: 'error',autoDismiss: true, autoDismissTimeout: 3000 });
+        let paymentData = {
+            "grantIssueNumber": grantIssueNumber,
+            "paymentsMade": {
+                "id": paymentNumber,
+                "date": new Date(),
+                "txID": txID,
+                "stxAmount": stxAmount,
+                "usdAmount": parseFloat(usdAmount)
             }
-            console.log('Onboarding res is : - ',res)
-            setLoading(false);
+        }
+        e.preventDefault();
+        setLoading(true);
+        console.log('Onboarding data is : - ', paymentData)
+        const res = await paymentUpdateUser(paymentData);
+        if (res.success) {
+            let formattedNum = totalGrantPaidToDate != undefined ? parseFloat(totalGrantPaidToDate) + parseFloat(usdAmount) : parseFloat(usdAmount)
+            let totalAmountString = formattedNum?.toString()
+            if (totalAmountString.indexOf('.') === -1) {
+                totalAmountString += '.000';
+            } else if (totalAmountString.indexOf('.') === totalAmountString.length - 2) {
+                totalAmountString += '0';
+            }
+            setTotalGrantPaidToDate(totalAmountString);
+            setPaymentsLength(paymentsLength + 1)
+            addToast('Successfully added!', { appearance: 'success', autoDismiss: true, autoDismissTimeout: 3000 });
+
+        } else {
+            addToast('Failed to add!', { appearance: 'error', autoDismiss: true, autoDismissTimeout: 3000 });
+        }
+        console.log('Onboarding res is : - ', res)
+        setLoading(false);
     }
 
-  return (
-    <div className={styles.main}>
-        <Link href="/">
-			<a>
-				<div className={styles.close}>
-					<p>
-						<CloseIcon />
-							Close
-					</p>
-				    <span></span>
-				</div>
-			</a>
-		</Link>
-        <div className={styles.onBoardingWrapper}>
-            <h2>
-                Payments Dashboard
-            </h2>
-            <div className={styles.onBoardingRow}>
-                <div className={styles.onBoardingLeft}>
-                    <p className={styles.text}>
-                    A simple widget for inputting payments information into the grants database.
-                    </p>
-                    <p style={addPayment}>Add a Payment</p>
-                    {
-                        loading ? <LoadingSpinner/> : <form>
-                        <div className={styles.formRow}>
-                            <div className={styles.formControl}>
-                                <label>Github Issues Number</label>
-                                <div className={styles.selectWrapper}>
-                                    <DropdownIcon className={styles.customSelectArrow} />
-                                <select className={styles.countrySelect} style={{height: 50}} onChange={(e)=>handleGrantChange(e)} name="selectIssue">
-                                    {
-                                        CSVData?.length > 1 && CSVData.map(item=>{
-                                            return(<option key={item[1]} value={`${item[1]}-${item[6]}-${item[7]}`}>{item[1]}</option>)
-                                        })
-                                    }
-                                </select>
-                                </div>
-                            </div>
-                            <div className={styles.formControl}>
-                                <label>Payment Number</label>
-                                <div className={styles.selectWrapper}>
-                                    <DropdownIcon className={styles.customSelectArrow} />
-                                    <select className={styles.countrySelect} style={{height: 50}} onChange={(e)=>{setPaymentNumber(e.target.value)}} name="selectIssue">
-                                        {
-                                            paymentData.map(item=>{
-                                                if (item > paymentsLength) {
-                                                    return(<option key={item} value={`${item}}`}>{item}</option>)
-                                                }
-                                            })
-                                        }
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={styles.formRow}>
-                            <div className={styles.formControl}>
-                                <label>Amount of STX Disbursed</label>
-                                <input 
-                                    className={styles.formInput}
-                                    name="stxAmount"
-                                    type="number"
-                                    placeholder="Type here..."
-                                    value={stxAmount}
-                                    onChange={(e)=>{setStxAmount(e.target.value)}}
-                                />
-                            </div>
-                            <div className={styles.formControl}>
-                                <label>Equivelant amount of USD</label>
-                                <input 
-                                    className={styles.formInput}
-                                    name="usdAmount"
-                                    type="number"
-                                    placeholder="Type here..."
-                                    value={usdAmount}
-                                    onChange={(e)=>{setUsdAmount(e.target.value)}}
-                                />
-                            </div>
-                        </div>
-                        <div className={styles.formRow}>
-                            <div className={styles.formControl}>
-                                <label>Stacks Transaction ID</label>
-                                <input 
-                                    className={styles.formInput}
-                                    name="transactionID"
-                                    type="text"
-                                    placeholder="Type here..."
-                                    value={txID}
-                                    onChange={(e)=>{setTxID(e.target.value)}}
-                                />
-                            </div>
-                        </div>
-                    </form>
-                    }
-                </div>
-                <div className={styles.onBoardingRight}>
-                    <p style={paymentHistory}>Payment History</p>
-                    {grantIssueNumber ? 
-                    <>
-                    <h5>Issue Number:</h5>
-                    <p>{grantIssueNumber ? grantIssueNumber : ''}</p>
-                    <h5>Grant Name:</h5>
-                    <p>{grantName ? grantName : ''}</p>
-                    <h5>Agreed upon Completion Date:</h5>
-                    <p>{grantCompletionDate ? new Date(grantCompletionDate)?.toDateString(): ""}</p>
-                    <h5>Grant Budget:</h5>
-                    <p>{grantBudget ? '$' + grantBudget : ''}</p>
-                    <h5>Total Paid to date:</h5>
-                    <p>{totalGrantPaidToDate ? '$' + totalGrantPaidToDate: ""}</p>
-                    <p style={marginBottom70}></p>
-                    </>: null}
-                    <div className={styles.divider}></div>
-                    <button className={styles.gradientButton} style={{marginTop:grantIssueNumber? 50:320}} onClick={(e)=>{handleSubmit(e)}}>
+    return (
+        <div className={styles.main}>
+            <Link href="/">
+                <a>
+                    <div className={styles.close}>
+                        <p>
+                            <CloseIcon />
+                            Close
+                        </p>
+                        <span></span>
+                    </div>
+                </a>
+            </Link>
+            <div className={styles.onBoardingWrapper}>
+                <h2>
+                    Payments Dashboard
+                </h2>
+                <div className={styles.onBoardingRow}>
+                    <div className={styles.onBoardingLeft}>
+                        <p className={styles.text}>
+                            A simple widget for inputting payments information into the grants database.
+                        </p>
+                        <p style={addPayment}>Add a Payment</p>
                         {
-                            loading ? <LoadingSpinner/> : 'Click to Submit'
+                            loading ? <LoadingSpinner /> : <form>
+                                <div className={styles.formRow}>
+                                    <div className={styles.formControl}>
+                                        <label>Github Issues Number</label>
+                                        <div className={styles.selectWrapper}>
+                                            <DropdownIcon className={styles.customSelectArrow} />
+                                            <select className={styles.countrySelect} style={{ height: 50 }} onChange={(e) => handleGrantChange(e)} name="selectIssue">
+                                                {
+                                                    CSVData?.length > 1 && CSVData.map(item => {
+                                                        return (<option key={item[1]} value={`${item[1]}-${item[6]}-${item[7]}`}>{item[1]}</option>)
+                                                    })
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div className={styles.formControl}>
+                                        <label>Payment Number</label>
+                                        <div className={styles.selectWrapper}>
+                                            <DropdownIcon className={styles.customSelectArrow} />
+                                            <select className={styles.countrySelect} style={{ height: 50 }} onChange={(e) => { setPaymentNumber(e.target.value) }} name="selectIssue">
+                                                {
+                                                    paymentData.map(item => {
+                                                        if (item > paymentsLength) {
+                                                            return (<option key={item} value={`${item}}`}>{item}</option>)
+                                                        }
+                                                    })
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={styles.formRow}>
+                                    <div className={styles.formControl}>
+                                        <label>Amount of STX Disbursed</label>
+                                        <input
+                                            className={styles.formInput}
+                                            name="stxAmount"
+                                            type="number"
+                                            placeholder="Type here..."
+                                            value={stxAmount}
+                                            onChange={(e) => { setStxAmount(e.target.value) }}
+                                        />
+                                    </div>
+                                    <div className={styles.formControl}>
+                                        <label>Equivelant amount of USD</label>
+                                        <input
+                                            className={styles.formInput}
+                                            name="usdAmount"
+                                            type="number"
+                                            placeholder="Type here..."
+                                            value={usdAmount}
+                                            onChange={(e) => { setUsdAmount(e.target.value) }}
+                                        />
+                                    </div>
+                                </div>
+                                <div className={styles.formRow}>
+                                    <div className={styles.formControl}>
+                                        <label>Stacks Transaction ID</label>
+                                        <input
+                                            className={styles.formInput}
+                                            name="transactionID"
+                                            type="text"
+                                            placeholder="Type here..."
+                                            value={txID}
+                                            onChange={(e) => { setTxID(e.target.value) }}
+                                        />
+                                    </div>
+                                </div>
+                            </form>
                         }
-                    </button>
+                    </div>
+                    <div className={styles.onBoardingRight}>
+                        <p style={paymentHistory}>Payment History</p>
+                        {grantIssueNumber ?
+                            <>
+                                <h5>Issue Number:</h5>
+                                <p>{grantIssueNumber ? grantIssueNumber : ''}</p>
+                                <h5>Grant Name:</h5>
+                                <p>{grantName ? grantName : ''}</p>
+                                <h5>Agreed upon Completion Date:</h5>
+                                <p>{grantCompletionDate ? new Date(grantCompletionDate)?.toDateString() : ""}</p>
+                                <h5>Grant Budget:</h5>
+                                <p>{grantBudget ? '$' + grantBudget : ''}</p>
+                                <h5>Total Paid to date:</h5>
+                                <p>{totalGrantPaidToDate ? '$' + totalGrantPaidToDate : ""}</p>
+                                <p style={marginBottom70}></p>
+                            </> : null}
+                        <div className={styles.divider}></div>
+                        <button className={styles.gradientButton} style={{ marginTop: grantIssueNumber ? 50 : 320 }} onClick={(e) => { handleSubmit(e) }}>
+                            {
+                                loading ? <LoadingSpinner /> : 'Click to Submit'
+                            }
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }
 
 const paymentHistory = {
@@ -528,21 +528,21 @@ const marginBottom70 = {
 }
 
 export async function getServerSideProps(context) {
-	const session = await unstable_getServerSession(context.req, context.res, authOptions);
+    const session = await unstable_getServerSession(context.req, context.res, authOptions);
 
-	if (!session) {
-		return {
-			redirect: {
-				destination: '/',
-				permanent: false
-			}
-		};
-	}
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false
+            }
+        };
+    }
 
-	session.user.email = '';
-	return {
-		props: {
-			session
-		}
-	};
+    session.user.email = '';
+    return {
+        props: {
+            session
+        }
+    };
 }

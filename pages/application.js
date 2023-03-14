@@ -468,9 +468,9 @@ const Application = () => {
       case 4:
         return <ApplicationChecklist />;
       case 5:
-        return <GrantTrack />;
+        return <GrantType/>;
       case 6:
-        return <GrantType />;
+        return <GrantTrack />;
       case 7:
         return <ProjectTags />;
       case 8:

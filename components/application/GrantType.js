@@ -4,7 +4,7 @@ import Person from '../../public/images/person.svg';
 import Arrow from '../../public/images/arrow.svg';
 import PayTag from '../../public/images/payTag.svg';
 import WaterDrop from '../../public/images/waterDrop.svg';
-
+import { projectTypes } from '../../content';
 
 
 export default function GrantType() {
@@ -14,7 +14,7 @@ export default function GrantType() {
   return (
     <div className={styles.onBoardingWrapper}>
             <div className={styles.onBoardingRow}>
-                <div className={styles.onBoardingLeft}>
+                <div className={styles.onBoardingLeft} style={{maxHeight: 600,overflow: 'auto'}}>
                             <h2 style={{fontSize: 20,color: '#fff'}}>
                                 Grant Type
                             </h2>
@@ -23,6 +23,7 @@ export default function GrantType() {
                             </p>
                             
                             <ul className={styles.grantTypeList}>
+                                
                                 <li className={styles.grantTypeListItem}>
                                     <div className={styles.left}>
                                         <div>
@@ -46,7 +47,7 @@ export default function GrantType() {
                                         </div>
                                     </div>
                                 </li>
-                                <li className={styles.grantTypeListItem}>
+                                {/* <li className={styles.grantTypeListItem}>
                                     <div className={styles.left}>
                                         <div>
                                             <span className={styles.grantInputBox}>
@@ -68,7 +69,34 @@ export default function GrantType() {
                                             <span className={styles.dots}>. . .</span>
                                         </div>
                                     </div>
-                                </li>
+                                </li> */}
+                                {
+                                    projectTypes.map(item=>(
+                                        <li className={styles.grantTypeListItem}>
+                                            <div className={styles.left}>
+                                                <div>
+                                                    <span className={styles.grantInputBox}>
+                                                        <input type={'radio'}/>
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <span className={styles.grantName}>{item.name}</span>
+                                                </div>
+                                            </div>
+                                            <div className={styles.right}>
+                                                <div>
+                                                    <span className={styles.grantRange}>{item.funding}</span>
+                                                </div>
+                                                <div>
+                                                    <span className={styles.grantStream} style={{background: item.color}}>{item.stream}</span>
+                                                </div>
+                                                <div>
+                                                    <span className={styles.dots}>. . .</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    ))
+                                }
                             </ul>
 
                             <p className={styles.text}>
@@ -155,7 +183,7 @@ export default function GrantType() {
                                     <div className={styles.left}>
                                         <div>
                                             <span className={styles.grantInputBox2}>
-                                                <input type={'radio'}/>
+                                                <input disabled type={'radio'}/>
                                             </span>
                                         </div>
                                         <div>
@@ -178,7 +206,7 @@ export default function GrantType() {
                                     <div className={styles.left}>
                                         <div>
                                             <span className={styles.grantInputBox2}>
-                                                <input type={'radio'}/>
+                                                <input disabled type={'radio'}/>
                                             </span>
                                         </div>
                                         <div>
@@ -201,7 +229,7 @@ export default function GrantType() {
                                     <div className={styles.left}>
                                         <div>
                                             <span className={styles.grantInputBox2}>
-                                                <input type={'radio'}/>
+                                                <input disabled type={'radio'}/>
                                             </span>
                                         </div>
                                         <div>
@@ -224,7 +252,7 @@ export default function GrantType() {
                                     <div className={styles.left}>
                                         <div>
                                             <span className={styles.grantInputBox2}>
-                                                <input type={'radio'}/>
+                                                <input disabled type={'radio'}/>
                                             </span>
                                         </div>
                                         <div>
@@ -247,7 +275,7 @@ export default function GrantType() {
                                     <div className={styles.left}>
                                         <div>
                                             <span className={styles.grantInputBox2}>
-                                                <input type={'radio'}/>
+                                                <input disabled type={'radio'}/>
                                             </span>
                                         </div>
                                         <div>

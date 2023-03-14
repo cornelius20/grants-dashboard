@@ -29,6 +29,8 @@ import ProjectLeadInformation from "../components/application/ProjectLeadInforma
 import ApplicationChecklist from "../components/application/ApplicationChecklist";
 import WishlistIdea from "../components/application/WishlistIdea";
 import ApplicantInformationB from "../components/application/ApplicantInformationB";
+import GrantTrack from "../components/application/GrantTrack";
+import GrantType from "../components/application/GrantType";
 
 const Application = () => {
   const { data: session } = useSession();
@@ -257,8 +259,13 @@ const Application = () => {
     return false;
   }
 
+  // function handleSubmit(nextStepNumber){
+  //   setCurrentStep(nextStepNumber);
+  // }
+
   function handleSubmit(nextStepNumber) {
     let fields = Array.from(document.querySelectorAll("input, textarea"));
+    console.log('Fields are : - ',fields)
     let allChecked = false;
 
     fields.map((field) => {
@@ -461,9 +468,9 @@ const Application = () => {
       case 4:
         return <ApplicationChecklist />;
       case 5:
-        return <ProjectFundingStream />;
+        return <GrantTrack />;
       case 6:
-        return <ProjectTrack />;
+        return <GrantType />;
       case 7:
         return <ProjectTags />;
       case 8:

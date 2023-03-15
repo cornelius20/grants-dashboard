@@ -2,21 +2,9 @@ import React, { useState, useMemo, useEffect } from 'react';
 import styles from './GrantType.module.css';
 import CloseIcon from '../public/images/close.svg';
 import Link from 'next/link';
-import CalendarDropdown from '../components/CalendarDropdown';
-import ExploreModal from '../components/ExploreModal';
-import { useAuth } from '@micro-stacks/react';
-import { useAccount } from '@micro-stacks/react';
-import { grantOnboarding } from '../utils/ApiCalls';
-import { Octokit } from '@octokit/rest';
-import AddWallet from '../components/AddWalletModal';
-
-import DropdownIcon from '../public/images/dropdown.svg';
-import LoadingSpinner from '../public/images/loading-spinner.svg';
-import BrowserWallet from '../components/BrowserWallet';
 import CustomAlert from '../components/CustomAlert';
 import { authOptions } from './api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
-import { useToasts } from 'react-toast-notifications';
 import CheckMark from '../public/images/checkmark.svg';
 import SuccessModal from '../components/SuccessModal';
 import ThanksModal from '../components/ThanksModal';
@@ -37,10 +25,6 @@ export default function GrantOnboarding() {
         checkBox6: false,
         checkBox7: false,
     })
-
-    useEffect(() => {
-        console.log('Session is ; - ', session);
-    }, [])
 
 
     const handleCheckBoxChange = (event) => {
@@ -87,7 +71,7 @@ export default function GrantOnboarding() {
                     </Link>
                 </p>
                 <div style={relative}>
-                    <button onClick={() => { handleSubmit() }} className={styles.gradientButton} style={{ width: 210, position: 'absolute', top: 0, right: 0 }}><CheckMark style={{ marginRight: 10 }} /> Ok</button>
+                    <button onClick={() => { handleSubmit() }} className={`${styles.gradientButton} ${styles.okButton}`} style={{ width: 210, position: 'absolute', top: 0, right: 0 }}><CheckMark style={{ marginRight: 10 }} /> Ok</button>
                 </div>
             </div>
 
@@ -135,68 +119,20 @@ export default function GrantOnboarding() {
                             <p>I have read the <a className={styles.purpleLink}>current grant priorities</a> and my project directly relates to those priorities.</p>
                         </div>
                     </div>
-                    {/* <div className={styles.onBoardingRight} style={{textAlign: 'right'}}>
-                    <button className={styles.gradientButton} style={rightBtn}>Ok</button>
-                </div> */}
+                    
                 </div>
             </div>
         </div>
     )
 }
 
-// const main ={
-// 	backgroundColor: '#000',
-// 	height: '100vh'
-// }
-
-const flex2 = {
-    flex: 2
-}
-
-const rightBtn = {
-    width: 200,
-    marginLeft: 'auto'
-}
 
 const mt20 = {
     marginTop: 30
 }
 
-const checkbox = {
-    display: 'flex',
-    gap: 10,
-    alignItems: 'flex-start',
-    marginBottom: 20,
-    color: '#fff'
-}
-
-const marginBottom120 = {
-    marginBottom: 120
-}
-
 const mb4 = {
     marginBottom: 40
-}
-
-const mb1 = {
-    marginBottom: 10
-}
-
-const mailLink = {
-    color: "#fff",
-    textDecorationLine: 'underline'
-}
-
-const marginTop10 = {
-    marginTop: 10,
-}
-
-const grayColor = {
-    color: 'gray'
-}
-
-const whiteColor = {
-    color: '#E2E8F0',
 }
 
 const wrapper = {

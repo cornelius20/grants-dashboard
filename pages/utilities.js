@@ -87,36 +87,7 @@ const Utilities = () => {
 						)}
 					</div>
 				</div>
-				{/* <h2>II. Grant Review Commitee Tools</h2>
-
-				<div className={styles.buttonWrapper}>
-					<div>
-						<p>II.a. Have you been asked to review grant application?</p>
-						<Link href="/stacks-payment-converter">
-							<a>
-								<button>Application Review Form</button>
-							</a>
-						</Link>
-					</div>
-					<div>
-						<p>II.b. Have you been asked to review a milestone or final deliverable?</p>
-						{!session && (
-							<Link href="/grant-data-exporter">
-								<a>
-									<button onClick={() => signIn('github')}>Deliverable Review Form</button>
-								</a>
-							</Link>
-						)}
-						{session && (
-							<Link href="/grant-data-exporter">
-								<a>
-									<button>Grant Data Exporter</button>
-								</a>
-							</Link>
-						)}
-					</div>
-					
-				</div> */}
+				
 				{
 					session?.user?.name.startsWith('will') || session?.user?.name.startsWith('ivo') || session?.user?.name.startsWith('shakti') ?
 						<>
@@ -131,20 +102,7 @@ const Utilities = () => {
 													<button>Admin Dashboard</button>
 												</a>
 											</Link>
-											{/* {!session && (
-								<Link href="/admin-dashboard">
-									<a>
-										<button onClick={() => signIn('github')}>Admin Dashboard</button>
-									</a>
-								</Link>
-							)}
-							{session && (
-								<Link href="/admin-dashboard">
-									<a>
-										<button>Admin Dashboard</button>
-									</a>
-								</Link>
-							)} */}
+											
 										</div>
 										: null
 								}
@@ -155,20 +113,7 @@ const Utilities = () => {
 											<button>Payments Dashboard</button>
 										</a>
 									</Link>
-									{/* {!session && (
-								<Link href="/payments-dashboard">
-									<a>
-										<button onClick={() => signIn('github')}>Payment Dashboard</button>
-									</a>
-								</Link>
-							)}
-							{session && (
-								<Link href="/payments-dashboard">
-									<a>
-										<button>Payments Dashboard</button>
-									</a>
-								</Link>
-							)} */}
+									
 								</div>
 
 							</div>

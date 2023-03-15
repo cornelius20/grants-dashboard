@@ -8,13 +8,11 @@ import { projectTypes } from '../../content';
 
 
 export default function GrantType() {
-        
-        
 
   return (
     <div className={styles.onBoardingWrapper}>
             <div className={styles.onBoardingRow}>
-                <div className={styles.onBoardingLeft} style={{maxHeight: 600,overflow: 'auto'}}>
+                <div className={styles.onBoardingLeft} style={maxHeight}>
                             <h2 style={{fontSize: 20,color: '#fff'}}>
                                 Grant Type
                             </h2>
@@ -47,29 +45,7 @@ export default function GrantType() {
                                         </div>
                                     </div>
                                 </li>
-                                {/* <li className={styles.grantTypeListItem}>
-                                    <div className={styles.left}>
-                                        <div>
-                                            <span className={styles.grantInputBox}>
-                                                <input type={'radio'}/>
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <span className={styles.grantName}>Open Source Development</span>
-                                        </div>
-                                    </div>
-                                    <div className={styles.right}>
-                                        <div>
-                                            <span className={styles.grantRange}>$0-$48k</span>
-                                        </div>
-                                        <div>
-                                            <span className={styles.grantStream}>Developer Grants</span>
-                                        </div>
-                                        <div>
-                                            <span className={styles.dots}>. . .</span>
-                                        </div>
-                                    </div>
-                                </li> */}
+                                
                                 {
                                     projectTypes.map((item,index)=>(
                                         <li key={index} className={styles.grantTypeListItem}>
@@ -324,94 +300,7 @@ const listHeader2 = {
     color: 'rgba(255, 255, 255, 0.48);'
 }
 
-const flex1 = {
-    flex: 1
-}
-
-const displayFlex = {
-    display: "flex"
-}
-
-const titleView = {
-    flex: 1,
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'center'
-}
-
-const listTitle = {
-    fontWeight: 'bold',
-    fontSize: 12,
-    display: 'flex',
-    alignItems: 'center',
-    gap: 10,
-    marginBottom: 10,
-    cursor: 'pointer'
-}
-
-
-const marginLeft10 = {
-    marginLeft:10
-}
-
-const addUser = {
-    color: '#fff',
-    marginBottom: 20
-}
-
-const githubView = {
-    display: 'flex',
-    flexDirection:"row",
-    width:"100%",
-    alignItems:'flex-end'
-}
-
-const flex2 = {
-    flex: 2
-}
-
-const rightBtn = {
-    width: 200,
-    marginLeft: 'auto'
-}
-
-const mt20 = {
-    marginTop: 30
-}
-
-const checkbox = {
-    display: 'flex',
-    gap: 10,
-    alignItems: 'flex-start',
-    marginBottom: 20,
-    color: '#fff'
-}
-
-const marginBottom120 = {
-    marginBottom: 120
-}
-
-const mb4 = {
-    marginBottom: 40
-}
-
-const mb1 = {
-    marginBottom: 10
-}
-
-const mailLink = {
-    color: "#fff",
-    textDecorationLine: 'underline'
-}
-
-const marginTop10 = {
-    marginTop: 10,
-}
-
-const grayColor = {
-    color: 'gray'
-}
-
-const whiteColor = {
-    color: '#E2E8F0',
+const maxHeight = {
+    maxHeight: 600,
+    overflow: 'auto'
 }

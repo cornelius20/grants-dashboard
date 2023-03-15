@@ -81,6 +81,13 @@
   width: 12px !important;
 }
 
+.okButton{
+  width: 210px; 
+  position: 'absolute';
+   top: 0;
+   right: 0;
+}
+
 .purpleLink {
   font-weight: bold;
   color: #553c9a !important;
@@ -345,6 +352,16 @@
 }
 
 /* ...........PAYMENT TABLE............. */
+.paymentHeading{
+  font-size: 20px;
+  color: #fff !important;
+}
+
+.paymentText{
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.48) !important;
+}
+
 .paymentList {
   list-style-type: none;
   margin: 40px 0;
@@ -358,6 +375,9 @@
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
+  font-weight: 700;
+  color: #fff !important;
+  opacity: 1 !important;
 }
 
 .paymentListItem {

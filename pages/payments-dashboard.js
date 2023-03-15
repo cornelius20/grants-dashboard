@@ -168,7 +168,6 @@ export default function PaymentsDashboard() {
             res = newReq
         }
 
-        console.log('Issues response is : - ', res);
 
         res.map((issue) => {
             let teamMembers = issue.assignees.map((assignee) => assignee.login);
@@ -327,7 +326,6 @@ export default function PaymentsDashboard() {
 
         if (res) {
             setLoading(false);
-            // setGithubIssues(res);
         }
     }
 
@@ -368,7 +366,6 @@ export default function PaymentsDashboard() {
         }
         e.preventDefault();
         setLoading(true);
-        console.log('Onboarding data is : - ', paymentData)
         const res = await paymentUpdateUser(paymentData);
         if (res.success) {
             let formattedNum = totalGrantPaidToDate != undefined ? parseFloat(totalGrantPaidToDate) + parseFloat(usdAmount) : parseFloat(usdAmount)
@@ -385,7 +382,6 @@ export default function PaymentsDashboard() {
         } else {
             addToast('Failed to add!', { appearance: 'error', autoDismiss: true, autoDismissTimeout: 3000 });
         }
-        console.log('Onboarding res is : - ', res)
         setLoading(false);
     }
 

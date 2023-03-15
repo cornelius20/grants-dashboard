@@ -2,15 +2,12 @@ import React,{useState,useMemo,useEffect} from 'react';
 import styles from './GrantType.module.css'
 
 
-
 export default function GrantTrack() {
         
-        
-
   return (
     <div className={styles.onBoardingRow}>
                 <div className={styles.onBoardingLeft}>
-                            <h2 style={{fontSize: 20,color: '#fff'}}>
+                            <h2 style={heading}>
                                 Grant Track
                             </h2>
                             <p style={mb4} className={styles.text}>
@@ -120,59 +117,17 @@ export default function GrantTrack() {
   )
 }
 
-// const main ={
-// 	backgroundColor: '#000',
-// 	height: '100vh'
-// }
 
-const flex2 = {
-    flex: 2
-}
-
-const rightBtn = {
-    width: 200,
-    marginLeft: 'auto'
-}
-
-const mt20 = {
-    marginTop: 30
-}
-
-const checkbox = {
-    display: 'flex',
-    gap: 10,
-    alignItems: 'flex-start',
-    marginBottom: 20,
-    color: '#fff'
-}
-
-const marginBottom120 = {
-    marginBottom: 120
-}
 
 const mb4 = {
     marginBottom: 40
 }
 
-const mb1 = {
-    marginBottom: 10
+const heading = {
+    fontSize: 20,
+    color: '#fff'
 }
 
-const mailLink = {
-    color: "#fff",
-    textDecorationLine: 'underline'
-}
 
-const marginTop10 = {
-    marginTop: 10,
-}
-
-const grayColor = {
-    color: 'gray'
-}
-
-const whiteColor = {
-    color: '#E2E8F0',
-}
 
 

@@ -1,0 +1,465 @@
+
+.main{
+    background-color: #000;
+      min-height: 100vh;
+    background-image: url('../public/images/Logo.png');
+    background-repeat: no-repeat;
+    background-position: right bottom;
+  }
+  
+  
+  .close {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      padding-right: 26px;
+      padding-top: 38px;
+      gap: 20px;
+    }
+    
+    .close p{
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .close span {
+    display: block;
+    border: 1px solid white;
+    width: 25px;
+    }
+  
+    .grantDataRow{
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+    }
+  
+    .grantDataCol{
+      flex: 1;
+    }
+  
+    .onBoardingWrapper{
+      max-width: 1000px;
+      /* background-color: #000; */
+      margin: auto;
+      padding: 0 30px;
+      border-radius: 20px;
+    }
+  
+  
+    .onBoardingWrapper h1{
+      font-size: 32px;
+      font-weight: 300;
+      padding-bottom: 20px;
+    }
+    
+    .onBoardingWrapper h2{
+      font-size: 32px;
+      font-weight: 300;
+      padding-bottom: 20px;
+      /* margin-bottom: 10px; */
+    }
+  
+    .onBoardingRow{
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+    }
+  
+    .onBoardingLeft{
+      flex: 2;
+    }
+  
+    .flex{
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+  
+    .quizCheckBox{
+      margin-top: 5px !important;
+      height: 12px !important;
+      width: 12px !important;
+    }
+  
+    .purpleLink{
+      font-weight: bold;
+      color: #553C9A !important; 
+      text-decoration: underline;
+    }
+  
+    .onBoardingLeft h2{
+      color: rgba(255, 255, 255, 0.48);;
+      font-size: 16px;
+    }
+  
+    .onBoardingLeft p{
+      color: rgba(255, 255, 255, 0.8);;
+    }
+  
+    .text{
+      margin-bottom: 20px;
+      color: #A0AEC0;
+      font-size: 14px;
+    }
+  
+    .onBoardingRight{
+      flex: 1;
+    }
+  
+    .formRow{
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+  
+    /* .formRow button{
+      background: linear-gradient(45deg, #3182ce, #97266d);
+      height: 45px;
+      border: 1px solid #ffffff;
+      border-radius: 5px;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 200px;
+      margin-top: 30px;
+    } */
+  
+    .formControl{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      flex: 1;
+    }
+  
+    .formRow label{
+      margin-bottom: 10px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.92);
+    }
+  
+    .formInput{
+      background-color: #000;
+      border: none;
+      outline: none;
+      /* font-family: 'Inter'; */
+      border-bottom: 1px solid #fff;
+      width: 100%;
+      padding: 7px 0;
+      color: #fff;
+    }
+  
+    .formRow select{
+      border: 1px solid #000;
+      border-radius: 5px;
+      padding: 5px;
+      width: 100%;
+    }
+  
+    .formRow select{
+      border: 1px solid rgba(255, 255, 255, 0.36);;
+      background-color: rgba(0, 0, 0, 0.64);
+      padding-right: 20px;
+      border-radius: 5px;
+      padding: 10px;
+      width: 100%;
+      color: #fff;
+    }
+  
+      .formRow span {
+          font-size: 12px;
+          margin-top: 10px;
+      }
+  
+      .onBoardingRight h5 {
+          /* font-family: 'Inter'; */
+          font-style: normal;
+          font-weight: 700;
+          font-size: 14px;
+          line-height: 150%;
+          color: #718096;
+          font-weight: 700;
+          margin-bottom: 5px;
+      }
+  
+      .onBoardingRight p {
+          font-size: 14px;
+          margin-bottom: 10px;
+          color: #4A5568;
+      }
+  
+      .onBoardingRight label {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 150%;
+          color: #718096;
+          font-weight: 700;
+          margin-bottom: 5px;
+    }
+  
+      .gradientButton {
+          background: linear-gradient(45deg, #3182ce, #97266d);
+          height: 50px;
+          border: 1px solid #ffffff;
+          border-radius: 5px;
+          color: #ffffff;
+          font-size: 12px;
+          font-weight: 600;
+          cursor: pointer;
+          width: 100%;
+          margin-bottom: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+  
+      .walletButton {
+        background: #000;
+        height: 50px;
+        border: 1px solid gray;
+        border-radius: 5px;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        width: 165px;
+        margin-bottom: 20px;
+      }
+  
+      .divider{
+          width: 100%;
+          height: 1px;
+          background: rgba(255, 255, 255, 0.16);;
+      }
+  
+      .white{
+        color: #fff !important;
+      }
+  
+      .validationError{
+        color: red;
+        font-size: 12px;
+      }
+  
+      /* ........LIST DATA......... */
+  
+      .namesList{
+          list-style: none;
+          color: #fff;
+          height: 300px;
+          overflow-y: auto;
+          margin: 10px 0;
+      }
+  
+      .listHeader{
+          display: flex;
+          justify-content: flex-start;
+          font-weight: bold;
+          font-size: 14px;
+      }
+  
+      .listItem{
+          display: flex;
+          justify-content: flex-start;
+          /* margin-bottom: 10px; */
+          align-items: center;
+          border-top: 1px solid #1b1f26;
+          padding: 7px 10px;
+          font-size: 14px;
+          position: relative;
+      }
+  
+      .listPopup{
+        position: absolute;
+        top: -100%;
+        right: 0;
+        background-color: 'orange';
+        height: 100px;
+        width: 100px;
+      }
+  
+      .listItem div:nth-of-type(2){
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+      }
+  
+      .listItem div:nth-of-type(2) span{
+          border-radius: 3px;
+          padding: 3px 10px;
+          font-size: 12px;
+          color: #000;    
+      }
+  
+      .listItem div:nth-of-type(2) button{
+          border-radius: 3px;
+          padding: 5px 10px;
+          font-size: 12px;
+          color: #fff;  
+          background-color: #000;  
+          border: none;
+          outline: none;
+          cursor: pointer;
+      }
+  
+      .listItem input{
+          margin-right: 50px;
+      }
+  
+      .searchIcon {
+        background-color: #000;
+        border: none;
+        outline: none;
+        border-bottom: 1px solid #fff;
+        padding-bottom: 7px;
+        padding-right: 7px;
+      }
+  
+      .width250 {
+        width: 250
+      }
+  
+      .converterButton {
+        background: #322659;
+        border: 1px solid #ffffff;
+        color: white;
+        height: 50px;
+        width: 206px;
+        border-radius: 5px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+  
+      .mt3{
+        margin-top: 3px !important;
+      }
+  
+      .dropdownWrapper {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .dropdownWrapper label {
+        font-size: 16px;
+        color: #ffffff;
+        padding-bottom: 10px;
+      
+      }
+  
+      .centerBox{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 80px;
+      }
+  
+      .selectWrapper{
+        position: relative;
+        width: 100%;
+      }
+  
+      .countrySelect {
+        position: relative;
+        color: gray !important;
+        background-color: #000;
+        border-radius: 5px;
+        padding: 10px;
+        /* for Firefox */
+        -moz-appearance: none;
+        /* for Chrome */
+        -webkit-appearance: none;
+        cursor: pointer;
+        width: 100%;
+      }
+      
+      .issueSelect {
+        position: relative;
+        color: gray !important;
+        background-color: #000;
+        border-radius: 5px;
+        padding-bottom: 20px;
+        padding-top: 0px;
+        /* for Firefox */
+        -moz-appearance: none;
+        /* for Chrome */
+        -webkit-appearance: none;
+        cursor: pointer;
+        width: 80%;
+      }
+  
+      .selectIssueArrow{
+        position: absolute;
+        top: 32%;
+        right: 22%;
+        transform: translateY(-32%);
+        color: #fff !important;
+        z-index: 1;
+      }
+  
+      .customSelectArrow{
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        color: #fff !important;
+        z-index: 1;
+      }
+  
+  
+      /* .........GRANT TYPE.......... */
+      .row{
+        display: flex;
+        justify-content: space-between;
+        align-self: center;
+        gap: 30px;
+      }
+  
+      .col{
+        flex: 1;
+      }
+  
+      .grantList{
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+      }
+  
+      .grantTypeFlex{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+  
+      .heading{
+        font-size: 18px !important;
+        color: #fff !important;
+        padding: 0 !important;
+      }
+      
+      /* ...........MEDIA QUERIES............. */
+  
+      @media screen and (max-width: 900px){
+        .onBoardingRow{
+          flex-direction: column;
+        }
+        
+        .formRow{
+          flex-direction: column;
+        }
+      }
+  
+      @media screen and (max-width: 650px){
+        .listItem input{
+          margin-right: 15px;
+        }
+      }
+  
+      
+      
+  

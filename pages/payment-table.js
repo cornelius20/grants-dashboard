@@ -17,19 +17,16 @@ export default function PaymentTable() {
             {
                 alertVisible ? <CustomAlert title="Please Connect a Wallet" onClose={() => setAlertVisible(false)} /> : null
             }
-            <div style={{ position: 'relative' }}>
-                <Link href="/">
-                    <a>
-                        <div className={styles.close}>
-                            <p>
-                                <CloseIcon />
-                                Close
-                            </p>
-                        </div>
-
-                    </a>
-                </Link>
+            <div style={wrapper}>
+                <p>
+                    <Link href={'/'}>
+                        Close
+                    </Link>
+                    
+                </p>
+                <span style={bar}></span>
             </div>
+
 
             <ApplicationProgress progress={'50%'} />
 
@@ -39,6 +36,7 @@ export default function PaymentTable() {
                         <h2 className={styles.paymentHeading}>
                             Payment Quantity and Sizing
                         </h2>
+
                         <p className={`${styles.text} ${styles.paymentText}`} >
                             The chart below states the number of payments and the percentage of the total project budget issued for each payment. These numbers are a function of the total project budget.
                         </p>
@@ -72,6 +70,23 @@ export default function PaymentTable() {
     )
 }
 
+
+const wrapper = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-end',
+    paddingRight: 26,
+    paddingTop: 38,
+    position: 'relative'
+}
+
+const bar = {
+    height: 2,
+    width: 30,
+    borderRadius: 3,
+    marginTop: 25,
+    backgroundColor: '#fff'
+}
 
 export async function getServerSideProps(context) {
     const session = await unstable_getServerSession(context.req, context.res, authOptions);

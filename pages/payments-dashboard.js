@@ -387,17 +387,14 @@ export default function PaymentsDashboard() {
 
     return (
         <div className={styles.main}>
-            <Link href="/">
-                <a>
-                    <div className={styles.close}>
-                        <p>
-                            <CloseIcon />
-                            Close
-                        </p>
-                        <span></span>
-                    </div>
-                </a>
-            </Link>
+            <div style={wrapper}>
+                <p>
+                    <Link href={'/'}>
+                        Close
+                    </Link>
+                </p>
+                <span style={bar}></span>
+            </div>
             <div className={styles.onBoardingWrapper}>
                 <h2>
                     Payments Dashboard
@@ -521,6 +518,24 @@ const addPayment = {
 
 const marginBottom70 = {
     marginBottom: 70
+}
+
+const wrapper = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-end',
+    paddingRight: 26,
+    paddingTop: 38,
+    position: 'relative'
+}
+
+const bar = {
+    height: 2,
+    width: 30,
+    borderRadius: 3,
+    marginTop: 25,
+    marginBottom: 20,
+    backgroundColor: '#fff'
 }
 
 export async function getServerSideProps(context) {

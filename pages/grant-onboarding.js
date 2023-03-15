@@ -453,16 +453,14 @@ export default function GrantOnboarding() {
             {
                 alertVisible ? <CustomAlert title="Please Connect a Wallet" onClose={() => setAlertVisible(false)} /> : null
             }
-            <Link href="/">
-                <a>
-                    <div className={styles.close}>
-                        <p>
-                            <CloseIcon />
-                            Close
-                        </p>
-                    </div>
-                </a>
-            </Link>
+            <div style={wrapper}>
+                <p>
+                    <Link href={'/'}>
+                        Close
+                    </Link>
+                </p>
+                <span style={bar}></span>
+            </div>
             <BrowserWallet visible={browserError} handleClose={() => setBrowserError(false)} />
             <AddWallet visible={visible} handleClose={() => setVisible(false)} />
             <div className={styles.onBoardingWrapper}>
@@ -635,6 +633,24 @@ const grayColor = {
 
 const whiteColor = {
     color: '#E2E8F0',
+}
+
+const wrapper = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-end',
+    paddingRight: 26,
+    paddingTop: 38,
+    position: 'relative'
+}
+
+const bar = {
+    height: 2,
+    width: 30,
+    borderRadius: 3,
+    marginTop: 25,
+    marginBottom: 20,
+    backgroundColor: '#fff'
 }
 
 export async function getServerSideProps(context) {

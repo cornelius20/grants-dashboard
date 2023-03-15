@@ -70,6 +70,7 @@ export default function GrantOnboarding() {
                         Close
                     </Link>
                 </p>
+                <span style={bar}></span>
                 <div style={relative}>
                     <button onClick={() => { handleSubmit() }} className={`${styles.gradientButton} ${styles.okButton}`} style={{ width: 210, position: 'absolute', top: 0, right: 0 }}><CheckMark style={{ marginRight: 10 }} /> Ok</button>
                 </div>
@@ -143,6 +144,16 @@ const wrapper = {
     paddingTop: 38,
     position: 'relative'
 }
+
+const bar = {
+    height: 2,
+    width: 30,
+    borderRadius: 3,
+    marginTop: 25,
+    marginBottom: 20,
+    backgroundColor: '#fff'
+}
+
 
 const relative = {
     position: 'relative',

@@ -26,7 +26,6 @@ export default function GrantOnboarding() {
         checkBox7: false,
     })
 
-
     const handleCheckBoxChange = (event) => {
         const { name, checked } = event.target;
         setCheckBox({ ...checkBox, [name]: checked })
@@ -120,13 +119,12 @@ export default function GrantOnboarding() {
                             <p>I have read the <a className={styles.purpleLink}>current grant priorities</a> and my project directly relates to those priorities.</p>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
     )
 }
-
 
 const mt20 = {
     marginTop: 30
@@ -153,7 +151,6 @@ const bar = {
     marginBottom: 20,
     backgroundColor: '#fff'
 }
-
 
 const relative = {
     position: 'relative',

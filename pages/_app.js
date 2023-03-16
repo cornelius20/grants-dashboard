@@ -4,7 +4,6 @@ import Head from 'next/head';
 import { ClientProvider } from '@micro-stacks/react';
 import { ToastProvider, useToasts } from 'react-toast-notifications';
 
-
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 	return (
 		<>
@@ -33,7 +32,6 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 					</ToastProvider>
 				</SessionProvider>
 			</ClientProvider>
-
 		</>
 	);
 }

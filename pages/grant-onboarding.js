@@ -389,8 +389,6 @@ export default function GrantOnboarding() {
         }
     }
 
-
-
     const handleGrantChange = (e) => {
         console.log('aaa',);
         const [_id, _grantName, _grantBudget] = e.target.value.split('-');
@@ -399,7 +397,6 @@ export default function GrantOnboarding() {
         setGrantBudget(_grantBudget);
 
     }
-
 
     const handleIssueNumber = (e) => {
         console.log('aaa',);
@@ -437,7 +434,6 @@ export default function GrantOnboarding() {
             return false;
         }
     }
-
 
     const resetInputFields = () => {
         setFirstName("");
@@ -542,7 +538,7 @@ export default function GrantOnboarding() {
                                     </div>
                                     <div className={styles.formRow}>
                                         <div className={styles.formControl}>
-                                            <CountriesDropdown setCountry={setCountry}/>
+                                            <CountriesDropdown setCountry={setCountry} />
                                         </div>
                                         <div className={styles.formControl}>
                                             <label>Anticipated Completion Date <span style={grayColor}>(6 months max)</span></label>

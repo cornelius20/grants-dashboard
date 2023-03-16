@@ -81,11 +81,11 @@
   width: 12px !important;
 }
 
-.okButton{
-  width: 210px; 
-  position: 'absolute';
-   top: 0;
-   right: 0;
+.okButton {
+  width: 210px;
+  position: "absolute";
+  top: 0;
+  right: 0;
 }
 
 .purpleLink {
@@ -352,12 +352,12 @@
 }
 
 /* ...........PAYMENT TABLE............. */
-.paymentHeading{
+.paymentHeading {
   font-size: 20px;
   color: #fff !important;
 }
 
-.paymentText{
+.paymentText {
   font-weight: bold;
   color: rgba(255, 255, 255, 0.48) !important;
 }

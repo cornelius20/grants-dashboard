@@ -7,9 +7,7 @@ import { authOptions } from './api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
 import ApplicationProgress from '../components/ApplicationProgress';
 
-
 export default function PaymentTable() {
-
     const [alertVisible, setAlertVisible] = useState(false);
 
     return (
@@ -22,11 +20,10 @@ export default function PaymentTable() {
                     <Link href={'/'}>
                         Close
                     </Link>
-                    
+
                 </p>
                 <span style={bar}></span>
             </div>
-
 
             <ApplicationProgress progress={'50%'} />
 
@@ -69,7 +66,6 @@ export default function PaymentTable() {
         </div>
     )
 }
-
 
 const wrapper = {
     display: 'flex',

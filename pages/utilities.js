@@ -87,7 +87,7 @@ const Utilities = () => {
 						)}
 					</div>
 				</div>
-				
+
 				{
 					session?.user?.name.startsWith('will') || session?.user?.name.startsWith('ivo') || session?.user?.name.startsWith('shakti') ?
 						<>
@@ -102,7 +102,7 @@ const Utilities = () => {
 													<button>Admin Dashboard</button>
 												</a>
 											</Link>
-											
+
 										</div>
 										: null
 								}
@@ -113,7 +113,7 @@ const Utilities = () => {
 											<button>Payments Dashboard</button>
 										</a>
 									</Link>
-									
+
 								</div>
 
 							</div>

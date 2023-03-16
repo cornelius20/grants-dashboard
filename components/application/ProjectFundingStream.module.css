@@ -3,11 +3,9 @@
   padding-right: 20px;
 }
 
-
 .fundingStreamWrapper h1 {
   font-size: 20px;
   padding-bottom: 12px;
- 
 }
 
 .subtitle {
@@ -18,7 +16,7 @@
 
 .fundingStreamWrapper table {
   width: 50vw;
-  background-color: rgba(0,0,0,.3);
+  background-color: rgba(0, 0, 0, 0.3);
   max-width: 800px;
   min-width: 750px;
   padding-left: 10px;
@@ -93,12 +91,10 @@
 
 .fundingStreamWrapper table tbody td input[type="radio"]:checked::before {
   transform: scale(1);
-  
 }
 
 .fundingStreamWrapper table tbody tr td:nth-child(2) {
   width: 302px;
-  
 }
 
 .fundingStreamWrapper table tbody tr td:nth-child(3) {

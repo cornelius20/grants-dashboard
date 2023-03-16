@@ -93,8 +93,8 @@ const Input = (props) => {
               <div
                 style={{
                   width: `${(value ? value.length / maxchar : 0) * 100 > 100
-                      ? 100
-                      : (value ? value.length / maxchar : 0) * 100
+                    ? 100
+                    : (value ? value.length / maxchar : 0) * 100
                     }%`,
                 }}
                 className={styles.filler}

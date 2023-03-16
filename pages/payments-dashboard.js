@@ -12,7 +12,6 @@ import { authOptions } from './api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
 import { useToasts } from 'react-toast-notifications';
 
-
 export default function PaymentsDashboard() {
     const { data: session } = useSession();
     const { addToast } = useToasts();

@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import styles from './SuccessModal.module.css';
 
-
 export default function ThanksModal({ isVisible, closeModal }) {
 
   return (
@@ -14,5 +13,3 @@ export default function ThanksModal({ isVisible, closeModal }) {
     </div>
   )
 }
-
-

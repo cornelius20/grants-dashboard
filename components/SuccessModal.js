@@ -2,9 +2,7 @@ import Link from 'next/link';
 import React, { useState, useMemo, useEffect } from 'react';
 import styles from './SuccessModal.module.css';
 
-
 export default function SuccessModal({ isVisible }) {
-
   return (
     <div className={styles.bannerBody} style={{ display: isVisible ? 'flex' : 'none' }}>
       <div className={styles.bannerWrapper}>

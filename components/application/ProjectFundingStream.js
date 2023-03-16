@@ -49,7 +49,7 @@ const ProjectFundingStream = () => {
 								<tr style={{ position: 'relative' }} key={type.name}>
 									<td>
 										{type.name.toLowerCase() !== 'stacks web3 startup lab' &&
-										type.name.toLowerCase() !== 'stacks accelerator' ? (
+											type.name.toLowerCase() !== 'stacks accelerator' ? (
 											<input type="radio" name="projectType" value={type.name} />
 										) : (
 											<></>
@@ -67,7 +67,7 @@ const ProjectFundingStream = () => {
 										</span>
 									</td>
 									<a href="https://github.com/stacksgov/Stacks-Grant-Launchpad/wiki/Funding-Stream-Details#funding-stream-details" target="_blank" rel="noreferrer">
-									<div className={styles.icon}>{type.icon}</div>
+										<div className={styles.icon}>{type.icon}</div>
 									</a>
 								</tr>
 							);

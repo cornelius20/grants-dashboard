@@ -48,14 +48,10 @@ export default function AdminDashboard() {
         }
     }
 
-    useEffect(() => {
-        console.log('User data is : - ', userData);
-    }, [userData])
-
 
     useEffect(() => {
-        // console.log('User name is ',session?.user);
-        if (!session?.user?.name.startsWith('will') || !session?.user?.name.startsWith('ivo')) {
+        const username = session?.user?.name.toLowerCase();
+        if (!(username.startsWith('will') || username.startsWith('ivo'))) {
             router.push('/');
         }
     }, [])

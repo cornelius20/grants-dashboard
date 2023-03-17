@@ -75,11 +75,10 @@ export default function PaymentsDashboard() {
 
 
     useEffect(() => {
-        if (session?.user?.name.startsWith('will') || session?.user?.name.startsWith('ivo') || session?.user?.name?.startsWith('shakti')) {
-
-        } else {
+        const username = session?.user?.name.toLowerCase();
+        if (!(username.startsWith('will') || username.startsWith('ivo') || username.startsWith('shakti'))) {
             router.push('/');
-        }
+        } 
     }, [])
 
     const predictedImpactScoreArr = ['6', '5', '4', '3', '2', '1'];

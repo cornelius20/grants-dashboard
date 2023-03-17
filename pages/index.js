@@ -70,7 +70,7 @@ const Home = () => {
 			);
 		} else if (!session) {
 			return (
-				<button backgroundColor="grey" onClick={() => (!session ? signIn('github') : signOut())}
+				<button onClick={() => (!session ? signIn('github') : signOut())}
 				>
 					<a>Submit your Application or Wishlist Idea!</a>
 				</button>
@@ -91,7 +91,7 @@ const Home = () => {
 	return (
 		<div className={styles.indexParent}>
 			<div>
-				<style global jsx>{`
+				<style>{`
 					html,
 					body,
 					body > div:first-child,

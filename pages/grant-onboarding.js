@@ -37,7 +37,7 @@ export default function GrantOnboarding() {
     const [endDate, setEndDate] = useState(new Date());
     const { openAuthRequest, isRequestPending, signOut, isSignedIn } = useAuth();
     const { stxAddress, identityAddress, rawAddress } = useAccount();
-    const label = isRequestPending ? 'Loading...' : isSignedIn ? `${stxAddress.slice(0, 9)}...(Disconnect)` : 'Connect Wallet';
+    const label = isRequestPending ? 'Loading...' : isSignedIn ? `${stxAddress.slice(0, 15)}...(Disconnect)` : 'Connect Wallet';
     const [grantIssues, setGrantIssues] = useState([]);
     const [grantIssueNumber, setGrantIssueNumber] = useState(null);
     const [grantName, setGrantName] = useState(null);
@@ -45,6 +45,7 @@ export default function GrantOnboarding() {
     const [grantsFound, setGrantsFound] = useState(0);
     const [browserError, setBrowserError] = useState(false);
     const [alertVisible, setAlertVisible] = useState(false);
+    const [memoNotRequired, setMemoNotRequired] = useState(false)
 
     const [CSVData, setCSVData] = useState([
         [
@@ -421,14 +422,14 @@ export default function GrantOnboarding() {
         if (!lastName) {
             setLastNameError(true);
         }
-        if (!stxMemo) {
+        if (!stxMemo && !memoNotRequired) {
             setStxMemoError(true);
         }
         if (!grantIssueNumber) {
             setGrantIssueNumberError(true)
         }
 
-        if (email && firstName && lastName && stxMemo && grantIssueNumber) {
+        if (email && firstName && lastName && (stxMemo || memoNotRequired) && grantIssueNumber) {
             return true;
         } else {
             return false;
@@ -533,7 +534,12 @@ export default function GrantOnboarding() {
                                                 onChange={(e) => { setStxMemo(e.target.value) }}
                                             />
                                             {stxMemoError && <span className={styles.validationError}>Required!</span>}
-                                            <span style={checkbox}><input type={'checkbox'} />  I confirm no memo is required</span>
+                                            <span style={checkbox}>
+                                            <input 
+                                                type={'checkbox'} 
+                                                value={memoNotRequired}
+                                                onChange={(e) => { setMemoNotRequired(e.target.value) }}
+                                            />  I confirm no memo is required</span>
                                         </div>
                                     </div>
                                     <div className={styles.formRow}>
@@ -571,7 +577,7 @@ export default function GrantOnboarding() {
                         <p>{grantBudget ? '$' + grantBudget : ''}</p>
                         <p style={marginBottom120}></p>
                         <div className={styles.divider}></div>
-                        <p style={{ ...whiteColor, ...marginTop10 }}>If any of the information provided above is incorrect please email us <a style={mailLink} href="mailto:corneliuscantonii@gmail.com">here.</a></p>
+                        <p style={{ ...whiteColor, ...marginTop10 }}>If any of the information provided above is incorrect please email us <a style={mailLink} href="mailto:grants@stacks.org">here.</a></p>
                         <span style={checkbox}><input className={styles.mt3} type={'checkbox'} /> <p className={styles.white}>I confirm all of the information on this page is correct.</p></span>
                         <button className={styles.gradientButton} disabled={loading} onClick={(e) => { handleSubmit(e) }}>
                             {

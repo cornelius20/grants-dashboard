@@ -35,7 +35,7 @@ const CalendarDropdown = (props) => {
 					reference.current = true;
 				}}
 			>
-				<p>
+				<p style={paragraph}>
 					{reference.current === true
 						? props.value
 							.toLocaleString('default', {
@@ -46,7 +46,7 @@ const CalendarDropdown = (props) => {
 							.replace(' ', '-')
 							.replace(',', '-')
 							.replace(' ', '')
-						: 'Drop down...'}
+						: 'Select Date...'}
 				</p>
 				<DropdownIcon />
 			</button>
@@ -64,5 +64,9 @@ const CalendarDropdown = (props) => {
 		</div>
 	);
 };
+
+const paragraph = {
+	color: "gray"
+}
 
 export default CalendarDropdown;

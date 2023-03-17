@@ -244,7 +244,8 @@ input[type="number"]::-webkit-outer-spin-button {
   background-color: rgba(255, 255, 255, 0.36);
 }
 .react-calendar__navigation button[disabled] {
-  background-color: #f0f0f0;
+  color: gray;
+  background-color: transparent;
 }
 .react-calendar__month-view__weekdays {
   text-align: center;
@@ -271,7 +272,7 @@ input[type="number"]::-webkit-outer-spin-button {
   padding: calc(0.75em / 0.75) calc(0.5em / 0.75);
 }
 .react-calendar__month-view__days__day--weekend {
-  color: #d10000;
+  color: #ffffff;
 }
 .react-calendar__month-view__days__day--neighboringMonth {
   color: #757575;
@@ -291,7 +292,8 @@ input[type="number"]::-webkit-outer-spin-button {
   background: none;
 }
 .react-calendar__tile:disabled {
-  background-color: #f0f0f0;
+  color: gray;
+  background-color: transparent;
 }
 .react-calendar__tile:enabled:hover,
 .react-calendar__tile:enabled:focus {

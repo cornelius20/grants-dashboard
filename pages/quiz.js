@@ -112,7 +112,7 @@ export default function GrantOnboarding() {
                         </div>
                         <div className={styles.flex}>
                             <input className={styles.quizCheckBox} type={'checkbox'} name="checkBox6" checked={checkBox.checkBox6} onChange={handleCheckBoxChange} />
-                            <p>I have read the <a href='' className={styles.purpleLink}>sBTC whitepaper</a> and the <a href='https://stacks-network.github.io/stacks/stacks.pdf' className={styles.purpleLink}>Nakamoto release whitepaper</a> and my project directly relates to those technologies.</p>
+                            <p>I have read the <a href='https://stacks-network.github.io/stacks/sbtc.pdf' className={styles.purpleLink}>sBTC whitepaper</a> and the <a href='https://stacks-network.github.io/stacks/stacks.pdf' className={styles.purpleLink}>Nakamoto release whitepaper</a> and my project directly relates to those technologies.</p>
                         </div>
                         <div className={styles.flex}>
                             <input className={styles.quizCheckBox} type={'checkbox'} name="checkBox7" checked={checkBox.checkBox7} onChange={handleCheckBoxChange} />

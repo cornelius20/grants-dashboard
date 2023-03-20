@@ -55,7 +55,6 @@ const CalendarDropdown = (props) => {
 					className={show ? styles.show : styles.hide}
 					onChange={props.onChange}
 					value={props.value}
-					// maxDate={new Date(currentDate.setMonth(currentDate.getMonth()+3))}
 					minDate={new Date()}
 					maxDate={new Date(new Date().getFullYear(), new Date().getMonth() + 6, new Date().getDate())}
 

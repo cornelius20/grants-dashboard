@@ -387,9 +387,9 @@ export default function PaymentsDashboard() {
         <div className={styles.main}>
             <div style={wrapper}>
                 <p>
-                    <Link href={'/'}>
-                        Close
-                    </Link>
+                    <Link style={link} href={'/utilities'}>
+                        Back to Utilities
+                    </Link> 
                 </p>
                 <span style={bar}></span>
             </div>
@@ -525,6 +525,11 @@ const wrapper = {
     paddingRight: 26,
     paddingTop: 38,
     position: 'relative'
+}
+
+const link = {
+    textDecoration: 'none',
+    color: '#fff'
 }
 
 const bar = {

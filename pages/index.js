@@ -111,11 +111,9 @@ const Home = () => {
 							Committed to helping developers,engineers, designers ...
 						</p>
 						<div className={styles.mainBodyText}>
-							<p>Build the future of Web3 on </p>
+							<p>Build a user-owned & open-source internet anchored in  </p>
 							<div className={styles.highlightedWords}>Bitcoin</div> and{' '}
-							<div className={styles.highlightedWords}>Stacks</div>
-							{/* smart contracts, and secured by{' '} */}
-							{/* <div className={styles.highlightedWords}>Bitcoin.</div> */}
+							technology.
 						</div>
 					</div>
 					<div className={styles.rightWrapper}>
@@ -147,19 +145,6 @@ const Home = () => {
 								<p>One-thousand to two-hundred and fifty thousand dollars.</p>
 								<Button />
 							</div>
-						</div>
-						<div className={styles.thirdSection}>
-							<p>Already have an active grant?</p>
-
-							<a
-								href="https://grantsdashboard.stacks.org"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								<button>
-									OLD DASHBOARD <ExternalLinkIcon className={styles.externalLinkIcon} />
-								</button>
-							</a>
 						</div>
 						<RocketShip className={styles.rocketShip} />
 					</div>

@@ -78,17 +78,14 @@ const StacksConverter = () => {
 			<Head>
 				<title>Stacks Payment Converter</title>
 			</Head>
-			<Link href="/">
-				<a>
-					<div className={styles.close}>
-						<p>
-							<CloseIcon />
-							Close
-						</p>
-						<span></span>
-					</div>
-				</a>
-			</Link>
+			<div style={wrapper}>
+				<p>
+					<Link style={link} href={'/utilities'}>
+						Back to utilities
+					</Link>
+				</p>
+				<span style={bar}></span>
+			</div>
 			<div className={styles.stxPaymentWrapper}>
 				<h1>STX Payment Converter</h1>
 				<p className={styles.descriptor}>
@@ -182,6 +179,28 @@ const StacksConverter = () => {
 };
 
 export default StacksConverter;
+
+const wrapper = {
+	display: 'flex',
+	flexDirection: 'column',
+	alignItems: 'flex-end',
+	paddingRight: 26,
+	paddingTop: 38,
+	position: 'relative'
+}
+
+const link  = {
+	textDecoration: 'none',
+	color: '#fff'
+}
+
+const bar = {
+	height: 2,
+	width: 30,
+	borderRadius: 3,
+	marginTop: 25,
+	backgroundColor: '#fff'
+}
 
 export async function getServerSideProps(context) {
 	const session = await unstable_getServerSession(context.req, context.res, authOptions);

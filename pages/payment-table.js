@@ -17,8 +17,8 @@ export default function PaymentTable() {
             }
             <div style={wrapper}>
                 <p>
-                    <Link href={'/'}>
-                        Close
+                    <Link href={'/utilities'}>
+                        Back to Utilities
                     </Link>
 
                 </p>

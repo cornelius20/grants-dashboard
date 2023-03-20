@@ -355,6 +355,7 @@
 .paymentHeading {
   font-size: 20px;
   color: #fff !important;
+  margin-top: 40px;
 }
 
 .paymentText {

@@ -4,7 +4,6 @@ import Person from '../../public/images/person.svg';
 import Arrow from '../../public/images/arrow.svg';
 import PayTag from '../../public/images/payTag.svg';
 import WaterDrop from '../../public/images/waterDrop.svg';
-import { projectTypes } from '../../content';
 
 export default function GrantType() {
 
@@ -44,9 +43,7 @@ export default function GrantType() {
                                 </div>
                             </div>
                         </li>
-                        {
-                            projectTypes.map((item, index) => (
-                                <li key={index} className={styles.grantTypeListItem}>
+                        <li className={styles.grantTypeListItem}>
                                     <div className={styles.left}>
                                         <div>
                                             <span className={styles.grantInputBox}>
@@ -54,23 +51,21 @@ export default function GrantType() {
                                             </span>
                                         </div>
                                         <div>
-                                            <span className={styles.grantName}>{item.name}</span>
+                                            <span className={styles.grantName}>Open Source Development</span>
                                         </div>
                                     </div>
                                     <div className={styles.right}>
                                         <div>
-                                            <span className={styles.grantRange}>{item.funding}</span>
+                                            <span className={styles.grantRange}>$0-$48K</span>
                                         </div>
                                         <div>
-                                            <span className={styles.grantStream} style={{ background: item.color }}>{item.stream}</span>
+                                            <span className={styles.grantStream} style={{ background: '#9f7aea"' }}>Developer Grants</span>
                                         </div>
                                         <div>
                                             <span className={styles.dots}>. . .</span>
                                         </div>
                                     </div>
-                                </li>
-                            ))
-                        }
+                            </li>
                     </ul>
 
                     <p className={styles.text}>

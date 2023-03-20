@@ -25,7 +25,7 @@ export default function AdminDashboard() {
         lastName: "",
         login: "",
         email: "",
-        type: "User"
+        type: "Reviewer"
     });
     const [loading, setLoading] = useState(false);
     const [searchLoading, setSearchLoading] = useState(false);
@@ -113,11 +113,11 @@ export default function AdminDashboard() {
 
     const ListItem = (item, index) => {
         const { name, type, id } = item;
-        if (!type) type = 'User';
+        if (!type) type = 'Reviewer';
         let background;
         if (type == 'Admin') background = '#9F7AEA';
         if (type == 'Finance') background = '#48BB78';
-        if (type == 'User' || type == 'Reviewer') background = 'orange';
+        if (type == 'Reviewer') background = 'orange';
         if (type == 'Grantee') background = 'cyan';
 
         return (
@@ -143,17 +143,14 @@ export default function AdminDashboard() {
 
     return (
         <div style={main}>
-            <Link href="/">
-                <a>
-                    <div className={styles.close}>
-                        <p>
-                            <CloseIcon />
-                            Close
-                        </p>
-                        <span></span>
-                    </div>
-                </a>
-            </Link>
+            <div style={wrapper}>
+                <p>
+                    <Link style={link} href={'/utilities'}>
+                        Back to Utilities
+                    </Link>
+                </p>
+                <span style={bar}></span>
+            </div>
             <div className={styles.onBoardingWrapper}>
                 <h2>
                     Admin Dashboard
@@ -236,7 +233,7 @@ export default function AdminDashboard() {
                                                     name="GitHubUserName"
                                                     type="text"
                                                     required
-                                                    placeholder="will-at-stacks"
+                                                    placeholder="Type here..."
                                                     value={userData.login}
                                                     onChange={(e) => { setUserData({ ...userData, login: e.target.value }) }}
                                                 />
@@ -262,10 +259,9 @@ export default function AdminDashboard() {
                                         <div className={styles.formControl}>
                                             <label>Select Role</label>
                                             <select name="selectUserType" onChange={(e) => { setUserData({ ...userData, type: e.target.value }) }}>
-                                                <option value="User">User</option>
+                                                <option value="Reviewer">Reviewer</option>
                                                 <option value="Admin">Admin</option>
                                                 <option value="Finance">Finance</option>
-                                                <option value="Reviewer">Reviewer</option>
                                                 <option value="Grantee">Grantee</option>
 
                                             </select>
@@ -371,6 +367,29 @@ export default function AdminDashboard() {
 const main = {
     backgroundColor: '#000',
     height: '100vh'
+}
+
+const wrapper = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-end',
+    paddingRight: 26,
+    paddingTop: 38,
+    position: 'relative'
+}
+
+const link = {
+    textDecoration: 'none',
+    color: '#fff'
+}
+
+const bar = {
+    height: 2,
+    width: 30,
+    borderRadius: 3,
+    marginTop: 25,
+    marginBottom: 20,
+    backgroundColor: '#fff'
 }
 
 const flex1 = {

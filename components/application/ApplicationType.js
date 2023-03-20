@@ -23,11 +23,6 @@ const ApplicationType = () => {
 				value="This is an application I found on the list of approved Wishlist grants that I wish to complete."
 				disabled={true}
 			/>
-			{/* <Input
-        name="wishlistGithub"
-        label="Wishlist GitHub Issue"
-        image={<GithubIcon />}
-      /> */}
 		</Form>
 	);
 };

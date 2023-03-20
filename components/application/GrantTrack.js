@@ -75,7 +75,7 @@ export default function GrantTrack() {
                 <div className={styles.row}>
                     <div className={styles.col}>
                         <div className={styles.grantTypeFlex}>
-                            <input type={'radio'} />
+                            <input disabled type={'radio'} />
                             <h2 className={styles.heading2}>Stacks dApps & Clarity</h2>
                         </div>
                         <ul className={styles.grantList}>
@@ -84,7 +84,7 @@ export default function GrantTrack() {
                     </div>
                     <div className={styles.col}>
                         <div className={styles.grantTypeFlex}>
-                            <input type={'radio'} />
+                            <input disabled type={'radio'} />
                             <h2 className={styles.heading2}>Stacks Education and Community</h2>
                         </div>
                         <ul className={styles.grantList}>
@@ -96,7 +96,7 @@ export default function GrantTrack() {
                 <div className={styles.row}>
                     <div className={styles.col}>
                         <div className={styles.grantTypeFlex}>
-                            <input type={'radio'} />
+                            <input disabled type={'radio'} />
                             <h2 className={styles.heading2}>Stacks User Experience</h2>
                         </div>
                         <ul className={styles.grantList}>

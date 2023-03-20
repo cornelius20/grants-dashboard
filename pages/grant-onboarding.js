@@ -179,12 +179,11 @@ export default function GrantOnboarding() {
                     owner: "stacksgov",
                     repo: "Stacks-Grant-Launchpad",
                     state: "all",
-                    labels: [label],
+                    labels: [],
                 });
                 let newReq = res.concat(req.data);
                 res = newReq
             }
-            console.log('Issues response is : - ', res);
 
             res.map((issue) => {
                 let teamMembers = issue.assignees.map((assignee) => assignee.login);
@@ -452,8 +451,8 @@ export default function GrantOnboarding() {
             }
             <div style={wrapper}>
                 <p>
-                    <Link href={'/'}>
-                        Close
+                    <Link href={'/utilities'}>
+                        Back to Utilities
                     </Link>
                 </p>
                 <span style={bar}></span>
@@ -561,8 +560,8 @@ export default function GrantOnboarding() {
                                 <DropdownIcon className={styles.selectIssueArrow} />
                                 <select className={styles.issueSelect} onChange={(e) => handleGrantChange(e)} name="selectIssue">
                                     {
-                                        CSVData?.length > 1 && CSVData.map(item => {
-                                            return (<option key={item[1]} value={`${item[1]}-${item[6]}-${item[7]}`}>{item[1]}</option>)
+                                        CSVData?.length > 1 && CSVData.map((item,index) => {
+                                            return (<option key={index} value={`${item[1]}-${item[6]}-${item[7]}`}>{item[1]}</option>)
                                         })
                                     }
                                 </select>

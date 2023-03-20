@@ -259,10 +259,6 @@ const Application = () => {
     return false;
   }
 
-  // function handleSubmit(nextStepNumber){
-  //   setCurrentStep(nextStepNumber);
-  // }
-
   function handleSubmit(nextStepNumber) {
     let fields = Array.from(document.querySelectorAll("input, textarea"));
     console.log('Fields are : - ', fields)
@@ -443,10 +439,8 @@ const Application = () => {
   };
 
   const flowASteps = [
-    "Application Type",
     "Applicant Information",
     "Grant Lead Information",
-    "Application Checklist",
     "Grant Type",
     "Grant Track",
     "Grant Tags",
@@ -460,28 +454,24 @@ const Application = () => {
   const FlowA = () => {
     switch (currentStep) {
       case 1:
-        return <ApplicationType />;
-      case 2:
         return <ApplicantInformation />;
-      case 3:
+      case 2:
         return <ProjectLeadInformation />;
-      case 4:
-        return <ApplicationChecklist />;
-      case 5:
+      case 3:
         return <GrantType />;
-      case 6:
+      case 4:
         return <GrantTrack />;
-      case 7:
+      case 5:
         return <ProjectTags />;
-      case 8:
+      case 6:
         return <ProjectInformation />;
-      case 9:
+      case 7:
         return <ProjectRoadmap />;
-      case 10:
+      case 8:
         return <ProjectMission />;
-      case 11:
+      case 9:
         return <ProjectImpact />;
-      case 12:
+      case 10:
         return <ProjectLinks />;
     }
   };
@@ -548,7 +538,7 @@ const Application = () => {
       case "C":
         return <FlowC />;
       default:
-        return <FlowDefault />;
+        return <FlowA />;
     }
   };
 

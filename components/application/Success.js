@@ -14,7 +14,6 @@ const Home = () => {
           </p>
           <button>
             View Application on Github
-            {/* <AiFillGithub size="25" /> */}
             <GithubIcon className={styles.svg} />
           </button>
         </div>

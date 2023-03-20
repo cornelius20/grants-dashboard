@@ -1,7 +1,7 @@
 import styles from "./ProjectRoadmap.module.css";
 import ArrowLeft from "../../public/images/arrowLeft.svg";
 import ArrowRight from "../../public/images/arrowRight.svg";
-
+import Link from 'next/link';
 import Input from "../Input";
 import Form from "../Form";
 import { useState, useEffect } from "react";
@@ -146,6 +146,11 @@ const ProjectRoadmap = () => {
       title="Grant Roadmap"
       description="Provide clear, concise, easy to review deliverables for progress payments."
     >
+      <h1 className={styles.h1}>
+        <Link href="/payment-table">
+          <a className={styles.purpleLink}>PAYMENT QUANTITY & SIZING TABLE</a>
+				</Link>
+      </h1>
       <div className={styles.final}>
         <Input
           name="finalDeliverable"

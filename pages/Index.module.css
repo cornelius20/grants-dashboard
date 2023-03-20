@@ -317,6 +317,22 @@
   height: 150px;
 }
 
+.utilBtnMob{
+  margin-top: 10px;
+  height: 36px;
+  width: 90px;
+  border: none;
+  background: rgba(0, 0, 0, 0.8) !important;
+  border-radius: 5px;
+  font-size: 10px;
+  line-height: 15px;
+  text-transform: uppercase;
+  color: rgba(238, 238, 238);
+  text-align: center;
+  padding: 6px;
+  display: none;
+}
+
 @media screen and (max-width: 991px) {
   .indexWrapper {
     flex-direction: column;
@@ -389,7 +405,7 @@
   .utilities {
     position: absolute;
     bottom: 10px;
-    left: auto;
+    left: 10px;
     right: 30px;
     height: 36px;
     width: 90px;
@@ -403,6 +419,8 @@
     text-align: center;
     padding: 6px;
   }
+
+ 
 
   .secondSection {
     width: 175px;
@@ -427,7 +445,7 @@
 
 @media (max-width: 476px) {
   .connectGithub {
-    display: none;
+    /* display: none; */
   }
 
   .firstSection {
@@ -466,6 +484,7 @@
 @media (max-width: 499px) {
   .indexWrapper {
     padding-left: 15px;
+    padding-bottom: 50px;
   }
 
   .indexWrapper h1 {
@@ -493,10 +512,18 @@
   }
 }
 
-@media (max-width: 580px) {
+@media (max-width: 1000px) {
   .utilities {
     display: none;
   }
+
+  .utilBtnMob{
+    display: block;
+  }
+}
+
+
+@media (max-width: 580px) {
 
   .firstSection div:first-of-type p:nth-of-type(1) {
     padding-bottom: 10px;

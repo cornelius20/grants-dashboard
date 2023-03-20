@@ -261,7 +261,6 @@ const Application = () => {
 
   function handleSubmit(nextStepNumber) {
     let fields = Array.from(document.querySelectorAll("input, textarea"));
-    console.log('Fields are : - ', fields)
     let allChecked = false;
 
     fields.map((field) => {
@@ -307,26 +306,34 @@ const Application = () => {
           }
           checkField(field);
           break;
-        case "guidelines":
-          let guideline1 = document.getElementById("guideline1").checked;
-          let guideline2 = document.getElementById("guideline2").checked;
-          let guideline3 = document.getElementById("guideline3").checked;
-          let guideline4 = document.getElementById("guideline4").checked;
-          let guideline5 = document.getElementById("guideline5").checked;
-          let guideline6 = document.getElementById("guideline6").checked;
-
-          if (
-            guideline1 &&
-            guideline2 &&
-            guideline3 &&
-            guideline4 &&
-            guideline5 &&
-            guideline6
-          ) {
-            allChecked = true;
-            break;
-          }
-          break;
+        case "projectTrack":
+          const el = document.getElementsByName('projectTrack');
+          el.forEach(item=>{
+            if(item.checked){
+              allChecked = true;
+            }
+          })
+          // console.log('EL',el);
+          // allChecked = true;
+        // case "guidelines":
+        //   let guideline1 = document.getElementById("guideline1").checked;
+        //   let guideline2 = document.getElementById("guideline2").checked;
+        //   let guideline3 = document.getElementById("guideline3").checked;
+        //   let guideline4 = document.getElementById("guideline4").checked;
+        //   let guideline5 = document.getElementById("guideline5").checked;
+        //   let guideline6 = document.getElementById("guideline6").checked;
+        //   if (
+        //     guideline1 &&
+        //     guideline2 &&
+        //     guideline3 &&
+        //     guideline4 &&
+        //     guideline5 &&
+        //     guideline6
+        //   ) {
+        //     allChecked = true;
+        //     break;
+        //   }
+        //   break;
         default:
           checkField(field);
           break;
@@ -632,3 +639,4 @@ export async function getServerSideProps(context) {
     },
   };
 }
+

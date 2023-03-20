@@ -142,10 +142,23 @@ const Home = () => {
 						<div className={styles.firstSection}>
 							<div>
 								<p>Funding Available from:</p>
-								<p>One-thousand to two-hundred and fifty thousand dollars.</p>
+								<p>Open-source code and public goods</p>
 								<Button />
 							</div>
 						</div>
+						{
+							session ? <Link href="/utilities">
+								<a>
+									<button className={styles.utilBtnMob}>Utilities</button>
+								</a>
+							</Link>
+								:
+								<button onClick={() => (!session ? signIn('github') : signOut())} className={styles.utilBtnMob}>Utilities</button>
+
+						}
+						{/* <Link href='/utilities'>
+							<button className={styles.utilBtnMob}>UTILITIES</button>
+						</Link> */}
 						<RocketShip className={styles.rocketShip} />
 					</div>
 
@@ -181,3 +194,13 @@ const Home = () => {
 };
 
 export default Home;
+
+
+const utilBtn = {
+	background: 'rgba(0, 0, 0, 0.8)',
+	color: '#fff',
+	padding: '10px 20px',
+	border: 'none',
+	borderRadius: 5,
+	fontSize: 10
+}

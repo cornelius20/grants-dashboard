@@ -66,20 +66,20 @@ const Home = () => {
 	const Button = () => {
 		if (mobile === true) {
 			return (
-				<button onClick={() => setShow(true)}>Submit your Application or Wishlist Idea!</button>
+				<button onClick={() => setShow(true)}>Submit your Grant Application here!</button>
 			);
 		} else if (!session) {
 			return (
 				<button onClick={() => (!session ? signIn('github') : signOut())}
 				>
-					<a>Submit your Application or Wishlist Idea!</a>
+					<a>Submit your Grant Application here!</a>
 				</button>
 			);
 		} else if (session) {
 			return (
 				<Link href="/quiz">
 					<button>
-						<a>Submit your Application or Wishlist Idea!</a>
+						<a>Submit your Grant Application here!</a>
 					</button>
 				</Link>
 			);
@@ -141,7 +141,7 @@ const Home = () => {
 						</div>
 						<div className={styles.firstSection}>
 							<div>
-								<p>Funding Available from:</p>
+								<p>Funding Available for:</p>
 								<p>Open-source code and public goods</p>
 								<Button />
 							</div>

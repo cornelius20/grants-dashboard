@@ -31,10 +31,12 @@ import WishlistIdea from "../components/application/WishlistIdea";
 import ApplicantInformationB from "../components/application/ApplicantInformationB";
 import GrantTrack from "../components/application/GrantTrack";
 import GrantType from "../components/application/GrantType";
+import PaymentTable from '../components/PaymentTable';
 
 const Application = () => {
   const { data: session } = useSession();
   const [flow, setFlow] = useState();
+  const [paymentModalVisible, setPaymentModalVisible] = useState(false)
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState("");
   const [currentStep, setCurrentStep] = useState(1);
@@ -473,7 +475,7 @@ const Application = () => {
       case 6:
         return <ProjectInformation />;
       case 7:
-        return <ProjectRoadmap />;
+        return <ProjectRoadmap visibleModal={visibleModal}/>;
       case 8:
         return <ProjectMission />;
       case 9:
@@ -549,8 +551,17 @@ const Application = () => {
     }
   };
 
+  const visibleModal = () => {
+    setPaymentModalVisible(true);
+  }
+
+  const closeModal = () => {
+    setPaymentModalVisible(false);
+  }
+
   return (
     <div>
+      <PaymentTable isVisible={paymentModalVisible} closeModal={closeModal} />
       <div
         className={
           !showModal ? styles.applicationWrapper : styles.applicationWrapperBlur

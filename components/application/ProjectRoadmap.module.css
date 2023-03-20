@@ -44,6 +44,8 @@
   font-weight: bold;
   color: #553c9a !important;
   text-decoration: underline;
+  background-color: transparent;
+  border-width: 0ch;
 }
 
 .nav ul {

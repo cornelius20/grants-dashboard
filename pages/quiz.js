@@ -65,8 +65,8 @@ export default function GrantOnboarding() {
 
             <div style={wrapper}>
                 <p>
-                    <Link href={'/utilities'}>
-                        Back to Utilities
+                    <Link href={'/'}>
+                        Close
                     </Link>
                 </p>
                 <span style={bar}></span>

@@ -107,7 +107,7 @@ export default function AdminDashboard() {
             lastName: "",
             login: "",
             email: "",
-            type: "User"
+            type: "Reviewer"
         })
     }
 
@@ -356,7 +356,6 @@ export default function AdminDashboard() {
                                         <div className={styles.formControl}>
                                             <label>Select Role</label>
                                             <select name="selectUserType" onChange={(e) => { setCurrentUser({ ...currentUser, type: e.target.value }) }}>
-                                                <option value="User">User</option>
                                                 <option value="Admin">Admin</option>
                                                 <option value="Finance">Finance</option>
                                                 <option value="Reviewer">Reviewer</option>

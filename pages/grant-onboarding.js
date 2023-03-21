@@ -452,7 +452,7 @@ export default function GrantOnboarding() {
             <div style={wrapper}>
                 <p>
                     <Link href={'/utilities'}>
-                        <span style={{color: '#fff',cursor: 'pointer'}}>Back to Utilities</span>
+                        <span style={{ color: '#fff', cursor: 'pointer' }}>Back to Utilities</span>
                     </Link>
                 </p>
                 <span style={bar}></span>
@@ -546,11 +546,11 @@ export default function GrantOnboarding() {
                                             />
                                             {stxMemoError && <span className={styles.validationError}>Required!</span>}
                                             <span style={checkbox}>
-                                            <input 
-                                                type={'checkbox'} 
-                                                value={memoNotRequired}
-                                                onChange={(e) => { setMemoNotRequired(e.target.value) }}
-                                            />  I confirm no memo is required</span>
+                                                <input
+                                                    type={'checkbox'}
+                                                    value={memoNotRequired}
+                                                    onChange={(e) => { setMemoNotRequired(e.target.value) }}
+                                                />  I confirm no memo is required</span>
                                         </div>
                                     </div>
                                     <div className={styles.formRow}>
@@ -572,7 +572,7 @@ export default function GrantOnboarding() {
                                 <DropdownIcon className={styles.selectIssueArrow} />
                                 <select className={styles.issueSelect} onChange={(e) => handleGrantChange(e)} name="selectIssue">
                                     {
-                                        CSVData?.length > 1 && CSVData.map((item,index) => {
+                                        CSVData?.length > 1 && CSVData.map((item, index) => {
                                             return (<option key={index} value={`${item[1]}-${item[6]}-${item[7]}`}>{item[1]}</option>)
                                         })
                                     }

@@ -320,13 +320,13 @@ const GrantDataExporter = () => {
 				<title>Grant Data Exporter</title>
 			</Head>
 			<div style={wrapper}>
-                <p>
+				<p>
 					<Link className={styles.whiteLink} href={'/utilities'}>
-						<span style={{color: '#fff',cursor: 'pointer'}}>Back to Utilities</span>
-                    </Link>
-                </p>
-                <span style={bar}></span>
-            </div>
+						<span style={{ color: '#fff', cursor: 'pointer' }}>Back to Utilities</span>
+					</Link>
+				</p>
+				<span style={bar}></span>
+			</div>
 			<div className={styles.grantDataWrapper}>
 				<h1>Grant Data Exporter</h1>
 				<p className={styles.descriptor}>
@@ -450,20 +450,20 @@ const GrantDataExporter = () => {
 export default GrantDataExporter;
 
 const wrapper = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-end',
-    paddingRight: 26,
-    paddingTop: 38,
-    position: 'relative'
+	display: 'flex',
+	flexDirection: 'column',
+	alignItems: 'flex-end',
+	paddingRight: 26,
+	paddingTop: 38,
+	position: 'relative'
 }
 
 const bar = {
-    height: 2,
-    width: 30,
-    borderRadius: 3,
-    marginTop: 25,
-    backgroundColor: '#fff'
+	height: 2,
+	width: 30,
+	borderRadius: 3,
+	marginTop: 25,
+	backgroundColor: '#fff'
 }
 
 export async function getServerSideProps(context) {

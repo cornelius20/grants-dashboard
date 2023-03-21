@@ -318,7 +318,7 @@ const GrantDataExporter = () => {
 			<div style={wrapper}>
 				<p>
 					<Link style={link} href={'/utilities'}>
-						<span style={{color: '#fff',cursor: 'pointer'}}>Back to Utilities</span>
+						<span style={{ color: '#fff', cursor: 'pointer' }}>Back to Utilities</span>
 					</Link>
 				</p>
 				<span style={bar}></span>
@@ -464,7 +464,7 @@ const wrapper = {
 	position: 'relative'
 }
 
-const link  = {
+const link = {
 	textDecoration: 'none',
 	color: '#fff'
 }

@@ -78,14 +78,14 @@ export default function PaymentsDashboard() {
         const username = session?.user?.name.toLowerCase();
         if (!(username.startsWith('will') || username.startsWith('ivo') || username.startsWith('shakti'))) {
             router.push('/');
-        } 
+        }
     }, [])
 
     const predictedImpactScoreArr = ['6', '5', '4', '3', '2', '1'];
 
 
     const walletButtonClicked = async () => {
-    if (isSignedIn) {
+        if (isSignedIn) {
             await signOut();
         }
         else {
@@ -388,8 +388,8 @@ export default function PaymentsDashboard() {
             <div style={wrapper}>
                 <p>
                     <Link style={link} href={'/utilities'}>
-                        <span style={{color: '#fff',cursor: 'pointer'}}>Back to Utilities</span>
-                    </Link> 
+                        <span style={{ color: '#fff', cursor: 'pointer' }}>Back to Utilities</span>
+                    </Link>
                 </p>
                 <span style={bar}></span>
             </div>

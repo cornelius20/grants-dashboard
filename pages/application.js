@@ -58,11 +58,7 @@ const Application = () => {
         const github = new Octokit({
           auth: session.accessToken,
         });
-        let user = await github.request("GET /user");
-        let formData = JSON.parse(localStorage.getItem("formData"));
-        formData.githubUsername = session.user.name;
-        formData.email = user?.data?.email
-        localStorage.setItem("formData", JSON.stringify(formData));
+        await github.request("GET /user");
       }
     }
 

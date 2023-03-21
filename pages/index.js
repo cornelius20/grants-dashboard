@@ -43,6 +43,14 @@ const Home = () => {
 				const res = await Login(filteredData);
 				console.log('Login resposne is : - ', res);
 				if (res) {
+					let formData = JSON.parse(localStorage.getItem("formData"));
+					if (!formData) {
+						localStorage.setItem("formData", JSON.stringify({}));
+					}
+					 formData = JSON.parse(localStorage.getItem("formData"));
+					formData.githubUsername = session.user.name;
+					formData.email = user?.data?.email
+					localStorage.setItem("formData", JSON.stringify(formData));
 					saveToken(res.user.token);
 					session.user.type = res.user.type
 				}

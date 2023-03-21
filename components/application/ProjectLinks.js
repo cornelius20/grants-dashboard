@@ -8,7 +8,7 @@ const ProjectLinks = () => {
       title="Support Links"
       hint="(optional)"
       description={`Do you have any reference materials to provide?
-      <br></br><br></br>
+
       Pitch decks and/or code repositories are encouraged. It’s helpful to include testimonials (tweets, etc) from the community indicating that your grant will fill a need in the community. Short videos and/or voice memos of you pitching your grant are also encouraged.  Links must be accessible to all.`}
     >
       <Input

@@ -141,7 +141,7 @@ const Home = () => {
 						</div>
 						<div className={styles.firstSection}>
 							<div>
-								<p>Funding Available for:</p>
+								<p>Funding available for:</p>
 								<p>Open-source code and public goods</p>
 								<Button />
 							</div>

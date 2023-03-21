@@ -10,7 +10,7 @@ export default function GrantTrack() {
                     Grant Track
                 </h2>
                 <p style={mb4} className={styles.text}>
-                    Before proceeding, check all the boxes that apply to your project idea:
+                    Select the Grant Track that best aligns with your project from the list below.
                 </p>
                 <div className={styles.row}>
                         <div className={styles.col}>

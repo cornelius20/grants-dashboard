@@ -13,12 +13,8 @@ export default function PaymentTable({ isVisible, closeModal }) {
                 alertVisible ? <CustomAlert title="Please Connect a Wallet" onClose={() => setAlertVisible(false)} /> : null
             }
             <div style={wrapper}>
-                <p>
-                    <Link className={styles.whiteLink} href={'/'}>
-                        <span style={{color: '#fff',cursor: 'pointer'}}>Back</span>
-                    </Link>
-                </p>
-                <span style={bar}></span>
+            <button onClick={closeModal} className={styles.backButton}><span style={{color: '#fff',cursor: 'pointer'}}>Back</span></button>
+            <span style={bar}></span>
             </div>
 
             <ApplicationProgress progress={'50%'} />

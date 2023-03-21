@@ -93,6 +93,11 @@
     color: #553c9a !important;
     text-decoration: underline;
   }
+
+  .backButton {
+    background-color: transparent;
+    border-width: 0ch;
+  }
   
   .onBoardingLeft h2 {
     color: rgba(255, 255, 255, 0.48);

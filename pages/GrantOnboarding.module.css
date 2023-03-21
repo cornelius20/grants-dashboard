@@ -321,6 +321,11 @@
   width: 250;
 }
 
+.whiteLink{
+  color: #fff !important;
+  text-decoration: none;
+}
+
 .converterButton {
   background: #322659;
   border: 1px solid #ffffff;

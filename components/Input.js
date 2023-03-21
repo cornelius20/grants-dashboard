@@ -110,6 +110,7 @@ const Input = (props) => {
           name={name}
           value={value}
           onChange={(e) => handleChange(e)}
+          autoComplete={'off'}
         />
         <div className={styles.image}>{image}</div>
       </div>

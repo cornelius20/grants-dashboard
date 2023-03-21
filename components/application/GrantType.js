@@ -36,7 +36,9 @@ export default function GrantType() {
                                     <span style={listHeader}><PayTag /> Budget $ 1</span>
                                 </div>
                                 <div>
-                                    <span style={listHeader}><WaterDrop /> Funding Stream <Arrow /></span>
+                                    <span style={listHeader}><WaterDrop /> Funding Stream 
+                                        {/* <Arrow /> */}
+                                    </span>
                                 </div>
                                 <div>
                                     <span className={styles.dots} style={{ visibility: 'hidden' }}>. . .</span>

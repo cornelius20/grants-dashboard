@@ -81,12 +81,20 @@ const StacksConverter = () => {
 			<div style={wrapper}>
 				<p>
 					<Link style={link} href={'/utilities'}>
-						Back to utilities
+						<span style={{color: '#fff',cursor: 'pointer'}}>Back to Utilities</span>
 					</Link>
 				</p>
 				<span style={bar}></span>
 			</div>
 			<div className={styles.stxPaymentWrapper}>
+				{/* <div style={wrapper}>
+					<p>
+						<Link style={link} href={'/utilities'}>
+							<span style={{color: '#fff',cursor: 'pointer'}}>Back to Utilities</span>
+						</Link> 
+					</p>
+					<span style={bar}></span>
+				</div> */}
 				<h1>STX Payment Converter</h1>
 				<p className={styles.descriptor}>
 					A simple widget for verifying the amount of STX you receive for payments. All conversions
@@ -199,6 +207,7 @@ const bar = {
 	width: 30,
 	borderRadius: 3,
 	marginTop: 25,
+	marginBottom: 20,
 	backgroundColor: '#fff'
 }
 

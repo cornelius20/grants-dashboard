@@ -209,6 +209,11 @@
   align-items: center;
 }
 
+.whiteLink{
+  color: #fff;
+  text-decoration: none;
+}
+
 /* ...........GRANT TYPE........... */
 .grantTypeList {
   list-style-type: none;
@@ -349,6 +354,10 @@
   font-size: 18px !important;
   color: gray !important;
   padding: 0 !important;
+}
+
+.trackDisabledRadio{
+  border: 2px solid rgba(23, 25, 35, 1) !important;
 }
 
 /* ...........PAYMENT TABLE............. */

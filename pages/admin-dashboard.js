@@ -51,7 +51,7 @@ export default function AdminDashboard() {
 
     useEffect(() => {
         const username = session?.user?.name.toLowerCase();
-        if (!(username.startsWith('will') || username.startsWith('ivo'))) {
+        if (!(username.startsWith('cor') || username.startsWith('ivo'))) {
             router.push('/');
         }
     }, [])
@@ -146,12 +146,20 @@ export default function AdminDashboard() {
             <div style={wrapper}>
                 <p>
                     <Link style={link} href={'/utilities'}>
-                        Back to Utilities
+                        <span style={{color: '#fff',cursor: 'pointer'}}>Back to Utilities</span>
                     </Link>
                 </p>
                 <span style={bar}></span>
             </div>
             <div className={styles.onBoardingWrapper}>
+                {/* <div style={wrapper}>
+                    <p>
+                        <Link href={'/utilities'}>
+                            <span style={{color: '#fff'}}>Back to Utilities</span>
+                        </Link>
+                    </p>
+                    <span style={bar}></span>
+                </div> */}
                 <h2>
                     Admin Dashboard
                 </h2>
@@ -170,6 +178,7 @@ export default function AdminDashboard() {
                                         type="text"
                                         placeholder="Type here..."
                                         onChange={(e) => searchUser(e.target.value)}
+                                        autoComplete="off"
                                     />
                                 </div>
                             </div>
@@ -207,6 +216,7 @@ export default function AdminDashboard() {
                                                 placeholder="Type here..."
                                                 value={userData.firstName}
                                                 onChange={(e) => { setUserData({ ...userData, firstName: e.target.value }) }}
+                                                autoComplete="off"
                                             />
                                         </div>
                                     </div>
@@ -221,6 +231,7 @@ export default function AdminDashboard() {
                                                 placeholder="Type here..."
                                                 value={userData.lastName}
                                                 onChange={(e) => { setUserData({ ...userData, lastName: e.target.value }) }}
+                                                autoComplete="off"
                                             />
                                         </div>
                                     </div>
@@ -236,6 +247,7 @@ export default function AdminDashboard() {
                                                     placeholder="Type here..."
                                                     value={userData.login}
                                                     onChange={(e) => { setUserData({ ...userData, login: e.target.value }) }}
+                                                    autoComplete="off"
                                                 />
                                                 <GithubIcon className={styles.searchIcon} />
                                             </div>
@@ -252,6 +264,7 @@ export default function AdminDashboard() {
                                                 placeholder="Type here..."
                                                 value={userData.email}
                                                 onChange={(e) => { setUserData({ ...userData, email: e.target.value }) }}
+                                                autoComplete="off"
                                             />
                                         </div>
                                     </div>
@@ -288,6 +301,7 @@ export default function AdminDashboard() {
                                                 value={currentUser.name.split(' ')[0]}
                                                 placeholder="Type here..."
                                                 onChange={(e) => { setCurrentUser({ ...currentUser, firstName: e.target.value }) }}
+                                                autoComplete="off"
                                             />
                                         </div>
                                     </div>
@@ -302,6 +316,7 @@ export default function AdminDashboard() {
                                                 value={currentUser.name.split(' ')[1]}
                                                 placeholder="Type here..."
                                                 onChange={(e) => { setCurrentUser({ ...currentUser, lastName: e.target.value }) }}
+                                                autoComplete="off"
                                             />
                                         </div>
                                     </div>
@@ -317,6 +332,7 @@ export default function AdminDashboard() {
                                                     value={currentUser.login}
                                                     placeholder="will-at-stacks"
                                                     onChange={(e) => { setCurrentUser({ ...currentUser, login: e.target.value }) }}
+                                                    autoComplete="off"
                                                 />
                                                 <GithubIcon className={styles.searchIcon} />
                                             </div>

@@ -452,7 +452,7 @@ export default function GrantOnboarding() {
             <div style={wrapper}>
                 <p>
                     <Link href={'/utilities'}>
-                        Back to Utilities
+                        <span style={{color: '#fff',cursor: 'pointer'}}>Back to Utilities</span>
                     </Link>
                 </p>
                 <span style={bar}></span>
@@ -460,6 +460,14 @@ export default function GrantOnboarding() {
             <BrowserWallet visible={browserError} handleClose={() => setBrowserError(false)} />
             <AddWallet visible={visible} handleClose={() => setVisible(false)} />
             <div className={styles.onBoardingWrapper}>
+                {/* <div style={wrapper}>
+                    <p>
+                        <Link className={styles.whiteLink} href={'/utilities'}>
+                            <span style={{color: '#fff'}}>Back to Utilities</span>
+                        </Link>
+                    </p>
+                    <span style={bar}></span>
+                </div> */}
                 <h2>
                     Grant Onboarding
                 </h2>
@@ -482,6 +490,7 @@ export default function GrantOnboarding() {
                                                 placeholder="Type here..."
                                                 value={firstName}
                                                 onChange={(e) => { setFirstName(e.target.value) }}
+                                                autoComplete="off"
                                             />
                                             {firstNameError && <span className={styles.validationError}>Required!</span>}
                                         </div>
@@ -494,6 +503,7 @@ export default function GrantOnboarding() {
                                                 placeholder="Type here..."
                                                 value={lastName}
                                                 onChange={(e) => { setLastName(e.target.value) }}
+                                                autoComplete="off"
                                             />
                                             {lastNameError && <span className={styles.validationError}>Required!</span>}
 
@@ -509,6 +519,7 @@ export default function GrantOnboarding() {
                                                 placeholder="Type here..."
                                                 value={email}
                                                 onChange={(e) => { setEmail(e.target.value) }}
+                                                autoComplete="off"
                                             />
                                             {emailError && <span className={styles.validationError}>Required!</span>}
 
@@ -531,6 +542,7 @@ export default function GrantOnboarding() {
                                                 placeholder="Type here..."
                                                 value={stxMemo}
                                                 onChange={(e) => { setStxMemo(e.target.value) }}
+                                                autoComplete="off"
                                             />
                                             {stxMemoError && <span className={styles.validationError}>Required!</span>}
                                             <span style={checkbox}>

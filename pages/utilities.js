@@ -29,17 +29,22 @@ const Utilities = () => {
 
 	return (
 		<div style={main}>
-			<Link href="/">
-				<a>
-					<div className={styles.close}>
+			{/* <Link href="/">
+				<div className={styles.close}>
 						<p>
 							<CloseIcon />
-							Close
+							<span style={{color: '#fff'}}>Close</span>
 						</p>
-						<span></span>
-					</div>
-				</a>
-			</Link>
+				</div>
+			</Link> */}
+			<div style={wrapper}>
+                <p>
+                    <Link href={'/'}>
+                        <span style={{color: '#fff',cursor: 'pointer'}}>Back</span>
+                    </Link>
+                </p>
+                <span style={bar}></span>
+            </div>
 			<div className={styles.utilitiesWrapper}>
 
 				<h2>Stacks Community Tools</h2>
@@ -136,6 +141,24 @@ const pb2 = {
 }
 
 export default Utilities;
+
+const wrapper = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-end',
+    paddingRight: 26,
+    paddingTop: 38,
+    position: 'relative'
+}
+
+const bar = {
+    height: 2,
+    width: 30,
+    borderRadius: 3,
+    marginTop: 25,
+    marginBottom: 20,
+    backgroundColor: '#fff'
+}
 
 export async function getServerSideProps(context) {
 	const session = await unstable_getServerSession(context.req, context.res, authOptions);

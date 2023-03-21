@@ -216,6 +216,11 @@
   margin-bottom: 10px !important;
 }
 
+.whiteLink{
+  color: #fff;
+  text-decoration: none;
+}
+
 /* ...........MEDIA QUERIES............. */
 @media screen and (max-width: 991px) {
   .grantDataWrapper h1 {

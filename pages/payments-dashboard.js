@@ -76,7 +76,7 @@ export default function PaymentsDashboard() {
 
     useEffect(() => {
         const username = session?.user?.name.toLowerCase();
-        if (!(username.startsWith('will') || username.startsWith('ivo') || username.startsWith('shakti'))) {
+        if (!(username.startsWith('cor') || username.startsWith('will') || username.startsWith('ivo') || username.startsWith('shakti'))) {
             router.push('/');
         } 
     }, [])
@@ -85,7 +85,7 @@ export default function PaymentsDashboard() {
 
 
     const walletButtonClicked = async () => {
-        if (isSignedIn) {
+    if (isSignedIn) {
             await signOut();
         }
         else {
@@ -388,12 +388,20 @@ export default function PaymentsDashboard() {
             <div style={wrapper}>
                 <p>
                     <Link style={link} href={'/utilities'}>
-                        Back to Utilities
+                        <span style={{color: '#fff',cursor: 'pointer'}}>Back to Utilities</span>
                     </Link> 
                 </p>
                 <span style={bar}></span>
             </div>
             <div className={styles.onBoardingWrapper}>
+                {/* <div style={wrapper}>
+                    <p>
+                        <Link className={styles.whiteLink} href={'/utilities'}>
+                            <span style={{color: '#fff',cursor: 'pointer'}}>Back to Utilities</span>
+                        </Link> 
+                    </p>
+                    <span style={bar}></span>
+                </div> */}
                 <h2>
                     Payments Dashboard
                 </h2>
@@ -469,6 +477,7 @@ export default function PaymentsDashboard() {
                                             placeholder="Type here..."
                                             value={txID}
                                             onChange={(e) => { setTxID(e.target.value) }}
+                                            autoComplete="off"
                                         />
                                     </div>
                                 </div>

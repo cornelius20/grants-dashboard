@@ -318,12 +318,20 @@ const GrantDataExporter = () => {
 			<div style={wrapper}>
 				<p>
 					<Link style={link} href={'/utilities'}>
-						Back to utilities
+						<span style={{color: '#fff',cursor: 'pointer'}}>Back to Utilities</span>
 					</Link>
 				</p>
 				<span style={bar}></span>
 			</div>
 			<div className={styles.grantDataWrapper}>
+				{/* <div style={wrapper}>
+					<p>
+						<Link className={styles.whiteLink} style={link} href={'/utilities'}>
+							<span style={{color: '#fff'}}>Back to Utilities</span>
+						</Link>
+					</p>
+					<span style={bar}></span>
+				</div> */}
 				<h1>Grant Data Exporter</h1>
 				<p className={styles.descriptor}>
 					A simple widget for exporting grant data from Github as a .CSV file.
@@ -466,6 +474,7 @@ const bar = {
 	width: 30,
 	borderRadius: 3,
 	marginTop: 25,
+	marginBottom: 20,
 	backgroundColor: '#fff'
 }
 

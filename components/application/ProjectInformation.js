@@ -6,11 +6,11 @@ const ProjectInformation = () => {
   return (
     <Form
       title="Grant Information"
-      description="Tell us some basics about your grant."
+      description="Tell us some basics about your project."
     >
       <Input
         name="projectTitle"
-        label="Title Your Grant"
+        label="Grant Name"
         maxchar={30}
         description="Name your Grant so that it clearly communicates your objectives to others, during review and in the future."
         labelFontSize="18px"

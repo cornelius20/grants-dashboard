@@ -27,7 +27,7 @@ const Nav = (props) => {
           <a>
             <p>
               <CloseIcon />
-              Close
+              <span style={{color: '#fff',cursor: 'pointer'}}>Back</span>
             </p>
           </a>
           <span></span>

@@ -48,7 +48,7 @@ export default function GrantTrack() {
                                 <h2 className={styles.heading}>Bitcoin Utility via Stacks</h2>
                             </div>
                             <ul className={styles.grantList}>
-                                <li>DLC-Clarity Explorations, BTC-STX Wallets BTC-Native DeFi (using Stacks), etc.</li>
+                                <li>DLC-Clarity Explorations, BTC-STX Wallets , <br/>  BTC-Native DeFi (using Stacks), etc.</li>
                             </ul>
                         </div>
                 </div>
@@ -73,7 +73,7 @@ export default function GrantTrack() {
                 <div className={styles.row}>
                         <div className={styles.col}>
                             <div className={styles.grantTypeFlex}>
-                                <input disabled name='projectTrack' type={'radio'} />
+                                <input style={disabledRadio} className={styles.trackDisabledRadio} disabled name='projectTrack' type={'radio'} />
                                 <h2 className={styles.heading2}>Stacks dApps & Clarity</h2>
                             </div>
                             <ul className={styles.grantList}>
@@ -82,7 +82,7 @@ export default function GrantTrack() {
                         </div>
                         <div className={styles.col}>
                             <div className={styles.grantTypeFlex}>
-                                <input disabled name='projectTrack' type={'radio'} />
+                                <input style={disabledRadio} className={styles.trackDisabledRadio} disabled name='projectTrack' type={'radio'} />
                                 <h2 className={styles.heading2}>Stacks Education and Community</h2>
                             </div>
                             <ul className={styles.grantList}>
@@ -93,7 +93,7 @@ export default function GrantTrack() {
                 <div className={styles.row}>
                         <div className={styles.col}>
                             <div className={styles.grantTypeFlex}>
-                                <input disabled name='projectTrack' type={'radio'} />
+                                <input style={disabledRadio} disabled name='projectTrack' type={'radio'} />
                                 <h2 className={styles.heading2}>Stacks User Experience</h2>
                             </div>
                             <ul className={styles.grantList}>
@@ -111,6 +111,10 @@ export default function GrantTrack() {
 
 const mb4 = {
     marginBottom: 40
+}
+
+const disabledRadio = {
+    border: '2px solid rgba(23, 25, 35, 1)'
 }
 
 const heading = {

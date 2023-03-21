@@ -157,6 +157,14 @@ const ProjectRoadmap = ({visibleModal}) => {
           maxchar={80}
         />
       </div>
+      <div className={styles.final}>
+        <Input
+          name="missionDeliverable"
+          label="Mission Deliverable"
+          labelFontSize="18px"
+          maxchar={80}
+        />
+      </div>
 
       {Milestones()[currentMilestone - 1]}
     </Form>

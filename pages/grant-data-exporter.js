@@ -321,8 +321,8 @@ const GrantDataExporter = () => {
 			</Head>
 			<div style={wrapper}>
                 <p>
-					<Link href={'/utilities'}>
-						Back to Utilities
+					<Link className={styles.whiteLink} href={'/utilities'}>
+						<span style={{color: '#fff',cursor: 'pointer'}}>Back to Utilities</span>
                     </Link>
                 </p>
                 <span style={bar}></span>

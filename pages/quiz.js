@@ -65,8 +65,8 @@ export default function GrantOnboarding() {
 
             <div style={wrapper}>
                 <p>
-                    <Link href={'/'}>
-                        Close
+                    <Link className={styles.whiteLink} href={'/'}>
+                        <span style={{color: '#fff',cursor: 'pointer'}}>Back</span>
                     </Link>
                 </p>
                 <span style={bar}></span>
@@ -78,10 +78,10 @@ export default function GrantOnboarding() {
             <div className={styles.onBoardingWrapper}>
                 <div className={styles.onBoardingRow}>
                     <div className={styles.onBoardingLeft}>
-                        <h2 style={{ fontSize: 20 }}>
+                        <h2 style={quizHeading}>
                             Is your project a good fit for the Grants Program?
                         </h2>
-                        <p style={mb4} className={styles.text}>
+                        <p style={gray} className={styles.text}>
                             Before proceeding, check all the boxes that apply to your project idea:
                         </p>
                         <h2>
@@ -101,22 +101,22 @@ export default function GrantOnboarding() {
                         </div>
                         <div className={styles.flex}>
                             <input className={styles.quizCheckBox} type={'checkbox'} name="checkBox4" checked={checkBox.checkBox4} onChange={handleCheckBoxChange} />
-                            <p>I have read the <a href='https://github.com/stacksgov/Stacks-Grant-Launchpad/wiki/Terms-and-Conditions' className={styles.purpleLink}>terms and conditions</a> and any work I perform as a result of grant funding will comply with them.</p>
+                            <p>I have read the <a target="_blank" rel='noreferrer' href='https://github.com/stacksgov/Stacks-Grant-Launchpad/wiki/Terms-and-Conditions' className={styles.purpleLink}>terms and conditions</a> and any work I perform as a result of grant funding will comply with them.</p>
                         </div>
                         <h2 style={mt20}>
                             MY PROJECT ALIGNS WITH CURRENT STACKS PRIORITIES:
                         </h2>
                         <div className={styles.flex}>
                             <input className={styles.quizCheckBox} type={'checkbox'} name="checkBox5" checked={checkBox.checkBox5} onChange={handleCheckBoxChange} />
-                            <p>I have read the <a href='https://github.com/stacksgov/Stacks-Grant-Launchpad#current-grant-priorities' className={styles.purpleLink}>2023 Grant Program Priorities</a> blog post and feel my project is complimentary to the current direction of the Grants program.</p>
+                            <p>I have read the <a target="_blank" rel='noreferrer' href='https://github.com/stacksgov/Stacks-Grant-Launchpad#current-grant-priorities' className={styles.purpleLink}>2023 Grant Program Priorities</a> blog post and feel my project is complimentary to the current direction of the Grants program.</p>
                         </div>
                         <div className={styles.flex}>
                             <input className={styles.quizCheckBox} type={'checkbox'} name="checkBox6" checked={checkBox.checkBox6} onChange={handleCheckBoxChange} />
-                            <p>I have read the <a href='https://stacks-network.github.io/stacks/sbtc.pdf' className={styles.purpleLink}>sBTC whitepaper</a> and the <a href='https://stacks-network.github.io/stacks/stacks.pdf' className={styles.purpleLink}>Nakamoto release whitepaper</a> and my project directly relates to those technologies.</p>
+                            <p>I have read the <a target="_blank" rel='noreferrer' href='https://stacks-network.github.io/stacks/sbtc.pdf' className={styles.purpleLink}>sBTC whitepaper</a> and the <a rel='noreferrer' target="_blank" href='https://stacks-network.github.io/stacks/stacks.pdf' className={styles.purpleLink}>Nakamoto release whitepaper</a> and my project directly relates to those technologies.</p>
                         </div>
                         <div className={styles.flex}>
                             <input className={styles.quizCheckBox} type={'checkbox'} name="checkBox7" checked={checkBox.checkBox7} onChange={handleCheckBoxChange} />
-                            <p>I have read the <a href='https://github.com/stacksgov/Stacks-Grant-Launchpad#current-grant-priorities' className={styles.purpleLink}>current grant priorities</a> and my project directly relates to those priorities.</p>
+                            <p>I have read the <a target="_blank" rel='noreferrer' href='https://github.com/stacksgov/Stacks-Grant-Launchpad#current-grant-priorities' className={styles.purpleLink}>current grant priorities</a> and my project directly relates to those priorities.</p>
                         </div>
                     </div>
                 </div>
@@ -133,6 +133,16 @@ const mb4 = {
     marginBottom: 40
 }
 
+const quizHeading = {
+    fontSize: 20,
+    color: '#fff'
+}
+
+const gray = {
+    color: 'gray',
+    marginBottom: 40
+}
+
 const wrapper = {
     display: 'flex',
     flexDirection: 'column',
@@ -141,6 +151,7 @@ const wrapper = {
     paddingTop: 38,
     position: 'relative'
 }
+
 
 const bar = {
     height: 2,

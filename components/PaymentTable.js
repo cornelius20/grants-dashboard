@@ -13,7 +13,11 @@ export default function PaymentTable({ isVisible, closeModal }) {
                 alertVisible ? <CustomAlert title="Please Connect a Wallet" onClose={() => setAlertVisible(false)} /> : null
             }
             <div style={wrapper}>
-                <button onClick={closeModal}>Close</button>
+                <p>
+                    <Link className={styles.whiteLink} href={'/'}>
+                        <span style={{color: '#fff',cursor: 'pointer'}}>Back</span>
+                    </Link>
+                </p>
                 <span style={bar}></span>
             </div>
 
@@ -64,15 +68,18 @@ const wrapper = {
     flexDirection: 'column',
     alignItems: 'flex-end',
     paddingRight: 26,
-    right:0,
-    paddingTop: 38,
-    position: 'absolute'
+    paddingTop: 20,
+    position: 'absolute',
+    top: 0,
+    right: 0
 }
+
 
 const bar = {
     height: 2,
     width: 30,
     borderRadius: 3,
     marginTop: 25,
+    marginBottom: 20,
     backgroundColor: '#fff'
 }

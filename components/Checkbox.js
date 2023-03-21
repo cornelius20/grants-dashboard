@@ -1,7 +1,7 @@
 import styles from "./Checkbox.module.css";
 
 const Checkbox = (props) => {
-  const { name, value, id, labelColor } = props;
+  const { name, value, id, labelColor, label } = props;
 
   switch (id) {
     case "guideline1":
@@ -13,12 +13,17 @@ const Checkbox = (props) => {
       break;
   }
   return (
+    <div>
+      <label className={styles.labelWrapper}>
+          {label}
+      </label>
     <div
       style={labelColor ? { color: labelColor } : {}}
       className={styles.checkboxWrapper}
     >
       <input id={id} name={name} type="checkbox"></input>
       <label>{value}</label>
+    </div>
     </div>
   );
 };

@@ -9,7 +9,6 @@ import CheckMark from '../public/images/checkmark.svg';
 import SuccessModal from '../components/SuccessModal';
 import ThanksModal from '../components/ThanksModal';
 import { useSession, signIn, signOut } from 'next-auth/react';
-import ApplicationProgress from '../components/ApplicationProgress';
 
 export default function GrantOnboarding() {
     const { data: session } = useSession();
@@ -58,7 +57,6 @@ export default function GrantOnboarding() {
         <div className={styles.main}>
             <SuccessModal isVisible={successModalVisible} />
             <ThanksModal isVisible={thanksModalVisible} closeModal={closeModal} />
-            <ApplicationProgress progress={'10%'} />
             {
                 alertVisible ? <CustomAlert title="Please Connect a Wallet" onClose={() => setAlertVisible(false)} /> : null
             }

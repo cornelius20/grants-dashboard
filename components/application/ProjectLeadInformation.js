@@ -13,11 +13,11 @@ const ProjectLeadInformation = () => {
     >
       <Checkbox
         id="completedPreviousGrant"
-        value="I have previously completed - or - I am currently working on another
-        Stacks Foundation funded grant, residency, etc."
+        value="Stacks Foundation funded grant, residency, etc."
+        label="I have previously completed - or - I am currenly working on another:"
         labelColor="rgba(255, 255, 255, 0.8)"
       />
-
+      <div style={div}/>
       <Input
         name="previousGrant"
         label="GitHub Issue"
@@ -26,19 +26,22 @@ const ProjectLeadInformation = () => {
       />
       <Checkbox
         id="otherEcosystem"
-        value="I have previously completed - or - I am currently enrolled in - or -
-          I am accepted into: Stacks Web3 Startup Lab and/or Stacks
-          Accelerator."
+        label="I have previously completed - or - I am currently enrolled in - or - I am accepted into:"
+        value="Stacks Web3 Startup Lab and/or Stacks Accelerator."
         labelColor="rgba(255, 255, 255, 0.8)"
       />
       <TextArea
         name="otherEcosystemPrograms"
-        label="Explain below which program and tell us about your grant."
+        label="Explain below which program and tell us about your project below."
         maxchar={300}
         height="100px"
       />
     </Form>
   );
 };
+
+const div = {
+  height:"1px"
+}
 
 export default ProjectLeadInformation;

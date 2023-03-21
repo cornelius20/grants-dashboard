@@ -569,6 +569,7 @@ const Application = () => {
       >
         <Nav
           name={"progress"}
+          name={"Application Progress"}
           step={currentStep}
           totalSteps={navSteps().length}
         />

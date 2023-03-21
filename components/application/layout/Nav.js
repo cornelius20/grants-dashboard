@@ -24,13 +24,11 @@ const Nav = (props) => {
       </div>
       <Link href="/">
         <div className={styles.close}>
-          <a>
             <p>
               <CloseIcon />
               <span style={{color: '#fff',cursor: 'pointer'}}>Back</span>
             </p>
-          </a>
-          <span></span>
+          <span style={bar}></span>
         </div>
       </Link>
     </div>
@@ -38,3 +36,22 @@ const Nav = (props) => {
 };
 
 export default Nav;
+
+
+const wrapper = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-end',
+  paddingRight: 26,
+  paddingTop: 38,
+  position: 'relative'
+}
+
+
+const bar = {
+  height: 2,
+  width: 30,
+  borderRadius: 3,
+  // marginBottom: 20,
+  backgroundColor: '#fff'
+}

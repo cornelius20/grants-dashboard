@@ -47,7 +47,7 @@ const Home = () => {
 					if (!formData) {
 						localStorage.setItem("formData", JSON.stringify({}));
 					}
-					 formData = JSON.parse(localStorage.getItem("formData"));
+					formData = JSON.parse(localStorage.getItem("formData"));
 					formData.githubUsername = session.user.name;
 					formData.email = user?.data?.email
 					localStorage.setItem("formData", JSON.stringify(formData));

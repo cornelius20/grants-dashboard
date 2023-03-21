@@ -534,7 +534,7 @@ const Application = () => {
       case "C":
         return flowCSteps;
       default:
-        return flowDefaultSteps;
+        return flowASteps;
     }
   };
 

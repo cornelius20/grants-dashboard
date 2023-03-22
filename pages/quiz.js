@@ -9,6 +9,7 @@ import CheckMark from '../public/images/checkmark.svg';
 import SuccessModal from '../components/SuccessModal';
 import ThanksModal from '../components/ThanksModal';
 import { useSession, signIn, signOut } from 'next-auth/react';
+import ApplicationProgress from '../components/ApplicationProgress';
 
 export default function GrantOnboarding() {
     const { data: session } = useSession();
@@ -61,16 +62,22 @@ export default function GrantOnboarding() {
                 alertVisible ? <CustomAlert title="Please Connect a Wallet" onClose={() => setAlertVisible(false)} /> : null
             }
 
-            <div style={wrapper}>
+            {/* <div style={wrapper}>
                 <p>
                     <Link className={styles.whiteLink} href={'/'}>
-                        <span style={{color: '#fff',cursor: 'pointer'}}>Back</span>
+                        <span style={{color: '#fff',cursor: 'pointer',display: 'flex',alignItems: 'center',gap: 10}}><CloseIcon/> Close</span>
                     </Link>
                 </p>
                 <span style={bar}></span>
                 <div style={relative}>
                     <button onClick={() => { handleSubmit() }} className={`${styles.gradientButton} ${styles.okButton}`} style={{ width: 210, position: 'absolute', top: 0, right: 0 }}><CheckMark style={{ marginRight: 10 }} /> Ok</button>
                 </div>
+            </div> */}
+            <div className={styles.quizTop}>
+                <ApplicationProgress progress={'10%'}/>
+                <Link className={styles.whiteLink} href={'/'}>
+                    <span style={{color: '#fff',cursor: 'pointer',display: 'flex',alignItems: 'center',gap: 10}}><CloseIcon/> Close</span>
+                </Link>
             </div>
 
             <div className={styles.onBoardingWrapper}>
@@ -116,6 +123,9 @@ export default function GrantOnboarding() {
                             <input className={styles.quizCheckBox} type={'checkbox'} name="checkBox7" checked={checkBox.checkBox7} onChange={handleCheckBoxChange} />
                             <p>I have read the <a target="_blank" rel='noreferrer' href='https://github.com/stacksgov/Stacks-Grant-Launchpad#current-grant-priorities' className={styles.purpleLink}>current grant priorities</a> and my project directly relates to those priorities.</p>
                         </div>
+                        <div style={mt4}>
+                            <button onClick={() => { handleSubmit() }} className={`${styles.gradientButton} ${styles.okButton}`} style={{ width: 210, margin: '0 auto'}}><CheckMark style={{ marginRight: 10 }} /> Ok</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -127,8 +137,12 @@ const mt20 = {
     marginTop: 30
 }
 
-const mb4 = {
-    marginBottom: 40
+const mt4 = {
+    marginTop: 20
+}
+
+const mb2 = {
+    marginBottom: 20
 }
 
 const quizHeading = {

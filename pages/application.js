@@ -32,6 +32,7 @@ import ApplicantInformationB from "../components/application/ApplicantInformatio
 import GrantTrack from "../components/application/GrantTrack";
 import GrantType from "../components/application/GrantType";
 import PaymentTable from '../components/PaymentTable';
+import CheckMark from '../public/images/checkmark.svg';
 
 const Application = () => {
   const { data: session } = useSession();
@@ -584,9 +585,36 @@ const Application = () => {
             <AnimatePresence exitBeforeEnter initial={false}>
               {CurrentStep()}
             </AnimatePresence>
+            <div style={{display: 'flex',justifyContent: 'space-between',alignItems: 'center'}}>
+              <button className={styles.prevBtn} onClick={()=>setCurrentStep(currentStep - 1)}>Previous Step</button>
+              <div style={{padding: 1,background: 'linear-gradient(45deg, #3182CE, #FFFFFF)',borderRadius: 5}}>
+                {/* <button className={styles.nextBtn}><CheckMark/> Next Step</button> */}
+                {currentStep > 1 && currentStep == navSteps().length ? (
+                  <button
+                    className={styles.nextBtn}
+                    onClick={() => {
+                      if (handleSubmit()) submitApplication();
+                    }}
+                    name="okButton"
+                  >
+                    <Checkmark />
+                    Submit Application
+                  </button>
+                ) : (
+                  <button
+                    className={styles.nextBtn}
+                    onClick={() => handleSubmit(currentStep + 1)}
+                    name="okButton"
+                  >
+                    <Checkmark />
+                    Next Step
+                  </button>
+                )}
+              </div>
+            </div>
           </div>
           <div className={styles.navButtonWrapper}>
-            <div className={styles.button}>
+            <div style={{visibility: 'hidden'}} className={styles.button}>
               {currentStep > 1 && currentStep == navSteps().length ? (
                 <button
                   onClick={() => {

@@ -214,6 +214,13 @@
   text-decoration: none;
 }
 
+.quizTop{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+}
+
 /* ...........GRANT TYPE........... */
 .grantTypeList {
   list-style-type: none;

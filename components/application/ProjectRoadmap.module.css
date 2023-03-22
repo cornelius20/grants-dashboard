@@ -46,6 +46,7 @@
   text-decoration: underline;
   background-color: transparent;
   border-width: 0ch;
+  cursor: pointer;
 }
 
 .nav ul {

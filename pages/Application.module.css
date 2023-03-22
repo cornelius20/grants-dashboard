@@ -24,7 +24,7 @@
 }
 
 .stacksSVG {
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 0;
   z-index: -1;
@@ -66,3 +66,30 @@
 /* .navButtonWrapper {
 
 } */
+
+
+.prevBtn{
+  border: none;
+  outline: none;
+  color: #718096;
+  padding: 5px;
+  background: transparent;
+  border-bottom: 1px solid #718096;
+  cursor: pointer;
+}
+
+.nextBtn{
+  background: linear-gradient(45deg, #3182ce, #97266d);
+  height: 48px;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 170px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}

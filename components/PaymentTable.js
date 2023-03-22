@@ -32,9 +32,9 @@ export default function PaymentTable({ isVisible, closeModal }) {
 
                         <ul className={styles.paymentList}>
                             <li className={styles.paymentListHeader}>
-                                <span>Project Budget</span>
-                                <span>Number of Payments</span>
-                                <span>% of Budget per Payment</span>
+                                <span>PROJECT BUDGET</span>
+                                <span>NUMBER OF PAYMENTS</span>
+                                <span>% OF BUDGET PER PAYMENT</span>
                             </li>
                             <li className={styles.paymentListItem}>
                                 <span>$0 to $9,999</span>

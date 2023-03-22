@@ -7,7 +7,7 @@ export default function ApplicationProgress({ progress }) {
       <div className={styles.progressBar}>
         <div style={{ width: progress }}></div>
       </div>
-      <p className={styles.progressLabel}>Application</p>
+      <p className={styles.progressLabel}>Application Progress</p>
     </div>
   )
 }

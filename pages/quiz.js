@@ -76,7 +76,7 @@ export default function GrantOnboarding() {
             <div className={styles.quizTop}>
                 <ApplicationProgress progress={'10%'}/>
                 <Link className={styles.whiteLink} href={'/'}>
-                    <span style={{color: '#fff',cursor: 'pointer',display: 'flex',alignItems: 'center',gap: 10}}><CloseIcon/> Close</span>
+                    <span style={{color: '#fff',cursor: 'pointer',display: 'flex',alignItems: 'center',gap: 10}}> Back</span>
                 </Link>
             </div>
 

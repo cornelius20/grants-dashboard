@@ -28,7 +28,7 @@ const Nav = (props) => {
               <CloseIcon />
               <span style={{color: '#fff',cursor: 'pointer'}}>Close</span>
             </p>
-          <span style={bar}></span>
+          {/* <span style={bar}></span> */}
         </div>
       </Link>
     </div>

@@ -63,6 +63,11 @@ const Home = () => {
 		window.innerWidth >= 800 ? setMobile(false) : setMobile(true);
 	});
 
+	const signOutUser = () => {
+		localStorage.setItem('formData',JSON.stringify({}));
+		signOut();
+	}
+
 	const truncateUsername = (ghUsername) => {
 		if (ghUsername.length < 10) {
 			return ghUsername;
@@ -130,7 +135,7 @@ const Home = () => {
 								ref={connectButton}
 								className={!highlightButton ? styles.connectGithub : styles.connectGithubFocus}
 								style={session ? { fontSize: '14px' } : {}}
-								onClick={() => (!session ? signIn('github') : signOut())}
+								onClick={() => (!session ? signIn('github') : signOutUser())}
 							>
 								{!session ? 'Connect Github' : `${truncateUsername(session.user.name)} (log out)`}{' '}
 								<ConnectGithubSVG />

@@ -316,6 +316,7 @@ const Application = () => {
               allChecked = true;
             }
           })
+          break
           // console.log('EL',el);
           // allChecked = true;
         // case "guidelines":
@@ -350,7 +351,7 @@ const Application = () => {
     let isValid = false;
 
     function nextPage() {
-      if (invalidFields.length == 0) {
+      if (invalidFields.length == 0 || optionsValid) {
         isValid = true;
         if (currentStep > 1 && currentStep == navSteps().length) {
         } else {

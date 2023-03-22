@@ -359,7 +359,7 @@
   /* ...........PAYMENT TABLE............. */
   .paymentHeading {
     font-size: 20px;
-    color: #fff !important;
+    color: rgba(255, 255, 255, 0.92) !important;
     margin-top: 40px;
   }
   
@@ -372,7 +372,7 @@
     list-style-type: none;
     margin: 40px 0;
     background: #000;
-    opacity: 0.5;
+    opacity: 1;
   }
   
   .paymentListHeader {
@@ -382,7 +382,7 @@
     align-items: center;
     font-size: 14px;
     font-weight: 700;
-    color: #fff !important;
+    color: rgba(255, 255, 255, 1.00);
     opacity: 1 !important;
   }
   
@@ -393,6 +393,10 @@
     align-items: center;
     font-size: 14px;
     color: rgba(255, 255, 255, 0.64);
+  }
+
+  .fontWeight700 {
+    font-weight: 700;
   }
   
   .paymentListItem span,

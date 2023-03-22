@@ -38,17 +38,17 @@ export default function PaymentTable({ isVisible, closeModal }) {
                             </li>
                             <li className={styles.paymentListItem}>
                                 <span>$0 to $9,999</span>
-                                <span>2 (1 milestone)</span>
+                                <span><span className={styles.fontWeight700}>2</span> (1 milestone)</span>
                                 <span>50%</span>
                             </li>
                             <li className={styles.paymentListItem}>
                                 <span>$10k to $23,999</span>
-                                <span>3 (2 milestone)</span>
+                                <span><span className={styles.fontWeight700}>3</span> (2 milestone)</span>
                                 <span>33%</span>
                             </li>
                             <li className={styles.paymentListItem}>
                                 <span>$24k to $48,000</span>
-                                <span>4 (3 milestone)</span>
+                                <span><span className={styles.fontWeight700}>4</span> (3 milestone)</span>
                                 <span>25%</span>
                             </li>
                         </ul>

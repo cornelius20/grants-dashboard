@@ -150,7 +150,9 @@ export default function PaymentsDashboard() {
 
     async function getIssues() {
         issues = [];
-        const github = new Octokit();
+        const github = new Octokit({
+            auth: session.accessToken,
+        });
         setLoading(true);
 
         let res = []

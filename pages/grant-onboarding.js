@@ -171,7 +171,9 @@ export default function GrantOnboarding() {
     async function getIssues() {
         try {
             issues = [];
-            const github = new Octokit();
+            const github = new Octokit({
+                auth: session.accessToken,
+            });
             setLoading(true);
             let res = []
             for await (const label of grantStatusArr) {

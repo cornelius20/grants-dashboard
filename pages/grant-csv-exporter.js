@@ -131,7 +131,9 @@ const GrantDataExporter = () => {
 
 	async function getIssues() {
 		issues = [];
-		const github = new Octokit();
+		const github = new Octokit({
+			auth: session.accessToken,
+		});;
 		setLoadingSpinner(true);
 
 		let labels = [];

@@ -26,4 +26,5 @@
 .description {
   color: #a0aec0;
   font-size: 14px;
+  white-space: pre-line;
 }

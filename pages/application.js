@@ -57,7 +57,7 @@ const Application = () => {
     async function refresh() {
       if (session) {
         const github = new Octokit({
-          auth: session.accessToken,
+          auth: session?.accessToken,
         });
         await github.request("GET /user");
       }
@@ -130,7 +130,7 @@ const Application = () => {
     let markdown = generateTemplate(flow, formData);
 
     const github = new Octokit({
-      auth: session.accessToken,
+      auth: session?.accessToken,
     });
 
     if (flow == "B") {
@@ -184,6 +184,7 @@ const Application = () => {
         });
 
         let res = await req;
+
         setURL(res.data.html_url);
 
         if (res.status == 201) {
@@ -351,7 +352,6 @@ const Application = () => {
     function nextPage() {
       if (invalidFields.length == 0) {
         isValid = true;
-
         if (currentStep > 1 && currentStep == navSteps().length) {
         } else {
           setCurrentStep(nextStepNumber);
@@ -586,7 +586,7 @@ const Application = () => {
               {CurrentStep()}
             </AnimatePresence>
             <div style={{display: 'flex',justifyContent: 'space-between',alignItems: 'center'}}>
-              <button className={styles.prevBtn} onClick={()=>setCurrentStep(currentStep - 1)}>Previous Step</button>
+              <button className={styles.prevBtn} onClick={()=>{if(currentStep > 1) setCurrentStep(currentStep - 1)}}>Previous Step</button>
               <div style={{padding: 1,background: 'linear-gradient(45deg, #3182CE, #FFFFFF)',borderRadius: 5}}>
                 {/* <button className={styles.nextBtn}><CheckMark/> Next Step</button> */}
                 {currentStep > 1 && currentStep == navSteps().length ? (

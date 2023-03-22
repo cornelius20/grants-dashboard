@@ -123,7 +123,7 @@ export default function GrantOnboarding() {
                             <input className={styles.quizCheckBox} type={'checkbox'} name="checkBox7" checked={checkBox.checkBox7} onChange={handleCheckBoxChange} />
                             <p>I have read the <a target="_blank" rel='noreferrer' href='https://github.com/stacksgov/Stacks-Grant-Launchpad#current-grant-priorities' className={styles.purpleLink}>current grant priorities</a> and my project directly relates to those priorities.</p>
                         </div>
-                        <div style={mt4}>
+                        <div style={mt20}>
                             <button onClick={() => { handleSubmit() }} className={`${styles.gradientButton} ${styles.okButton}`} style={{ width: 210, margin: '0 auto' }}><CheckMark style={{ marginRight: 10 }} /> Submit</button>
                         </div>
                     </div>

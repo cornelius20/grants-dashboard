@@ -37,7 +37,7 @@ const Modal = (props) => {
 						onClick={() => {
 							setHide(false);
 							router.push('/');
-							signOut();
+							// signOut();
 						}}
 					>
 						{title === 'Important' ? 'Dismiss' : 'Confirm'}

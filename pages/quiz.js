@@ -74,9 +74,9 @@ export default function GrantOnboarding() {
                 </div>
             </div> */}
             <div className={styles.quizTop}>
-                <ApplicationProgress progress={'10%'}/>
+                <ApplicationProgress progress={'10%'} />
                 <Link className={styles.whiteLink} href={'/'}>
-                    <span style={{color: '#fff',cursor: 'pointer',display: 'flex',alignItems: 'center',gap: 10}}> Back</span>
+                    <span style={{ color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 10 }}> Back</span>
                 </Link>
             </div>
 
@@ -124,7 +124,7 @@ export default function GrantOnboarding() {
                             <p>I have read the <a target="_blank" rel='noreferrer' href='https://github.com/stacksgov/Stacks-Grant-Launchpad#current-grant-priorities' className={styles.purpleLink}>current grant priorities</a> and my project directly relates to those priorities.</p>
                         </div>
                         <div style={mt4}>
-                            <button onClick={() => { handleSubmit() }} className={`${styles.gradientButton} ${styles.okButton}`} style={{ width: 210, margin: '0 auto'}}><CheckMark style={{ marginRight: 10 }} /> Ok</button>
+                            <button onClick={() => { handleSubmit() }} className={`${styles.gradientButton} ${styles.okButton}`} style={{ width: 210, margin: '0 auto' }}><CheckMark style={{ marginRight: 10 }} /> Submit</button>
                         </div>
                     </div>
                 </div>

@@ -94,7 +94,7 @@ const ProjectTags = () => {
         label="Specific Audience *"
         labelFontSize="18px"
         maxchar={80}
-        description="Please tell us who your target audience is for this grant."
+        description="Please tell us who your target audience is for this project."
       />
     </Form>
   );

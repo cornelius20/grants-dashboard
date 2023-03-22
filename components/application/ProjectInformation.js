@@ -19,14 +19,14 @@ const ProjectInformation = () => {
         <Input
           name="projectBudget"
           label="Total Budget"
-          description="Provide the total budget in $USD to complete your Grant."
+          description="Provide the total budget in $USD to complete your project."
           isNumber={true}
           labelFontSize="18px"
         />
         <Input
           name="projectDuration"
           label="Total Duration"
-          description="Provide the total amount of hours required to complete your Grant. Include all members if this is a team grant."
+          description="Provide the total amount of hours required to complete your project. Include all members if this is a team project."
           isNumber={true}
           labelFontSize="18px"
         />

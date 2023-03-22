@@ -32,7 +32,7 @@ function isFieldValid(field) {
   }
 }
 
-const ProjectRoadmap = ({visibleModal}) => {
+const ProjectRoadmap = ({ visibleModal }) => {
   const [numOfMilestones, setNumOfMilestones] = useState();
   const [currentMilestone, setCurrentMilestone] = useState(1);
 
@@ -144,10 +144,10 @@ const ProjectRoadmap = ({visibleModal}) => {
   return (
     <Form
       title="Grant Roadmap"
-      description="Provide clear, concise, easy to review deliverables for progress payments."
+      description="Provide clear, concise, easy to review deliverables and acceptance criteria for progress payments."
     >
       <h1 className={styles.h1}>
-          <button onClick={visibleModal} className={styles.purpleLink}>PAYMENT QUANTITY & SIZING TABLE</button>
+        <button onClick={visibleModal} className={styles.purpleLink}>PAYMENT QUANTITY & SIZING TABLE</button>
       </h1>
       <div className={styles.final}>
         <Input

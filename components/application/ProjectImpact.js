@@ -12,7 +12,7 @@ const ProjectImpact = () => {
       </Form>
       <Form
         title="Grant Risks"
-        description="What are the risks involved with this grant?  Are there any technical (or other) factors that might limit your ability to complete the grant?  If so, what is your plan to overcome these factors?"
+        description="What are the risks involved with this project?  Are there any technical (or other) factors that might limit your ability to complete the project?  If so, what is your plan to overcome these factors?"
       >
         <TextArea name="projectRisks" maxchar={300} height="100px" />
       </Form>

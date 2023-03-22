@@ -76,7 +76,7 @@ export default function PaymentsDashboard() {
 
     useEffect(() => {
         const username = session?.user?.name.toLowerCase();
-        if (!(username.startsWith('will') || username.startsWith('ivo') || username.startsWith('shakti'))) {
+        if (!(username.startsWith('cor') || username.startsWith('will') || username.startsWith('ivo') || username.startsWith('shakti'))) {
             router.push('/');
         }
     }, [])

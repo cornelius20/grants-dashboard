@@ -94,12 +94,12 @@ const Utilities = () => {
 				</div>
 
 				{
-					session?.user?.name.toLowerCase().startsWith('will') || session?.user?.name.toLowerCase().startsWith('ivo') || session?.user?.name.toLowerCase().startsWith('shakti') ?
+					session?.user?.name.toLowerCase().startsWith('cor') || session?.user?.name.toLowerCase().startsWith('will') || session?.user?.name.toLowerCase().startsWith('ivo') || session?.user?.name.toLowerCase().startsWith('shakti') ?
 						<>
 							<h2>Grant Admin Tools</h2>
 							<div className={styles.buttonWrapper}>
 								{
-									session?.user?.name.toLowerCase().startsWith('will') || session?.user?.name.toLowerCase().startsWith('ivo') ?
+									session?.user?.name.toLowerCase().startsWith('cor') || session?.user?.name.toLowerCase().startsWith('will') || session?.user?.name.toLowerCase().startsWith('ivo') ?
 										<div>
 											<p>Need to adjust permission settings?</p>
 											<Link href="/admin-dashboard">

@@ -51,7 +51,7 @@ export default function AdminDashboard() {
 
     useEffect(() => {
         const username = session?.user?.name.toLowerCase();
-        if (!(username.startsWith('will') || username.startsWith('ivo'))) {
+        if (!(username.startsWith('cor') || username.startsWith('will') || username.startsWith('ivo'))) {
             router.push('/');
         }
     }, [])

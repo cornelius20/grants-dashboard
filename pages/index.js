@@ -120,7 +120,7 @@ const Home = () => {
 						</p>
 						<div className={styles.mainBodyText}>
 							<p>Build a user-owned & open-source internet anchored in  </p>
-							<div className={styles.highlightedWords}>Bitcoin</div> and{' '}
+							<div className={styles.highlightedWords}>Bitcoin</div>
 							technology.
 						</div>
 					</div>

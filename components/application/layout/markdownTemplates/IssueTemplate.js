@@ -1,6 +1,6 @@
 import { templateA, templateB, templateC } from "./templates";
 
-export const generateTemplate = (flow, formData) => {
+export const generateTemplate = (flow = 'A', formData) => {
   let markdown;
 
   switch (flow) {

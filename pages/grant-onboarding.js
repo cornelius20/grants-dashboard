@@ -18,6 +18,7 @@ import { authOptions } from './api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
 import { useToasts } from 'react-toast-notifications';
 import CountriesDropdown from '../components/CountriesDropdown';
+import BackButton from '../components/BackButton';
 
 export default function GrantOnboarding() {
     const [loading, setLoading] = useState(false);
@@ -449,27 +450,17 @@ export default function GrantOnboarding() {
     return (
         <div className={styles.main}>
             {
-                alertVisible ? <CustomAlert title="Please Connect a Wallet" onClose={() => setAlertVisible(false)} /> : null
+                alertVisible ? <CustomAlert title="Please Connect a Wallet" onClose={() => {
+                    console.log('Clicked')
+                    setAlertVisible(false)
+                }} /> : null
             }
-            <div style={wrapper}>
-                <p>
-                    <Link href={'/utilities'}>
-                        <span style={{ color: '#fff', cursor: 'pointer' }}>Back to Utilities</span>
-                    </Link>
-                </p>
-                <span style={bar}></span>
-            </div>
+            <BackButton title="Back to Utilities" link={'/utilities'}/>
+            
             <BrowserWallet visible={browserError} handleClose={() => setBrowserError(false)} />
             <AddWallet visible={visible} handleClose={() => setVisible(false)} />
             <div className={styles.onBoardingWrapper}>
-                {/* <div style={wrapper}>
-                    <p>
-                        <Link className={styles.whiteLink} href={'/utilities'}>
-                            <span style={{color: '#fff'}}>Back to Utilities</span>
-                        </Link>
-                    </p>
-                    <span style={bar}></span>
-                </div> */}
+               
                 <h2>
                     Grant Onboarding
                 </h2>
@@ -535,7 +526,7 @@ export default function GrantOnboarding() {
                                             </button>
 
                                         </div>
-                                        <div className={styles.formControl}>
+                                        <div className={`${styles.formControl}`}>
                                             <label>STX Wallet Memo</label>
                                             <input
                                                 className={styles.formInput}
@@ -543,6 +534,7 @@ export default function GrantOnboarding() {
                                                 type="text"
                                                 placeholder="Type here..."
                                                 value={stxMemo}
+                                                style={stxMemoStyle}
                                                 onChange={(e) => { setStxMemo(e.target.value) }}
                                                 autoComplete="off"
                                             />
@@ -570,7 +562,7 @@ export default function GrantOnboarding() {
                     <div className={styles.onBoardingRight}>
                         <div className={styles.formControl}>
                             <label style={{ marginBottom: 10 }}>Select Issue Number:</label>
-                            <div className={styles.selectWrapper}>
+                            <div className={styles.selectWrapper} style={w216}>
                                 <DropdownIcon className={styles.selectIssueArrow} />
                                 <select className={styles.issueSelect} onChange={(e) => handleGrantChange(e)} name="selectIssue">
                                     {
@@ -591,7 +583,7 @@ export default function GrantOnboarding() {
                         <p style={marginBottom120}></p>
                         <div className={styles.divider}></div>
                         <p style={{ ...whiteColor, ...marginTop10 }}>If any of the information provided above is incorrect please email us <a style={mailLink} href="mailto:grants@stacks.org">here.</a></p>
-                        <span style={checkbox}><input className={styles.mt3} type={'checkbox'} /> <p className={styles.white}>I confirm all of the information on this page is correct.</p></span>
+                        <span style={checkboxRight}><input className={styles.mt3} type={'checkbox'} /> <p className={styles.white}>I confirm all of the information on this page is correct.</p></span>
                         <button className={styles.gradientButton} disabled={loading} onClick={(e) => { handleSubmit(e) }}>
                             {
                                 loading ? <LoadingSpinner /> : 'Click to Submit'
@@ -614,6 +606,14 @@ const flex2 = {
 }
 
 const checkbox = {
+    display: 'flex',
+    gap: 10,
+    alignItems: 'center',
+    marginBottom: 20,
+    color: '#fff'
+}
+
+const checkboxRight = {
     display: 'flex',
     gap: 10,
     alignItems: 'flex-start',
@@ -659,13 +659,27 @@ const wrapper = {
     position: 'relative'
 }
 
+const backBtn = {
+    color: '#718096', 
+    cursor: 'pointer'
+}
+
 const bar = {
     height: 2,
     width: 30,
     borderRadius: 3,
     marginTop: 25,
     marginBottom: 20,
-    backgroundColor: '#fff'
+    backgroundColor: '#718096'
+}
+
+const stxMemoStyle = {
+    width: 210,
+    borderBottom: '1px solid #fff'
+}
+
+const w216 = {
+    width: 216
 }
 
 export async function getServerSideProps(context) {

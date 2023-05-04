@@ -90,8 +90,10 @@
 
 .purpleLink {
   font-weight: bold;
+  font-family: 'Inter', sans-serif;
   color: #553c9a !important;
   text-decoration: underline;
+  line-height: 24px;
 }
 
 .onBoardingLeft h2 {

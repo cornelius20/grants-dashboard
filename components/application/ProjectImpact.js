@@ -6,7 +6,7 @@ const ProjectImpact = () => {
     <>
       <Form
         title="Grant Impact"
-        description="What key metrics will the community be able to review to verify that this grant had a high impact?"
+        description="What key metrics will the community be able to review to verify that this project had a high impact?"
       >
         <TextArea name="projectImpact" maxchar={300} height="100px" />
       </Form>

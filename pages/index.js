@@ -27,6 +27,7 @@ const Home = () => {
 		// if(!res){
 		// 	router.push('/quiz');
 		// }
+		console.log('ENV IS : - ',process.env.GITHUB_CLIENT_ID)
 		async function refresh() {
 			if (session) {
 				const github = new Octokit({

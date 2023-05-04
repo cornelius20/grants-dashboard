@@ -11,6 +11,7 @@ import LoadingSpinner from '../public/images/loading-spinner.svg';
 import { authOptions } from './api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
 import Head from 'next/head';
+import BackButton from '../components/BackButton';
 
 const GrantDataExporter = () => {
 	const [CSVData, setCSVData] = useState([
@@ -319,14 +320,15 @@ const GrantDataExporter = () => {
 			<Head>
 				<title>Grant Data Exporter</title>
 			</Head>
-			<div style={wrapper}>
+			<BackButton title={'Back to Utilities'} link={'/utilities'} />
+			{/* <div style={wrapper}>
 				<p>
 					<Link className={styles.whiteLink} href={'/utilities'}>
 						<span style={{ color: '#fff', cursor: 'pointer' }}>Back to Utilities</span>
 					</Link>
 				</p>
 				<span style={bar}></span>
-			</div>
+			</div> */}
 			<div className={styles.grantDataWrapper}>
 				<h1>Grant Data Exporter</h1>
 				<p className={styles.descriptor}>

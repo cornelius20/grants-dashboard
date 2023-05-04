@@ -13,6 +13,8 @@ import { unstable_getServerSession } from 'next-auth/next';
 import Person from '../public/images/person.svg';
 import Arrow from '../public/images/arrow.svg';
 import { useToasts } from 'react-toast-notifications';
+import BackButton from '../components/BackButton';
+import CustomDropdown from '../components/CustomDropdown';
 
 export default function AdminDashboard() {
     const { data: session } = useSession();
@@ -32,6 +34,10 @@ export default function AdminDashboard() {
     const [userList, setUserList] = useState([]);
     const [searchVal, setSearchVal] = useState('');
     const [currentUser, setCurrentUser] = useState(null);
+    const [firstnameError, setfirstnameError]= useState(false);
+    const [lastnameError, setlastnameError]= useState(false);
+    const [githubusernameError, setgithubusernameError]= useState(false);
+    const [emailaddressError, setemailaddressError]= useState(false);
 
     const createUser = async (data) => {
         console.log('Creating user ....')
@@ -55,7 +61,28 @@ export default function AdminDashboard() {
             router.push('/');
         }
     }, [])
+  
 
+    const validateInputFields = () => {
+        if(!userData.firstName){
+            setfirstnameError(true)
+        }
+        if(!userData.lastName){
+            setlastnameError(true);
+        }
+        if(!userData.login){
+            setgithubusernameError(true);
+        }
+        if(!userData.email){
+            setemailaddressError(true);
+        }
+        if( userData.firstName && userData.lastName && userData.login && userData.email ){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
     const updateUser = async (data) => {
         setLoading(true);
@@ -88,7 +115,9 @@ export default function AdminDashboard() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        createUser(userData);
+        if(validateInputFields()){
+            createUser(userData);
+        }
     }
 
     const handleEdit = (e) => {
@@ -143,14 +172,15 @@ export default function AdminDashboard() {
 
     return (
         <div style={main}>
-            <div style={wrapper}>
+            <BackButton title={'Back to Utilities'} link={'/utilities'} />
+            {/* <div style={wrapper}>
                 <p>
                     <Link style={link} href={'/utilities'}>
                         <span style={{color: '#fff',cursor: 'pointer'}}>Back to Utilities</span>
                     </Link>
                 </p>
                 <span style={bar}></span>
-            </div>
+            </div> */}
             <div className={styles.onBoardingWrapper}>
                 {/* <div style={wrapper}>
                     <p>
@@ -215,9 +245,11 @@ export default function AdminDashboard() {
                                                 required
                                                 placeholder="Type here..."
                                                 value={userData.firstName}
-                                                onChange={(e) => { setUserData({ ...userData, firstName: e.target.value }) }}
+                                                onChange={(e) => { setfirstnameError(false); setUserData({ ...userData, firstName: e.target.value }) }}
                                                 autoComplete="off"
                                             />
+                                            {firstnameError && <span className={styles.validationError}>Required!</span>}
+
                                         </div>
                                     </div>
                                     <div className={styles.formRow}>
@@ -230,9 +262,11 @@ export default function AdminDashboard() {
                                                 type="text"
                                                 placeholder="Type here..."
                                                 value={userData.lastName}
-                                                onChange={(e) => { setUserData({ ...userData, lastName: e.target.value }) }}
+                                                onChange={(e) => { setlastnameError(false); setUserData({ ...userData, lastName: e.target.value }) }}
                                                 autoComplete="off"
                                             />
+                                            {lastnameError && <span className={styles.validationError}>Required!</span>}
+
                                         </div>
                                     </div>
                                     <div className={styles.formRow}>
@@ -246,11 +280,13 @@ export default function AdminDashboard() {
                                                     required
                                                     placeholder="Type here..."
                                                     value={userData.login}
-                                                    onChange={(e) => { setUserData({ ...userData, login: e.target.value }) }}
+                                                    onChange={(e) => { setgithubusernameError(false); setUserData({ ...userData, login: e.target.value }) }}
                                                     autoComplete="off"
                                                 />
                                                 <GithubIcon className={styles.searchIcon} />
                                             </div>
+                                            {githubusernameError && <span className={styles.validationError}>Required!</span>}
+
                                         </div>
                                     </div>
                                     <div className={styles.formRow}>
@@ -263,9 +299,11 @@ export default function AdminDashboard() {
                                                 type="text"
                                                 placeholder="Type here..."
                                                 value={userData.email}
-                                                onChange={(e) => { setUserData({ ...userData, email: e.target.value }) }}
+                                                onChange={(e) => { setUserData({ ...userData, email: e.target.value });if(e.target.value.includes('@')){setemailaddressError(false)}; }}
                                                 autoComplete="off"
                                             />
+                                            {emailaddressError && <span className={styles.validationError}>Required!</span>}
+
                                         </div>
                                     </div>
                                     <div className={styles.formRow}>
@@ -355,6 +393,7 @@ export default function AdminDashboard() {
                                     <div className={styles.formRow}>
                                         <div className={styles.formControl}>
                                             <label>Select Role</label>
+                                            {/* <CustomDropdown onChange={setCurrentUser({...currentUser,type: e.target.value})} options={['Admin','Finance','Reviewer','Grantee']}/> */}
                                             <select name="selectUserType" onChange={(e) => { setCurrentUser({ ...currentUser, type: e.target.value }) }}>
                                                 <option value="Admin">Admin</option>
                                                 <option value="Finance">Finance</option>

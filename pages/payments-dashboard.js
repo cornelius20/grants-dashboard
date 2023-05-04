@@ -11,6 +11,7 @@ import { findGrant, paymentUpdateUser } from '../utils/ApiCalls';
 import { authOptions } from './api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
 import { useToasts } from 'react-toast-notifications';
+import BackButton from '../components/BackButton';
 
 export default function PaymentsDashboard() {
     const { data: session } = useSession();
@@ -32,6 +33,9 @@ export default function PaymentsDashboard() {
     const [grantsFound, setGrantsFound] = useState(0);
     const [stxAmount, setStxAmount] = useState(null)
     const [usdAmount, setUsdAmount] = useState(null)
+    const [stxAmountError,setStxAmountError] = useState(false);
+    const [usdAmountError,setUsdAmountError] = useState(false);
+    const [stacksIdError,setStacksIdError] = useState(false);
     const [paymentsLength, setPaymentsLength] = useState(0)
     const [paymentNumber, setPaymentNumber] = useState(1)
     const [txID, setTxID] = useState(null)
@@ -74,12 +78,12 @@ export default function PaymentsDashboard() {
     ]);
 
 
-    useEffect(() => {
-        const username = session?.user?.name.toLowerCase();
-        if (!(username.startsWith('cor') || username.startsWith('will') || username.startsWith('ivo') || username.startsWith('shakti'))) {
-            router.push('/');
-        }
-    }, [])
+    // useEffect(() => {
+    //     const username = session?.user?.name.toLowerCase();
+    //     if (!(username.startsWith('cor') || username.startsWith('will') || username.startsWith('ivo') || username.startsWith('shakti'))) {
+    //         router.push('/');
+    //     }
+    // }, [])
 
     const predictedImpactScoreArr = ['6', '5', '4', '3', '2', '1'];
 
@@ -169,7 +173,7 @@ export default function PaymentsDashboard() {
         }
 
 
-        res.map((issue) => {
+        res?.map((issue) => {
             let teamMembers = issue.assignees.map((assignee) => assignee.login);
 
             issues.push({
@@ -354,47 +358,69 @@ export default function PaymentsDashboard() {
 
     const handleSubmit = async (e) => {
 
-        let paymentData = {
-            "grantIssueNumber": grantIssueNumber,
-            "paymentsMade": {
-                "id": paymentNumber,
-                "date": new Date(),
-                "txID": txID,
-                "stxAmount": stxAmount,
-                "usdAmount": parseFloat(usdAmount)
+        if(validateInputFields()){
+            let paymentData = {
+                "grantIssueNumber": grantIssueNumber,
+                "paymentsMade": {
+                    "id": paymentNumber,
+                    "date": new Date(),
+                    "txID": txID,
+                    "stxAmount": stxAmount,
+                    "usdAmount": parseFloat(usdAmount)
+                }
             }
+            e.preventDefault();
+            setLoading(true);
+            const res = await paymentUpdateUser(paymentData);
+            if (res.success) {
+                let formattedNum = totalGrantPaidToDate != undefined ? parseFloat(totalGrantPaidToDate) + parseFloat(usdAmount) : parseFloat(usdAmount)
+                let totalAmountString = formattedNum?.toString()
+                if (totalAmountString.indexOf('.') === -1) {
+                    totalAmountString += '.000';
+                } else if (totalAmountString.indexOf('.') === totalAmountString.length - 2) {
+                    totalAmountString += '0';
+                }
+                setTotalGrantPaidToDate(totalAmountString);
+                setPaymentsLength(paymentsLength + 1)
+                addToast('Successfully added!', { appearance: 'success', autoDismiss: true, autoDismissTimeout: 3000 });
+    
+            } else {
+                addToast('Failed to add!', { appearance: 'error', autoDismiss: true, autoDismissTimeout: 3000 });
+            }
+            setLoading(false);
         }
-        e.preventDefault();
-        setLoading(true);
-        const res = await paymentUpdateUser(paymentData);
-        if (res.success) {
-            let formattedNum = totalGrantPaidToDate != undefined ? parseFloat(totalGrantPaidToDate) + parseFloat(usdAmount) : parseFloat(usdAmount)
-            let totalAmountString = formattedNum?.toString()
-            if (totalAmountString.indexOf('.') === -1) {
-                totalAmountString += '.000';
-            } else if (totalAmountString.indexOf('.') === totalAmountString.length - 2) {
-                totalAmountString += '0';
-            }
-            setTotalGrantPaidToDate(totalAmountString);
-            setPaymentsLength(paymentsLength + 1)
-            addToast('Successfully added!', { appearance: 'success', autoDismiss: true, autoDismissTimeout: 3000 });
+    }
 
-        } else {
-            addToast('Failed to add!', { appearance: 'error', autoDismiss: true, autoDismissTimeout: 3000 });
+    const validateInputFields = () => {
+        if(!stxAmount){
+            setStxAmountError(true);
         }
-        setLoading(false);
+        if(!usdAmount){
+            setUsdAmountError(true);
+        }
+        if(!txID){
+            setStacksIdError(true);
+        }
+        if( stxAmount && usdAmount && txID ){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     return (
         <div className={styles.main}>
-            <div style={wrapper}>
+
+            <BackButton title={'Back to Utilities'} link={'/utilities'} />
+            {/* <div style={wrapper}>
                 <p>
                     <Link style={link} href={'/utilities'}>
-                        <span style={{ color: '#fff', cursor: 'pointer' }}>Back to Utilities</span>
+                        <span style={backBtn}>Back to Utilities</span>
                     </Link>
-                </p>
+         s       </p>
                 <span style={bar}></span>
-            </div>
+            </div> */}
             <div className={styles.onBoardingWrapper}>
                 {/* <div style={wrapper}>
                     <p>
@@ -454,8 +480,9 @@ export default function PaymentsDashboard() {
                                             type="number"
                                             placeholder="Type here..."
                                             value={stxAmount}
-                                            onChange={(e) => { setStxAmount(e.target.value) }}
+                                            onChange={(e) => { setStxAmountError(false);setStxAmount(e.target.value) }}
                                         />
+                                        {stxAmountError && <span className={styles.validationError}>Required!</span>}
                                     </div>
                                     <div className={styles.formControl}>
                                         <label>Equivelant amount of USD</label>
@@ -465,8 +492,10 @@ export default function PaymentsDashboard() {
                                             type="number"
                                             placeholder="Type here..."
                                             value={usdAmount}
-                                            onChange={(e) => { setUsdAmount(e.target.value) }}
+                                            onChange={(e) => { setUsdAmountError(false);setUsdAmount(e.target.value) }}
                                         />
+                                        {usdAmountError && <span className={styles.validationError}>Required!</span>}
+
                                     </div>
                                 </div>
                                 <div className={styles.formRow}>
@@ -478,9 +507,11 @@ export default function PaymentsDashboard() {
                                             type="text"
                                             placeholder="Type here..."
                                             value={txID}
-                                            onChange={(e) => { setTxID(e.target.value) }}
+                                            onChange={(e) => { setStacksIdError(false);setTxID(e.target.value) }}
                                             autoComplete="off"
                                         />
+                                        {stacksIdError && <span className={styles.validationError}>Required!</span>}
+
                                     </div>
                                 </div>
                             </form>
@@ -522,7 +553,8 @@ const paymentHistory = {
 
 const addPayment = {
     color: '#fff',
-    marginBottom: 20
+    opacity: .92,
+    marginBottom: 25
 }
 
 const marginBottom70 = {
@@ -543,13 +575,18 @@ const link = {
     color: '#fff'
 }
 
+const backBtn = {
+    color: '#718096', 
+    cursor: 'pointer'
+}
+
 const bar = {
     height: 2,
     width: 30,
     borderRadius: 3,
     marginTop: 25,
     marginBottom: 20,
-    backgroundColor: '#fff'
+    backgroundColor: '#718096'
 }
 
 export async function getServerSideProps(context) {

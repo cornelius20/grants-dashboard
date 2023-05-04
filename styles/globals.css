@@ -1,8 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
 @font-face {
   font-family: "Open Sauce One";
   src: url("/fonts/Open-Sauce-One/OpenSauceOne-Regular.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
+}
+
+
+@font-face {
+  font-family: "OpenSauceOne-Light";
+  src: url("/fonts/Open-Sauce-One/OpenSauceOne-Light.woff2") format("woff2");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "OpenSauceOne-Bold";
+  src: url("/fonts/Open-Sauce-One/OpenSauceOne-Bold.woff2") format("woff2");
+  font-weight: 700;
 }
 
 @font-face {
@@ -132,10 +147,11 @@ input[type="checkbox"] {
   background-color: black;
   margin: 0;
   cursor: pointer;
-  height: 15px;
+  height: 12px;
+  width: 12px;
   display: grid;
   place-content: center;
-  border: 1px solid white;
+  border: 2px solid white;
 }
 
 input[type="checkbox"]::before {

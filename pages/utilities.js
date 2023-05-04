@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router'
 import { authOptions } from './api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
+import BackButton from '../components/BackButton';
 
 const Utilities = () => {
 	const { data: session } = useSession();
@@ -37,14 +38,7 @@ const Utilities = () => {
 						</p>
 				</div>
 			</Link> */}
-			<div style={wrapper}>
-                <p>
-                    <Link href={'/'}>
-                        <span style={{color: '#fff',cursor: 'pointer'}}>Back</span>
-                    </Link>
-                </p>
-                <span style={bar}></span>
-            </div>
+			<BackButton title={'Back'} link={'/'}/>
 			<div className={styles.utilitiesWrapper}>
 
 				<h2>Stacks Community Tools</h2>

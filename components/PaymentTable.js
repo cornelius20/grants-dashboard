@@ -17,7 +17,7 @@ export default function PaymentTable({ isVisible, closeModal }) {
             <span style={bar}></span>
             </div>
 
-            <ApplicationProgress progress={'50%'} />
+            {/* <ApplicationProgress progress={'50%'} /> */}
 
             <div className={styles.onBoardingWrapper}>
                 <div className={styles.onBoardingRow}>

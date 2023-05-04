@@ -564,9 +564,7 @@ const Application = () => {
     <div>
       <PaymentTable isVisible={paymentModalVisible} closeModal={closeModal} />
       <div
-        className={
-          !showModal ? styles.applicationWrapper : styles.applicationWrapperBlur
-        }
+        
       >
         <Nav
           name={"Application Progress"}
@@ -586,7 +584,7 @@ const Application = () => {
             <AnimatePresence exitBeforeEnter initial={false}>
               {CurrentStep()}
             </AnimatePresence>
-            <div style={{display: 'flex',justifyContent: 'space-between',alignItems: 'center'}}>
+            <div style={{display: 'flex',justifyContent: 'space-between',alignItems: 'center',marginTop: 63,marginBottom: 20}}>
               <button className={styles.prevBtn} onClick={()=>{if(currentStep > 1) setCurrentStep(currentStep - 1)}}>Previous Step</button>
               <div style={{padding: 1,background: 'linear-gradient(45deg, #3182CE, #FFFFFF)',borderRadius: 5}}>
                 {/* <button className={styles.nextBtn}><CheckMark/> Next Step</button> */}

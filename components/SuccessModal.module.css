@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   position: fixed;
-  background-color: #000;
+  background-color: rgb(4 4 4);
   z-index: 1;
 }
 
@@ -17,6 +17,10 @@
   gap: 30px;
   max-width: 400px;
   text-align: center;
+  background: #000;
+  height: 473px;
+  width: 400px;
+  border-radius: 8px;
 }
 
 .bannerHeading {
@@ -26,10 +30,12 @@
   color: transparent;
   font-weight: 400;
   max-width: 400px;
+  margin-top: 60px;
 }
 
 .bannerTextLarge {
   font-size: 18px;
+  padding: 0 30px;
 }
 
 .bannerTextSmall {
@@ -49,4 +55,13 @@
   color: #d53f8c !important;
   text-decoration: underline;
   font-weight: bold;
+}
+
+.divider{
+  height: .5px;
+  background: #fff;
+  opacity: 0.1;
+  margin: 10px 0;
+  width: 100%;
+  margin-top: 49px;
 }

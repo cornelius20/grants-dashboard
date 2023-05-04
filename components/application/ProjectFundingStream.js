@@ -15,7 +15,7 @@ const ProjectFundingStream = () => {
 	});
 
 	return (
-		<Form title="Grant Type" description="Select the Grant Type below.">
+		<Form title="Grant Type" description="Select the Grant Type below">
 			<div className={styles.fundingStreamWrapper}>
 				<table>
 					<thead>

@@ -4,6 +4,10 @@
     background-image: url("../public/images/Logo.png");
     background-repeat: no-repeat;
     background-position: right bottom;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
   }
   
   .close {
@@ -380,10 +384,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 700;
     color: rgba(255, 255, 255, 1.00);
-    opacity: 1 !important;
+    opacity: .92 !important;
   }
   
   .paymentListItem {

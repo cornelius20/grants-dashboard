@@ -20,7 +20,7 @@ const ApplicantInformation = () => {
           image={<GithubIcon />}
           readonly={true}
         />
-        <Input name="email" label="Email" />
+        <Input name="email" label="Email * (required, will be displayed on Github)" />
       </Container>
       <Container>
         <Input
@@ -37,7 +37,7 @@ const ApplicantInformation = () => {
       </Container>
       <TextArea
         name="whyTeamIsQualified"
-        label="Explain what makes you and your grant team (if you plan to work with one) uniquely qualified to execute this grant."
+        label="Explain what makes you and your grant team (if you plan to work with one) uniquely qualified to execute this project.*"
         maxchar={300}
         height="100px"
       />

@@ -9,6 +9,7 @@ export default function SuccessModal({ isVisible }) {
         <h1 className={styles.bannerHeading}>Great!</h1>
         <p className={styles.bannerTextLarge}>It sounds like your project idea could be a good fit for a grant.</p>
         <p className={styles.bannerTextSmall}>Press ‘Continue’ below to proceed with your application.</p>
+        <div className={styles.divider}></div>
         <Link href={'/application'}>
           <button className={styles.bannerButton}>Continue</button>
         </Link>

@@ -26,9 +26,9 @@ const Nav = (props) => {
         <div className={styles.close}>
             <p>
               <CloseIcon />
-              <span style={{color: '#fff',cursor: 'pointer'}}>Close</span>
+              <span style={{color: '#718096',cursor: 'pointer'}}>Close</span>
             </p>
-          {/* <span style={bar}></span> */}
+          <span style={bar}></span>
         </div>
       </Link>
     </div>
@@ -52,5 +52,5 @@ const bar = {
   height: 2,
   width: 30,
   borderRadius: 3,
-  backgroundColor: '#fff'
+  background: '#718096'
 }

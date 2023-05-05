@@ -220,6 +220,8 @@ const Application = () => {
   }
 
   function checkField(field) {
+    console.log('Field is : - ',field)
+
     switch (field.type) {
       case "text":
       case "textarea":
@@ -269,10 +271,10 @@ const Application = () => {
     fields.map((field) => {
       switch (field.name) {
         case "discordUsername":
-        case "email":
+        // case "email":
         case "twitterUsername":
         case "forumUsername":
-        case "projectTeam":
+        // case "projectTeam":
         case "referenceLink":
         case "referenceLinkDescription":
         case "budgetRevision":
@@ -351,7 +353,8 @@ const Application = () => {
     let isValid = false;
 
     function nextPage() {
-      if (invalidFields.length == 0 || optionsValid) {
+      //validation
+      if (invalidFields.length == 0) {
         isValid = true;
         if (currentStep > 1 && currentStep == navSteps().length) {
         } else {
@@ -564,7 +567,9 @@ const Application = () => {
     <div>
       <PaymentTable isVisible={paymentModalVisible} closeModal={closeModal} />
       <div
-        
+        className={
+          !showModal ? styles.applicationWrapper : styles.applicationWrapperBlur
+        }
       >
         <Nav
           name={"Application Progress"}
@@ -584,7 +589,7 @@ const Application = () => {
             <AnimatePresence exitBeforeEnter initial={false}>
               {CurrentStep()}
             </AnimatePresence>
-            <div style={{display: 'flex',justifyContent: 'space-between',alignItems: 'center',marginTop: 63,marginBottom: 20}}>
+            <div style={{display: 'flex',justifyContent: 'space-between',alignItems: 'center'}}>
               <button className={styles.prevBtn} onClick={()=>{if(currentStep > 1) setCurrentStep(currentStep - 1)}}>Previous Step</button>
               <div style={{padding: 1,background: 'linear-gradient(45deg, #3182CE, #FFFFFF)',borderRadius: 5}}>
                 {/* <button className={styles.nextBtn}><CheckMark/> Next Step</button> */}

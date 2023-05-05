@@ -83,7 +83,7 @@ const ProjectRoadmap = ({ visibleModal }) => {
                     if (i == currentMilestone) {
                       style = { color: "#9F7AEA" };
                     }
-                    if (i > currentMilestone) {
+                    if (i !== currentMilestone ) {
                       style = {
                         color: "rgba(255, 255, 255, 0.24)",
                       };
@@ -152,7 +152,7 @@ const ProjectRoadmap = ({ visibleModal }) => {
       <div className={styles.final}>
         <Input
           name="finalDeliverable"
-          label="Final Deliverable"
+          label="Final Deliverable *"
           labelFontSize="18px"
           maxchar={80}
         />
@@ -160,7 +160,7 @@ const ProjectRoadmap = ({ visibleModal }) => {
       <div className={styles.final}>
         <Input
           name="missionDeliverable"
-          label="Mission Deliverable"
+          label="Mission Deliverable *"
           labelFontSize="18px"
           maxchar={80}
         />

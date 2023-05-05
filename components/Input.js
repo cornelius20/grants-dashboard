@@ -38,8 +38,8 @@ const Input = (props) => {
       case "discordUsername":
       case "twitterUsername":
       case "projectTeam":
-      case "email":
-        break;
+      // case "email":
+      //   break;
       default:
         if (value.length == undefined || value.length == "") {
           setColor(input, "red");

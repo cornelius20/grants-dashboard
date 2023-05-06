@@ -15,6 +15,7 @@ import Arrow from '../public/images/arrow.svg';
 import { useToasts } from 'react-toast-notifications';
 import BackButton from '../components/BackButton';
 import CustomDropdown from '../components/CustomDropdown';
+import Input from '../components/Input';
 
 export default function AdminDashboard() {
     const { data: session } = useSession();
@@ -115,9 +116,44 @@ export default function AdminDashboard() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(validateInputFields()){
-            createUser(userData);
+        let formData = JSON.parse(localStorage.getItem("formData"));
+        // console.log('Form data is : - ',formData)
+        const firstName = formData['adminFirstName'];
+        const lastName = formData['adminLastName'];
+        const githubName = formData['adminGithubUsername'];
+        const email = formData['adminEmailAddress'];
+        const type = userData.type;
+
+        const checkField = (field) => {
+            if (field.value == undefined || field.value == "") {
+                field.style.borderColor = 'red';
+                field.style.outlineColor = "red";
+            }else{
+                field.style.outlineColor = "#3182ce";
+                field.style.borderColor = "#3182ce";
+            }
+
         }
+
+        const fn = document.getElementsByName('adminFirstName')[0];
+        const ln = document.getElementsByName('adminLastName')[0];
+        const gn = document.getElementsByName('adminGithubUsername')[0];
+        const ea = document.getElementsByName('adminEmailAddress')[0];
+
+        checkField(fn)
+        checkField(ln)
+        checkField(gn)
+        checkField(ea)
+
+        // console.log('Values are : - ')
+
+        if(firstName && lastName && githubName && email && type){
+            createUser({firstName,lastName,githubName,email,type});
+        }
+
+        // if(validateInputFields()){
+            // createUser(userData);
+        // }
     }
 
     const handleEdit = (e) => {
@@ -237,7 +273,7 @@ export default function AdminDashboard() {
                                 <form>
                                     <div className={styles.formRow}>
                                         <div className={styles.formControl}>
-                                            <label>First Name</label>
+                                            {/* <label>First Name</label>
                                             <input
                                                 className={styles.formInput}
                                                 name="FirstName"
@@ -247,14 +283,19 @@ export default function AdminDashboard() {
                                                 value={userData.firstName}
                                                 onChange={(e) => { setfirstnameError(false); setUserData({ ...userData, firstName: e.target.value }) }}
                                                 autoComplete="off"
+                                            /> */}
+                                            <Input
+                                                name="adminFirstName"
+                                                label="First Name"
+                                                placeholder="Type here..."
                                             />
-                                            {firstnameError && <span className={styles.validationError}>Required!</span>}
+                                            {/* {firstnameError && <span className={styles.validationError}>Required!</span>} */}
 
                                         </div>
                                     </div>
                                     <div className={styles.formRow}>
                                         <div className={styles.formControl}>
-                                            <label>Last Name</label>
+                                            {/* <label>Last Name</label>
                                             <input
                                                 className={styles.formInput}
                                                 name="LastName"
@@ -264,14 +305,24 @@ export default function AdminDashboard() {
                                                 value={userData.lastName}
                                                 onChange={(e) => { setlastnameError(false); setUserData({ ...userData, lastName: e.target.value }) }}
                                                 autoComplete="off"
+                                            /> */}
+                                            <Input
+                                                name="adminLastName"
+                                                label="Last Name"
+                                                placeholder="Type here..."
                                             />
-                                            {lastnameError && <span className={styles.validationError}>Required!</span>}
+                                            {/* {lastnameError && <span className={styles.validationError}>Required!</span>} */}
 
                                         </div>
                                     </div>
                                     <div className={styles.formRow}>
                                         <div className={styles.formControl}>
-                                            <label>Github Username <span style={grayColor}>(login username used)</span></label>
+                                            <Input
+                                                name="adminGithubUsername"
+                                                label="Github Username (login username used)"
+                                                placeholder="Type here..."
+                                            />
+                                            {/* <label>Github Username <span style={grayColor}>(login username used)</span></label>
                                             <div style={githubView}>
                                                 <input
                                                     className={styles.formInput}
@@ -284,14 +335,14 @@ export default function AdminDashboard() {
                                                     autoComplete="off"
                                                 />
                                                 <GithubIcon className={styles.searchIcon} />
-                                            </div>
+                                            </div> */}
                                             {githubusernameError && <span className={styles.validationError}>Required!</span>}
 
                                         </div>
                                     </div>
                                     <div className={styles.formRow}>
                                         <div className={styles.formControl}>
-                                            <label>Email Address</label>
+                                            {/* <label>Email Address</label>
                                             <input
                                                 className={styles.formInput}
                                                 name="EmailAddress"
@@ -301,8 +352,14 @@ export default function AdminDashboard() {
                                                 value={userData.email}
                                                 onChange={(e) => { setUserData({ ...userData, email: e.target.value });if(e.target.value.includes('@')){setemailaddressError(false)}; }}
                                                 autoComplete="off"
+                                            /> */}
+                                            <Input
+                                                className={styles.formInput}
+                                                name="adminEmailAddress"
+                                                label="Email Address"
+                                                placeholder="Type here..."
                                             />
-                                            {emailaddressError && <span className={styles.validationError}>Required!</span>}
+                                            {/* {emailaddressError && <span className={styles.validationError}>Required!</span>} */}
 
                                         </div>
                                     </div>

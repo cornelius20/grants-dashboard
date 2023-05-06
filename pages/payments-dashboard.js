@@ -12,6 +12,7 @@ import { authOptions } from './api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
 import { useToasts } from 'react-toast-notifications';
 import BackButton from '../components/BackButton';
+import Input from '../components/Input';
 
 export default function PaymentsDashboard() {
     const { data: session } = useSession();
@@ -78,12 +79,12 @@ export default function PaymentsDashboard() {
     ]);
 
 
-    // useEffect(() => {
-    //     const username = session?.user?.name.toLowerCase();
-    //     if (!(username.startsWith('cor') || username.startsWith('will') || username.startsWith('ivo') || username.startsWith('shakti'))) {
-    //         router.push('/');
-    //     }
-    // }, [])
+    useEffect(() => {
+        const username = session?.user?.name.toLowerCase();
+        if (!(username.startsWith('cor') || username.startsWith('will') || username.startsWith('ivo') || username.startsWith('shakti'))) {
+            router.push('/');
+        }
+    }, [])
 
     const predictedImpactScoreArr = ['6', '5', '4', '3', '2', '1'];
 
@@ -357,18 +358,40 @@ export default function PaymentsDashboard() {
     }
 
     const handleSubmit = async (e) => {
+        let formData = JSON.parse(localStorage.getItem("formData"));
 
-        if(validateInputFields()){
+        const paymentTransactionID = formData['transactionID'];
+        const paymentStxAmount = formData['stxAmount'];
+        const paymentUsdAmount = formData['usdAmount'];
+
+        const checkField = (field) => {
+            if (field.value == undefined || field.value == "") {
+                field.style.borderColor = 'red';
+                field.style.outlineColor = "red";
+            }else{
+                field.style.outlineColor = "#3182ce";
+                field.style.borderColor = "#3182ce";
+            }
+
+        }
+
+        checkField(document.getElementsByName('transactionID')[0])
+        checkField(document.getElementsByName('stxAmount')[0])
+        checkField(document.getElementsByName('usdAmount')[0])
+
+        if(paymentTransactionID && paymentStxAmount && paymentUsdAmount){
+
             let paymentData = {
                 "grantIssueNumber": grantIssueNumber,
                 "paymentsMade": {
                     "id": paymentNumber,
                     "date": new Date(),
-                    "txID": txID,
-                    "stxAmount": stxAmount,
-                    "usdAmount": parseFloat(usdAmount)
+                    "txID": paymentTransactionID,
+                    "stxAmount": paymentStxAmount,
+                    "usdAmount": parseFloat(paymentUsdAmount)
                 }
             }
+    
             e.preventDefault();
             setLoading(true);
             const res = await paymentUpdateUser(paymentData);
@@ -389,6 +412,9 @@ export default function PaymentsDashboard() {
             }
             setLoading(false);
         }
+
+        // console.log('Values are : - ',formData['transactionID'],formData['stxAmount'],formData['usdAmount'])
+        
     }
 
     const validateInputFields = () => {
@@ -474,34 +500,46 @@ export default function PaymentsDashboard() {
                                 <div className={styles.formRow}>
                                     <div className={styles.formControl}>
                                         <label>Amount of STX Disbursed</label>
-                                        <input
+                                        {/* <input
                                             className={styles.formInput}
                                             name="stxAmount"
                                             type="number"
                                             placeholder="Type here..."
                                             value={stxAmount}
                                             onChange={(e) => { setStxAmountError(false);setStxAmount(e.target.value) }}
+                                        /> */}
+                                        <Input
+                                           className={styles.formInput}
+                                           name="stxAmount"
+                                           isNumber={true}
+                                           placeholder="Type here..."
                                         />
                                         {stxAmountError && <span className={styles.validationError}>Required!</span>}
                                     </div>
                                     <div className={styles.formControl}>
                                         <label>Equivelant amount of USD</label>
-                                        <input
+                                        {/* <input
                                             className={styles.formInput}
                                             name="usdAmount"
                                             type="number"
                                             placeholder="Type here..."
                                             value={usdAmount}
                                             onChange={(e) => { setUsdAmountError(false);setUsdAmount(e.target.value) }}
+                                        /> */}
+                                        <Input
+                                             className={styles.formInput}
+                                             name="usdAmount"
+                                             isNumber={true}
+                                             placeholder="Type here..."
                                         />
-                                        {usdAmountError && <span className={styles.validationError}>Required!</span>}
+                                        {/* {usdAmountError && <span className={styles.validationError}>Required!</span>} */}
 
                                     </div>
                                 </div>
                                 <div className={styles.formRow}>
                                     <div className={styles.formControl}>
                                         <label>Stacks Transaction ID</label>
-                                        <input
+                                        {/* <input
                                             className={styles.formInput}
                                             name="transactionID"
                                             type="text"
@@ -509,6 +547,13 @@ export default function PaymentsDashboard() {
                                             value={txID}
                                             onChange={(e) => { setStacksIdError(false);setTxID(e.target.value) }}
                                             autoComplete="off"
+                                        /> */}
+                                        <Input
+                                             className={styles.formInput}
+                                             name="transactionID"
+                                             isNumber={true}
+                                             placeholder="Type here..."
+                                             autoComplete="off"
                                         />
                                         {stacksIdError && <span className={styles.validationError}>Required!</span>}
 

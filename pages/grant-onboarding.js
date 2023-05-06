@@ -19,6 +19,7 @@ import { unstable_getServerSession } from 'next-auth/next';
 import { useToasts } from 'react-toast-notifications';
 import CountriesDropdown from '../components/CountriesDropdown';
 import BackButton from '../components/BackButton';
+import Input from '../components/Input';
 
 export default function GrantOnboarding() {
     const [loading, setLoading] = useState(false);
@@ -356,13 +357,32 @@ export default function GrantOnboarding() {
     const handleSubmit = async (e) => {
         console.log(firstName, lastName, email, stxAddress, stxMemo, country, anticipatedCompletionDate);
         const [day, month, year] = anticipatedCompletionDate.toLocaleDateString().split('/');
-        if (isSignedIn) {
+        let formData = JSON.parse(localStorage.getItem("formData"));
+
+        const checkField = (field) => {
+            if (field.value == undefined || field.value == "") {
+                field.style.borderColor = 'red';
+                field.style.outlineColor = "red";
+            }else{
+                field.style.outlineColor = "#3182ce";
+                field.style.borderColor = "#3182ce";
+            }
+
+        }
+
+        checkField(document.getElementsByName('onboardingFirstName')[0])
+        checkField(document.getElementsByName('onboardingLastName')[0])
+        checkField(document.getElementsByName('onboardingEmail')[0])
+        checkField(document.getElementsByName('onboardingStxMemo')[0])
+
+        
+        if(formData['onboardingFirstName'] && formData['onboardingLastName'] && formData['onboardingEmail'] && formData['onboardingStxMemo']){
             let onBoardingData = {
-                "firstName": firstName,
-                "lastName": lastName,
-                "email": email,
+                "firstName": formData['onboardingFirstName'] ,
+                "lastName": formData['onboardingLastName'],
+                "email": formData['onboardingEmail'],
                 "stxAddress": stxAddress,
-                "stxMemo": stxMemo,
+                "stxMemo": formData['onboardingStxMemo'],
                 "country": country,
                 "grantIssueNumber": grantIssueNumber,
                 "grantName": grantName,
@@ -370,11 +390,10 @@ export default function GrantOnboarding() {
                 "anticipatedCompletionDate": `${year}-${month}-${day}`
             }
             e.preventDefault();
-            const valid = validateInputFields();
-            if (valid) {
-                setLoading(true);
+            setLoading(true);
                 try {
                     const res = await grantOnboarding(onBoardingData);
+                    console.log('Res is : - ',res);
                     if (res.success) {
                         addToast('Successfully added!', { appearance: 'success', autoDismiss: true, autoDismissTimeout: 3000 });
                         resetInputFields();
@@ -385,10 +404,6 @@ export default function GrantOnboarding() {
                     addToast('Something went wrong!', { appearance: 'error', autoDismiss: true, autoDismissTimeout: 3000 });
                 }
                 setLoading(false);
-            }
-
-        } else {
-            setAlertVisible(true);
         }
     }
 
@@ -409,33 +424,33 @@ export default function GrantOnboarding() {
 
     const validateInputFields = () => {
 
-        setEmailError(false);
-        setFirstError(false);
-        setLastNameError(false);
-        setStxMemoError(false);
-        setGrantIssueNumberError(false);
+        // setEmailError(false);
+        // setFirstError(false);
+        // setLastNameError(false);
+        // setStxMemoError(false);
+        // setGrantIssueNumberError(false);
 
-        if (!email) {
-            setEmailError(true);
-        }
-        if (!firstName) {
-            setFirstError(true);
-        }
-        if (!lastName) {
-            setLastNameError(true);
-        }
-        if (!stxMemo && !memoNotRequired) {
-            setStxMemoError(true);
-        }
-        if (!grantIssueNumber) {
-            setGrantIssueNumberError(true)
-        }
+        // if (!email) {
+        //     setEmailError(true);
+        // }
+        // if (!firstName) {
+        //     setFirstError(true);
+        // }
+        // if (!lastName) {
+        //     setLastNameError(true);
+        // }
+        // if (!stxMemo && !memoNotRequired) {
+        //     setStxMemoError(true);
+        // }
+        // if (!grantIssueNumber) {
+        //     setGrantIssueNumberError(true)
+        // }
 
-        if (email && firstName && lastName && (stxMemo || memoNotRequired) && grantIssueNumber) {
-            return true;
-        } else {
-            return false;
-        }
+        // if (email && firstName && lastName && (stxMemo || memoNotRequired) && grantIssueNumber) {
+        //     return true;
+        // } else {
+        //     return false;
+        // }
     }
 
     const resetInputFields = () => {
@@ -475,8 +490,13 @@ export default function GrantOnboarding() {
                                 <>
                                     <div className={styles.formRow}>
                                         <div className={styles.formControl}>
-                                            <label>First Name</label>
-                                            <input
+                                            {/* <label>First Name</label> */}
+                                            <Input
+                                                name="onboardingFirstName"
+                                                label="First Name *"
+                                                labelFontSize="12px"
+                                            />
+                                            {/* <input
                                                 className={styles.formInput}
                                                 name="FirstName"
                                                 type="type"
@@ -484,12 +504,17 @@ export default function GrantOnboarding() {
                                                 value={firstName}
                                                 onChange={(e) => { setFirstName(e.target.value) }}
                                                 autoComplete="off"
-                                            />
+                                            /> */}
                                             {firstNameError && <span className={styles.validationError}>Required!</span>}
                                         </div>
                                         <div className={styles.formControl}>
-                                            <label>Last Name</label>
-                                            <input
+                                            {/* <label>Last Name</label> */}
+                                            <Input
+                                                name="onboardingLastName"
+                                                label="Last Name *"
+                                                labelFontSize="12px"
+                                            />
+                                            {/* <input
                                                 className={styles.formInput}
                                                 name="LastName"
                                                 type="type"
@@ -497,15 +522,15 @@ export default function GrantOnboarding() {
                                                 value={lastName}
                                                 onChange={(e) => { setLastName(e.target.value) }}
                                                 autoComplete="off"
-                                            />
+                                            /> */}
                                             {lastNameError && <span className={styles.validationError}>Required!</span>}
 
                                         </div>
                                     </div>
                                     <div className={styles.formRow}>
                                         <div className={styles.formControl}>
-                                            <label>Email Address</label>
-                                            <input
+                                            {/* <label>Email Address</label> */}
+                                            {/* <input
                                                 className={styles.formInput}
                                                 name="Email"
                                                 type="email"
@@ -513,6 +538,11 @@ export default function GrantOnboarding() {
                                                 value={email}
                                                 onChange={(e) => { setEmail(e.target.value) }}
                                                 autoComplete="off"
+                                            /> */}
+                                            <Input
+                                                name="onboardingEmail"
+                                                label="Email *"
+                                                labelFontSize="12px"
                                             />
                                             {emailError && <span className={styles.validationError}>Required!</span>}
 
@@ -527,7 +557,7 @@ export default function GrantOnboarding() {
 
                                         </div>
                                         <div className={`${styles.formControl}`}>
-                                            <label>STX Wallet Memo</label>
+                                            {/* <label>STX Wallet Memo</label>
                                             <input
                                                 className={styles.formInput}
                                                 name="WalletMemo"
@@ -537,7 +567,13 @@ export default function GrantOnboarding() {
                                                 style={stxMemoStyle}
                                                 onChange={(e) => { setStxMemo(e.target.value) }}
                                                 autoComplete="off"
+                                            /> */}
+                                            <Input
+                                                name="onboardingStxMemo"
+                                                label="STX Wallet Memo *"
+                                                labelFontSize="12px"
                                             />
+                                            
                                             {stxMemoError && <span className={styles.validationError}>Required!</span>}
                                             <span style={checkbox}>
                                                 <input

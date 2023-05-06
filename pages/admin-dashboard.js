@@ -270,7 +270,7 @@ export default function AdminDashboard() {
                         {
                             !currentUser ? <>
                                 <p style={addUser}>Add a New User</p>
-                                <form>
+                                <form style={pb2}>
                                     <div className={styles.formRow}>
                                         <div className={styles.formControl}>
                                             {/* <label>First Name</label>
@@ -492,6 +492,10 @@ const wrapper = {
 const link = {
     textDecoration: 'none',
     color: '#fff'
+}
+
+const pb2 = {
+    paddingBottom: 20
 }
 
 const bar = {

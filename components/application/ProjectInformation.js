@@ -22,6 +22,7 @@ const ProjectInformation = () => {
           description="Provide the total budget in $USD to complete your project."
           isNumber={true}
           labelFontSize="18px"
+          maxVal={48000}
         />
         <Input
           name="projectDuration"

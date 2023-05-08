@@ -597,7 +597,7 @@ export default function GrantOnboarding() {
                     </div>
                     <div className={styles.onBoardingRight}>
                         <div className={styles.formControl}>
-                            <label style={{ marginBottom: 10 }}>Select Issue Number:</label>
+                            <label style={issueSelect}>Select Issue Number:</label>
                             <div className={styles.selectWrapper} style={w216}>
                                 <DropdownIcon className={styles.selectIssueArrow} />
                                 <select className={styles.issueSelect} onChange={(e) => handleGrantChange(e)} name="selectIssue">
@@ -717,6 +717,16 @@ const stxMemoStyle = {
 const w216 = {
     width: 216
 }
+
+const issueSelect = {
+    fontFamily: "OpenSauceOne-Bold",
+    marginBottom: 10,
+    color: '#718096',
+    fontSize: 14,
+    fontWeight: 'bold',
+
+}
+
 
 export async function getServerSideProps(context) {
     const session = await unstable_getServerSession(context.req, context.res, authOptions);

@@ -287,6 +287,8 @@ export default function AdminDashboard() {
                                             <Input
                                                 name="adminFirstName"
                                                 label="First Name"
+                                                labelColor="rgba(255, 255, 255, 0.8)"
+                                                labelFontSize={12}
                                                 placeholder="Type here..."
                                             />
                                             {/* {firstnameError && <span className={styles.validationError}>Required!</span>} */}
@@ -309,6 +311,8 @@ export default function AdminDashboard() {
                                             <Input
                                                 name="adminLastName"
                                                 label="Last Name"
+                                                labelColor="rgba(255, 255, 255, 0.8)"
+                                                labelFontSize={12}
                                                 placeholder="Type here..."
                                             />
                                             {/* {lastnameError && <span className={styles.validationError}>Required!</span>} */}
@@ -319,7 +323,10 @@ export default function AdminDashboard() {
                                         <div className={styles.formControl}>
                                             <Input
                                                 name="adminGithubUsername"
-                                                label="Github Username (login username used)"
+                                                label="Github Username "
+                                                labelColor="rgba(255, 255, 255, 0.8)"
+                                                labelSecondary="(login username used)"
+                                                labelFontSize={12}
                                                 placeholder="Type here..."
                                             />
                                             {/* <label>Github Username <span style={grayColor}>(login username used)</span></label>
@@ -357,6 +364,8 @@ export default function AdminDashboard() {
                                                 className={styles.formInput}
                                                 name="adminEmailAddress"
                                                 label="Email Address"
+                                                labelColor="rgba(255, 255, 255, 0.8)"
+                                                labelFontSize={12}
                                                 placeholder="Type here..."
                                             />
                                             {/* {emailaddressError && <span className={styles.validationError}>Required!</span>} */}
@@ -365,7 +374,7 @@ export default function AdminDashboard() {
                                     </div>
                                     <div className={styles.formRow}>
                                         <div className={styles.formControl}>
-                                            <label>Select Role</label>
+                                            <label style={labelStyle}>Select Role</label>
                                             <select name="selectUserType" onChange={(e) => { setUserData({ ...userData, type: e.target.value }) }}>
                                                 <option value="Reviewer">Reviewer</option>
                                                 <option value="Admin">Admin</option>
@@ -546,6 +555,11 @@ const listTitle = {
     gap: 10,
     marginBottom: 10,
     cursor: 'pointer'
+}
+
+const labelStyle = {
+    color: 'rgba(255, 255, 255, 0.8)',
+    fontSize: 12
 }
 
 const grayColor = {

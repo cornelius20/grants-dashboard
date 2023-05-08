@@ -87,6 +87,7 @@
   font-weight: bold;
   color: #553c9a !important;
   text-decoration: underline;
+  font-family: 'Inter', sans-serif;
 }
 
 .onBoardingLeft h2 {
@@ -95,7 +96,7 @@
 }
 
 .onBoardingLeft p {
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .text {
@@ -173,6 +174,7 @@
   border-radius: 5px;
   padding: 5px;
   width: 100%;
+
 }
 
 .formRow select {
@@ -183,6 +185,7 @@
   padding: 10px;
   width: 100%;
   color: #fff;
+  font-size: 14px;
 }
 
 .formRow span {
@@ -192,6 +195,7 @@
 
 .onBoardingRight h5 {
   /* font-family: 'Inter'; */
+  font-family: "OpenSauceOne-Bold";
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -208,12 +212,12 @@
 }
 
 .onBoardingRight label {
+  /* font-family: "OpenSauceOne-Bold"; */
   font-style: normal;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 150%;
-  color: rgba(255, 255, 255, 0.8);
-  font-weight: 700;
+  font-weight: 400;
   margin-bottom: 5px;
 }
 

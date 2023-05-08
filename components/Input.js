@@ -5,6 +5,7 @@ const Input = (props) => {
   const {
     name,
     label,
+    labelSecondary,
     labelColor,
     labelFontSize,
     hint,
@@ -13,6 +14,7 @@ const Input = (props) => {
     maxchar,
     description,
     isNumber,
+    maxVal
   } = props;
 
   const [value, setValue] = useState("");
@@ -26,10 +28,17 @@ const Input = (props) => {
     let input = e.target;
     const { name, value } = input;
 
+    console.log('Name and value os : -',name,value)
+    if(isNumber && maxVal){
+      if(value > maxVal || value < 0){
+        return;
+      }
+    }
+
     let formData = JSON.parse(localStorage.getItem("formData"));
     formData[name] = value;
     localStorage.setItem("formData", JSON.stringify(formData));
-
+    
     if (!(value.length > maxchar)) {
       setValue(value.substring(0, maxchar));
     }
@@ -73,8 +82,8 @@ const Input = (props) => {
         style={labelColor ? { color: labelColor } : {}}
         className={styles.label}
       >
-        <label style={labelFontSize ? { fontSize: labelFontSize } : {}}>
-          {label}
+        <label style={labelFontSize ? { fontSize: labelFontSize,color: 'inherit' } : {color: 'inherit'}}>
+          {label}<span style={{color: 'rgba(255, 255, 255, 0.4)'}}>{labelSecondary}</span>
         </label>
         <p>{hint}</p>
       </div>

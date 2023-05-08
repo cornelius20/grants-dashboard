@@ -470,7 +470,7 @@ export default function GrantOnboarding() {
                     setAlertVisible(false)
                 }} /> : null
             }
-            <BackButton title="Back to Utilities" link={'/utilities'}/>
+            <BackButton title="Close" link={'/utilities'}/>
             
             <BrowserWallet visible={browserError} handleClose={() => setBrowserError(false)} />
             <AddWallet visible={visible} handleClose={() => setVisible(false)} />

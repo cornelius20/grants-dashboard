@@ -124,20 +124,22 @@ const ProjectRoadmap = ({ visibleModal }) => {
   };
 
   function getNumberOfMilestones(budget) {
-    if (budget < 10000) {
+    if (budget < 0) {
       return 0;
-    } else if (budget < 25000) {
+    } else if (budget < 10000) {
       return 1;
-    } else if (budget < 48000) {
+    } else if (budget < 25000) {
       return 2;
-    } else if (budget < 100000) {
+    } else if (budget < 48000) {
       return 3;
-    } else if (budget < 200000) {
+    } else if (budget < 100000) {
       return 4;
+    } else if (budget < 200000) {
+      return 5;
     } else if (budget < 300000) {
       return 6;
     } else {
-      return 8;
+      return 7;
     }
   }
 

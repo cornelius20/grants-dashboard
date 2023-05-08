@@ -208,7 +208,7 @@ export default function AdminDashboard() {
 
     return (
         <div style={main}>
-            <BackButton title={'Back to Utilities'} link={'/utilities'} />
+            <BackButton title={'Close'} link={'/utilities'} />
             {/* <div style={wrapper}>
                 <p>
                     <Link style={link} href={'/utilities'}>

@@ -318,7 +318,7 @@ const GrantDataExporter = () => {
 			<Head>
 				<title>Grant Data Exporter</title>
 			</Head>
-			<BackButton title={'Back to Utilities'} link={'/utilities'} />
+			<BackButton title={'Close'} link={'/utilities'} />
 			{/* <div style={wrapper}>
 				<p>
 					<Link style={link} href={'/utilities'}>

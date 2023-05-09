@@ -438,7 +438,7 @@ export default function PaymentsDashboard() {
     return (
         <div className={styles.main}>
 
-            <BackButton title={'Close'} link={'/utilities'} />
+            
             {/* <div style={wrapper}>
                 <p>
                     <Link style={link} href={'/utilities'}>
@@ -456,6 +456,7 @@ export default function PaymentsDashboard() {
                     </p>
                     <span style={bar}></span>
                 </div> */}
+                <BackButton title={'Close'} link={'/utilities'} />
                 <h2>
                     Payments Dashboard
                 </h2>

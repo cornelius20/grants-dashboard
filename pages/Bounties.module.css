@@ -1,0 +1,115 @@
+.bountiesBody{
+    background: -webkit-linear-gradient(
+    bottom,
+    rgb(35, 24, 70) 0%,
+    rgb(9, 8, 18) 74%,
+    rgb(0, 0, 0) 100%
+  );
+  background: -o-linear-gradient(
+    bottom,
+    rgb(35, 24, 70) 0%,
+    rgb(9, 8, 18) 74%,
+    rgb(0, 0, 0) 100%
+  );
+  background: -ms-linear-gradient(
+    bottom,
+    rgb(35, 24, 70) 0%,
+    rgb(9, 8, 18) 74%,
+    rgb(0, 0, 0) 100%
+  );
+  background: -moz-linear-gradient(
+    bottom,
+    rgb(35, 24, 70) 0%,
+    rgb(9, 8, 18) 74%,
+    rgb(0, 0, 0) 100%
+  );
+  background: linear-gradient(
+    to top,
+    rgb(35, 24, 70) 0%,
+    rgb(9, 8, 18) 74%,
+    rgb(0, 0, 0) 100%
+  );
+  z-index: 1;
+  position: relative;
+}
+.container{
+    max-width: 1060px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1 !important;
+    padding: 0 30px;
+    
+}
+
+
+.banner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 90px;
+    position: relative;
+}
+
+
+.bannerLeft{
+
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 89px;
+}
+
+.buttons button{
+    background: #000;
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.36);
+    border: none;
+    outline: none;
+    padding: 10px;
+    width: 80px;
+    cursor: pointer;
+}
+
+.active{
+    color: rgba(255, 255, 255, 0.92) !important;
+    
+}
+
+.textTop{
+    font-size: 29px;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    font-weight: 100;
+    
+}
+
+
+.textBottom{
+    max-width: 550px;
+}
+
+
+
+.bannerLeft h1{
+    font-family: "OpenSauceOne-Bold";
+    font-size: 84px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+}
+
+.cardsWrapper{
+    margin-top: 64px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 980px){
+    .cardsWrapper{
+        justify-content: center;
+    }
+}

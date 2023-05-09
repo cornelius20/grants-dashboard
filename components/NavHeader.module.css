@@ -1,0 +1,25 @@
+.navWrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 36px 0;
+}
+
+.navList{
+    font-family: "OpenSauceOne-Bold";
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    color: rgba(255, 255, 255, 0.36);
+}
+
+.navListItem{
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.navListItem:hover{
+    color: #fff;
+    opacity: .8;
+}

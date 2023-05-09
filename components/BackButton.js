@@ -25,7 +25,6 @@ const wrapper = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-end',
-    paddingRight: 26,
     paddingTop: 38,
     position: 'relative'
 }

@@ -220,7 +220,6 @@ const Application = () => {
   }
 
   function checkField(field) {
-    console.log('Field is : - ',field)
 
     switch (field.type) {
       case "text":
@@ -312,11 +311,13 @@ const Application = () => {
           checkField(field);
           break;
         case "projectTrack":
+          
           const el = document.getElementsByName('projectTrack');
           el.forEach(item=>{
-            if(item.checked){
-              allChecked = true;
-            }
+            checkField(item)
+            // if(item.checked){
+            //   allChecked = true;
+            // }
           })
           break
           // console.log('EL',el);

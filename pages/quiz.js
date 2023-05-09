@@ -62,25 +62,14 @@ export default function GrantOnboarding() {
                 alertVisible ? <CustomAlert title="Please Connect a Wallet" onClose={() => setAlertVisible(false)} /> : null
             }
 
-            {/* <div style={wrapper}>
-                <p>
-                    <Link className={styles.whiteLink} href={'/'}>
-                        <span style={{color: '#fff',cursor: 'pointer',display: 'flex',alignItems: 'center',gap: 10}}><CloseIcon/> Close</span>
-                    </Link>
-                </p>
-                <span style={bar}></span>
-                <div style={relative}>
-                    <button onClick={() => { handleSubmit() }} className={`${styles.gradientButton} ${styles.okButton}`} style={{ width: 210, position: 'absolute', top: 0, right: 0 }}><CheckMark style={{ marginRight: 10 }} /> Ok</button>
-                </div>
-            </div> */}
-            <div className={styles.quizTop}>
-                <ApplicationProgress progress={'10%'} />
-                <Link className={styles.whiteLink} href={'/'}>
-                    <span style={{ color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 10 }}> Back</span>
-                </Link>
-            </div>
 
             <div className={styles.onBoardingWrapper}>
+                <div className={styles.quizTop}>
+                    <ApplicationProgress progress={'10%'} />
+                    <Link className={styles.whiteLink} href={'/'}>
+                        <span style={{ color: '#718096', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 10 }}> Back</span>
+                    </Link>
+                </div>
                 <div className={styles.onBoardingRow}>
                     <div className={styles.onBoardingLeft}>
                         <h2 style={quizHeading}>
@@ -113,7 +102,7 @@ export default function GrantOnboarding() {
                         </h2>
                         <div className={styles.flex}>
                             <input className={styles.quizCheckBox} type={'checkbox'} name="checkBox5" checked={checkBox.checkBox5} onChange={handleCheckBoxChange} />
-                            <p>I have read the <a target="_blank" rel='noreferrer' href='https://github.com/stacksgov/Stacks-Grant-Launchpad#current-grant-priorities' className={styles.purpleLink}>2023 Grant Program Priorities</a> blog post and feel my project is complimentary to the current direction of the Grants program.</p>
+                            <p>I have read the <a target="_blank" rel='noreferrer' href='https://stacks.org/stacks-grants-update-2023' className={styles.purpleLink}>2023 Grant Program Priorities</a> blog post and feel my project is complimentary to the current direction of the Grants program.</p>
                         </div>
                         <div className={styles.flex}>
                             <input className={styles.quizCheckBox} type={'checkbox'} name="checkBox6" checked={checkBox.checkBox6} onChange={handleCheckBoxChange} />

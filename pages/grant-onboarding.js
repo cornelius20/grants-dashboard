@@ -470,12 +470,12 @@ export default function GrantOnboarding() {
                     setAlertVisible(false)
                 }} /> : null
             }
-            <BackButton title="Close" link={'/utilities'}/>
+            
             
             <BrowserWallet visible={browserError} handleClose={() => setBrowserError(false)} />
             <AddWallet visible={visible} handleClose={() => setVisible(false)} />
             <div className={styles.onBoardingWrapper}>
-               
+            <BackButton title="Close" link={'/utilities'}/>
                 <h2>
                     Grant Onboarding
                 </h2>

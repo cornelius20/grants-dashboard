@@ -38,9 +38,9 @@ const Utilities = () => {
 						</p>
 				</div>
 			</Link> */}
-			<BackButton title={'Close'} link={'/'}/>
+			
 			<div className={styles.utilitiesWrapper}>
-
+				<BackButton title={'Close'} link={'/'}/>
 				<h2>Stacks Community Tools</h2>
 				<div className={styles.buttonWrapper}>
 					<div>

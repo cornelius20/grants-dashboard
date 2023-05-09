@@ -1,36 +1,9 @@
 .bountiesBody{
-    background: -webkit-linear-gradient(
-    bottom,
-    rgb(35, 24, 70) 0%,
-    rgb(9, 8, 18) 74%,
-    rgb(0, 0, 0) 100%
-  );
-  background: -o-linear-gradient(
-    bottom,
-    rgb(35, 24, 70) 0%,
-    rgb(9, 8, 18) 74%,
-    rgb(0, 0, 0) 100%
-  );
-  background: -ms-linear-gradient(
-    bottom,
-    rgb(35, 24, 70) 0%,
-    rgb(9, 8, 18) 74%,
-    rgb(0, 0, 0) 100%
-  );
-  background: -moz-linear-gradient(
-    bottom,
-    rgb(35, 24, 70) 0%,
-    rgb(9, 8, 18) 74%,
-    rgb(0, 0, 0) 100%
-  );
-  background: linear-gradient(
-    to top,
-    rgb(35, 24, 70) 0%,
-    rgb(9, 8, 18) 74%,
-    rgb(0, 0, 0) 100%
-  );
+    background-image: url('../public/images/Bounties.jpg');
+    background-repeat: no-repeat;
   z-index: 1;
   position: relative;
+  overflow: hidden;
 }
 .container{
     max-width: 1060px;
@@ -39,6 +12,14 @@
     z-index: 1 !important;
     padding: 0 30px;
     
+}
+
+@media screen and (max-width: 375px){
+    .container{
+        
+        padding: 0 15px;
+        
+    }
 }
 
 
@@ -52,6 +33,7 @@
 
 
 .bannerLeft{
+    z-index: 111;
 
 }
 
@@ -99,6 +81,22 @@
     font-size: 84px;
     font-weight: 700;
     letter-spacing: -1.5px;
+}
+
+@media screen and (max-width: 979px){
+    .bannerLeft h1{
+        font-family: "OpenSauceOne-Bold";
+        font-size: 60px;
+        font-weight: 700;
+        letter-spacing: -1.5px;
+    }
+    .textTop{
+        font-size: 24px;
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        font-weight: 100;
+        
+    }
 }
 
 .cardsWrapper{

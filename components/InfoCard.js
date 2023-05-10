@@ -10,7 +10,7 @@ export default function InfoCard({title,fee,deadline,description,awardedIn,text,
         <p className={styles.cardText}> FEE:  <span className={styles.secondcardText}>{fee}</span>   </p>
         <p className={styles.cardTextLarge}>{description}</p>
         <p className={styles.cardTextItalic}>{text}</p>
-        <a href={link} className={styles.learnButton}>Learn More</a>
+        <a href={link} className={styles.learnButton}> <span className={styles.learnText}>Learn More</span></a>
     </div>
   )
 }

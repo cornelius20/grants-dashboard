@@ -1,5 +1,6 @@
 .bountiesBody{
-    background-image: url('../public/images/Bounties.jpg');
+    /* background-image: url('../public/images/Bounties.jpg'); */
+    background: linear-gradient(to bottom right, #3a0f06, #050622);
     background-repeat: no-repeat;
     z-index: 1;
     position: relative;
@@ -110,7 +111,7 @@
 }
 
 .cardsWrapper{
-    margin-top: 64px;
+    margin-top: 50px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;

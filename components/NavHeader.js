@@ -10,7 +10,7 @@ export default function NavHeader() {
         <ul className={`${styles.navList} ${mobNavActive ? styles.active : ''}`}>
             {/* <li onClick={()=>setMobNavActive(!mobNavActive)} className={styles.navListItem}>Apply for Grant</li>
             <li onClick={()=>setMobNavActive(!mobNavActive)} className={styles.navListItem}>Manage Grant</li> */}
-            <li onClick={()=>setMobNavActive(!mobNavActive)} className={styles.navListItem}>Grants Repo</li>
+            {/* <li onClick={()=>setMobNavActive(!mobNavActive)} className={styles.navListItem}>Grants Repo</li> */}
         </ul>
         {/* <div className={styles.mobNav} onClick={()=>setMobNavActive(!mobNavActive)}>
             <span ></span>

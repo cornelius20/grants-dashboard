@@ -1,10 +1,9 @@
 .cardContainer{
-    background: #000;
+    background: rgba(0,0,0,0.7);
     border-radius: 28px;
     padding: 30px;
     max-width: 460px;
     margin-bottom: 30px;
-    opacity: 0.7;
 }
 
 .cardHeading{
@@ -17,7 +16,7 @@
 .headingSecondary{
     font-family: 'Inter', sans-serif;
     font-weight: 100;
-     color: rgba(255, 255, 255, 0.64);
+    color: rgba(255, 255, 255, 0.64);
 
 }
 
@@ -30,7 +29,7 @@
 
 }
 .secondcardText{
-    color: rgba(255, 255, 255, 0.92);
+    color: rgba(255, 255, 255, 0.70);
     font-weight: bold;
 }
 
@@ -39,7 +38,6 @@
     color: rgba(255, 255, 255, 0.64);
     margin: 15px 0;
     font-size: 14px;
-
 }
 
 .cardTextItalic{
@@ -48,6 +46,7 @@
     color: rgba(255, 255, 255, 0.64);
     margin: 15px 0;
     font-size: 14px;
+    margin-bottom: 60px;
 }
 
 .learnButton{
@@ -56,6 +55,12 @@
     border: none;
     outline: none;
     border-radius: 100px;
-    padding: 10px;
+    padding: 10px 12px;
+    
+}
+
+.learnText{
     color: rgba(255, 255, 255, 0.8);
+    padding: 0 4px;
+    font-size: 14px;
 }

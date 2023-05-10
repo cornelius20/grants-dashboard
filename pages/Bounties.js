@@ -114,10 +114,11 @@ const Home = () => {
             title: 'sBTC Protocol',
             fee: '1.25 BTC per team member',
             headingSecondary: 'Testing Team',
-            awardedIn: 'BTC',
+            awardedIn: '$BTC',
             deadline: 'June 20, 2023',
             description: 'Seeking 3-6 experienced Software Engineers to design and build sBTC-related testing infrastructure and quality assurance systems. The members of this team will be expected to work 40 hrs/wk for 12 weeks on this effort.',
-            text: ''
+            text: '',
+            link: 'https://github.com/stacksgov/Stacks-Grant-Launchpad/issues/914'
         },
         {
             title: 'Stacks Protocol',
@@ -126,7 +127,8 @@ const Home = () => {
             awardedIn: '$STX',
             deadline: 'June 20, 2023',
             description: 'Develop a comprehensive liquid stacking module for STX on Stacks. Provide a streamlined stacking process for users and increasing liquidity and participation in the network via automated reward conversion, stSTX token issuance, and other liquid stacking features.',
-            text: ''
+            text: '',
+            link: 'https://github.com/stacksgov/Stacks-Grant-Launchpad/issues/915'
         },
         {
             title: 'Bitcoin on Stacks',
@@ -135,7 +137,8 @@ const Home = () => {
             awardedIn: '$BTC',
             deadline: 'June 20, 2023',
             description: 'Soliciting ideas for open-source, high-impact contributions to advance the mission of activating all L1 Bitcoin-based assets on the L2 Stacks layer via the sBTC protocol.',
-            text: 'Open to proposals focused on extending sBTC at the infrastructural or application level and/or improving DevEx.'
+            text: 'Open to proposals focused on extending sBTC at the infrastructural or application level and/or improving DevEx.',
+            link: 'https://github.com/stacksgov/Stacks-Grant-Launchpad/issues/916'
         },
         {
             title: 'Stacks & Clarity',
@@ -144,7 +147,8 @@ const Home = () => {
             awardedIn: '$STX',
             deadline: 'June 20, 2023',
             description: 'Soliciting ideas for open-source, high-impact contributions to advance the mission of activating all L1 Bitcoin-based assets on the L2 Stacks layer via Clarity smart contracts.',
-            text: 'Open to proposals focused on improving Stacks at the infrastructural or application level and/or improving DevEx'
+            text: 'Open to proposals focused on improving Stacks at the infrastructural or application level and/or improving DevEx',
+            link: 'https://github.com/stacksgov/Stacks-Grant-Launchpad/issues/917'
         }
     ]
 
@@ -189,7 +193,7 @@ const Home = () => {
                     <div className={styles.cardsWrapper}>
                         {
                             data.map((item,index)=>(
-                                <InfoCard key={index} title={item.title} headingSecondary={item.headingSecondary} awardedIn={item.awardedIn} fee={item.fee} deadline={item.deadline} description={item.description} text={item.text}/>
+                                <InfoCard key={index} title={item.title} headingSecondary={item.headingSecondary} awardedIn={item.awardedIn} fee={item.fee} deadline={item.deadline} description={item.description} text={item.text} link={item.link}/>
                             ))
                         }
                         

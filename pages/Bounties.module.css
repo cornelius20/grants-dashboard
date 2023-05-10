@@ -1,9 +1,9 @@
 .bountiesBody{
     background-image: url('../public/images/Bounties.jpg');
     background-repeat: no-repeat;
-  z-index: 1;
-  position: relative;
-  overflow: hidden;
+    z-index: 1;
+    position: relative;
+    overflow: hidden;
 }
 .container{
     max-width: 1060px;
@@ -64,14 +64,24 @@
 .textTop{
     font-size: 29px;
     margin: 0;
-    font-family: 'Inter', sans-serif;
-    font-weight: 100;
+    font-family: 'Open Sauce One';
+    font-style: normal;
+    font-weight: 300;
+    letter-spacing: -1.5px;
+    color: #FFFFFF;
+
     
 }
 
 
 .textBottom{
-    max-width: 550px;
+    max-width: 570px;
+    font-family: 'Open Sauce One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -1px;
 }
 
 

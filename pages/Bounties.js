@@ -182,7 +182,7 @@ const Home = () => {
                             <h1>Critical Bounties</h1>
                             <p className={styles.textBottom}>Critical Bounties are RFP-style grants that support the development of a user-owned & open-source internet anchored in Bitcoin technology.</p>
                         </div>
-                        <div style={{position: 'absolute',right: -150,top: -190,zIndex: 1}}>
+                        <div style={{position: 'absolute',right: -150,top: -190,zIndex: -1}}>
                             <Abstracto_008/>
                         </div>
                     </div>

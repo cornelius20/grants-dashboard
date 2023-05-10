@@ -9,7 +9,7 @@
 
 .cardHeading{
     font-family: "OpenSauceOne-Bold";
-    color: rgba(255, 255, 255, 0.92);
+    color: #FFFFFF;
     font-size: 24px;
     font-weight: bold;
 }
@@ -17,17 +17,25 @@
 .headingSecondary{
     font-family: 'Inter', sans-serif;
     font-weight: 100;
+     color: rgba(255, 255, 255, 0.64);
 
 }
 
 .cardText{
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
     color: rgba(255, 255, 255, 0.64);
     margin: 15px 0;
     font-size: 12px;
 
 }
+.secondcardText{
+    color: rgba(255, 255, 255, 0.92);
+    font-weight: bold;
+}
 
 .cardTextLarge{
+    font-family: 'Inter', sans-serif;
     color: rgba(255, 255, 255, 0.64);
     margin: 15px 0;
     font-size: 14px;
@@ -35,6 +43,7 @@
 }
 
 .cardTextItalic{
+    font-family: 'Inter', sans-serif;
     font-style: italic;
     color: rgba(255, 255, 255, 0.64);
     margin: 15px 0;

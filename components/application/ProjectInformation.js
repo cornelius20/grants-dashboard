@@ -19,7 +19,7 @@ const ProjectInformation = () => {
         <Input
           name="projectBudget"
           label="Total Budget *"
-          description="Provide the total budget in $USD to complete your project."
+          description="Provide the total budget in $USD to complete your project. Maximum Budget = $48,000."
           isNumber={true}
           labelFontSize="18px"
           maxVal={48000}
